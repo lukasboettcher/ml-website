@@ -1,8 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [];
+import { CartpoleComponent } from './cartpole/cartpole.component';
+import { ObjDetectionComponent } from './obj-detection/obj-detection.component';
+import { HomeComponent } from './home/home.component';
+import { MnistComponent } from './mnist/mnist.component';
+import { ClassifyComponent } from './classify/classify.component';
+import { NotfoundComponent } from './help/notfound/notfound.component';
 
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'cartpole', component: CartpoleComponent },
+  { path: 'object', component: ObjDetectionComponent },
+  { path: 'mnist', component: MnistComponent },
+  { path: 'classify', component: ClassifyComponent },
+  { path: '404', component: NotfoundComponent },
+  // wildcard URL
+  { path: '**', redirectTo: '/404' }
+];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

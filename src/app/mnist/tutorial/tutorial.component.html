@@ -1,0 +1,141 @@
+<div class="container">
+    <div class="row my-3 align-items-center">
+        <div class="col-md-8">
+            <h4>Schritt 1: Datenbank laden</h4>
+            <p>
+                Zunächst muss die Datenbank mit den Bildern geladen werden.
+                Glücklicherweise ist diese frei zugänglich und kann in Form einer großen Datei geladen werden.
+                Die Datei ist eine sogenannte <a
+                    href="https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png">Sprite-Datei</a>,
+                das heißt sie ist ein großes Bild, worin die eigentlichen
+                kleinen Bilder der Zahlen in einem Raster gespeichert sind.
+                Erstellt wurde die Datenbank von der amerikanischen Behörde NIST, 
+                kurz für National Institute of Standards and Technology.
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success': stages[0]}"
+                (click)="loadData()">Datenbank Laden</button>
+        </div>
+    </div>
+
+    <div class="row my-3 align-items-center">
+        <div class="col-md-8">
+            <h4>Schritt 2: Neuronales Netz erstellen</h4>
+            <p>
+                Nun kommt der wohlmöglich wichtigste Teil. Es muss über die Topologie des Netzes entschieden werden, das
+                heißt, dass vorgegeben werden muss, wie das Netz auszusehen hat. Eine wichtige Rolle spielen dabei unter
+                anderem die Anzahl der Schichten und der Knoten in jeder Schicht, aber auch die Aktivierung der
+                einzelnen Neuronen. <br> Wenn du mit diesen Begrifflichkeiten noch nicht gut vertraut bist, schaue dir
+                am besten noch einmal Kapitel 5 des Kurses Elements of AI an, dort werden diese näher Erklärt.
+            </p>
+            <p>
+                In diesem Beispiel können zwei verschiedene Modelle für ein neuronales Netz verwendet werden: Ein
+                <strong>Konvolutionales</strong> Modell oder ein <strong>Vollverknüpftes</strong> Modell.
+                Wie bereits in Kapitel 5 erklärt wurde, eignen sich konvolutionale Netze besser für Bildverarbeitung und -erkennung,
+                als ein vollverknüpftes Netz. Du kannst beide Modelle trainieren und ausprobieren. <br>
+                Beide Modelle verwenden als Aktivierungsfunktion einen <a
+                    href="https://de.wikipedia.org/wiki/Rectifier_(neuronale_Netzwerke)">Rectifier</a>
+                und konvertieren in der letzten Schicht die Gewichte mittels <a
+                    href="https://de.wikipedia.org/wiki/Softmax-Funktion">Softmax-Funktion</a> in Wahrscheinlichkeiten
+                für die jeweiligen Zahlen.
+                Der unterschied liegt in den inneren Schichten, wo das konvolutionale Modell von mehreren
+                <a href="https://de.wikipedia.org/wiki/Convolutional_Neural_Network#Aufbau">konvolutionalen und
+                    Pooling-Schichten</a>
+                gebrauch macht, um die Bilder besser zu <em>verstehen</em>.
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="btn-group-vertical">
+                <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
+                    [ngClass]="{'btn-success': stages[1] && modelType == 'conv'}"
+                    (click)="createModel('conv')">Konvolutionales Modell</button>
+                <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
+                    [ngClass]="{'btn-success': stages[1] && modelType == 'dense'}"
+                    (click)="createModel('dense')">Vollverknüpftes Modell</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3 align-items-center">
+        <div class="col-lg-8">
+            <h4>Schritt 3: Training</h4>
+            <p>
+                Die Daten sind geladen, und die Modelle stehen bereit. Nun muss das neuronale Netz trainiert werden.
+                Hierfür werden die Daten zunächst in zwei Teile getrennt, Trainingsdaten und Testdaten. Letztere werden,
+                wie bereits in Kapitel 4 erklärt, gebraucht, damit wir bemerken, wenn in dem Netz Überanpassung
+                stattfindet, also damit das Modell allgemein gute Vorhersagen treffen kann, auch außerhalb der
+                Trainingsdaten.
+            </p>
+            <p>
+                Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
+                <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
+                    <option disabled>Batchsize</option>
+                    <option *ngFor="let x of availBatchSizes" [ngValue]="x">{{x}}</option>
+                </select>
+                und die Anzahl der Epochen
+                <select type="number" class="mx-2" [(ngModel)]="trainEpochs">
+                    <option disabled>Epochs</option>
+                    <option *ngFor="let x of availEpochs" [ngValue]="x">{{x}}</option>
+                </select>.
+                <br>
+                Die Batchsize gibt an, wie viele Bilder nacheinander von dem Modell verarbeitet werden, bis dieses
+                Optimiert wird. Die Epochen geben an, wie oft alle Trainingsdaten durchgearbeitet werden. Das bedeutet es
+                werden insgesamt <code class="px-2">(trainData / batchSize) * epochs</code> Schritte für das Training
+                benötigt.
+                Daraufhin wird das Modell noch einmal mit den Testdaten überprüft. <br>
+                Das Ergebnis des Trainings kann auf dem Graphen beobachtet werden. Dort werden für jeden Schritt die
+                Genauigkeit des Modells, also wie viel Prozent der Bilder korrekt zugeordnet wurden, gespeichert.
+                Außerdem wird abschließend das letzte Ergebnis des Trainings und des Tests angezeigt.
+            </p>
+        </div>
+        <div class="col-lg-4 text-center">
+            <button type="submit" class="btn btn-primary my-2"
+                [disabled]="!stages[1] || (trainingRunning && !trainingDone)" [ngClass]="{'btn-success': stages[2]}"
+                (click)="trainModel()">
+                Trainieren <span *ngIf="trainingRunning" class="spinner-border spinner-border-sm"></span>
+            </button>
+
+            <div class="chart-wrapper my-2" *ngIf="trainingRunning || trainingDone">
+                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+                    [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+                    [plugins]="lineChartPlugins">
+                </canvas>
+            </div>
+
+            <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
+                <div class="col-auto text-center">
+                    <label for="progress" class="pt-1 mr-2">
+                        <span class="badge badge-pill badge-light py-1">Fortschritt:</span>
+                    </label>
+                </div>
+                <div class="col-auto text-center">
+                    <progress id="progress" class="my-2" value="{{trainBatchCount}}"
+                        max="{{trainTotalBatches}}"></progress>
+                </div>
+            </div>
+
+            <div class="my-2" *ngIf="trainingDone">
+                <p>
+                    Finale Genauigkeit aus dem Training: {{trainValidationAcc | percent}} <br>
+                    Finale Genauigkeit aus dem Testen: {{testValidationAcc | percent}}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row my-3 align-items-center">
+        <div class="col-md-8">
+            <h4>Schritt 4: Modell Übertragen</h4>
+            <p>
+                Zu allerletzt muss das trainierte Modell übertragen werden, damit es ausprobiert werden kann.
+                Zahlen können danach auf dem schwarzen Feld gezeichnet werden und das Modell versucht diese zu erkennen,
+                nachdem der Auswerten Knopf betätigt wurde.
+            </p>
+        </div>
+        <div class="col-md-4 text-center">
+            <button type="submit" class="btn btn-primary" [disabled]="!stages[2]" [ngClass]="{'btn-success': stages[3]}"
+                (click)="submitModel()">Modell Übertragen</button>
+        </div>
+    </div>
+</div>

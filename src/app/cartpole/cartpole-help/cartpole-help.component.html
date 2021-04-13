@@ -1,0 +1,161 @@
+<div *ngIf="page == 1" class="row">
+    <div class="col-lg-6">
+        <h4>Worum geht es in dieser Komponente?</h4>
+        <h6>In dieser Komponente geht es um das CartPole Problem.</h6>
+        <p>
+            CartPole ist ein Spiel, dessen Ziel es ist einen Stab auf einem beweglichen Kasten zu balancieren.
+            Als Eingabe gibt es lediglich zwei Optionen, bewege den Kasten nach links oder rechts.
+        </p>
+        <p>
+            Wenn der Stab mehr als 12° nach links oder rechts neigt, ist das Spiel verloren.
+            Auch wenn der Kasten das Spielfeld verlässt, ist das Spiel vorbei.
+        </p>
+        <p>
+            Ziel ist es, den Stab so lange wie möglich zu balancieren.
+        </p>
+    </div>
+    <div class="col-lg-6">
+        <figure class="figure">
+            <img src="{{basePath}}/cart-pole.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Illustration des CartPole Problems</figcaption>
+        </figure>
+    </div>
+</div>
+<div *ngIf="page == 2" class="row">
+    <div class="col-lg-6">
+        <h4>Wie erstelle ich das neuronale Netz?</h4>
+        <p>
+            Das neuronale Netz, welches verwendet wird, um Entscheidungen zu treffen, kann bezogen auf das Layout
+            konfiguriert werden. Das Layout beschreibt die Anzahl der Schichten und Neuronen pro Schicht im Netzwerk.
+            Hierbei werden lediglich die internen Schichten konfiguriert, denn die erste und letzte Schicht müssen immer
+            auf das Problem abgestimmt sein. In diesem Beispiel bekommt das Netz zwei Eingaben, nämlich die Position des
+            Kastens und des Stabs, und liefert eine Ausgabe, nämlich die Richtung in die der Kasten bewegt werden soll.
+        </p>
+        <p>
+            Angenommen es sollen zwei interne Schichten verwendet werden mit jeweils 32 Neuronen.
+            Die Eingabe für das Layout würde dementsprechend wie folgt aussehen: <code>32,32</code>.
+        </p>
+        <p>
+            Falls du bereits ein Netzwerk trainiert und dessen Daten heruntergeladen hast, kannst du mittels dem Laden Knopf dieses Modell
+            wieder importieren und weiter trainieren oder testen. Dabei sind zwei Dateien wichtig, eine <code>.json</code> Datei, 
+            welche die Parameter für das Netzwerk beinhaltet, und eine <code>.weigts.bin</code> Datei, 
+            welche die internen Gewichte des erstellten Netzwerks beinhaltet.
+        </p>
+        <p>
+            Je komplexer das Layout, desto länger dauert auch der Trainingsprozess, allerdings sind unter Umständen auch
+            die Ergebnisse besser als mit einem simpleren Netzwerk.
+        </p>
+    </div>
+    <div class="col-lg-6">
+        <figure class="figure">
+            <img src="{{basePath}}/neural-net.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Ein Netz mit einer internen Schicht und <code>5</code> Neuronen.</figcaption>
+        </figure>
+    </div>
+</div>
+<div *ngIf="page == 3" class="row">
+    <div class="col-lg-6">
+        <h4>Was bedeuten die Trainings Parameter?</h4>
+        <p>
+            Für das Training des neuronalen Netzes können fünf Parameter konfiguriert werden.
+        </p>
+        <ul>
+            <li>
+                <h6>Anzahl der Iterationen</h6>
+            </li>
+        </ul>
+        <p>
+            Die Anzahl der Iterationen beschreibt, wie oft das Netzwerk sich selbst verbessern soll.
+            Je größer dieser Parameter, desto länger dauert das Training und desto besser ist das Netzwerk an das
+            Problem angepasst.
+        </p>
+        <ul>
+            <li>
+                <h6>Versuche pro Iterationen</h6>
+            </li>
+        </ul>
+        <p>
+            Die Anzahl der Versuche ist vergleichbar mit der Batchsize aus der MNIST Komponente.
+            Das bedeutet es werden n-Versuche in jeder Iteration ausgeführt. Mit dem Ergebnis der Versuche wird
+            anschließend das Netzwert am Ende einer Iteration optimiert, das heißt es werden diejenigen Gewichte im Netzwerk verstärkt, 
+            welche das den Stab möglichst lange balanciert haben, und die Gewichte, welche welche den Stab nur balancieren konnten, 
+            werden abgeschwächt.
+        </p>
+        <ul>
+            <li>
+                <h6>Dauer eines Versuches</h6>
+            </li>
+        </ul>
+        <p>
+            Damit jeder Versuch nicht endlos simuliert wird, ist eine maximale Dauer angegeben nach der ein Versuch
+            abgebrochen wird.
+            Ist dieser Parameter zu klein, so ist das Netzwerk nicht in der Lage den Stab beliebig lange zu balancieren, 
+            da jeder Versuch zu schnell abgebrochen wird.
+            Er sollte also ausreichend groß gewählt werden.
+        </p>
+        <ul>
+            <li>
+                <h6>Reward Discount</h6>
+            </li>
+        </ul>
+        <p>
+            Reward bedeutet Belohnung für das Netz. In dem CartPole Problem ist der Reward gegeben als Dauer des Versches. Das bedeutet,
+            je länger der Stab balanciert werden konnte, desto höher ist der Reward für den Versuch.
+            Der Reward Discount ist der Faktor mit dem der Reward der vorherigen Iteration gewertet wird. Er sollte
+            immer kleiner als 1 sein, damit neuere Rewards stärker gewichtet werden, als ältere. Dies sorgt dafür, dass
+            der Trainingsprozess unter gegebenen Voraussetzungen gegen ein Optimum konvergiert.
+        </p>
+        <ul>
+            <li>
+                <h6>Learning Rate</h6>
+            </li>
+        </ul>
+        <p>
+            Die Learning Rate beschreibt, wie <em>stark</em> das Netzwerk in jeder Iteration optimiert wird. Bei einer
+            zu großen Learning Rate findet sehr schnell sogenanntes Overshooting statt, wobei das eigentliche
+            Optimum/Minimum verfehlt wird, weil der Schritt zu groß gewählt wird.
+            Aus diesem Grund wird dieser Parameter oft klein (0.01-0.1) gewählt.
+        </p>
+        <p>
+            Letztendlich kann das Training mit den Train Knopf gestartet werden.
+        </p>
+    </div>
+    <div class="col-lg-6 align-self-center">
+        <figure class="figure">
+            <img src="{{basePath}}/rl.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Grundlage des Reinforcement Learnings</figcaption>
+        </figure>
+        <figure class="figure">
+            <img src="{{basePath}}/lr.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Overshooting bei zu großer Learning Rate</figcaption>
+        </figure>
+    </div>
+</div>
+<div *ngIf="page == 4" class="row">
+    <div class="col-lg-6">
+        <h4>Auswertung nach dem Training</h4>
+        <p>
+            Nachdem das Training beendet ist, kann mit dem Test Knopf eine Simulation des neuronalen Netzes ausgeführt
+            und angezeigt werden.
+            Hierbei versucht das Netz ausgehend von dem aktuellen Zustand der Umgebung die beste Entscheidung zu treffen, 
+            um den Stab zu balancieren.
+            Wenn ausreichend Trainiert wurde, sollte das System in der Lage sein, den Stab permanent zu balancieren.
+            Relativ schnell wird klar, dass wir ein künstliches neuronales Netz trainiert haben, welches in dieser
+            speziellen Aufgabe besser abschneidet als ein Mensch. Dies kann leicht demonstriert werden, 
+            indem du versuchst einen Besenstiel auf deiner Hand zu balancieren.
+        </p>
+        <p>
+            Das Ergebnis des Trainings kann je nach gegebenen Parametern und verwendeter Hardware sehr verschieden
+            ausfallen. In dem gegebenen Beispiel hat der Trainingsprozess 30 Minuten gedauert.
+            Es können allerdings auch sehr gute Ergebnisse nach 15 Minuten erreicht werden.
+        </p>
+    </div>
+    <div class="col-lg-6">
+        <figure class="figure">
+            <img src="{{basePath}}/converge.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Das Ergebnis nach 125 Iterationen, der durchschnittliche Reward pro
+                Iteration ist gegen das Maximum (Anzahl der Schritte) konvergiert.</figcaption>
+        </figure>
+    </div>
+</div>
+<ngb-pagination class="d-flex justify-content-center" collectionSize="4" pageSize="1" [(page)]="page"></ngb-pagination>

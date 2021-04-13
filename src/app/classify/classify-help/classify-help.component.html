@@ -1,0 +1,64 @@
+<div *ngIf="page == 1" class="row">
+    <div class="col-xl-5">
+        <h4>Worum geht es in dieser Komponente?</h4>
+        <p>
+            Hier soll veranschaulicht werden, wie wir ein bestehendes neuronales Netz nach unseren Wünschen anpassen
+            können. Dazu verwenden wir einen Mechanismus namens Transfer-Lernen.
+        </p>
+        <p>
+            Bei dem vortrainierten Modell handelt es sich um MobileNet, das spziell für Bilderkennung auf mobilen
+            Geräten trainiert wurde. Es zeichnet sich durch kompakte Größe und gute Klassifizierungsqualität aus.
+            Mehr Informationen über das Mobilenet Modell, insbesondere Vergleiche zu anderen Modellen, kannst du 
+            <a href="https://github.com/tensorflow/models/tree/master/research/slim/nets/mobilenet">hier</a> finden.
+        </p>
+    </div>
+    <div class="col-xl-7">
+        <figure class="figure p-3 m-3">
+            <img src="{{basePath}}/mobilenet.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Aufbau des Mobilenet Modells.</figcaption>
+        </figure>
+    </div>
+</div>
+<div *ngIf="page == 2" class="row">
+    <div class="col-lg-6 col-xl-8">
+        <h4>Was ist eine KNN-Klassifikator?</h4>
+        <p>
+            Wie bereits in Kapitel 4 erläutert wurde, ist der KNN-Klassifikator ein Klassifizierungverfahren, bei dem
+            Objekte jeweilt dem Label zugeordnet werden, dem sie am ähnlichsten sehen.
+        </p>
+        <p>
+            Das Mobilenet Modell besteht aus einer Reihe von Schichten, wobei auch konvolutionale Schichten vewendet
+            werden. Die Ausgabe dieser Schichten wird nun als Eingabe für unseren KNN-Klassifikator genutzt.
+            Die Ähnlichkeit, die für KNN relevant ist, lässt sich also als bestimmte Merkmale des Bildes verstehen.
+        </p>
+        <p>
+            Was genau ein Merkmal ausmacht ist dabei unbekannt, denn darum soll sich ja das Modell kümmern und nicht der
+            Anwender.
+        </p>
+    </div>
+    <div class="col-lg-6 col-xl-4">
+        <figure class="figure p-5 m-3">
+            <img src="{{basePath}}/knn.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">KNN-Klassifikation</figcaption>
+        </figure>
+    </div>
+</div>
+<div *ngIf="page == 3" class="row">
+    <div class="col-lg-6">
+        <h4>Probiere die Klassifizierung aus.</h4>
+        <p>
+            Wenn du dich mit der Funktionalität zur Klassifizierung vertraut gemacht hast, kannst du probieren, ein
+            Labyrinth nur mit deiner Webcam zu lösen. <br>
+        </p>
+        <p>
+            Hierzu musst du unter der Tabelle mit den Klassifizierungen auf <strong>Labyrinth Lösen</strong> klicken.
+            Dann kannst du für die vier Klassen <code class="mx-2">oben, unten, links, rechts</code> Objekte oder Gesten
+            registrieren. Wenn diese nun von der Webcam erkannt werden, so wird der rote Punkt bewegt. Das Ziel ist mit
+            einem roten Kreuz markiert.
+        </p>
+    </div>
+    <div class="col-lg-6">
+        <img src="{{basePath}}/maze.png" class="img-fluid rounded mb-1 p-5">
+    </div>
+</div>
+<ngb-pagination class="d-flex justify-content-center" collectionSize="3" pageSize="1" [(page)]="page"></ngb-pagination>

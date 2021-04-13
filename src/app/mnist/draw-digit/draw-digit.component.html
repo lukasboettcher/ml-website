@@ -1,0 +1,12 @@
+<div class="row">
+    <div class="col">
+        <div class="d-flex justify-content-center">
+            <canvas #canvas class="border"></canvas>
+        </div>
+        <div class="btn-group d-flex justify-content-center">
+            <button class="btn btn-primary" (click)="onClear()">Löschen</button>
+            <button class="btn btn-primary" [disabled]="!modelLoaded"
+                (click)="onSubmit()">{{modelLoaded ? 'Auswerten' : 'Kein Modell geladen'}}</button>
+        </div>
+    </div>
+</div>
