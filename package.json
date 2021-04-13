@@ -1,6 +1,12 @@
 {
   "name": "ml-website",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Interactive learning platform for various Machine Learning concepts.",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/lukasboettcher/ml-website.git"
+  },
+  "author": "Lukas Böttcher <lukas@btchr.de>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
