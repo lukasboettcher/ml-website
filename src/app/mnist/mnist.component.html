@@ -1,0 +1,62 @@
+<div class="container">
+  <div class="row mb-3">
+    <div class="col">
+      <h3>MNIST Zahlenerkennung</h3>
+      <p>
+        MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen.
+        Diese werden oft verwendet, um ein neuronales Netz zu trainieren, um Zahlen zu erkennen.
+        Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher Wert zugeordnet, sodass der Computer überprüfen kann, ob
+        seine Auswertung korrekt war.
+      </p>
+    </div>
+  </div>
+
+  <div class="row my-3" *ngIf="doTutorial == null">
+    <div class="col">
+      <h6 class="text-center">Tutorial Überspringen?
+        <div class="btn-group mx-3">
+          <button type="button" class="btn btn-success" (click)="chooseTutorial(true)">Nein</button>
+          <button type="button" class="btn btn-danger" (click)="chooseTutorial(false)">Ja</button>
+        </div>
+      </h6>
+    </div>
+  </div>
+
+  <div class="row my-3">
+    <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-md-8">
+      <h2>Modell auswählen</h2>
+      <p>
+        Hier kann ausgewählt werden, ob ein vortrainiertes Modell verwendet werden soll, oder ein Modell, welches durch
+        das Tutorial selbst erstellt wurde.
+      </p>
+      <p>
+        Wenn du die Erkennung nur ausprobieren möchtest, kannst du auch direkt das vortrainierte Modell verwenden.
+      </p>
+    </div>
+    <div class="col-md-4 align-self-center">
+      <div class="btn-group-vertical">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'custom'}"
+          [disabled]="!gotCustomModel"
+          (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein Selbsterstelltes Modell'}}</button>
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+          (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5 justify-content-around">
+    <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
+    <div class="col-md ml-3">
+      <div>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+          [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+        </canvas>
+        <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<app-create-model (modelDelete)="onModelDelete()" (modelSubmitted)="onModelSubmitted($event)"
+    (modelSave)="onModelSave()" (modelLoad)="onModelLoad($event)"></app-create-model>
+<app-configuration [modelCreatedStatus]="modelCreated" [isTraining]="isTraining" [isTesting]="isTesting" (configSubmitted)="onTrain($event)"
+    (stopTrain)="onStopTrain()" (test)="onTest()" (stopTest)="onStopTest()"></app-configuration>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h4 class="mb-3">Fortschritt</h4>
+            <div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4">Status</label>
+                    <div class="col-sm-8">
+                        <p>{{status}}</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4">Iteration</label>
+                    <div class="col-sm-8 pt-2">
+                        <!-- <ngb-progressbar type="dark" [value]="progressIter" [showValue]="true"></ngb-progressbar> -->
+                        <progress style="width: 100%;" value="{{progressIter}}" max="100"></progress>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4">Versuche</label>
+                    <div class="col-sm-8 pt-2">
+                        <!-- <ngb-progressbar type="info" [value]="progressGames" [showValue]="true"></ngb-progressbar> -->
+                        <progress style="width: 100%;" value="{{progressGames}}" max="100"></progress>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6">
+                        <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels"
+                            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+                            [chartType]="lineChartType" [plugins]="lineChartPlugins">
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h4 class="mb-3">Simulation</h4>
+            <figure class="figure">
+                <canvas #canvas class="figure-img img-fluid rounded border" width="500px" height="150px"></canvas>
+                <figcaption class="figure-caption">Hier wird das trainierte Netz getestet.</figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+<app-help-button>
+    <app-cartpole-help></app-cartpole-help>
+</app-help-button>

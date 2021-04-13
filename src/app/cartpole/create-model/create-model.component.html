@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h4 class="mb-3">Neuronales Netz erstellen</h4>
+            <form [formGroup]="modelForm" (ngSubmit)="onSubmit()">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4">Layout des Netzes</label>
+                    <div class="col-sm-8" *appVar="modelForm.get('layout') as entry">
+                        <input type="text" class="form-control" formControlName="layout" [readonly]="modelCreated">
+                        <span *ngIf="!entry.valid && entry.touched" class="help-block">
+                            <span class="badge badge-danger" *ngIf="entry.errors['modelStringInvalid']">Keine Gültiges
+                                Layout.</span>
+                            <span class="badge badge-danger" *ngIf="entry.errors['required']">Dieser Parameter muss
+                                gesetzt werden!</span>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary m-2"
+                            [disabled]="modelCreated || !modelForm.valid">Initialisieren</button>
+                        <button type="button" class="btn btn-primary m-2" [disabled]="!modelCreated"
+                            (click)="onDelete()">Entfernen</button>
+                        <button type="button" class="btn btn-primary m-2" [disabled]="!modelCreated"
+                            (click)="onSave()">Speichern</button>
+                        <button type="button" class="btn btn-primary m-2" (click)="onUpload()"
+                            [disabled]="!modelLoaded || !weightsLoaded">Laden</button>
+                    </div>
+                    <div class="col-auto">
+                        <input type="file" id="upload-json" (change)="handleModelUpload($event.target.files)" hidden />
+                        <label class="btn btn-link mt-2" for="upload-json">
+                            Modell Laden <span class="badge badge-light" *ngIf="modelLoaded">&#10003;</span>
+                        </label>
+
+                        <input type="file" id="upload-weights" (change)="handleWeightsUpload($event.target.files)" hidden />
+                        <label class="btn btn-link mt-2" for="upload-weights">
+                            Gewichte Laden <span class="badge badge-light" *ngIf="weightsLoaded">&#10003;</span>
+                        </label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-6 col-lg-7 col-xl-6">
+            <div>
+                <h3>Klassifizierung mit der Webcam</h3>
+                <p>
+                    In dieser Komponente wird ein vortrainiertes Modell verwendet. Es wird jedoch nicht dessen
+                    Ausgabe verwendet, sondern lediglich das neuronale Netzwerk selbst, das dem Modell zugrunde liegt.
+                </p>
+                <p>
+                    Auf dieses Netzwerk wird dann
+                    ein KNN-Klassifikator, auf Deutsch Nächste-Nachbarn-Klassifikator, angewendet.
+                    Dieser interpretiert dann, was das Netzwerk <em>sieht</em> und ordnet dem ganzen eigene Klassen zu,
+                    die hier eingetragen werden können. Das Ganze nennt sich Transfer-Lernen.
+                    Für eine genauere Erklärung, klicke auf den Hilfe Knopf unten rechts.
+                </p>
+            </div>
+            <div class="row my-3">
+                <div class="col-sm-5">
+                    <button class="btn btn-primary" [disabled]="!modelsLoaded || webcamStarted"
+                        (click)="startWebcam()">{{modelsLoaded ? 'Starte Webcam':'lade Modell...  '}}
+                        <span *ngIf="!modelsLoaded" class="spinner-border spinner-border-sm"></span>
+                    </button>
+                </div>
+                <div class="col-sm-7">
+                    <div class="input-group">
+                        <input #input type="text" [disabled]="!webcamStarted" class="form-control"
+                            placeholder="Klasse Hinzufügen">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" [disabled]="!webcamStarted"
+                                (click)="addClassLoop(input.value)">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <button class="btn btn-primary" [disabled]="!webcamStarted"
+                        (click)="stopClassify()">{{ (classifyNotInterrupted ? 'Stoppe':'Starte')+ ' Klassifikation'}}</button>
+                </div>
+                <div class="col-sm-7">
+                    <button class="btn btn-primary" [disabled]="!webcamStarted" (click)="resetClasses()">Alle Klassen
+                        Entfernen</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-5 col-xl-6 d-flex flex-column align-items-center my-4">
+            <video autoplay playsinline muted #video (loadeddata)="onLoadedData()" class="border border-dark"></video>
+        </div>
+    </div>
+
+    <div class="row my-5 " *ngIf="webcamStarted && knn.getNumClasses() > 0">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Wahrscheinlichkeit</th>
+                        <th scope="col">Klasse Entfernen</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let p of probabilities | keyvalue;let i=index;">
+                        <th>{{ i+1 }}</th>
+                        <td #key>{{ p.key }}</td>
+                        <td>{{ p.value | percent }}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm"
+                                (click)="removeClass(p.key)">Entfernen</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-4 d-flex flex-column align-items-center mb-3">
+            <h2>Klasse: <span class="font-italic font-weight-bolder">{{result}}</span></h2>
+            <button type="button" class="btn btn-info btn-xl" (click)="solveMaze = !solveMaze">Labyrinth Lösen</button>
+        </div>
+    </div>
+
+    <div class="row my-5" *ngIf="solveMaze">
+        <div class="col d-flex flex-column align-items-center mb-3">
+            <span class="badge badge-secondary">Füge Klassen hinzu, um zu navigieren!</span>
+            <div class="btn-group my-3" id="set-dir" role="group">
+                <button type="button" class="btn btn-secondary" (click)="addClassLoop('links')">Links</button>
+                <button type="button" class="btn btn-secondary" (click)="addClassLoop('oben')">Oben</button>
+                <button type="button" class="btn btn-secondary" (click)="addClassLoop('unten')">Unten</button>
+                <button type="button" class="btn btn-secondary" (click)="addClassLoop('rechts')">Rechts</button>
+                <button type="button" class="btn btn-secondary ml-2"
+                    (click)="showMazeControl = !showMazeControl">Manuelle Steuerung</button>
+            </div>
+            <div class="btn-group my-3" role="group" *ngIf="showMazeControl">
+                <button type="button" class="btn btn-primary" (click)="emitEventToChild('links')">Links</button>
+                <button type="button" class="btn btn-primary" (click)="emitEventToChild('oben')">Oben</button>
+                <button type="button" class="btn btn-primary" (click)="emitEventToChild('unten')">Unten</button>
+                <button type="button" class="btn btn-primary" (click)="emitEventToChild('rechts')">Rechts</button>
+            </div>
+            <app-maze [movementObservable]="moveSubject.asObservable()"></app-maze>
+        </div>
+    </div>
+</div>
+<app-help-button>
+    <app-classify-help></app-classify-help>
+</app-help-button>

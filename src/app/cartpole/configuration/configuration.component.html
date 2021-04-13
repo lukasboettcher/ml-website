@@ -1,0 +1,67 @@
+<ng-template #contentValidators let-entry="e">
+    <span *ngIf="!entry.valid && entry.touched" class="help-block">
+        <span class="badge badge-danger" *ngIf="entry.errors['min']">Mindestwert:
+            {{entry.errors['min'].min}}</span>
+        <span class="badge badge-danger" *ngIf="entry.errors['max']">Mindestwert:
+            {{entry.errors['max'].max}}</span>
+        <span class="badge badge-danger" *ngIf="entry.errors['required']">Dieser Parameter muss
+            gesetzt werden!</span>
+    </span>
+</ng-template>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
+            <h4 class="mb-3">Trainings Parameter</h4>
+            <form [formGroup]="configurationForm">
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="iteration">Anzahl der Iterationen</label>
+                    <div class="col-sm-8" *appVar="configurationForm.get('iteration') as entry">
+                        <input type="number" class="form-control" formControlName="iteration">
+                        <ng-container *ngTemplateOutlet="contentValidators;context:{e: entry}"></ng-container>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="gamesInIter">Versuche pro Iteration</label>
+                    <div class="col-sm-8" *appVar="configurationForm.get('gamesInIter') as entry">
+                        <input type="number" class="form-control" formControlName="gamesInIter">
+                        <ng-container *ngTemplateOutlet="contentValidators;context:{e: entry}"></ng-container>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="steps">Dauer eines Vesuchs</label>
+                    <div class="col-sm-8" *appVar="configurationForm.get('steps') as entry">
+                        <input type="number" class="form-control" formControlName="steps">
+                        <ng-container *ngTemplateOutlet="contentValidators;context:{e: entry}"></ng-container>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="discount">Reward Discount</label>
+                    <div class="col-sm-8" *appVar="configurationForm.get('discount') as entry">
+                        <input type="number" class="form-control" formControlName="discount" step="any">
+                        <ng-container *ngTemplateOutlet="contentValidators;context:{e: entry}"></ng-container>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-form-label col-sm-4" for="learn">Learning Rate</label>
+                    <div class="col-sm-8" *appVar="configurationForm.get('learn') as entry">
+                        <input type="number" class="form-control" formControlName="learn" step="any">
+                        <ng-container *ngTemplateOutlet="contentValidators;context:{e: entry}"></ng-container>
+                    </div>
+                </div>
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" formControlName="render">
+                    <label class="form-check-label" for="render">Während des Trainings Simulieren? (nicht empfohlen)</label>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col">
+                    <button type="submit" [disabled]="!(modelCreated && configurationForm.valid) && !isTraining"
+                        class="btn btn-primary m-2" (click)="onSubmit()">{{isTraining ? "Stop" : "Trainieren"}}</button>
+                    <button type="button" [disabled]="!modelCreated " class="btn btn-primary m-2"
+                        (click)="onTest()">{{isTesting ? "Stop" : "Test"}}</button>
+                </div>
+                <!-- <div class="col"><button type="button" class="btn btn-primary">Test</button></div> -->
+            </div>
+        </div>
+    </div>
+</div>
