@@ -68,17 +68,75 @@
                 bestmöglich zu absolvieren. Verwendet wird hierfür, im Gegensatz zu den vorherigen Komponenten, nicht
                 eine Methode des überwachten maschinellen Lernens, sondern das sogenannte Reinforcement-Learning.
             </p> -->
-            
+            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span> <b>Überwachtes Lernen</b> </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Beim überwachten Lernen bildet die KI Gesetzmäßigkeiten nach, deren Ergebnisse im Vorhinein
+                        bekannt sind, z.B. bei der Spracherkennung.
+                        Folgende Lerneinheiten beschäftigen sich mit Überwachtem Lernen:
+                        <ul>
+                            <li class="my-3">
+                                <h5><a href="https://de.wikipedia.org/wiki/MNIST-Datenbank">MNIST</a> </h5>
+                                MNIST ist eine Datenbank von handschriftlich geschriebenen Zahlen. Diese werden
+                                verwendet, um ein neuronales Netz zu trainieren, welches in der Lage ist,
+                                handgeschriebene Zahlen zu erkennen.
+                            </li>
+                            <li class="my-3">
+                                <h5><a href="https://cocodataset.org/#home">Objekterkennung</a> und <a
+                                        href="https://keras.io/api/applications/mobilenet/">Klassifizierung</a>
+                                </h5>
+                                Diese beiden Komponenten demonstrieren, wie bereits trainierte Modelle für verschiedene
+                                Anwendungsfälle verwendet werden können. In der Komponente „Klassifizierung“ wird
+                                außerdem die Idee des Transfer-Lernens verwendet, um ein bestehendes Modell in seiner
+                                Funktionalität zu erweitern und anzupassen.
+                            </li>
+                        </ul>
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel [disabled]="true">
+                    <ng-template ngbPanelTitle>
+                        <span> <b>Bestärkendes Lernen</b> </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Beim bestärkenden Lernen erarbeitet sich die KI eine eigene Strategie zur Lösung eines Problems.
+                        Der KI wird dabei kein Lösungsweg vorgeschlagen, stattdessen wird nur festgelegt, was ein Erfolg
+                        und was ein Fehlschlag ist. Beim maschinellen Lernen werden Erfolge belohnt und Fehlschläge
+                        „bestraft“.
+                        Mit Bestärkendem Lernen beschäftigt sich die Lerneinheit:
+                        <ul>
+                            <li class="my-3">
+                                <h5><a href="https://www.youtube.com/watch?v=5Q14EjnOJZc">CartPole</a> </h5>
+                                CartPole ist ein berühmtes Problem, bei dem ein beweglicher Wagen versucht, einen Stab
+                                so lange wie möglich zu balancieren. In dieser Komponente wird ein neuronales Netz
+                                trainiert, um dieses Spiel bestmöglich zu absolvieren.
+                            </li>
+                        </ul>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
         </div>
 
         <div class="col-md-4 align-self-center">
-            <img class="img-fluid" src="{{basePath}}/neural-net.png">
+            <!-- <img class="img-fluid" src="{{basePath}}/neural-net.png">
             <div class="card mt-4">
                 <div class="card-body">
                     In den Komplexeren Komponenten steht außerdem jederzeit eine Hilfe zur Verfügung, welche dessen
                     Funktionen im Detail erklärt. Dazu einfach das Fragezeichen unten rechts klicken.
                 </div>
-            </div>
+            </div> -->
+            <figure class="figure">
+                <img class="figure-img img-fluid rounded" src="{{basePath}}/mnist.png">
+                <figcaption class="figure-caption">Datensatz aus MNIST.</figcaption>
+            </figure>
+
+            <figure class="figure">
+                <img class="figure-img img-fluid rounded" src="{{basePath}}/objdetect.png">
+                <figcaption class="figure-caption">Ein Beispiel für die Objekterkennung.</figcaption>
+            </figure>
+
         </div>
     </div>
 </div>
