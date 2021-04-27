@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <div class="row my-3 align-items-center">
+    <div class="row my-3 align-items-center" *ngIf="stages[0]">
         <div class="col-md-8">
             <h4>Schritt 2: Neuronales Netz erstellen</h4>
             <p>
@@ -57,7 +57,7 @@
         </div>
     </div>
 
-    <div class="row my-3 align-items-center">
+    <div class="row my-3 align-items-center" *ngIf="stages[1]">
         <div class="col-lg-8">
             <h4>Schritt 3: Training</h4>
             <p>
@@ -124,7 +124,7 @@
         </div>
     </div>
 
-    <div class="row my-3 align-items-center">
+    <div class="row my-3 align-items-center" *ngIf="stages[2]">
         <div class="col-md-8">
             <h4>Schritt 4: Modell Übertragen</h4>
             <p>
