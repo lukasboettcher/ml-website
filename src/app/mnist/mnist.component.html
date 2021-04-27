@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div class="row my-3" *ngIf="doTutorial == null">
+  <!-- <div class="row my-3" *ngIf="doTutorial == null">
     <div class="col">
       <h6 class="text-center">Tutorial Überspringen?
         <div class="btn-group mx-3">
@@ -20,10 +20,11 @@
         </div>
       </h6>
     </div>
-  </div>
+  </div> -->
 
   <div class="row my-3">
-    <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial>
+    <!-- <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial> -->
+    <app-tutorial (modelCreated)="importCustomModel($event)" ></app-tutorial>
   </div>
 
   <div class="row my-5">
