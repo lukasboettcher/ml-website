@@ -11,7 +11,7 @@ import { Subject } from 'rxjs';
 })
 export class ClassifyComponent implements OnInit {
 
-  images = [1, 2, 3].map((n) => `assets/classify-images/coco${n}.png`);
+  images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png`);
 
   constructor(private renderer: Renderer2) {
     this.initiateModels();
