@@ -18,7 +18,7 @@
                     Klasse zeigst.
                 </p>
 
-                <div class="card my-2">
+                <div class="card my-2" style="max-width: 450px;">
                     <ngb-carousel *ngIf="images">
                         <ng-template ngbSlide>
                             <div class="picsum-img-wrapper">
@@ -37,6 +37,13 @@
                         <ng-template ngbSlide>
                             <div class="picsum-img-wrapper">
                                 <img [src]="images[2]" style="object-fit: cover;max-height: 250px;width: 100%;">
+                            </div>
+                            <div class="carousel-caption">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img [src]="images[3]" style="object-fit: cover;max-height: 250px;width: 100%;">
                             </div>
                             <div class="carousel-caption">
                             </div>
