@@ -18,6 +18,41 @@
                     Klasse zeigst.
                 </p>
 
+                <div class="card my-2">
+                    <ngb-carousel *ngIf="images">
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img [src]="images[0]" style="object-fit: cover; max-height: 250px;width: 100%;">
+                            </div>
+                            <div class="carousel-caption">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img [src]="images[1]" style="object-fit: cover;max-height: 250px;width: 100%;">
+                            </div>
+                            <div class="carousel-caption">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="picsum-img-wrapper">
+                                <img [src]="images[2]" style="object-fit: cover;max-height: 250px;width: 100%;">
+                            </div>
+                            <div class="carousel-caption">
+                            </div>
+                        </ng-template>
+                    </ngb-carousel>
+
+                    <div class="card-body">
+                        <p class="card-text">
+                            Drei Bilder, die Objekte zeigen, die als „Katze“ klassifiziert werden
+                        </p>
+                    </div>
+                </div>
+
+
+
+                <!-- <p>
                     In dieser Komponente wird ein vortrainiertes Modell verwendet. Es wird jedoch nicht dessen
                     Ausgabe verwendet, sondern lediglich das neuronale Netzwerk selbst, das dem Modell zugrunde liegt.
                 </p>
@@ -27,7 +62,7 @@
                     Dieser interpretiert dann, was das Netzwerk <em>sieht</em> und ordnet dem ganzen eigene Klassen zu,
                     die hier eingetragen werden können. Das Ganze nennt sich Transfer-Lernen.
                     Für eine genauere Erklärung, klicke auf den Hilfe Knopf unten rechts.
-                </p>
+                </p> -->
             </div>
         </div>
         
