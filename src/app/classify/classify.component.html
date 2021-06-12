@@ -122,6 +122,76 @@
             <button type="button" class="btn btn-info btn-xl" (click)="solveMaze = !solveMaze">Labyrinth Lösen</button>
         </div>
     </div>
+    <br>
+    <ngb-accordion #acc="ngbAccordion" activeIds="">
+        <ngb-panel>
+            <ng-template ngbPanelTitle>
+                <span> <b>Wie funktioniert die Bildklassifikation?</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                Vereinfacht ausgedrückt: man gibt dem neuronalen Netzwerk ein Bild und die Information, was darauf zu
+                sehen ist, und das Netzwerk identifiziert selbstständig die Merkmale, die die Objekte dieser Klasse
+                auszeichnen. Dies wiederholt man nun sehr oft und hofft, dass das Netzwerk schon die richtigen Merkmale
+                identifizieren wird.
+                In dieser Komponente kommt ein vortrainiertes neuronales Netzwerk namens MobileNet zum Einsatz, das
+                speziell für Bilderkennung auf mobilen Geräten trainiert wurde. Es zeichnet sich durch kompakte Größe
+                und gute Klassifizierungsqualität aus.
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="false">
+            <ng-template ngbPanelTitle>
+                <span> <b>Was dabei alles schief gehen kann</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p>
+                    Die Bilder, mit denen das neuronale Netzwerk trainiert wird, müssen sorgsam ausgewählt werden, damit
+                    nicht die falschen Merkmale als maßgeblich identifiziert werden. Ein neuronales Netzwerk von Google
+                    sollte z.B. anhand vieler Bilder lernen, was eine Hantel ist. Dann sollte das Netzwerk selbst Bilder
+                    von Hanteln erzeugen – und produzierte das hier:
+                </p>
+                <img src="assets/classify-images/dumbbells.png" class="img-fluid border rounded mx-auto my-3 d-block">
+                <p>
+                    Offensichtlich waren der KI nur Bilder von Hanteln gezeigt worden, die von Menschen gehalten wurden
+                    – und das neuronale Netzwerk identifizierte den Unterarm als wichtiges Merkmal der Hantel.
+                    Klingt harmlos? 2015 geriet Google in die Kritik, nachdem Fotos dunkelhäutiger Menschen von Googles
+                    Objekterkennungs-KI als „Gorilla“ identifiziert wurden – anscheinend war die KI nur mit weißen
+                    Gesichtern zur Identifizierung von Menschen trainiert worden.
+                </p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="false">
+            <ng-template ngbPanelTitle>
+                <span> <b>Löse ein Labyrinth mit deiner Kamera</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                Dieses neuronale Netz kannst du auch nutzen, um deinen Computer z.B. mit Handbewegungen oder deiner
+                Mimik zu steuern. Naja, nicht deinen ganzen Computer, aber wenigstens eine Spielfigur in einem kleinen
+                Labyrinth. Wenn du vier Klassen „oben“, „unten“, „links“ und „rechts“ anlegst und auf „Labyrinth lösen“
+                klickst, kannst du eine Figur darin steuern, indem du gezielt Objekte aus diesen vier Klassen in die
+                Kamera zeigst. Schaffst du es, die Spielfigur ans Ziel zu bringen?]
+
+                <div class="col d-flex flex-column align-items-center mb-3">
+                    <span class="badge badge-secondary">Füge Klassen hinzu, um zu navigieren!</span>
+                    <div class="btn-group my-3" id="set-dir" role="group">
+                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('links')">Links</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('oben')">Oben</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('unten')">Unten</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('rechts')">Rechts</button>
+                        <button type="button" class="btn btn-secondary ml-2"
+                            (click)="showMazeControl = !showMazeControl">Manuelle Steuerung</button>
+                    </div>
+                    <div class="btn-group my-3" role="group" *ngIf="showMazeControl">
+                        <button type="button" class="btn btn-primary" (click)="emitEventToChild('links')">Links</button>
+                        <button type="button" class="btn btn-primary" (click)="emitEventToChild('oben')">Oben</button>
+                        <button type="button" class="btn btn-primary" (click)="emitEventToChild('unten')">Unten</button>
+                        <button type="button" class="btn btn-primary"
+                            (click)="emitEventToChild('rechts')">Rechts</button>
+                    </div>
+                    <app-maze [movementObservable]="moveSubject.asObservable()"></app-maze>
+                </div>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
 
     <div class="row my-5" *ngIf="solveMaze">
         <div class="col d-flex flex-column align-items-center mb-3">
