@@ -22,28 +22,34 @@
 		</div>
 		<div class="col-md-5 align-self-center">
 			<div class="d-flex flex-column align-items-center">
+
 				<div class="m-2 border">
 					<video #video (loadeddata)="onLoadedData()" class="vid" autoplay></video>
 				</div>
+
 				<div class="py-2">
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<button class="btn btn-primary" [disabled]="!modelLoaded || webcamStarted"
-							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'lade Modell...  '}}
+							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'lade Modell... '}}
 							<span *ngIf="!modelLoaded" class="spinner-border spinner-border-sm"></span>
 						</button>
 						<button class="btn btn-primary" [disabled]="!modelLoaded || !webcamStarted"
-							(click)="changePredictionState()">{{(detectionInterrupted ? 'Starte':'Stoppe')+' Erkennung'}}</button>
+							(click)="changePredictionState()">{{(detectionInterrupted ? 'Starte':'Stoppe')+'
+							Erkennung'}}</button>
 					</div>
 				</div>
+
 				<!-- <div class="pb-2">
 					<button class="btn btn-primary" (click)="capture()">Capture Image</button>
 				</div> -->
-				<div class="m-2">
+				<!-- <div class="m-2">
 					<canvas #canvas></canvas>
-				</div>
+				</div> -->
+
 				<!-- <div>
 					<canvas #canvas2 id="canvas2"></canvas>
 				</div> -->
+				
 			</div>
 		</div>
 	</div>
