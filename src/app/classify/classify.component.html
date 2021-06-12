@@ -15,41 +15,36 @@
                     Für eine genauere Erklärung, klicke auf den Hilfe Knopf unten rechts.
                 </p>
             </div>
-            <div class="row my-3">
-                <div class="col-sm-5">
-                    <button class="btn btn-primary" [disabled]="!modelsLoaded || webcamStarted"
-                        (click)="startWebcam()">{{modelsLoaded ? 'Starte Webcam':'lade Modell...  '}}
-                        <span *ngIf="!modelsLoaded" class="spinner-border spinner-border-sm"></span>
-                    </button>
-                </div>
-                <div class="col-sm-7">
-                    <div class="input-group">
-                        <input #input type="text" [disabled]="!webcamStarted" class="form-control"
-                            placeholder="Klasse Hinzufügen">
-                        <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button" [disabled]="!webcamStarted"
-                                (click)="addClassLoop(input.value)">+</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-5">
-                    <button class="btn btn-primary" [disabled]="!webcamStarted"
-                        (click)="stopClassify()">{{ (classifyNotInterrupted ? 'Stoppe':'Starte')+ ' Klassifikation'}}</button>
-                </div>
-                <div class="col-sm-7">
-                    <button class="btn btn-primary" [disabled]="!webcamStarted" (click)="resetClasses()">Alle Klassen
-                        Entfernen</button>
-                </div>
-            </div>
         </div>
+        
         <div class="col-md-6 col-lg-5 col-xl-6 d-flex flex-column align-items-center my-4">
             <video autoplay playsinline muted #video (loadeddata)="onLoadedData()" class="border border-dark"></video>
         </div>
     </div>
 
-    <div class="row my-5 " *ngIf="webcamStarted && knn.getNumClasses() > 0">
+    <div class="flex-row d-flex flex-wrap">
+        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!modelsLoaded || webcamStarted"
+            (click)="startWebcam()">{{modelsLoaded ? 'Starte Webcam':'lade Modell... '}}
+            <span *ngIf="!modelsLoaded" class="spinner-border spinner-border-sm"></span>
+        </button>
+        <div class="flex-grow-1 m-1">
+            <div class="input-group ">
+                <input #input type="text" [disabled]="!webcamStarted" class="form-control"
+                    placeholder="Klasse Hinzufügen">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" [disabled]="!webcamStarted"
+                        (click)="addClassLoop(input.value)">+</button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!webcamStarted" (click)="stopClassify()">{{
+            (classifyNotInterrupted ? 'Stoppe':'Starte')+ ' Klassifikation'}}</button>
+        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!webcamStarted" (click)="resetClasses()">Alle
+            Klassen
+            Entfernen</button>
+    </div>
+
+    <div class="row my-5 " *ngIf="true || webcamStarted && knn.getNumClasses() > 0">
         <div class="col-md-8">
             <table class="table">
                 <thead>
