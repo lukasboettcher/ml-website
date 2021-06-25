@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, TrackByFunction } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
+// import * as tfvis from '@tensorflow/tfjs-vis'
 import { IMAGE_H, IMAGE_W, Data } from './data';
 import { ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
@@ -144,10 +145,22 @@ export class TutorialComponent implements OnInit {
     this.trainBatchCount = 0;
     this.trainTotalBatches = Math.ceil(this.trainData.xs.shape[0] * (1 - this.trainValidationSplit) / this.trainBatchSize) * this.trainEpochs;
     this.trainingRunning = true;
+
+    // const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
+    // const container = {
+    //   name: 'show.fitCallbacks',
+    //   tab: 'Training',
+    //   styles: {
+    //     height: '1000px'
+    //   }
+    // };
+    // const callbacks = tfvis.show.fitCallbacks(container, metrics);
+
     await this.model.fit(this.trainData.xs, this.trainData.labels, {
       batchSize: this.trainBatchSize,
       validationSplit: this.trainValidationSplit,
       epochs: this.trainEpochs,
+      // callbacks: callbacks
       callbacks: {
         onBatchEnd: async (_, status) => {
           this.trainBatchCount++;
