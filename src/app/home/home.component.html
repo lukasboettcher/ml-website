@@ -9,10 +9,7 @@
                 <a href="https://course.elementsofai.com/de/">Elements of AI</a> an,
                 aber alle Übungen können auch ohne Kenntnis des MOOC bearbeitet werden.
             </p>
-            <!-- <p>
-                Insbesondere die Kapitel vier und fünf sollten abgeschlossen worden sein, bevor die Themen dieser Seite
-                bearbeitet werden.
-            </p> -->
+
         </div>
         <div class="col-md-4 align-self-center px-4">
             <figure class="figure">
@@ -24,50 +21,9 @@
     <div class="row">
         <div class="col-md-8">
             <h3>Welche Themen werden hier behandelt?</h3>
-            <!-- <p>
-                Es werden sowohl Themen des überwachten, als auch des verstärkenden maschinellen Lernens behandelt.
-                Die Seite ist in Komponenten aufgeteilt, welche verschiedene Aspekte dieser Themen exemplarisch
-                darstellen. Es folgt eine Übersicht der Einzelnen Komponenten:
-            </p> -->
+
             <p>Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in vier Lerneinheiten aufgeteilt, die
                 die Teilgebiete „Überwachtes Lernen“ und „Bestärkendes Lernen“ thematisieren.</p>
-            <!-- <ul>
-                <li>
-                    <h6>MNIST</h6>
-                </li>
-            </ul>
-            <p>
-                Hier wird Schritt für Schritt erläutert, wie ein neuronales Netz in der Praxis aufgebaut und trainiert
-                wird. <a href="https://de.wikipedia.org/wiki/MNIST_Datenbank">MNIST</a> ist eine Datenbank von
-                handschriftlich geschriebenen Zahlen. Diese werden verwendet, um ein neuronales Netz zu trainieren,
-                welches in der Lage ist, Zahlen zu erkennen.
-            </p>
-            <ul>
-                <li>
-                    <h6>Objekterkennung</h6>
-                </li>
-                <li>
-                    <h6>Klassifizierung</h6>
-                </li>
-            </ul>
-            <p>
-                Diese beiden Komponenten demonstrieren, wie bereits Trainierte Modelle verwendet werden können, um für
-                verschiedenste Anwendungsfälle nützlich zu sein. In der Komponente Klassifizierung wird außerdem die
-                Idee des Transfer-Lernens verwendet, um ein bestehendes Modell in seiner Funktionalität zu erweitern und
-                anzupassen.
-            </p>
-            <ul>
-                <li>
-                    <h6>CartPole</h6>
-                </li>
-            </ul>
-            <p>
-                CartPole ist ein berühmtes Problem, bei dem ein beweglicher Kasten versucht einen Stab so lange wie
-                möglich zu
-                balancieren. In dieser Komponente wird ein neuronales Netz trainiert, um dieses <em>Spiel</em>
-                bestmöglich zu absolvieren. Verwendet wird hierfür, im Gegensatz zu den vorherigen Komponenten, nicht
-                eine Methode des überwachten maschinellen Lernens, sondern das sogenannte Reinforcement-Learning.
-            </p> -->
             <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
@@ -79,16 +35,12 @@
                         Folgende Lerneinheiten beschäftigen sich mit Überwachtem Lernen:
                         <ul>
                             <li class="my-3">
-                                <!-- <h5><a href="https://de.wikipedia.org/wiki/MNIST-Datenbank">MNIST</a> </h5> -->
                                 <h5><a routerLink="mnist">MNIST</a> </h5>
                                 MNIST ist eine Datenbank von handschriftlich geschriebenen Zahlen. Diese werden
                                 verwendet, um ein neuronales Netz zu trainieren, welches in der Lage ist,
                                 handgeschriebene Zahlen zu erkennen.
                             </li>
                             <li class="my-3">
-                                <!-- <h5><a href="https://cocodataset.org/#home">Objekterkennung</a> und <a
-                                        href="https://keras.io/api/applications/mobilenet/">Klassifizierung</a>
-                                </h5> -->
                                 <h5><a routerLink="object">Objekterkennung</a> und <a routerLink="classify">Klassifizierung</a>
                             </h5> 
                                 Diese beiden Komponenten demonstrieren, wie bereits trainierte Modelle für verschiedene
@@ -123,13 +75,7 @@
         </div>
 
         <div class="col-md-4 align-self-center">
-            <!-- <img class="img-fluid" src="{{basePath}}/neural-net.png">
-            <div class="card mt-4">
-                <div class="card-body">
-                    In den Komplexeren Komponenten steht außerdem jederzeit eine Hilfe zur Verfügung, welche dessen
-                    Funktionen im Detail erklärt. Dazu einfach das Fragezeichen unten rechts klicken.
-                </div>
-            </div> -->
+
             <figure class="figure">
                 <img class="figure-img img-fluid rounded" src="{{basePath}}/mnist.png">
                 <figcaption class="figure-caption">Datensatz aus MNIST.</figcaption>
