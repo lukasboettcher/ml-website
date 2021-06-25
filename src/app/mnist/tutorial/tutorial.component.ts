@@ -28,6 +28,7 @@ export class TutorialComponent implements OnInit {
   // stage 1: load data
   private dataClass: Data;
   private trainData;
+  trainDataLength: number;
   private testData;
 
   // use the Data class from google to get mnist database
@@ -36,7 +37,7 @@ export class TutorialComponent implements OnInit {
     await this.dataClass.load();
     this.trainData = this.dataClass.getTrainData();
     this.testData = this.dataClass.getTestData();
-
+    this.trainDataLength = this.trainData.xs.shape[0]
     this.stages[0] = true;
   }
 
