@@ -11,6 +11,8 @@ import { Label, Color } from 'ng2-charts';
 })
 export class TutorialComponent implements OnInit {
 
+  basePath = 'assets/mnist-images';
+
   // vars for output and state of this component
   @Output() modelCreated = new EventEmitter<tf.LayersModel>();
   private model: tf.LayersModel = null;
