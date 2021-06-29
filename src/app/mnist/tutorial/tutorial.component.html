@@ -154,6 +154,13 @@
                 <br>
                 Von diesen Parametern hängt ab, wie viele Schritte das Training benötigt.
             </p>
+            <p>
+                Bei einer Batchsize von <code class="px-1">{{trainBatchSize}}</code> und <code
+                    class="px-1">{{trainEpochs}}</code>
+                Epochen umfasst das Training <code
+                    class="px-1">{{(trainDataLength / trainBatchSize) * trainEpochs * 0.85 + 0.5 | number:'1.0-0'}}</code>
+                Schritte.
+            </p>
                 Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
                 <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
                     <option disabled>Batchsize</option>
