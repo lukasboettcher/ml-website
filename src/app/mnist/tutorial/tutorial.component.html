@@ -9,7 +9,7 @@
                     href="https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png">Sprite-Datei</a>,
                 das heißt sie ist ein großes Bild, worin die eigentlichen
                 kleinen Bilder der Zahlen in einem Raster gespeichert sind.
-                Erstellt wurde die Datenbank von der amerikanischen Behörde NIST, 
+                Erstellt wurde die Datenbank von der amerikanischen Behörde NIST,
                 kurz für National Institute of Standards and Technology.
             </p>
         </div>
@@ -175,9 +175,7 @@
                 <br>
                 Die Batchsize gibt an, wie viele Bilder nacheinander von dem Modell verarbeitet werden, bis dieses
                 Optimiert wird. Die Epochen geben an, wie oft alle Trainingsdaten durchgearbeitet werden. Das bedeutet
-                es
-                werden insgesamt <code class="px-2">(trainData / batchSize) * epochs</code> Schritte für das Training
-                benötigt.
+                eshey, I am encountering network problems (wifi and cellular drops connection) on los 18.1 enchilada. the xda post lists WFD as not working, is that my problem? thank youigt.
                 Daraufhin wird das Modell noch einmal mit den Testdaten überprüft. <br>
                 Das Ergebnis des Trainings kann auf dem Graphen beobachtet werden. Dort werden für jeden Schritt die
                 Genauigkeit des Modells, also wie viel Prozent der Bilder korrekt zugeordnet wurden, gespeichert.
@@ -196,7 +194,8 @@
                     Dein neuronales Netzwerk ist fertig trainiert!
                     <!-- Finale Genauigkeit aus dem Training: {{trainValidationAcc | percent}} <br> -->
                     Finale Genauigkeit aus dem Testen: {{testValidationAcc | percent}}
-                    Jetzt kannst du dein selbst trainiertes neuronales Netzwerk ausprobieren, nachdem du es übertragen hast. Mit der Maus oder einem
+                    Jetzt kannst du dein selbst trainiertes neuronales Netzwerk ausprobieren, nachdem du es übertragen
+                    hast. Mit der Maus oder einem
                     Touchscreen kannst du auf die schwarze Fläche Zahlen malen. Nach einem Klick auf „Auswerten“
                     versucht das neuronale Netz, diese zu erkennen.
                 </p>
@@ -230,7 +229,8 @@
                     </label>
                 </div>
                 <div class="col-auto text-center">
-                    <progress id="progress" class="my-2" value="{{trainBatchCount}}"
+                    <!-- <progress id="progress" class="my-2" value="{{trainBatchCount}}" -->
+                    <progress id="progress" class="my-2" value="0" #trainProgress
                         max="{{trainTotalBatches}}"></progress>
                 </div>
             </div>

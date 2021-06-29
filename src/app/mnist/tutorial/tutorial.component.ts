@@ -15,6 +15,7 @@ export class TutorialComponent implements OnInit {
   basePath = 'assets/mnist-images';
 
   @ViewChild("trainGraph") trainGraph: ElementRef;
+  @ViewChild('trainProgress') trainProgressEl:ElementRef;
   // vars for output and state of this component
   @Output() modelCreated = new EventEmitter<tf.LayersModel>();
   private model: tf.LayersModel = null;
@@ -129,7 +130,7 @@ export class TutorialComponent implements OnInit {
   lineChartLegend = true;
   lineChartPlugins = [];
   lineChartType = 'line';
-
+  prog = document.getElementById("progress")
   async trainModel() {
     // reset parameters
     this.trainingDone = false;
@@ -171,6 +172,7 @@ export class TutorialComponent implements OnInit {
           // this.lineChartData[0].data.push(status.acc);
           // //this.lineChartData[1].data.push(logs.loss);
           // await tf.nextFrame();
+          this.trainProgressEl.nativeElement.value = this.trainBatchCount
           visCallbacks.onBatchEnd(ep, status)
           await tf.nextFrame();
         },
