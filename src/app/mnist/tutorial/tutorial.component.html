@@ -161,6 +161,7 @@
                     class="px-1">{{(trainDataLength / trainBatchSize) * trainEpochs * 0.85 + 0.5 | number:'1.0-0'}}</code>
                 Schritte.
             </p>
+            <!-- <p>
                 Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
                 <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
                     <option disabled>Batchsize</option>
@@ -173,21 +174,15 @@
                 </select>.
                 <br>
                 Die Batchsize gibt an, wie viele Bilder nacheinander von dem Modell verarbeitet werden, bis dieses
-                Optimiert wird. Die Epochen geben an, wie oft alle Trainingsdaten durchgearbeitet werden. Das bedeutet es
+                Optimiert wird. Die Epochen geben an, wie oft alle Trainingsdaten durchgearbeitet werden. Das bedeutet
+                es
                 werden insgesamt <code class="px-2">(trainData / batchSize) * epochs</code> Schritte für das Training
                 benötigt.
                 Daraufhin wird das Modell noch einmal mit den Testdaten überprüft. <br>
                 Das Ergebnis des Trainings kann auf dem Graphen beobachtet werden. Dort werden für jeden Schritt die
                 Genauigkeit des Modells, also wie viel Prozent der Bilder korrekt zugeordnet wurden, gespeichert.
                 Außerdem wird abschließend das letzte Ergebnis des Trainings und des Tests angezeigt.
-            </p>
-        </div>
-        <div class="col-lg-4 text-center">
-            <button type="submit" class="btn btn-primary my-2"
-                [disabled]="!stages[1] || (trainingRunning && !trainingDone)" [ngClass]="{'btn-success': stages[2]}"
-                (click)="trainModel()">
-                Trainieren <span *ngIf="trainingRunning" class="spinner-border spinner-border-sm"></span>
-            </button>
+            </p> -->
 
             <div class="chart-wrapper my-2" *ngIf="trainingRunning || trainingDone">
                 <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
