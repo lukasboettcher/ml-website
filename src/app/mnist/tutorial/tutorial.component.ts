@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, TrackByFunction } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TrackByFunction, ViewChild, ElementRef } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
+import * as tfvis from '@tensorflow/tfjs-vis'
 import { IMAGE_H, IMAGE_W, Data } from './data';
 import { ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
@@ -11,6 +12,10 @@ import { Label, Color } from 'ng2-charts';
 })
 export class TutorialComponent implements OnInit {
 
+  basePath = 'assets/mnist-images';
+
+  @ViewChild("trainGraph") trainGraph: ElementRef;
+  @ViewChild('trainProgress') trainProgressEl:ElementRef;
   // vars for output and state of this component
   @Output() modelCreated = new EventEmitter<tf.LayersModel>();
   private model: tf.LayersModel = null;
@@ -26,6 +31,7 @@ export class TutorialComponent implements OnInit {
   // stage 1: load data
   private dataClass: Data;
   private trainData;
+  trainDataLength: number;
   private testData;
 
   // use the Data class from google to get mnist database
@@ -34,7 +40,7 @@ export class TutorialComponent implements OnInit {
     await this.dataClass.load();
     this.trainData = this.dataClass.getTrainData();
     this.testData = this.dataClass.getTestData();
-
+    this.trainDataLength = this.trainData.xs.shape[0]
     this.stages[0] = true;
   }
 
@@ -124,7 +130,7 @@ export class TutorialComponent implements OnInit {
   lineChartLegend = true;
   lineChartPlugins = [];
   lineChartType = 'line';
-
+  prog = document.getElementById("progress")
   async trainModel() {
     // reset parameters
     this.trainingDone = false;
@@ -141,21 +147,38 @@ export class TutorialComponent implements OnInit {
     this.trainBatchCount = 0;
     this.trainTotalBatches = Math.ceil(this.trainData.xs.shape[0] * (1 - this.trainValidationSplit) / this.trainBatchSize) * this.trainEpochs;
     this.trainingRunning = true;
+
+    // const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
+    const metrics = ['loss', 'acc'];
+    // const container = {
+    //   name: 'show.fitCallbacks',
+    //   tab: 'Training',
+    //   styles: {
+    //     height: '1000px'
+    //   }
+    // };
+    const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics);
+    console.log(visCallbacks);
+    
     await this.model.fit(this.trainData.xs, this.trainData.labels, {
       batchSize: this.trainBatchSize,
       validationSplit: this.trainValidationSplit,
       epochs: this.trainEpochs,
+      // callbacks: visCallbacks
       callbacks: {
-        onBatchEnd: async (_, status) => {
+        onBatchEnd: async (ep, status) => {
           this.trainBatchCount++;
-          this.lineChartLabels.push(this.trainBatchCount.toString());
-          this.lineChartData[0].data.push(status.acc);
-          //this.lineChartData[1].data.push(logs.loss);
+          // this.lineChartLabels.push(this.trainBatchCount.toString());
+          // this.lineChartData[0].data.push(status.acc);
+          // //this.lineChartData[1].data.push(logs.loss);
+          // await tf.nextFrame();
+          this.trainProgressEl.nativeElement.value = this.trainBatchCount
+          visCallbacks.onBatchEnd(ep, status)
           await tf.nextFrame();
         },
         onEpochEnd: async (_, status) => {
           this.trainValidationAcc = status.val_acc;
-          await tf.nextFrame();
+          // await tf.nextFrame();
         }
       }
     });
