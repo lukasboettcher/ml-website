@@ -184,12 +184,13 @@
                 Außerdem wird abschließend das letzte Ergebnis des Trainings und des Tests angezeigt.
             </p> -->
 
-            <div class="chart-wrapper my-2" *ngIf="trainingRunning || trainingDone">
+            <div #trainGraph></div>
+            <!-- <div class="chart-wrapper my-2" *ngIf="trainingRunning || trainingDone">
                 <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
                     [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
                     [plugins]="lineChartPlugins">
                 </canvas>
-            </div>
+            </div> -->
 
             <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
                 <div class="col-auto text-center">
