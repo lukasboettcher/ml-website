@@ -1,9 +1,29 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-6">
+		<div class="col-md-7">
 			<h3>
 				Objekterkennung
 			</h3>
+			<p>
+				Was haben selbstfahrende Autos, Snapchat-Hundeohren-Filter und smarte Überwachungskameras gemeinsam? Sie
+				alle benutzen Methoden der Künstlichen Intelligenz zur Objekterkennung in Bildern: das selbstfahrende
+				Auto muss Ampeln, Schilder, Autos und Fußgänger erkennen, der Snapchat-Filter muss einigermaßen genau
+				auf dem Gesicht sitzen und die Überwachungskamera soll nur dann aufzeichnen, wenn Menschen im Bild zu
+				sehen sind.
+			</p>
+			<p>
+				In dieser Komponente kannst du mit dem neuronalen Netzwerk CocoSSD experimentieren, das darauf trainiert
+				ist, Objekte in Bildern zu erkennen. Dazu brauchst du nichts weiter als eine Webcam. Sobald du diese
+				gestartet hast, beginnt die Objekterkennung. Du kannst jetzt beliebige Gegenstände in die Kamera halten
+				und schauen, ob das Netzwerk sie erkennt.
+			</p>
+			<p>
+				CocoSSD ist ein vortrainiertes neuronales Netzwerk, aber neuronale Netzwerke wachsen ja nicht auf
+				Bäumen. Wie du ein neuronales Netz zur Bilderkennung selbst trainieren kannst, erfährst du in der
+				Komponente <a routerLink="/classify">Klassifizierung</a>.
+			</p>
+
+			<!-- <br>
 			<p>
 				Diese Komponente verwendet ein vortrainiertes Modell namens <em>Coco Single Shot MultiBox
 					Detection</em>, kurz cocoSSD. CocoSSD ist ein Modell, welches mittels der <em>Comon Objects in
@@ -18,32 +38,70 @@
 			<p>
 				Natürlich kann ein solches Modell auch durch eigene Klassifizierungen ergänzt werden, wie das
 				funktioniert findest du in der <a routerLink="/classify">Klassifizierungs Komponente</a> heraus.
-			</p>
+			</p> -->
 		</div>
+		<div class="col-md-5 align-self-center">
+			<div class="d-flex flex-column align-items-center">
+				<figure class="figure">
+					<img src="assets/obj-detect-images/faceapp.jpg" class="figure-img img-fluid rounded">
+					<figcaption class="figure-caption">FaceApp kann ernste in lachende Gesichter verwandeln – mit
+						Methoden der KI</figcaption>
+				</figure>
+			</div>
+		</div>
+	</div>
+
+	<div class="row my-3">
+		<div class="col-md-6">
+
+			<div class="card my-2">
+				<img class="card-img-top" src="assets/obj-detect-images/coco-semantics.png" alt="Card image cap">
+				<div class="card-body">
+					<p class="card-text">
+						CocoSSD ist ein Modell, welches mittels der „Common Objects in Context“-Datenbank trainiert
+						wurde. Diese Datenbank beinhaltet ca. 330.000 Bilder, die Objekte aus über 170 Kategorien
+						zeigen, welche durch das Modell zugeordnet werden können. Die Bilder sind so aufbereitet
+						worden, dass das neuronale Netzwerk damit trainiert werden kann. Dafür wurden die Umrisse
+						von Objekten in diesen Bildern markiert und beschriftet. So lernt das neuronale Netzwerk zum
+						Beispiel, erkennung von Menschen neben einem Bus.
+					</p>
+					<a href="https://cocodataset.org/#explore?id=217928" class="card-link">Mehr Beispiele aus dem
+						CocoSSD Modell</a>
+				</div>
+			</div>
+
+		</div>
+
 		<div class="col-md-6 align-self-center">
 			<div class="d-flex flex-column align-items-center">
+
 				<div class="m-2 border">
 					<video #video (loadeddata)="onLoadedData()" class="vid" autoplay></video>
 				</div>
+
 				<div class="py-2">
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<button class="btn btn-primary" [disabled]="!modelLoaded || webcamStarted"
-							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'lade Modell...  '}}
+							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'lade Modell... '}}
 							<span *ngIf="!modelLoaded" class="spinner-border spinner-border-sm"></span>
 						</button>
 						<button class="btn btn-primary" [disabled]="!modelLoaded || !webcamStarted"
-							(click)="changePredictionState()">{{(detectionInterrupted ? 'Starte':'Stoppe')+' Erkennung'}}</button>
+							(click)="changePredictionState()">{{(detectionInterrupted ? 'Starte':'Stoppe')+'
+							Erkennung'}}</button>
 					</div>
 				</div>
+
 				<!-- <div class="pb-2">
 					<button class="btn btn-primary" (click)="capture()">Capture Image</button>
 				</div> -->
-				<div class="m-2">
+				<!-- <div class="m-2">
 					<canvas #canvas></canvas>
-				</div>
+				</div> -->
+
 				<!-- <div>
 					<canvas #canvas2 id="canvas2"></canvas>
 				</div> -->
+				
 			</div>
 		</div>
 	</div>

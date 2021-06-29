@@ -1,17 +1,32 @@
 <div class="container">
   <div class="row mb-3">
-    <div class="col">
+    <div class="col-md-7">
       <h3>MNIST Zahlenerkennung</h3>
-      <p>
+      <!-- <p>
         MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen.
         Diese werden oft verwendet, um ein neuronales Netz zu trainieren, um Zahlen zu erkennen.
         Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher Wert zugeordnet, sodass der Computer überprüfen kann, ob
         seine Auswertung korrekt war.
+      </p> -->
+      <p>
+        Eine Aufgabe, die sich mit Methoden der KI besonders gut lösen lässt, ist die Erkennung von Handschriften. So
+        können z.B. die Adressen auf Briefen maschinell gelesen und diese schneller sortiert werden.
       </p>
+      <p>
+        MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen. Diese werden oft verwendet, um ein
+        neuronales Netz zu trainieren, um Zahlen zu erkennen. Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher
+        Wert zugeordnet, sodass der Computer überprüfen kann, ob seine Auswertung korrekt war.
+      </p>
+    </div>
+    <div class="col align-self-center">
+      <figure class="figure">
+        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
+        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
+      </figure>
     </div>
   </div>
 
-  <div class="row my-3" *ngIf="doTutorial == null">
+  <!-- <div class="row my-3" *ngIf="doTutorial == null">
     <div class="col">
       <h6 class="text-center">Tutorial Überspringen?
         <div class="btn-group mx-3">
@@ -20,10 +35,11 @@
         </div>
       </h6>
     </div>
-  </div>
+  </div> -->
 
   <div class="row my-3">
-    <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial>
+    <!-- <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial> -->
+    <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
 
   <div class="row my-5">
@@ -40,8 +56,8 @@
     <div class="col-md-4 align-self-center">
       <div class="btn-group-vertical">
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'custom'}"
-          [disabled]="!gotCustomModel"
-          (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein Selbsterstelltes Modell'}}</button>
+          [disabled]="!gotCustomModel" (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein
+          Selbsterstelltes Modell'}}</button>
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
           (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
       </div>
