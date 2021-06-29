@@ -131,8 +131,29 @@
                 stattfindet, also damit das Modell allgemein gute Vorhersagen treffen kann, auch außerhalb der
                 Trainingsdaten.
             </p> -->
+            <p>
+                Die Trainingsdaten werden zum Lernen genutzt: das neuronale Netz erhält die Bilder der handschriftlich
+                geschriebenen Ziffern und dazu die Information, welche Ziffern dort zu sehen sind, und lernt anhand
+                dessen, die Ziffern zu identifizieren.
             </p>
             <p>
+                Die Testdaten werden danach genutzt, um zu überprüfen, wie gut das trainierte Netz seine Aufgabe
+                erledigt.
+            </p>
+            <p>
+                Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
+                <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
+                    <option disabled>Batchsize</option>
+                    <option *ngFor="let x of availBatchSizes" [ngValue]="x">{{x}}</option>
+                </select>
+                und die Anzahl der Epochen
+                <select type="number" class="mx-2" [(ngModel)]="trainEpochs">
+                    <option disabled>Epochs</option>
+                    <option *ngFor="let x of availEpochs" [ngValue]="x">{{x}}</option>
+                </select>.
+                <br>
+                Von diesen Parametern hängt ab, wie viele Schritte das Training benötigt.
+            </p>
                 Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
                 <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
                     <option disabled>Batchsize</option>
