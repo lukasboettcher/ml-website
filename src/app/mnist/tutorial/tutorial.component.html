@@ -183,6 +183,27 @@
                 Genauigkeit des Modells, also wie viel Prozent der Bilder korrekt zugeordnet wurden, gespeichert.
                 Außerdem wird abschließend das letzte Ergebnis des Trainings und des Tests angezeigt.
             </p> -->
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-primary my-2"
+                    [disabled]="!stages[1] || (trainingRunning && !trainingDone)" [ngClass]="{'btn-success': stages[2]}"
+                    (click)="trainModel()">
+                    Trainieren <span *ngIf="trainingRunning" class="spinner-border spinner-border-sm"></span>
+                </button>
+            </div>
+
+            <div class="my-2" *ngIf="trainingDone">
+                <p>
+                    Dein neuronales Netzwerk ist fertig trainiert!
+                    <!-- Finale Genauigkeit aus dem Training: {{trainValidationAcc | percent}} <br> -->
+                    Finale Genauigkeit aus dem Testen: {{testValidationAcc | percent}}
+                    Jetzt kannst du dein selbst trainiertes neuronales Netzwerk ausprobieren, nachdem du es übertragen hast. Mit der Maus oder einem
+                    Touchscreen kannst du auf die schwarze Fläche Zahlen malen. Nach einem Klick auf „Auswerten“
+                    versucht das neuronale Netz, diese zu erkennen.
+                </p>
+            </div>
+
+        </div>
+        <div class="col-lg-4 text-center">
             <div class="card my-2">
                 <div class="card-body">
                     <p class="card-text">
@@ -214,12 +235,7 @@
                 </div>
             </div>
 
-            <div class="my-2" *ngIf="trainingDone">
-                <p>
-                    Finale Genauigkeit aus dem Training: {{trainValidationAcc | percent}} <br>
-                    Finale Genauigkeit aus dem Testen: {{testValidationAcc | percent}}
-                </p>
-            </div>
+
         </div>
     </div>
 
