@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, TrackByFunction } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, TrackByFunction, ViewChild, ElementRef } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
-// import * as tfvis from '@tensorflow/tfjs-vis'
+import * as tfvis from '@tensorflow/tfjs-vis'
 import { IMAGE_H, IMAGE_W, Data } from './data';
 import { ChartDataSets } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
@@ -14,6 +14,7 @@ export class TutorialComponent implements OnInit {
 
   basePath = 'assets/mnist-images';
 
+  @ViewChild("trainGraph") trainGraph: ElementRef;
   // vars for output and state of this component
   @Output() modelCreated = new EventEmitter<tf.LayersModel>();
   private model: tf.LayersModel = null;
@@ -147,6 +148,7 @@ export class TutorialComponent implements OnInit {
     this.trainingRunning = true;
 
     // const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
+    const metrics = ['loss', 'acc'];
     // const container = {
     //   name: 'show.fitCallbacks',
     //   tab: 'Training',
@@ -154,24 +156,27 @@ export class TutorialComponent implements OnInit {
     //     height: '1000px'
     //   }
     // };
-    // const callbacks = tfvis.show.fitCallbacks(container, metrics);
-
+    const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics);
+    console.log(visCallbacks);
+    
     await this.model.fit(this.trainData.xs, this.trainData.labels, {
       batchSize: this.trainBatchSize,
       validationSplit: this.trainValidationSplit,
       epochs: this.trainEpochs,
-      // callbacks: callbacks
+      // callbacks: visCallbacks
       callbacks: {
-        onBatchEnd: async (_, status) => {
+        onBatchEnd: async (ep, status) => {
           this.trainBatchCount++;
-          this.lineChartLabels.push(this.trainBatchCount.toString());
-          this.lineChartData[0].data.push(status.acc);
-          //this.lineChartData[1].data.push(logs.loss);
+          // this.lineChartLabels.push(this.trainBatchCount.toString());
+          // this.lineChartData[0].data.push(status.acc);
+          // //this.lineChartData[1].data.push(logs.loss);
+          // await tf.nextFrame();
+          visCallbacks.onBatchEnd(ep, status)
           await tf.nextFrame();
         },
         onEpochEnd: async (_, status) => {
           this.trainValidationAcc = status.val_acc;
-          await tf.nextFrame();
+          // await tf.nextFrame();
         }
       }
     });
