@@ -61,9 +61,47 @@
                 <b>konvolutionales</b> Modell oder ein <b>vollverknüpftes</b> Modell.
                 Du kannst beide Modelle trainieren und ausprobieren.
             </p>
-        </div>
-        <div class="col-md-4 text-center">
-            <div class="btn-group-vertical">
+            <ngb-accordion #acc="ngbAccordion">
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span> <b>Details zu den Modelltypen</b> </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        <div class="row">
+                            <div class="col">
+                                <h6>
+                                    Vollverknüpftes Modell:
+                                </h6>
+                                <p>
+                                    Ein neuronales Netz, bei dem alle Neuronen einer Schicht mit
+                                    allen Neuronen der nächsten Schicht verknüpft sind. So genannte Perzeptren, einfache
+                                    Netze, die z.B. erkennen können, ob ein Bild eine Katze zeigt oder nicht, sind oft
+                                    als vollverknüpfte Netze realisiert.
+                                </p>
+                                <figure class="figure">
+                                    <img src="{{basePath}}/neural-net.png" class="figure-img img-fluid rounded mb-1">
+                                    <figcaption class="figure-caption">placeholder - copyright</figcaption>
+                                </figure>
+                            </div>
+                            <div class="col">
+                                <h6>
+                                    Konvolutionales Modell:
+                                </h6>
+                                <p>
+                                    Vollverknüpfte Netze sind darauf angewiesen, dass zu erkennende
+                                    Bilder ungefähr dieselbe Perspektive haben. Ein vollverknüpftes neuronales Netz, das
+                                    anhand von Passfotos darauf trainiert wurde, Gesichter zu erkennen, würde an
+                                    Gruppenfotos oder Fotos, auf denen der Mensch ganz zu sehen ist, scheitern.
+                                    Konvolutionale Netze identifizieren solche Muster auch in kleineren oder größeren
+                                    Bildausschnitten und sind daher besser für die Bildbearbeitung und -erkennung
+                                    geeignet.
+                                </p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+            <div class="btn-group-vertical d-flex my-2">
                 <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
                     [ngClass]="{'btn-success': stages[1] && modelType == 'conv'}"
                     (click)="createModel('conv')">Konvolutionales Modell</button>
