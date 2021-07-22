@@ -24,6 +24,8 @@ import { VarDirective } from './cartpole/configuration/var.directive';
 import { ClassifyHelpComponent } from './classify/classify-help/classify-help.component';
 import { CartpoleHelpComponent } from './cartpole/cartpole-help/cartpole-help.component';
 import { NotfoundComponent } from './help/notfound/notfound.component';
+import { GanComponent } from './gan/gan.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { NotfoundComponent } from './help/notfound/notfound.component';
     VarDirective,
     ClassifyHelpComponent,
     CartpoleHelpComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    GanComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,8 @@ import { NotfoundComponent } from './help/notfound/notfound.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ChartsModule
+    ChartsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
