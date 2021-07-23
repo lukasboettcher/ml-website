@@ -26,6 +26,7 @@ import { CartpoleHelpComponent } from './cartpole/cartpole-help/cartpole-help.co
 import { NotfoundComponent } from './help/notfound/notfound.component';
 import { GanComponent } from './gan/gan.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GanCanvasComponent } from './gan/gan-canvas/gan-canvas.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HttpClientModule } from '@angular/common/http';
     ClassifyHelpComponent,
     CartpoleHelpComponent,
     NotfoundComponent,
-    GanComponent
+    GanComponent,
+    GanCanvasComponent
   ],
   imports: [
     BrowserModule,
