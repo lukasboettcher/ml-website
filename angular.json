@@ -27,7 +27,14 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies":[
+              "uuid",
+              "@tensorflow-models/coco-ssd",
+              "@tensorflow/tfjs-vis",
+              "seedrandom",
+              "chart.js"
+            ]
           },
           "configurations": {
             "production": {
