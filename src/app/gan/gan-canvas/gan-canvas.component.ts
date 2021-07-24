@@ -20,6 +20,11 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
+  ngAfterViewInit(): void {
+    this.context = this.canvas.nativeElement.getContext('2d');
+    this.resetCanvas();
+  }
+
   /*
     Functions that handle canvas manipulation
   */
