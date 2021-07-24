@@ -9,6 +9,10 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
+  @Input() canvasColor = '#9ceedd';
+  @Input() canvasBrushWidth = 24;
+  @Input() canvasWidth;
+  @Input() canvasHeight;
 
   ngOnInit(): void {
   }
