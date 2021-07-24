@@ -38,6 +38,12 @@
                     </div>
                 </div>
             </div>
+            <hr>
+            <div class="form-group">
+                <label for="brushWidth">Pinselgröße</label>
+                <input type="range" class="form-control-range" id="brushWidth" [value]="canvasBrushWidth"
+                    (change)="canvasBrushWidth = $event.target.value" step="2" min="2" max="200">
+            </div>
         </div>
     </div>
     <div class="row my-3">
