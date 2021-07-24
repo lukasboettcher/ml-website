@@ -41,4 +41,15 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
     this.pos.y = y - rect.y;
   }
 
+  drawCanvas(x, y): void {
+    this.context.beginPath();
+    this.context.lineWidth = this.canvasBrushWidth;
+    this.context.lineCap = 'round';
+    this.context.strokeStyle = this.canvasColor;
+    this.context.moveTo(this.pos.x, this.pos.y);
+    this.setPosition(x, y);
+    this.context.lineTo(this.pos.x, this.pos.y);
+    this.context.stroke();
+  }
+
 }
