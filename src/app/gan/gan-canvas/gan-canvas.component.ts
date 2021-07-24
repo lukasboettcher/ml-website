@@ -20,4 +20,18 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
   }
 
+  /*
+    Functions that handle canvas manipulation
+  */
+
+  resetCanvas(): void {
+    this.context.clearRect(0, 0, this.canvasWidth, this.canvasHeight);
+    this.context.beginPath();
+    this.context.fillStyle = '#9ceedd';
+    this.context.fillRect(0, 0, this.canvasWidth, this.canvasHeight * 2 / 3);
+    this.context.fillStyle = '#9ac6da';
+    this.context.fillRect(0, this.canvasHeight * 2 / 3, this.canvasWidth, this.canvasHeight);
+    this.context.fill();
+  }
+
 }
