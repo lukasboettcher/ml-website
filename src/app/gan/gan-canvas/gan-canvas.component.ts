@@ -15,6 +15,7 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
   @Input() canvasHeight;
   @ViewChild('canvas', { static: false }) canvas: ElementRef<HTMLCanvasElement>;
   context: CanvasRenderingContext2D;
+  pos = { x: 0, y: 0, draw: false };
 
   ngOnInit(): void {
   }
