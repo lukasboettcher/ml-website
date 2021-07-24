@@ -34,4 +34,11 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
     this.context.fill();
   }
 
+  setPosition(x, y): void {
+    const rect = this.canvas.nativeElement.getBoundingClientRect();
+
+    this.pos.x = x - rect.x;
+    this.pos.y = y - rect.y;
+  }
+
 }
