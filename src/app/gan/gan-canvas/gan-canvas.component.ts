@@ -57,4 +57,50 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
     this.context.stroke();
   }
 
+
+  /*
+    Event Listeners for the canvas
+  */
+
+
+  @HostListener('mousedown', ['$event.clientX', '$event.clientY'])
+  onMouseDown(x: number, y: number): void {
+    this.setPosition(x, y);
+    this.pos.draw = true;
+  }
+
+  @HostListener('touchstart', ['$event.touches[0].clientX', '$event.touches[0].clientY', '$event'])
+  onTouchDown(x: number, y: number, e: any): void {
+    if (e.target === this.canvas.nativeElement) {
+      e.preventDefault();
+    }
+    this.setPosition(x, y);
+    this.pos.draw = true;
+  }
+
+  @HostListener('mousemove', ['$event.clientX', '$event.clientY'])
+  onMouseMove(x: number, y: number): void {
+    if (this.pos.draw) {
+      this.drawCanvas(x, y);
+    }
+  }
+
+  @HostListener('touchmove', ['$event.touches[0].clientX', '$event.touches[0].clientY', '$event'])
+  onTouchMove(x: number, y: number, e: any): void {
+    if (e.target === this.canvas.nativeElement) {
+      e.preventDefault();
+    }
+    if (this.pos.draw) {
+      this.drawCanvas(x, y);
+    }
+  }
+
+  @HostListener('mouseup')
+  @HostListener('mouseleave')
+  @HostListener('touchend')
+  @HostListener('touchleave')
+  onMouseLeave(): void {
+    this.pos.draw = false;
+  }
+
 }
