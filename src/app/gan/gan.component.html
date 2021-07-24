@@ -22,6 +22,24 @@
             </app-gan-canvas>
         </div>
 
+        <div class="col-md-3 col-lg-6 my-3">
+            <div *ngFor="let cat of categories.categories">
+                <div class="d-flex flex-column">
+                    <button class="btn btn-dark my-1"
+                        (click)="activeCategory = activeCategory == cat.index ? undefined : cat.index">
+                        {{cat.name}}
+                    </button>
+                    <div *ngIf="activeCategory == cat.index" class="topic-grid">
+                        <button type="button" class="btn btn-sm topic-button"
+                            *ngFor="let topic of categories[cat.index]" (click)="canvasColor = topic.color"
+                            [style.background-color]="topic.color" [style.color]="textColor(topic.color)">
+                            {{topic.name}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row my-3">
 
     </div>
