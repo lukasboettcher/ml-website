@@ -13,6 +13,8 @@ export class GanCanvasComponent implements OnInit, AfterViewInit {
   @Input() canvasBrushWidth = 24;
   @Input() canvasWidth;
   @Input() canvasHeight;
+  @ViewChild('canvas', { static: false }) canvas: ElementRef<HTMLCanvasElement>;
+  context: CanvasRenderingContext2D;
 
   ngOnInit(): void {
   }
