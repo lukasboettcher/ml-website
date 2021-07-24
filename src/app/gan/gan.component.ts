@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { AfterContentInit, AfterViewInit, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
+import { v4 as uuidv4 } from 'uuid';
+import { GanCanvasComponent } from './gan-canvas/gan-canvas.component';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-gan',
