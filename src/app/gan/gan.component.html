@@ -59,5 +59,21 @@
         </div>
     </div>
     <div class="row my-3">
+        <div class="col-md-6 d-flex flex-column align-items-center">
+            <canvas #outputCanvas id="outputCanvas" width="512" height="512"></canvas>
+        </div>
 
+        <div class="col-md-6 text-center my-5">
+            <h5>Das Ergebnis!</h5>
+            <p>
+                I hope this worked!
+                You can <button type="button" class="btn btn-link btn-sm" (click)="downloadOutput()">Download</button>
+                the resulting image.
+
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt perferendis, vitae esse earum
+                distinctio adipisci aliquam, illo culpa reprehenderit, dicta odit. Explicabo animi nisi, aliquam
+                suscipit et laboriosam consequuntur nulla?
+            </p>
+        </div>
     </div>
+</div>
