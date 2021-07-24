@@ -11,3 +11,12 @@ canvas {
     height: auto;
 }
 
+.topic-grid {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.topic-button {
+    flex: 1 0 auto;
+    margin: 2px;
+}
