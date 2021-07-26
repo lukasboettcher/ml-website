@@ -98,6 +98,16 @@ export class GanComponent implements OnInit {
       return '#000000';
     }
   }
+
+
+  @HostListener('window:resize', [])
+  onResize(): void {
+    this.canvasWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 512);
+    setTimeout(() => {
+      this.inputCanvas.resetCanvas();
+    }, 0);
+  }
+
   }
 
 }
