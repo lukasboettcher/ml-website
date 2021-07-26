@@ -10,6 +10,17 @@ import { environment } from 'src/environments/environment';
 })
 export class GanComponent implements OnInit {
 
+  constructor() { }
+
+  @ViewChild('inputCanvas', { static: false })
+  inputCanvas: GanCanvasComponent;
+  @ViewChild('outputCanvas', { static: false })
+  outputCanvas: ElementRef<HTMLCanvasElement>;
+
+  activeCategory: string;
+  canvasColor = '#9ceedd';
+  canvasBrushWidth = 24;
+  canvasWidth = 512;
 
   categories = {
     categories: [
