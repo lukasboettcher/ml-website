@@ -101,6 +101,14 @@ export class GanComponent implements OnInit {
     }
   }
 
+  // function to download the output as an image
+  downloadOutput(): void {
+    const link = document.createElement('a');
+    link.download = `output-${uuidv4()}.png`;
+    link.href = this.outputCanvas.nativeElement.toDataURL();
+    link.click();
+  }
+
 
   @HostListener('window:resize', [])
   onResize(): void {
