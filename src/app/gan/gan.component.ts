@@ -72,6 +72,8 @@ export class GanComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    setTimeout(() => { this.onResize(); }, 100);
+  }
 
   // helper function to calculate rgb values from hex strings
   hexToRgb(hex): { r: number, g: number, b: number } | null {
