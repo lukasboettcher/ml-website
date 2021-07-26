@@ -72,6 +72,32 @@ export class GanComponent implements OnInit {
   };
 
   ngOnInit(): void {
+
+  // helper function to calculate rgb values from hex strings
+  hexToRgb(hex): { r: number, g: number, b: number } | null {
+    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+  }
+
+  // // helper to calculate perceived brightness of a color
+  // perceivedBrightness(hex): number {
+  //   const rgb = this.hexToRgb(hex);
+  //   return (rgb !== null ? rgb.r * 299 + rgb.g * 587 + rgb.b * 114 : 0);
+  // }
+
+  // calculate text color based on brightness
+  textColor(hex): string {
+    const rgb = this.hexToRgb(hex);
+    if (rgb !== null && rgb.r * 299 + rgb.g * 587 + rgb.b * 114 >= 125000) {
+      return '#ffffff';
+    } else {
+      return '#000000';
+    }
+  }
   }
 
 }
