@@ -118,6 +118,41 @@ export class GanComponent implements OnInit {
     }, 0);
   }
 
+  sendRequest(style: string): void {
+    const dataURL = this.inputCanvas.canvas.nativeElement.toDataURL();
+    const uuid = uuidv4();
+    const remoteURL: string = environment.production ? 'http://54.191.253.241:443' : '';
+
+    fetch(remoteURL + '/nvidia_gaugan_submit_map', {
+      method: 'post',
+      body: new URLSearchParams({
+        imageBase64: dataURL,
+        name: uuid
+      })
+    }).then((res) => {
+      if (res.ok) {
+        fetch(remoteURL + '/nvidia_gaugan_receive_image', {
+          method: 'post',
+          body: new URLSearchParams({
+            name: uuid,
+            style_name: style
+          })
+        }).then(imageResponse => imageResponse.blob())
+          .then(createImageBitmap)
+          .then(image => {
+            const output = document.getElementById('output');
+            // console.log(image);
+            this.outputCanvas.nativeElement.getContext('2d').drawImage(image, 0, 0, 512, 512);
+
+            // let img = new Image()
+            // img.onload = function () {
+            //     output.getContext('2d').drawImage(this, 0, 0, 512, 512);
+            // }
+            // img.src = URL.createObjectURL(image)
+
+          });
+      }
+    });
   }
 
 }
