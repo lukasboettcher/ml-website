@@ -121,9 +121,9 @@ export class GanComponent implements OnInit {
   sendRequest(style: string): void {
     const dataURL = this.inputCanvas.canvas.nativeElement.toDataURL();
     const uuid = uuidv4();
-    const remoteURL: string = environment.production ? 'http://54.191.253.241:443' : '';
-
-    fetch(remoteURL + '/nvidia_gaugan_submit_map', {
+    // const remoteURL: string = environment.production ? 'http://54.191.253.241:443' : '';
+    // fetch(remoteURL + '/nvidia_gaugan_submit_map', {
+    fetch('https://btchr.de/gan/submit', {
       method: 'post',
       body: new URLSearchParams({
         imageBase64: dataURL,
@@ -131,7 +131,8 @@ export class GanComponent implements OnInit {
       })
     }).then((res) => {
       if (res.ok) {
-        fetch(remoteURL + '/nvidia_gaugan_receive_image', {
+        // fetch(remoteURL + '/nvidia_gaugan_receive_image', {
+        fetch('https://btchr.de/gan/receive', {
           method: 'post',
           body: new URLSearchParams({
             name: uuid,
