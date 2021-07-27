@@ -112,10 +112,15 @@ export class GanComponent implements OnInit {
 
   @HostListener('window:resize', [])
   onResize(): void {
-    this.canvasWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 512);
-    setTimeout(() => {
-      this.inputCanvas.resetCanvas();
-    }, 0);
+    const calculatedNewWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 512);
+
+    // only reset the canvas, if width - this implies scaling - is changed
+    if (this.canvasWidth !== calculatedNewWidth) {
+      this.canvasWidth = calculatedNewWidth;
+      setTimeout(() => {
+        this.inputCanvas.resetCanvas();
+      }, 0);
+    }
   }
 
   sendRequest(style: string): void {
