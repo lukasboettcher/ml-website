@@ -27,6 +27,10 @@ import { NotfoundComponent } from './help/notfound/notfound.component';
 import { GanComponent } from './gan/gan.component';
 import { HttpClientModule } from '@angular/common/http';
 import { GanCanvasComponent } from './gan/gan-canvas/gan-canvas.component';
+import { LandscapeComponent } from './gans/landscape/landscape.component';
+import { LandscapeCanvasComponent } from './gans/landscape/landscape-canvas/landscape-canvas.component';
+import { TrainingComponent } from './gans/training/training.component';
+import { TransferComponent } from './gans/transfer/transfer.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,11 @@ import { GanCanvasComponent } from './gan/gan-canvas/gan-canvas.component';
     CartpoleHelpComponent,
     NotfoundComponent,
     GanComponent,
-    GanCanvasComponent
+    GanCanvasComponent,
+    LandscapeComponent,
+    LandscapeCanvasComponent,
+    TrainingComponent,
+    TransferComponent
   ],
   imports: [
     BrowserModule,
