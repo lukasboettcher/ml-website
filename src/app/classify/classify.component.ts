@@ -14,12 +14,13 @@ export class ClassifyComponent implements OnInit {
   images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png`);
 
   constructor(private renderer: Renderer2) {
-    this.initiateModels();
+    // this.initiateModels();
   }
 
   // variables for the models
   private model: mnet.MobileNet;
   knn: knn.KNNClassifier;
+  startedLoading = false;
   modelsLoaded = false;
 
   @ViewChild('video', { static: true }) videoElement: ElementRef;
@@ -52,6 +53,7 @@ export class ClassifyComponent implements OnInit {
   }
 
   async initiateModels(): Promise<void> {
+    this.startedLoading = true;
     this.model = await mnet.load();
     this.knn = await knn.create();
     console.log('models loaded');
