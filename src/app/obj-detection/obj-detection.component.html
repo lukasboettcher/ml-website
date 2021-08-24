@@ -81,9 +81,12 @@
 
 				<div class="py-2">
 					<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="submit" class="btn btn-primary" [disabled]="modelLoaded" [ngClass]="{'btn-success': modelLoaded}"
+							(click)="loadModel()">{{modelLoaded ? 'Bereit':'Modell Laden'}}
+							<span *ngIf="startedLoading&&!modelLoaded" class="spinner-border spinner-border-sm"></span>
+						</button>
 						<button class="btn btn-primary" [disabled]="!modelLoaded || webcamStarted"
-							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'lade Modell... '}}
-							<span *ngIf="!modelLoaded" class="spinner-border spinner-border-sm"></span>
+							(click)="startCamera()">{{modelLoaded ? 'Starte Webcam':'Bitte Modell Laden'}}
 						</button>
 						<button class="btn btn-primary" [disabled]="!modelLoaded || !webcamStarted"
 							(click)="changePredictionState()">{{(detectionInterrupted ? 'Starte':'Stoppe')+'
@@ -101,7 +104,7 @@
 				<!-- <div>
 					<canvas #canvas2 id="canvas2"></canvas>
 				</div> -->
-				
+
 			</div>
 		</div>
 	</div>

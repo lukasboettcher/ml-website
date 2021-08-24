@@ -15,6 +15,7 @@ export class ObjDetectionComponent implements OnInit {
 
   // vars for state and video settings
   webcamStarted: boolean = false;
+  startedLoading = false;
   modelLoaded: boolean = false;
   videoWidth = 0;
   videoHeight = 0;
@@ -32,10 +33,11 @@ export class ObjDetectionComponent implements OnInit {
 
   constructor(private renderer: Renderer2) {
     tf.backend();
-    this.loadModel();
+    // this.loadModel();
   }
 
   async loadModel() {
+    this.startedLoading = true;
     console.log('loading model..');
     this.model = await cocoSSD.load();
     console.log("model loaded");
