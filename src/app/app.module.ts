@@ -27,8 +27,8 @@ import { NotfoundComponent } from './help/notfound/notfound.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LandscapeComponent } from './gans/landscape/landscape.component';
 import { LandscapeCanvasComponent } from './gans/landscape/landscape-canvas/landscape-canvas.component';
-import { TrainingComponent } from './gans/training/training.component';
-import { TransferComponent } from './gans/transfer/transfer.component';
+import { GanTrainingComponent } from './gans/gan-training/gan-training.component';
+import { GanTransferComponent } from './gans/gan-transfer/gan-transfer.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +52,8 @@ import { TransferComponent } from './gans/transfer/transfer.component';
     NotfoundComponent,
     LandscapeComponent,
     LandscapeCanvasComponent,
-    TrainingComponent,
-    TransferComponent
+    GanTrainingComponent,
+    GanTransferComponent
   ],
   imports: [
     BrowserModule,
