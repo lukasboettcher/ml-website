@@ -24,9 +24,7 @@ import { VarDirective } from './cartpole/configuration/var.directive';
 import { ClassifyHelpComponent } from './classify/classify-help/classify-help.component';
 import { CartpoleHelpComponent } from './cartpole/cartpole-help/cartpole-help.component';
 import { NotfoundComponent } from './help/notfound/notfound.component';
-import { GanComponent } from './gan/gan.component';
 import { HttpClientModule } from '@angular/common/http';
-import { GanCanvasComponent } from './gan/gan-canvas/gan-canvas.component';
 import { LandscapeComponent } from './gans/landscape/landscape.component';
 import { LandscapeCanvasComponent } from './gans/landscape/landscape-canvas/landscape-canvas.component';
 import { TrainingComponent } from './gans/training/training.component';
@@ -52,8 +50,6 @@ import { TransferComponent } from './gans/transfer/transfer.component';
     ClassifyHelpComponent,
     CartpoleHelpComponent,
     NotfoundComponent,
-    GanComponent,
-    GanCanvasComponent,
     LandscapeComponent,
     LandscapeCanvasComponent,
     TrainingComponent,
