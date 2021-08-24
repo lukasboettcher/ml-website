@@ -7,7 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { MnistComponent } from './mnist/mnist.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { NotfoundComponent } from './help/notfound/notfound.component';
-import { GanComponent } from './gan/gan.component';
+import { LandscapeComponent } from './gans/landscape/landscape.component';
 
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'object', component: ObjDetectionComponent },
   { path: 'mnist', component: MnistComponent },
   { path: 'classify', component: ClassifyComponent },
-  { path: 'gan', component: GanComponent },
+  { path: 'gan-landscpe', component: LandscapeComponent },
   { path: '404', component: NotfoundComponent },
   // wildcard URL
   { path: '**', redirectTo: '/404' }
