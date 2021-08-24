@@ -16,24 +16,25 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-primary m-2"
+                    <div class="col-auto flex-row d-flex flex-wrap">
+                        <button type="submit" class="btn btn-primary flex-grow-1 mx-1 my-2"
                             [disabled]="modelCreated || !modelForm.valid">Initialisieren</button>
-                        <button type="button" class="btn btn-primary m-2" [disabled]="!modelCreated"
+                        <button type="button" class="btn btn-primary flex-grow-1 mx-1 my-2" [disabled]="!modelCreated"
                             (click)="onDelete()">Entfernen</button>
-                        <button type="button" class="btn btn-primary m-2" [disabled]="!modelCreated"
+                        <button type="button" class="btn btn-primary flex-grow-1 mx-1 my-2" [disabled]="!modelCreated"
                             (click)="onSave()">Speichern</button>
-                        <button type="button" class="btn btn-primary m-2" (click)="onUpload()"
+                        <button type="button" class="btn btn-primary flex-grow-1 mx-1 my-2" (click)="onUpload()"
                             [disabled]="!modelLoaded || !weightsLoaded">Laden</button>
                     </div>
-                    <div class="col-auto">
+                    <div class="col-auto flex-row d-flex flex-wrap">
                         <input type="file" id="upload-json" (change)="handleModelUpload($event.target.files)" hidden />
-                        <label class="btn btn-link mt-2" for="upload-json">
+                        <label class="btn btn-link flex-grow-1 my-2" for="upload-json">
                             Modell Laden <span class="badge badge-light" *ngIf="modelLoaded">&#10003;</span>
                         </label>
 
-                        <input type="file" id="upload-weights" (change)="handleWeightsUpload($event.target.files)" hidden />
-                        <label class="btn btn-link mt-2" for="upload-weights">
+                        <input type="file" id="upload-weights" (change)="handleWeightsUpload($event.target.files)"
+                            hidden />
+                        <label class="btn btn-link flex-grow-1 my-2" for="upload-weights">
                             Gewichte Laden <span class="badge badge-light" *ngIf="weightsLoaded">&#10003;</span>
                         </label>
                     </div>
