@@ -25,6 +25,8 @@
             <div ngbDropdown style="cursor: pointer;">
                 <a class="nav-link" ngbDropdownToggle>GANs</a>
                 <div ngbDropdownMenu>
+                    <button ngbDropdownItem routerLink="gan-training" (click)="isCollapsed = true">Training mit MNIST</button>
+                    <button ngbDropdownItem routerLink="gan-tansfer" (click)="isCollapsed = true">Style Transfer</button>
                     <button ngbDropdownItem routerLink="gan-landscpe" (click)="isCollapsed = true">Landschafts Generation</button>
                 </div>
             </div>
