@@ -18,9 +18,16 @@
                 <a class="nav-link" routerLink="cartpole" (click)="isCollapsed = true">CartPole Simulation</a>
             </li>
 
-            <li class="nav-item" role="presentation" routerLinkActive="active">
+            <!-- <li class="nav-item" role="presentation" routerLinkActive="active">
                 <a class="nav-link" routerLink="gan" (click)="isCollapsed = true">GANs</a>
-            </li>
+            </li> -->
+
+            <div ngbDropdown style="cursor: pointer;">
+                <a class="nav-link" ngbDropdownToggle>GANs</a>
+                <div ngbDropdownMenu>
+                    <button ngbDropdownItem routerLink="gan" (click)="isCollapsed = true">Landschafts Generation</button>
+                </div>
+            </div>
 
             <li class="nav-item" role="presentation" routerLinkActive="active">
                 <a class="nav-link" routerLink="object" (click)="isCollapsed = true">Objekterkennung</a>
