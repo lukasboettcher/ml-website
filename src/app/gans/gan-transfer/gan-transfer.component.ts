@@ -10,6 +10,9 @@ import { GanTransferInputComponent } from './gan-transfer-input/gan-transfer-inp
 })
 export class GanTransferComponent implements OnInit {
 
+  @ViewChild('inputImg') inputImg: GanTransferInputComponent;
+  @ViewChild('style1') style1: GanTransferInputComponent;
+  @ViewChild('style2') style2: GanTransferInputComponent;
 
   styleNet: tf.GraphModel;
   transformNet: tf.GraphModel;
@@ -24,6 +27,9 @@ export class GanTransferComponent implements OnInit {
 
   styleText = 'Modelle werden geladen. Bitte warten..';
   styleRatio = 0.5;
+
+  @ViewChild('outputCanvas')
+  outputCanvas: ElementRef<HTMLCanvasElement>;
 
   combineStyles = false;
   buttonsEnabled = false;
