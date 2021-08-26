@@ -66,9 +66,12 @@ export default [
     'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/francesco-del-cossa-003.jpg',
     'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/francesco-del-cossa-004.jpg',
     'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/francesco-del-cossa-012.jpg',
-    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-toro-02-2-1.jpg',
-    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-toro-03-3-1.jpg',
-    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-trionfo-di-venere-02-coniglio.jpg',
+    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-toro-02-\
+    2-1.jpg',
+    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-toro-03-3\
+    -1.jpg',
+    'https://uploads0.wikiart.org/00202/images/francesco-del-cossa/palazzo-schifanoia-salone-dei-mesi-04-aprile-f-del-cossa-trionfo-di\
+    -venere-02-coniglio.jpg',
     'https://uploads0.wikiart.org/00203/images/david-lynch/boom.jpg',
     'https://uploads0.wikiart.org/00203/images/david-lynch/i-see-my-love.jpg',
     'https://uploads0.wikiart.org/00204/images/odd-nerdrum/self-portrait-as-polar-exploere.jpg',
@@ -666,9 +669,11 @@ export default [
     'https://uploads1.wikiart.org/images/adolph-menzel/living-room-with-the-artist-s-sister-1847(1).jpg',
     'https://uploads1.wikiart.org/images/adriaen-van-ostade/a-tavern-interior-with-peasants-drinking-beneath-a-window.jpg',
     'https://uploads1.wikiart.org/images/adriaen-van-ostade/cottage-interior-with-a-family-around-the-hearth.jpg',
-    'https://uploads1.wikiart.org/images/agostino-carracci/the-holy-family-with-sts-anthony-abbot-catherine-and-the-infant-st-john-1582.jpg',
+    'https://uploads1.wikiart.org/images/agostino-carracci/the-holy-family-with-sts-anthony-abbot-catherine-and-the-infant-st-john-\
+    1582.jpg',
     'https://uploads1.wikiart.org/images/ahmed-karahisari/album.jpg',
-    'https://uploads1.wikiart.org/images/ahmed-karahisari/right-part-of-a-double-page-frontispiece-to-a-manuscript-of-religious-texts-penned-for-s-leyman.jpg',
+    'https://uploads1.wikiart.org/images/ahmed-karahisari/right-part-of-a-double-page-frontispiece-to-a-manuscript-of-religious-texts\
+    -penned-for-s-leyman.jpg',
     'https://uploads1.wikiart.org/images/albert-rafols-casamada/blau-profund-1858.jpg',
     'https://uploads1.wikiart.org/images/albrecht-altdorfer/the-battle-of-issus-fragment-1.jpg',
     'https://uploads1.wikiart.org/images/albrecht-durer/crucifixion-with-many-figures-1523.jpg',
@@ -821,7 +826,8 @@ export default [
     'https://uploads1.wikiart.org/images/giovanni-battista-piranesi/the-roman-antiquities-t-1-plate-iii-map-of-ancient-rome-and-forma-urbis-1756.jpg',
     'https://uploads1.wikiart.org/images/giovanni-battista-piranesi/the-roman-antiquities-t-1-plate-viii-aurelian-walls-1756-1.jpg',
     'https://uploads1.wikiart.org/images/giovanni-battista-piranesi/the-roman-antiquities-t-1-plate-xviii-ruins-of-the-tempio-della-speranza-vecchia-1756.jpg',
-    'https://uploads1.wikiart.org/images/giovanni-battista-tiepolo/angelica-accompanied-by-a-shepherd-who-cares-medorus-with-herbs-1757.jpg',
+    'https://uploads1.wikiart.org/images/giovanni-battista-tiepolo/angelica-accompanied-by-a-shepherd-who-cares-medorus-with-herbs\
+    -1757.jpg',
     'https://uploads1.wikiart.org/images/giovanni-battista-tiepolo/rinaldo-and-armida-1753.jpg',
     'https://uploads1.wikiart.org/images/giovanni-battista-tiepolo/rinaldo-and-armida-1760.jpg',
     'https://uploads1.wikiart.org/images/giovanni-battista-tiepolo/rinaldo-observed-by-carlo-and-ubaldo-1755.jpg',
@@ -950,7 +956,8 @@ export default [
     'https://uploads1.wikiart.org/images/marc-chagall/illustration-for-review-troyer-courant-1922-8.jpg',
     'https://uploads1.wikiart.org/images/marcel-duchamp/fresh-widow-1920.jpg',
     'https://uploads1.wikiart.org/images/marcelle-cahn/avion-forme-aviatique-1930.jpg',
-    'https://uploads1.wikiart.org/images/mario-nuzzi/roses-tulips-chrysanthemums-and-other-flowers-in-a-sculpted-urn-on-an-earthen-bank.jpg',
+    'https://uploads1.wikiart.org/images/mario-nuzzi/roses-tulips-chrysanthemums-and-other-flowers-in-a-sculpted-\
+    urn-on-an-earthen-bank.jpg',
     'https://uploads1.wikiart.org/images/marjorie-strider/my-sister-1960.jpg',
     'https://uploads1.wikiart.org/images/mark-rothko/no-3-no-13.jpg',
     'https://uploads1.wikiart.org/images/mark-rothko/no-5-no-22.jpg',
@@ -983,12 +990,14 @@ export default [
     'https://uploads1.wikiart.org/images/osias-beert/still-life.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/arabian-no-4-portian-of-an-illuminated-copy-of-the-koran.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/celtic-ornament-no-2-interlaced-styles.jpg',
-    'https://uploads1.wikiart.org/images/owen-jones/greek-no-8-painted-greek-ornaments-from-the-temples-and-tombs-in-greece-and-sicilty.jpg',
+    'https://uploads1.wikiart.org/images/owen-jones/greek-no-8-painted-greek-ornaments-from-the-temples-and-tombs\
+    -in-greece-and-sicilty.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/moresque-ornament-from-the-alhambra-no-1-varieties-of-interlaced-ornaments.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/moresque-ornament-from-the-alhambra-no-3-lozenge-diapers.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/persian-ornament-no-5-from-a-persian-manuscript-marlborough-house.jpg',
     'https://uploads1.wikiart.org/images/owen-jones/tomb-near-cairo-1833.jpg',
-    'https://uploads1.wikiart.org/images/owen-jones/turkish-no-1-ornaments-in-relief-from-mosques-tombs-and-fountains-in-constantinople.jpg',
+    'https://uploads1.wikiart.org/images/owen-jones/turkish-no-1-ornaments-in-relief-from-mosques-tombs-and-fountains\
+    -in-constantinople.jpg',
     'https://uploads1.wikiart.org/images/paolo-veronese/apotheosis-of-venice-1585.jpg',
     'https://uploads1.wikiart.org/images/parmigianino/self-portrait-1540.jpg',
     'https://uploads1.wikiart.org/images/parmigianino/self-portrait-at-the-mirror.jpg',
@@ -1702,7 +1711,8 @@ export default [
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-morita-kanya-viii-as-uguisu-no-jir-saku-in-the-play-katakiuchi-noriaibanashi.jpg',
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakajima-kanz-as-negoto-no-ch-z.jpg',
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakajima-wadaemon-i-as-tanbaya-hachiemon.jpg',
-    'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakamura-noshio-ii-as-konohana-daughter-of-ki-no-tsurayuki.jpg',
+    'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakamura-noshio-ii-as-konohana-daughter-\
+    of-ki-no-tsurayuki.jpg',
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakayama-tomisabur-i-as-ohisa-wife-of-sazanami-tatsugor-actually-teriha-the-younger-1.jpg',
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-nakayama-tomisabur-i-as-ohisa-wife-of-sazanami-tatsugor-actually-teriha-the-younger-2.jpg',
     'https://uploads3.wikiart.org/00135/images/toshusai-sharaku/sharaku-1794-onoe-matsusuke-i-as-the-lay-priest-yuasa-magoroku.jpg',

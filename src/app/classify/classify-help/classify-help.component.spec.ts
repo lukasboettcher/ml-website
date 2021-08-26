@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ClassifyHelpComponent } from './classify-help.component';
 
@@ -6,12 +6,12 @@ describe('ClassifyHelpComponent', () => {
   let component: ClassifyHelpComponent;
   let fixture: ComponentFixture<ClassifyHelpComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ ClassifyHelpComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ClassifyHelpComponent);

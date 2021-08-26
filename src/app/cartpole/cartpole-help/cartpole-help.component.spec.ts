@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CartpoleHelpComponent } from './cartpole-help.component';
 
@@ -6,12 +6,12 @@ describe('CartpoleHelpComponent', () => {
   let component: CartpoleHelpComponent;
   let fixture: ComponentFixture<CartpoleHelpComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ CartpoleHelpComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CartpoleHelpComponent);
