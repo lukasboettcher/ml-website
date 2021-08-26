@@ -29,6 +29,28 @@ export class GanTrainingComponent implements OnInit {
     this.pretrainedModel = await tf.loadLayersModel(this.MODEL_PATH);
   }
 
+  sampleLoop(genCanvas: HTMLCanvasElement, realCanvas: HTMLCanvasElement): void {
+    if (this.loopId) {
+      clearInterval(this.loopId);
+      this.loopId = null;
+    } else {
+      this.loopId = setInterval(() => {
+        this.sampleFromBoth(genCanvas, realCanvas);
+      }, 100);
+    }
+  }
+
+  // stopLoop(): void {
+  //   if (this.loopId) {
+  //     clearInterval(this.loopId);
+  //     this.loopId = null;
+  //   }
+  // }
+
+  async sampleFromBoth(genCanvas: HTMLCanvasElement, realCanvas: HTMLCanvasElement): Promise<void> {
+    await this.sampleFromPretrained(genCanvas);
+    await this.sampleFromMnist(realCanvas);
+  }
 
   async sampleFromPretrained(genCanvas: HTMLCanvasElement): Promise<void> {
     if (this.pretrainedModel) {
