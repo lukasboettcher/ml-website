@@ -17,6 +17,11 @@ export class GanTransferComponent implements OnInit {
   inceptionStyleNet: tf.GraphModel;
   originalTransformNet: tf.GraphModel;
   separableTransformNet: tf.GraphModel;
+
+  imageInputSrc = 'assets/gan-images/chicago.jpg';
+  imageStyleLeftSrc = 'assets/gan-images/seaport.jpg';
+  imageStyleRightSrc = 'assets/gan-images/udnie.jpg';
+
   constructor() { }
 
   ngOnInit(): void {
