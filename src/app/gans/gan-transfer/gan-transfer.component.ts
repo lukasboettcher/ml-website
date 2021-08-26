@@ -90,4 +90,39 @@ export class GanTransferComponent implements OnInit {
   }
   }
 
+  async startCombinedStyleTransfer(imageInput: HTMLImageElement, imageStyleLeft: HTMLImageElement,
+                                   imageStyleRight: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
+    // await tf.nextFrame();
+    this.styleText = 'Generiere latente Representation von Bild 1';
+    await tf.nextFrame();
+    const bottleneck1: tf.Tensor = await tf.tidy(() => {
+      return (this.styleNet.predict(tf.browser.fromPixels(imageStyleLeft).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
+    });
+
+    this.styleText = 'Generiere latente Representation von Bild 2';
+    await tf.nextFrame();
+    const bottleneck2: tf.Tensor = await tf.tidy(() => {
+      return (this.styleNet.predict(tf.browser.fromPixels(imageStyleRight).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
+    });
+
+    this.styleText = 'Style wird angewandt';
+    await tf.nextFrame();
+    const combinedBottleneck: tf.Tensor = await tf.tidy(() => {
+      const scaledBottleneck1 = bottleneck1.mul(tf.scalar(1 - this.styleRatio));
+      const scaledBottleneck2 = bottleneck2.mul(tf.scalar(this.styleRatio));
+      return scaledBottleneck1.add(scaledBottleneck2);
+    });
+
+    const stylized = await tf.tidy(() => {
+      const imageInputTensor = tf.browser.fromPixels(imageInput).toFloat().div(tf.scalar(255)).expandDims();
+      return (this.transformNet.predict([imageInputTensor, combinedBottleneck]) as tf.Tensor).squeeze() as tf.Tensor2D;
+    });
+
+    await tf.browser.toPixels(stylized, outputCanvas);
+
+    bottleneck1.dispose();
+    bottleneck2.dispose();
+    combinedBottleneck.dispose();
+    stylized.dispose();
+  }
 }
