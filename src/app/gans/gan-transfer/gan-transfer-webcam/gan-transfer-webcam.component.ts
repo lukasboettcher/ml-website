@@ -33,4 +33,13 @@ export class GanTransferWebcamComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onTakePicture(video: HTMLVideoElement, canvas: HTMLCanvasElement): void {
+    const context = canvas.getContext('2d');
+    canvas.width = video.width;
+    canvas.height = video.height;
+    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+    this.captureTaken = true;
+    const imageData = canvas.toDataURL('image/jpg');
+    this.newImage.emit(imageData);
+  }
 }
