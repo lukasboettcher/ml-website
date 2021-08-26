@@ -109,6 +109,14 @@ export class GanTransferComponent implements OnInit {
       this.onDoneWithModels();
     });
   }
+
+  // callback when model changes done
+  // reenables the buttons
+  onDoneWithModels(): void {
+    this.buttonsEnabled = true;
+    this.styleText = 'Transferiere Style';
+  }
+
   async startStyleTransfer(imageInput: HTMLImageElement, imageStyle: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
     await tf.nextFrame();
     this.styleText = 'Generiere latente Representation';
