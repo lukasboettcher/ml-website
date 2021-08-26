@@ -45,6 +45,7 @@ export class GanTransferComponent implements OnInit {
     }).finally(() => {
       this.onDoneWithModels();
     });
+  }
 
   /*
    * methods for loading each model individually
@@ -88,6 +89,45 @@ export class GanTransferComponent implements OnInit {
 
     return this.separableTransformNet;
   }
+  async startStyleTransfer(imageInput: HTMLImageElement, imageStyle: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
+    await tf.nextFrame();
+    this.styleText = 'Generiere latente Representation';
+    await tf.nextFrame();
+
+    let bottleneck: tf.Tensor = await tf.tidy(() => {
+      return (this.styleNet.predict(tf.browser.fromPixels(imageStyle).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
+    });
+
+    // if the ratio is < 1, the original style must be taken into account
+    if (this.styleRatio !== 1.0) {
+      this.styleText = 'Generiere 100D identity style Representation';
+      await tf.nextFrame();
+      const identityBottleneck: tf.Tensor = await tf.tidy(() => {
+        return (this.styleNet.predict(tf.browser.fromPixels(imageInput).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
+      });
+      const styleBottleneck: tf.Tensor = bottleneck;
+      bottleneck = await tf.tidy(() => {
+        const styleBottleneckScaled = styleBottleneck.mul(tf.scalar(this.styleRatio));
+        const identityBottleneckScaled = identityBottleneck.mul(tf.scalar(1.0 - this.styleRatio));
+        return styleBottleneckScaled.add(identityBottleneckScaled);
+      });
+      styleBottleneck.dispose();
+      identityBottleneck.dispose();
+    }
+
+    this.styleText = 'Style wird angewandt';
+    await tf.nextFrame();
+
+    // apply the style to the original image
+    const stylized: tf.Tensor2D = await tf.tidy(() => {
+      const imageInputTensor = tf.browser.fromPixels(imageInput).toFloat().div(tf.scalar(255)).expandDims();
+      return (this.transformNet.predict([imageInputTensor, bottleneck]) as tf.Tensor).squeeze() as tf.Tensor2D;
+    });
+
+    await tf.browser.toPixels(stylized, outputCanvas);
+
+    bottleneck.dispose();
+    stylized.dispose();
   }
 
   async startCombinedStyleTransfer(imageInput: HTMLImageElement, imageStyleLeft: HTMLImageElement,
