@@ -89,6 +89,26 @@ export class GanTransferComponent implements OnInit {
 
     return this.separableTransformNet;
   }
+
+  // this handles the selection of low/high quality models
+  async updateModels(variant: string): Promise<void> {
+    this.buttonsEnabled = false;
+    let modelPromises: Promise<tf.GraphModel>[];
+    if (variant === 'low') {
+      this.loadMobileNetStyleModel().then(model => {
+        this.styleNet = model;
+      });
+      modelPromises = [this.loadMobileNetStyleModel(), this.loadOriginalTransformerModel()];
+    } else if (variant === 'high') {
+      modelPromises = [this.loadInceptionStyleModel(), this.loadSeparableTransformerModel()];
+    }
+    Promise.all(modelPromises).then(([styleModel, transformModel]) => {
+      this.styleNet = styleModel;
+      this.transformNet = transformModel;
+    }).catch(e => console.log).finally(() => {
+      this.onDoneWithModels();
+    });
+  }
   async startStyleTransfer(imageInput: HTMLImageElement, imageStyle: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
     await tf.nextFrame();
     this.styleText = 'Generiere latente Representation';
