@@ -14,6 +14,13 @@
                 reprehenderit eius hic accusantium!
             </p>
         </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="">
+                <app-gan-transfer-input #inputImg [imgSrc]="imageInputSrc" [inputDisabled]="!buttonsEnabled"
+                    [listOfImages]="preImagesInput" [description]="'Input Bild'">
+                </app-gan-transfer-input>
+            </div>
+        </div>
     </div>
 
     <div class="row mb-3">
@@ -29,6 +36,21 @@
                 reprehenderit eius hic accusantium!
             </p>
         </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="">
+                <app-gan-transfer-input #style1 [imgSrc]="imageStyleLeftSrc" [inputDisabled]="!buttonsEnabled"
+                    [listOfImages]="preImagesStyle" [description]="'Erster Style'">
+                </app-gan-transfer-input>
+            </div>
+            <br>
+            <div [ngClass]="{'d-none': !combineStyles}">
+                <div class="">
+                    <app-gan-transfer-input #style2 [imgSrc]="imageStyleRightSrc" [inputDisabled]="!buttonsEnabled"
+                        [listOfImages]="preImagesStyle" [description]="'Zweiter Style'">
+                    </app-gan-transfer-input>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="row">
@@ -43,6 +65,13 @@
                 temporibus error fugiat qui. Modi suscipit ad eveniet nesciunt et numquam? Omnis excepturi praesentium,
                 reprehenderit eius hic accusantium!
             </p>
+            <div [ngClass]="{'d-none': !outputGenerated}">
+                <figure class="figure">
+                    <figcaption class="figure-caption">Generiertes Bild</figcaption>
+                    <canvas #outputCanvas></canvas>
+                </figure>
+            </div>
+
         </div>
     </div>
 
