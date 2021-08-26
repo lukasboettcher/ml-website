@@ -14,6 +14,8 @@ export class GanTransferInputComponent implements OnInit {
   @Input() listOfImages = [];
   @Input() description = '';
 
+  @ViewChild('image') image: ElementRef<HTMLImageElement>;
+
   constructor(private modalService: NgbModal) {
   }
 
