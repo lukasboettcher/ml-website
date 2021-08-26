@@ -5,7 +5,7 @@ import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, View
   templateUrl: './landscape-canvas.component.html',
   styleUrls: ['./landscape-canvas.component.css']
 })
-export class LandscapeCanvasComponent implements OnInit, AfterViewInit {
+export class LandscapeCanvasComponent implements AfterViewInit {
 
   constructor() { }
 
@@ -17,8 +17,7 @@ export class LandscapeCanvasComponent implements OnInit, AfterViewInit {
   context: CanvasRenderingContext2D;
   pos = { x: 0, y: 0, draw: false };
 
-  ngOnInit(): void {
-  }
+
 
   ngAfterViewInit(): void {
     this.context = this.canvas.nativeElement.getContext('2d');

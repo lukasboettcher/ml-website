@@ -7,7 +7,7 @@ import links from '../image-links';
   templateUrl: './gan-transfer-input.component.html',
   styleUrls: ['./gan-transfer-input.component.css']
 })
-export class GanTransferInputComponent implements OnInit {
+export class GanTransferInputComponent {
 
   @Input() imgSrc = '';
   @Input() inputDisabled = true;
@@ -19,8 +19,7 @@ export class GanTransferInputComponent implements OnInit {
   constructor(private modalService: NgbModal) {
   }
 
-  ngOnInit(): void {
-  }
+
 
   async onSelectChange(element: HTMLImageElement, select: HTMLSelectElement, uploadElem: HTMLInputElement): Promise<void> {
     const value = select.value;
