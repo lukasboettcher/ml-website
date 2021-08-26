@@ -18,4 +18,19 @@ export class GanTransferWebcamComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
   }
+
+  public ngAfterViewInit(): void {
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({
+        video: true
+      }).then(stream => {
+        this.video.nativeElement.srcObject = stream;
+        this.video.nativeElement.play();
+      }).catch(() => {
+        this.noWebcam = true;
+        console.warn('Keine Webcam erkannt.');
+      });
+    }
+  }
+
 }
