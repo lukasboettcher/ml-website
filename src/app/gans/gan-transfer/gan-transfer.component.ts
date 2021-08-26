@@ -22,6 +22,8 @@ export class GanTransferComponent implements OnInit {
   imageStyleLeftSrc = 'assets/gan-images/seaport.jpg';
   imageStyleRightSrc = 'assets/gan-images/udnie.jpg';
 
+  styleText = 'Modelle werden geladen. Bitte warten..';
+  styleRatio = 0.5;
 
   combineStyles = false;
   buttonsEnabled = false;
