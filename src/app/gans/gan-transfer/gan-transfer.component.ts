@@ -117,6 +117,29 @@ export class GanTransferComponent implements OnInit {
     this.styleText = 'Transferiere Style';
   }
 
+  /*
+   * methods for invoking the neural networks
+   * either apply a single style
+   * or combine two styles and apply that to an
+   * input image
+  */
+
+  async onStyleSubmit(output: HTMLCanvasElement): Promise<void> {
+    const inputImg = this.inputImg.image.nativeElement;
+    const style1Img = this.style1.image.nativeElement;
+    const style2Img = this.style2.image.nativeElement;
+
+    this.buttonsEnabled = false;
+
+    if (this.combineStyles) {
+      await this.startCombinedStyleTransfer(inputImg, style1Img, style2Img, output);
+    } else {
+      await this.startStyleTransfer(inputImg, style1Img, output);
+    }
+    this.outputGenerated = true;
+    this.onDoneWithModels();
+  }
+
   async startStyleTransfer(imageInput: HTMLImageElement, imageStyle: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
     await tf.nextFrame();
     this.styleText = 'Generiere latente Representation';
