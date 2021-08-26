@@ -5,6 +5,10 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, Vie
   styleUrls: ['./gan-transfer-webcam.component.css']
 })
 export class GanTransferWebcamComponent implements OnInit, AfterViewInit {
+
+  @ViewChild('video')
+  public video: ElementRef<HTMLVideoElement>;
+
   @Output() newImage = new EventEmitter<string>();
   constructor() { }
 
