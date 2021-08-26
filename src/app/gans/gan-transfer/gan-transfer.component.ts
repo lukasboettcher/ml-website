@@ -22,6 +22,14 @@ export class GanTransferComponent implements OnInit {
   imageStyleLeftSrc = 'assets/gan-images/seaport.jpg';
   imageStyleRightSrc = 'assets/gan-images/udnie.jpg';
 
+
+  combineStyles = false;
+  buttonsEnabled = false;
+  outputGenerated = false;
+
+  preImagesInput = descriptions.inputs;
+  preImagesStyle = descriptions.styles;
+
   constructor() { }
 
   ngOnInit(): void {
