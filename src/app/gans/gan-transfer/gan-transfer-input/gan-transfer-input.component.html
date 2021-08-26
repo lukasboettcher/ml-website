@@ -12,3 +12,18 @@
     <option value="file">Bild Hochladen</option>
     <option *ngFor="let x of listOfImages" [value]="x.path">{{x.name}}</option>
 </select>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Kamera</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <app-gan-transfer-webcam (newImage)="onNewImage($event)"></app-gan-transfer-webcam>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close()">Ok</button>
+    </div>
+</ng-template>
