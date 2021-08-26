@@ -1,6 +1,6 @@
 <app-create-model (modelDelete)="onModelDelete()" (modelSubmitted)="onModelSubmitted($event)"
     (modelSave)="onModelSave()" (modelLoad)="onModelLoad($event)"></app-create-model>
-<app-configuration [modelCreatedStatus]="modelCreated" [isTraining]="isTraining" [isTesting]="isTesting" (configSubmitted)="onTrain($event)"
+<app-configuration [modelCreated]="modelCreated" [isTraining]="isTraining" [isTesting]="isTesting" (configSubmitted)="onTrain($event)"
     (stopTrain)="onStopTrain()" (test)="onTest()" (stopTest)="onStopTest()"></app-configuration>
 <div class="container mt-3">
     <div class="row">

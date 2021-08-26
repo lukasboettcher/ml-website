@@ -1,9 +1,9 @@
 /**
  * Adaptation of the CartPole Example
  * https://github.com/tensorflow/tfjs-examples/tree/master/cart-pole
- * 
+ *
  * Rewritten in TypeScript and integrated into the Angular Framework
- * 
+ *
  */
 
 import * as tf from '@tensorflow/tfjs';
@@ -14,7 +14,7 @@ import { RlEnvironment } from './rl-environment';
 export class NeuralNetwork {
 
     private network: tf.LayersModel;
-    private currentActions_: any;
+    private currentActionsVar: any;
 
     // accept a model and a renderer as input
     constructor(
@@ -31,7 +31,7 @@ export class NeuralNetwork {
     createNewModel(inputModel: number | number[]): tf.LayersModel {
         let modelSizes: number[];
         modelSizes = Array.isArray(inputModel) ? inputModel : [inputModel];
-        let model = tf.sequential();
+        const model = tf.sequential();
         modelSizes.forEach((size, index) => {
             // use the list of nums as dimensions for each layer, except the first,
             // which is fixed to the state dimension of the environment
@@ -45,28 +45,31 @@ export class NeuralNetwork {
         return model;
     }
 
-    async downloadModel() {
-        let today = new Date();
-        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-        let time = today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
+    async downloadModel(): Promise<void> {
+        const today = new Date();
+        const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        const time = today.getHours() + '-' + today.getMinutes() + '-' + today.getSeconds();
         await this.network.save('downloads://cart-pole-network-' + date + time);
     }
 
-    computeGrad(inputTensor) {
+    computeGrad(inputTensor): {
+        value: tf.Scalar;
+        grads: tf.NamedTensorMap;
+    } {
         const f = () => tf.tidy(() => {
             const [logits, actions] = tf.tidy(() => {
                 // get model output for the input
-                const logits = (this.network.predict(inputTensor) as tf.Tensor);
+                const logitsOut = (this.network.predict(inputTensor) as tf.Tensor);
                 // convert the logits of the model into probabilities
-                const leftProb = tf.sigmoid(logits);
+                const leftProb = tf.sigmoid(logitsOut);
                 // negative value represents -x direction, needs to be added as second probability
                 const leftRightProbs = (tf.concat([leftProb, tf.sub(1, leftProb)], 1) as tf.Tensor2D);
-                const actions = tf.multinomial(leftRightProbs, 1, null, true);
-                return [logits, actions];
-            })
-            // store the action to perform, according to the network in currentActions_
-            this.currentActions_ = actions.dataSync();
-            const labels = tf.sub(1, tf.tensor2d(this.currentActions_, (actions as tf.Tensor2D).shape));
+                const actionsOut = tf.multinomial(leftRightProbs, 1, null, true);
+                return [logitsOut, actionsOut];
+            });
+            // store the action to perform, according to the network in currentActionsVar
+            this.currentActionsVar = actions.dataSync();
+            const labels = tf.sub(1, tf.tensor2d(this.currentActionsVar, (actions as tf.Tensor2D).shape));
             return tf.losses.sigmoidCrossEntropy(labels, logits).asScalar();
         });
         return tf.variableGrads(f);
@@ -79,15 +82,18 @@ export class NeuralNetwork {
         nGames: number,
         nSteps: number
     ): Promise<number[]> {
-        const gradientList = [], rewardList = [], stepsList: number[] = [];
+        const gradientList = [];
+        const rewardList = [];
+        const stepsList: number[] = [];
         this.renderer.updateGameProgress(0, nGames);
 
-        // go through all games, 
+        // go through all games,
         // collect steps, rewards and gradients for each game
         for (let i = 0; i < nGames; ++i) {
             // randomize the environment before each game
             simulator.randomizeState();
-            const rewards = [], gradients = [];
+            const rewards = [];
+            const gradients = [];
             // in each step the gradient and its reward is saved
             for (let j = 0; j < nSteps; ++j) {
                 const currGradients = tf.tidy(() => {
@@ -98,7 +104,7 @@ export class NeuralNetwork {
                 // add gradients from this step to the gradient list for this game
                 this.concatGradientList(gradients, currGradients);
                 // update the environment
-                const action = this.currentActions_[0];
+                const action = this.currentActionsVar[0];
                 const done = simulator.update(action);
                 await this.renderer.renderSimulation(simulator);
                 // add reward for the chosen action if not ended
@@ -112,7 +118,7 @@ export class NeuralNetwork {
             // inform renderer about changes and save steps, gradients and rewards
             this.renderer.updateGameProgress(i + 1, nGames);
             stepsList.push(rewards.length);
-            // this saves the 
+            // this saves the
             this.concatGradientList(gradientList, gradients);
             rewardList.push(rewards);
             await tf.nextFrame();
@@ -121,7 +127,7 @@ export class NeuralNetwork {
         tf.tidy(() => {
             // discount the rewards
             const discounted = [];
-            for (let r of rewardList) {
+            for (const r of rewardList) {
                 const buffer = tf.buffer([r.length]);
                 let prev = 0;
                 for (let i = r.length - 1; i >= 0; --i) {
@@ -143,7 +149,7 @@ export class NeuralNetwork {
 
             // scale gradients
             const gradients = {};
-            for (let idx in gradientList) {
+            for (const idx of gradientList) {
                 gradients[idx] = tf.tidy(() => {
                     const stackedGrads = gradientList[idx].map(singleGrad => tf.stack(singleGrad));
                     // calculate dimensions that are generated after the stacking
@@ -168,7 +174,7 @@ export class NeuralNetwork {
         return stepsList;
     }
 
-    getActions(inputs) {
+    getActions(inputs): Uint8Array | Float32Array | Int32Array {
         // get the action to perform according to model
         // based on current state (inputs)
         const actions = tf.tidy(() => {
@@ -178,17 +184,17 @@ export class NeuralNetwork {
             // negative value represents -x direction, needs to be added as second probability
             const completeProb = (tf.concat([partProb, tf.sub(1, partProb)], 1) as tf.Tensor2D);
             return tf.multinomial(completeProb, 1, null, true);
-        })
+        });
         return actions.dataSync();
     }
 
-    concatGradientList(storage, new_gradients) {
+    concatGradientList(storage, newGradients): void {
         // basically just concat two dicts
-        for (const grad in new_gradients) {
+        for (const grad in newGradients) {
             if (grad in storage) {
-                storage[grad].push(new_gradients[grad]);
+                storage[grad].push(newGradients[grad]);
             } else {
-                storage[grad] = [new_gradients[grad]];
+                storage[grad] = [newGradients[grad]];
             }
         }
     }

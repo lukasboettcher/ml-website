@@ -9,9 +9,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class ConfigurationComponent implements OnInit {
 
   // in and outputs for this component
-  @Input('modelCreatedStatus') modelCreated = false;
-  @Input('isTraining') isTraining = false;
-  @Input('isTesting') isTesting = false;
+  @Input() modelCreated = false;
+  @Input() isTraining = false;
+  @Input() isTesting = false;
   @Output() configSubmitted = new EventEmitter<FormGroup>();
   @Output() stopTrain = new EventEmitter();
   @Output() test = new EventEmitter();

@@ -30,7 +30,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
 
   // status parameters
   modelCreated = false;
-  status: String = 'Warte auf Input...';
+  status = 'Warte auf Input...';
   isTraining: boolean;
   isTesting: boolean;
   private simInterrupt = false;
@@ -67,7 +67,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
   }
 
   // handle inputs from child components
-  onModelDelete() {
+  onModelDelete(): void {
     this.modelCreated = false;
     this.net = null;
     this.simInterrupt = true;
@@ -75,16 +75,16 @@ export class CartpoleComponent implements OnInit, RlComponent {
     this.lineChartLabels = [];
     console.log('model deleted');
   }
-  onModelSubmitted(layers: number[]) {
+  onModelSubmitted(layers: number[]): void {
     console.log(layers);
     this.modelCreated = true;
     // create new neuralnet from form input
     this.net = new NeuralNetwork(layers, this);
   }
-  onModelSave() {
+  onModelSave(): void {
     this.net.downloadModel();
   }
-  async onModelLoad(files: File[]) {
+  async onModelLoad(files: File[]): Promise<void> {
     // console.log(files[0]);
     // read model from file
     tf.loadLayersModel(
@@ -95,13 +95,13 @@ export class CartpoleComponent implements OnInit, RlComponent {
     }).catch((e) => console.log(e));
   }
   // display new point in graph for needed steps
-  showGraph(x: number, y: number) {
+  showGraph(x: number, y: number): void {
     this.lineChartData[0].data.push(y);
     this.lineChartLabels.push(x.toString());
   }
 
   // handle new training instruction
-  async onTrain(config: FormGroup) {
+  async onTrain(config: FormGroup): Promise<void> {
     this.simInterrupt = false;
     this.isTraining = true;
     // singleton instantiation
@@ -143,14 +143,14 @@ export class CartpoleComponent implements OnInit, RlComponent {
     this.updateInfo('Training beendet.');
     this.isTraining = false;
   }
-  onStopTrain() {
+  onStopTrain(): void {
     // interrupt training
     this.simInterrupt = true;
     this.isTraining = false;
   }
 
   // handle new testing instruction
-  async onTest() {
+  async onTest(): Promise<void> {
     this.simInterrupt = false;
     this.isTesting = true;
     this.updateInfo('Test gestartet.');
@@ -179,7 +179,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
     }
     this.isTesting = false;
   }
-  async onStopTest() {
+  async onStopTest(): Promise<void> {
     console.log('stopped train');
 
     this.isTesting = false;
@@ -189,7 +189,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
   // handle UI updates from subclasses
   updateGameProgress(current: number, total: number): void {
     this.progressGames = 100 * (current / total);
-    if (current == total) {
+    if (current === total) {
       this.updateInfo('Gewichte im neuronalen Netz werden angepasst.');
     }
   }
@@ -206,7 +206,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
     return true;
 
   }
-  updateInfo(message: String): void {
+  updateInfo(message: string): void {
     this.status = message;
   }
 }

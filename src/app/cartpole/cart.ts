@@ -1,8 +1,8 @@
 /**
  * Implementation based on: https://perma.cc/C9ZM-652R
- * 
+ *
  * Inpired by: https://github.com/openai/gym/blob/master/gym/envs/classic_control/cartpole.py
- * 
+ *
  */
 
 import * as tf from '@tensorflow/tfjs';
@@ -22,15 +22,15 @@ export class Cart implements RlEnvironment {
   private poleSpeedPotential;
 
   private forceMag;
-  private delta_t;
+  private deltaT;
 
-  private max_x;
-  private max_theta;
+  private maxX;
+  private maxTheta;
 
   private x;
-  private d_x;
+  private dX;
   private theta;
-  private d_theta;
+  private dTheta;
 
   constructor() {
     // Constants that characterize the system.
@@ -46,10 +46,10 @@ export class Cart implements RlEnvironment {
     this.poleLength = 0.5;
     this.poleSpeedPotential = this.massOfPole * this.poleLength;
     this.forceMag = 10.0;
-    this.delta_t = 0.02;
+    this.deltaT = 0.02;
 
-    this.max_x = 2.4;
-    this.max_theta = 12 / 360 * 2 * Math.PI;
+    this.maxX = 2.4;
+    this.maxTheta = 12 / 360 * 2 * Math.PI;
 
     this.randomizeState();
   }
@@ -61,8 +61,8 @@ export class Cart implements RlEnvironment {
     if (!canvas.style.display) {
       canvas.style.display = 'block';
     }
-    const X_MIN = -this.max_x;
-    const X_MAX = this.max_x;
+    const X_MIN = -this.maxX;
+    const X_MAX = this.maxX;
     const xRange = X_MAX - X_MIN;
     const scale = canvas.width / xRange;
 
@@ -133,15 +133,15 @@ export class Cart implements RlEnvironment {
   randomizeState(): void {
     // set random cart pos and speed
     this.x = Math.random() - 0.5;
-    this.d_x = (Math.random() - 0.5) * 1;
+    this.dX = (Math.random() - 0.5) * 1;
 
     // set random pole angle and speed
     this.theta = (Math.random() - 0.5) * 2 * (6 / 360 * 2 * Math.PI);
-    this.d_theta = (Math.random() - 0.5) * 0.5;
+    this.dTheta = (Math.random() - 0.5) * 0.5;
   }
 
   getStateTensor(): tf.Tensor {
-    return tf.tensor2d([[this.x, this.d_x, this.theta, this.d_theta]]);
+    return tf.tensor2d([[this.x, this.dX, this.theta, this.dTheta]]);
   }
 
   update(action): boolean {
@@ -151,23 +151,24 @@ export class Cart implements RlEnvironment {
     const sinTheta = Math.sin(this.theta);
 
     // physics equations for the cartpole simulation
-    const temp = (direction + this.poleSpeedPotential * this.d_theta * this.d_theta * sinTheta) / this.totalMass;
-    const pole_accel = (this.gravity * sinTheta - cosTheta * temp) / (this.poleLength * (4 / 3 - this.massOfPole * cosTheta * cosTheta / this.totalMass));
-    const cart_accel = temp - this.poleSpeedPotential * pole_accel * cosTheta / this.totalMass;
+    const temp = (direction + this.poleSpeedPotential * this.dTheta * this.dTheta * sinTheta) / this.totalMass;
+    const poleAccel = (this.gravity * sinTheta - cosTheta * temp) /
+                       (this.poleLength * (4 / 3 - this.massOfPole * cosTheta * cosTheta / this.totalMass));
+    const cartAccel = temp - this.poleSpeedPotential * poleAccel * cosTheta / this.totalMass;
 
     // update state by euler integration
-    this.x += this.delta_t * this.d_x;
-    this.d_x += this.delta_t * cart_accel;
-    this.theta += this.delta_t * this.d_theta;
-    this.d_theta += this.delta_t * pole_accel;
+    this.x += this.deltaT * this.dX;
+    this.dX += this.deltaT * cartAccel;
+    this.theta += this.deltaT * this.dTheta;
+    this.dTheta += this.deltaT * poleAccel;
 
     return this.isDone();
   }
 
   isDone(): boolean {
     // if values are over threshold, round is over
-    let cartOverBoundary = (this.x < -this.max_x || this.x > this.max_x);
-    let weightAngleOverThreshold = (this.theta < -this.max_theta || this.theta > this.max_theta);
+    const cartOverBoundary = (this.x < -this.maxX || this.x > this.maxX);
+    const weightAngleOverThreshold = (this.theta < -this.maxTheta || this.theta > this.maxTheta);
     return cartOverBoundary || weightAngleOverThreshold;
   }
 }
