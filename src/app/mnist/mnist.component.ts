@@ -9,7 +9,7 @@ import { Label } from 'ng2-charts';
   templateUrl: './mnist.component.html',
   styleUrls: ['./mnist.component.css']
 })
-export class MnistComponent implements OnInit {
+export class MnistComponent {
 
   // vars for state of component
   doTutorial: boolean = null;
@@ -45,8 +45,7 @@ export class MnistComponent implements OnInit {
     this.results = null;
   }
 
-  ngOnInit(): void {
-  }
+
 
   // handle model loading
   async loadPretrainedModel(): Promise<void> {

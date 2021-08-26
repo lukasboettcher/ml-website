@@ -6,12 +6,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './help-button.component.html',
   styleUrls: ['./help-button.component.css']
 })
-export class HelpButtonComponent implements OnInit {
+export class HelpButtonComponent {
 
   constructor(private modalService: NgbModal) { }
 
-  ngOnInit(): void {
-  }
+
 
   onHelpClick(content): void {
     const modalReference = this.modalService.open(content, {
