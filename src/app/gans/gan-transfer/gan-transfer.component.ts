@@ -35,6 +35,16 @@ export class GanTransferComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // initially load the stlye and transfer models
+    Promise.all([
+      this.loadMobileNetStyleModel(),
+      this.loadSeparableTransformerModel(),
+    ]).then(([styleModel, transformModel]) => {
+      this.styleNet = styleModel;
+      this.transformNet = transformModel;
+    }).finally(() => {
+      this.onDoneWithModels();
+    });
 
   /*
    * methods for loading each model individually
