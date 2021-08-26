@@ -9,6 +9,10 @@ import links from '../image-links';
 })
 export class GanTransferInputComponent implements OnInit {
 
+  @Input() imgSrc = '';
+  @Input() inputDisabled = true;
+  @Input() listOfImages = [];
+  @Input() description = '';
 
   constructor(private modalService: NgbModal) {
   }
