@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import * as tf from '@tensorflow/tfjs';
+// import { ACGAN } from "./acgan";
+import { loadMnistData, sampleFromMnistData } from '../../mnist/tutorial/data';
 
 @Component({
   selector: 'app-gan-training',
