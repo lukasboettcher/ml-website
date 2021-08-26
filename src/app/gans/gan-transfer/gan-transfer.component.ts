@@ -10,6 +10,13 @@ import { GanTransferInputComponent } from './gan-transfer-input/gan-transfer-inp
 })
 export class GanTransferComponent implements OnInit {
 
+
+  styleNet: tf.GraphModel;
+  transformNet: tf.GraphModel;
+  mobileStyleNet: tf.GraphModel;
+  inceptionStyleNet: tf.GraphModel;
+  originalTransformNet: tf.GraphModel;
+  separableTransformNet: tf.GraphModel;
   constructor() { }
 
   ngOnInit(): void {
