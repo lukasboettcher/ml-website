@@ -29,6 +29,8 @@ import { LandscapeComponent } from './gans/landscape/landscape.component';
 import { LandscapeCanvasComponent } from './gans/landscape/landscape-canvas/landscape-canvas.component';
 import { GanTrainingComponent } from './gans/gan-training/gan-training.component';
 import { GanTransferComponent } from './gans/gan-transfer/gan-transfer.component';
+import { GanTransferInputComponent } from './gans/gan-transfer/gan-transfer-input/gan-transfer-input.component';
+import { GanTransferWebcamComponent } from './gans/gan-transfer/gan-transfer-webcam/gan-transfer-webcam.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { GanTransferComponent } from './gans/gan-transfer/gan-transfer.component
     LandscapeComponent,
     LandscapeCanvasComponent,
     GanTrainingComponent,
-    GanTransferComponent
+    GanTransferComponent,
+    GanTransferInputComponent,
+    GanTransferWebcamComponent
   ],
   imports: [
     BrowserModule,
