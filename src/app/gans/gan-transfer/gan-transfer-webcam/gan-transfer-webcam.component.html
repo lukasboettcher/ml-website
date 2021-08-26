@@ -1,2 +1,9 @@
 <div class="d-flex flex-column align-items-center">
+    <div *ngIf="noWebcam"><h2>Keine Webcam</h2></div>
+    <div><video #video [ngClass]="{'d-none': captureTaken || noWebcam}" id="video" width="500" height="375" autoplay></video></div>
+    <div><canvas #canvas [ngClass]="{'d-none': !captureTaken}"></canvas></div>
+    <div><button class="btn btn-primary" [disabled]="captureTaken || noWebcam" (click)="onTakePicture(video, canvas)">Take
+            picture</button>
+        <button class="btn btn-primary" [disabled]="!captureTaken" (click)="captureTaken = false">Take another</button>
+    </div>
 </div>
