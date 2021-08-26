@@ -20,6 +20,13 @@ export class GanTrainingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    Promise.all([this.loadPretrained(), loadMnistData()]).then(() => {
+      this.modelsLoaded = true;
+    });
+  async loadPretrained(): Promise<void> {
+    this.pretrainedModel = await tf.loadLayersModel(this.MODEL_PATH);
+  }
+
   }
 
 }
