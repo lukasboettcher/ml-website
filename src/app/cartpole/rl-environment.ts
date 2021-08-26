@@ -4,5 +4,5 @@ export interface RlEnvironment {
     randomizeState(): void;
     getStateTensor(): tf.Tensor;
     update(action): boolean;
-    draw(canvas: HTMLCanvasElement);
+    draw(canvas: HTMLCanvasElement): void;
 }

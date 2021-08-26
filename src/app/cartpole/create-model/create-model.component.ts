@@ -14,7 +14,7 @@ export class CreateModelComponent implements OnInit {
   @Output() modelSave = new EventEmitter();
   @Output() modelLoad = new EventEmitter<File[]>();
   modelForm: FormGroup;
-  modelCreated: boolean = false;
+  modelCreated = false;
   currentLayout: number[];
 
   // variable for the uploaded files
@@ -25,40 +25,40 @@ export class CreateModelComponent implements OnInit {
 
   ngOnInit(): void {
     this.modelForm = new FormGroup({
-      'layout': new FormControl("4", [Validators.required, this.isArrayForm.bind(this)])
+      layout: new FormControl('4', [Validators.required, this.isArrayForm.bind(this)])
     });
     this.modelForm.statusChanges.subscribe(
       (status) => {
         // // logging for debugging
-        //console.log(status)
+        // console.log(status)
       }
     );
   }
 
   // these functions handle the button events
-  onSubmit() {
+  onSubmit(): void {
     this.modelCreated = true;
-    //this.modelForm.get('layout').disable();
+    // this.modelForm.get('layout').disable();
     this.modelSubmitted.emit(this.currentLayout);
-    //console.log(this.modelForm);
+    // console.log(this.modelForm);
   }
-  onDelete() {
+  onDelete(): void {
     this.modelCreated = false;
     this.modelDelete.emit();
   }
-  onSave() {
+  onSave(): void {
     this.modelSave.emit();
   }
-  onUpload() {
+  onUpload(): void {
     this.modelLoad.emit([this.modelLoaded[0], this.weightsLoaded[0]]);
     this.modelLoaded = null;
     this.weightsLoaded = null;
     this.modelCreated = true;
   }
-  handleModelUpload(model: File) {
+  handleModelUpload(model: File): void {
     this.modelLoaded = model;
   }
-  handleWeightsUpload(weights: File) {
+  handleWeightsUpload(weights: File): void {
     this.weightsLoaded = weights;
   }
 
@@ -69,16 +69,16 @@ export class CreateModelComponent implements OnInit {
       this.currentLayout = this.parseArray(control.value);
     } catch (error) {
       // return error if pasing failed
-      return { 'modelStringInvalid': true };
+      return { modelStringInvalid: true };
     }
     return null;
   }
   parseArray(s: string): number[] {
-    // try to interpret the string as numbers list, 
+    // try to interpret the string as numbers list,
     // when split at commas
     return s.trim().split(',').map(
       lsize => {
-        let int = Number.parseInt(lsize.trim())
+        const int = Number.parseInt(lsize.trim(), 10);
         if (int < 1) {
           throw new Error('invalid layer input');
         } else if (isNaN(int)) {

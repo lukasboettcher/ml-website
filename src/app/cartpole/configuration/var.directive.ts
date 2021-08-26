@@ -20,5 +20,4 @@ export class VarDirective {
   }
 
   constructor(private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<any>) { }
-
 }
