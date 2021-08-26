@@ -10,6 +10,10 @@ export class GanTransferWebcamComponent implements OnInit, AfterViewInit {
   public video: ElementRef<HTMLVideoElement>;
 
   @Output() newImage = new EventEmitter<string>();
+
+  captureTaken = false;
+  noWebcam = false;
+
   constructor() { }
 
   ngOnInit(): void {
