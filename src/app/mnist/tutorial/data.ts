@@ -29,10 +29,16 @@ const NUM_DATASET_ELEMENTS = 65000;
 const NUM_TRAIN_ELEMENTS = 55000;
 const NUM_TEST_ELEMENTS = NUM_DATASET_ELEMENTS - NUM_TRAIN_ELEMENTS;
 
+/*
 const MNIST_IMAGES_SPRITE_PATH =
     'https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png';
 const MNIST_LABELS_PATH =
     'https://storage.googleapis.com/learnjs-data/model-builder/mnist_labels_uint8';
+*/
+const MNIST_IMAGES_SPRITE_PATH =
+    'assets/mnist-dataset/mnist_images.png';
+const MNIST_LABELS_PATH =
+    'assets/mnist-dataset/mnist_labels_uint8';
 
 /**
  * A class that fetches the sprited MNIST dataset and provide data as
@@ -147,4 +153,64 @@ export class Data {
         }
         return { xs, labels };
     }
+}
+
+let mnistImages;
+let mnistLabels;
+let mnistNumExamples;
+let mnistIndices;
+
+/** Load MNIST data. */
+export async function loadMnistData() {
+    const mnistData = new Data();
+    await mnistData.load();
+    const mnistSamples = mnistData.getTrainData();
+    mnistImages = mnistSamples.xs;
+    mnistLabels = await mnistSamples.labels.argMax(-1).data();
+
+    mnistNumExamples = mnistLabels.length;
+    mnistIndices = [];
+    for (let i = 0; i < mnistNumExamples; ++i) {
+        mnistIndices.push(i);
+    }
+}
+
+export function sampleFromMnistData(numExamplesPerClass: number): tf.Tensor2D {
+    tf.util.assert(
+        numExamplesPerClass <= mnistNumExamples / 10, () => 'requested too many samples'
+    );
+
+    tf.util.shuffle(mnistIndices);
+    const indicesByClass = [];
+    for (let i = 0; i < NUM_CLASSES; ++i) {
+        indicesByClass.push([]);
+    }
+
+    for (let i = 0; i < mnistIndices.length; ++i) {
+        if (indicesByClass[mnistLabels[mnistIndices[i]]].length >=
+            numExamplesPerClass) {
+            continue;
+        }
+        indicesByClass[mnistLabels[mnistIndices[i]]].push(mnistIndices[i]);
+
+        let minLength = Infinity;
+        indicesByClass.forEach(indicesArray => {
+            if (indicesArray.length < minLength) {
+                minLength = indicesArray.length;
+            }
+        });
+        if (minLength >= numExamplesPerClass) {
+            break;
+        }
+    }
+
+    return tf.tidy(() => {
+        const rowsToCombine = [];
+        indicesByClass.forEach(classIndices => {
+            const classImages = tf.gather(mnistImages, classIndices);
+            const rowOfExamples = tf.concat(classImages.unstack(), 0);
+            rowsToCombine.push(rowOfExamples);
+        });
+        return tf.concat(rowsToCombine, 1);
+    });
 }
