@@ -22,5 +22,8 @@ export class GanTransferInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onNewImage(imageData: string): void {
+    this.image.nativeElement.src = imageData;
+  }
 
 }
