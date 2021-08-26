@@ -47,6 +47,15 @@ export class GanTransferInputComponent implements OnInit {
     // reset the select at the end
     select.value = '';
   }
+
+  openCameraModal(select: HTMLSelectElement, template): void {
+    select.value = '';
+    this.modalService.open(template, {
+      size: 'lg',
+      scrollable: true
+    });
+  }
+
   onNewImage(imageData: string): void {
     this.image.nativeElement.src = imageData;
   }
