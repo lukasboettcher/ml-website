@@ -10,6 +10,13 @@ import { loadMnistData, sampleFromMnistData } from '../../mnist/tutorial/data';
 })
 export class GanTrainingComponent implements OnInit {
 
+  MODEL_PATH = 'assets/gan-models/mnist-acgan/model.json';
+  LATENT_DIM = 100;
+
+  pretrainedModel: tf.LayersModel;
+  modelsLoaded = false;
+  loopId;
+
   constructor() { }
 
   ngOnInit(): void {
