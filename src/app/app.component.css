@@ -1,5 +1,5 @@
 .main-footer {
-    height: 7vh;
+    height: 5vh;
     padding: 1rem 0;
     color: #999;
     text-align: center;
@@ -7,5 +7,5 @@
     border-top: .05rem solid #e5e5e5;
 }
 .main-body {
-    min-height: 93vh;
+    min-height: 95vh;
 }
