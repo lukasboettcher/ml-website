@@ -1,7 +1,7 @@
 /**
  * This Class is provided from Google to download the MNIST Dataset
  * from their servers.
- * 
+ *
  * @license
  * Copyright 2018 Google LLC. All Rights Reserved.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -55,7 +55,7 @@ export class Data {
 
     constructor() { }
 
-    async load() {
+    async load(): Promise<void> {
         // Make a request for the MNIST sprited image.
         const img = new Image();
         const canvas = document.createElement('canvas');
@@ -120,7 +120,7 @@ export class Data {
      *   labels: The one-hot encoded labels tensor, of shape
      *     `[numTrainExamples, 10]`.
      */
-    getTrainData() {
+    getTrainData(): { xs: tf.Tensor4D, labels: tf.Tensor2D } {
         const xs = tf.tensor4d(
             this.trainImages,
             [this.trainImages.length / IMAGE_SIZE, IMAGE_H, IMAGE_W, 1]);
@@ -132,7 +132,7 @@ export class Data {
     /**
      * Get all test data as a data tensor a a labels tensor.
      *
-     * @param {number} numExamples Optional number of examples to get. If not
+     * @param numExamples Optional number of examples to get. If not
      *     provided,
      *   all test examples will be returned.
      * @returns
@@ -140,7 +140,7 @@ export class Data {
      *   labels: The one-hot encoded labels tensor, of shape
      *     `[numTestExamples, 10]`.
      */
-    getTestData(numExamples?) {
+    getTestData(numExamples?: number): { xs: tf.Tensor4D, labels: tf.Tensor2D } {
         let xs = tf.tensor4d(
             this.testImages,
             [this.testImages.length / IMAGE_SIZE, IMAGE_H, IMAGE_W, 1]);
@@ -161,7 +161,7 @@ let mnistNumExamples;
 let mnistIndices;
 
 /** Load MNIST data. */
-export async function loadMnistData() {
+export async function loadMnistData(): Promise<void> {
     const mnistData = new Data();
     await mnistData.load();
     const mnistSamples = mnistData.getTrainData();
@@ -186,12 +186,12 @@ export function sampleFromMnistData(numExamplesPerClass: number): tf.Tensor2D {
         indicesByClass.push([]);
     }
 
-    for (let i = 0; i < mnistIndices.length; ++i) {
-        if (indicesByClass[mnistLabels[mnistIndices[i]]].length >=
+    for (const idx of mnistIndices) {
+        if (indicesByClass[mnistLabels[idx]].length >=
             numExamplesPerClass) {
             continue;
         }
-        indicesByClass[mnistLabels[mnistIndices[i]]].push(mnistIndices[i]);
+        indicesByClass[mnistLabels[idx]].push(idx);
 
         let minLength = Infinity;
         indicesByClass.forEach(indicesArray => {
