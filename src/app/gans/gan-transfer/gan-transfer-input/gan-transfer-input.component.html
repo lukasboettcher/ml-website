@@ -1,3 +1,5 @@
+<input #uploader type="file" style="display: none" accept="image/x-png,image/gif,image/jpeg"
+    [disabled]="inputDisabled" />
 <figure class="figure">
     <figcaption class="figure-caption">{{description}}</figcaption>
     <img #image class="" [src]="imgSrc" height="256" crossorigin='anonymous' />
