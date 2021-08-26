@@ -35,6 +35,49 @@ export class GanTransferComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+  /*
+   * methods for loading each model individually
+   * these are then cached as instance variables to improve loading times
+  */
+
+  async loadMobileNetStyleModel(): Promise<tf.GraphModel> {
+    if (!this.mobileStyleNet) {
+      this.mobileStyleNet = await tf.loadGraphModel(
+        'assets/gan-models/saved_model_style_js/model.json');
+    }
+
+    return this.mobileStyleNet;
+  }
+
+  async loadInceptionStyleModel(): Promise<tf.GraphModel> {
+    if (!this.inceptionStyleNet) {
+      this.inceptionStyleNet = await tf.loadGraphModel(
+        'assets/gan-models/saved_model_style_inception_js/model.json');
+    }
+
+    return this.inceptionStyleNet;
+  }
+
+  async loadOriginalTransformerModel(): Promise<tf.GraphModel> {
+    if (!this.originalTransformNet) {
+      this.originalTransformNet = await tf.loadGraphModel(
+        'assets/gan-models/saved_model_transformer_js/model.json'
+      );
+    }
+
+    return this.originalTransformNet;
+  }
+
+  async loadSeparableTransformerModel(): Promise<tf.GraphModel> {
+    if (!this.separableTransformNet) {
+      this.separableTransformNet = await tf.loadGraphModel(
+        'assets/gan-models/saved_model_transformer_separable_js/model.json'
+      );
+    }
+
+    return this.separableTransformNet;
+  }
   }
 
 }
