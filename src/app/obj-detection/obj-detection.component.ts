@@ -14,19 +14,19 @@ export class ObjDetectionComponent implements OnInit {
   @ViewChild('canvas', { static: true }) canvasPred: ElementRef;
 
   // vars for state and video settings
-  webcamStarted: boolean = false;
+  webcamStarted = false;
   startedLoading = false;
-  modelLoaded: boolean = false;
+  modelLoaded = false;
   videoWidth = 0;
   videoHeight = 0;
   constraints = {
     video: {
-      facingMode: "environment",
+      facingMode: 'environment',
       width: { ideal: 300 },
       height: { ideal: 300 }
     }
   };
-  detectionInterrupted: boolean = false;
+  detectionInterrupted = false;
 
   // the model used for detection
   model: cocoSSD.ObjectDetection;
@@ -36,11 +36,11 @@ export class ObjDetectionComponent implements OnInit {
     // this.loadModel();
   }
 
-  async loadModel() {
+  async loadModel(): Promise<void> {
     this.startedLoading = true;
     console.log('loading model..');
     this.model = await cocoSSD.load();
-    console.log("model loaded");
+    console.log('model loaded');
     this.modelLoaded = true;
   }
 
@@ -48,7 +48,7 @@ export class ObjDetectionComponent implements OnInit {
   }
 
   // handle camera start
-  startCamera() {
+  startCamera(): void {
     // proceed only if camera is available
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia(this.constraints)
@@ -65,7 +65,7 @@ export class ObjDetectionComponent implements OnInit {
         .catch((e) => {
           console.log(e);
           // error in promise
-          alert("Fehler beim Laden des Videos!");
+          alert('Fehler beim Laden des Videos!');
         });
     } else {
       // no camera on device
@@ -74,7 +74,7 @@ export class ObjDetectionComponent implements OnInit {
   }
 
   // switch prediction on or off
-  changePredictionState() {
+  changePredictionState(): void {
     if (this.detectionInterrupted) {
       // this restarts the prediction
       this.detectionInterrupted = !this.detectionInterrupted;
@@ -85,19 +85,19 @@ export class ObjDetectionComponent implements OnInit {
   }
 
   // wait for video element to be ready before showing feed
-  onLoadedData() {
-    console.log("data loaded");
+  onLoadedData(): void {
+    console.log('data loaded');
     this.predictWithCocoModel();
   }
 
   // this just starts detection
-  async predictWithCocoModel() {
+  async predictWithCocoModel(): Promise<void> {
     this.detectFromVideo(this.videoElement.nativeElement, this.model);
     console.log('detection running');
   }
 
   // this predicts and draws results while uninterupted
-  detectFromVideo(video, model) {
+  detectFromVideo(video, model): void {
     if (!this.detectionInterrupted) {
       model.detect(video).then(predictions => {
         this.drawPredictions(predictions);
@@ -109,9 +109,9 @@ export class ObjDetectionComponent implements OnInit {
   }
 
   // typical implementation for labeling according to cocossd documentation
-  drawPredictions(predictions) {
-    let canvas = this.canvasPred.nativeElement;
-    let ctx = canvas.getContext("2d");
+  drawPredictions(predictions): void {
+    const canvas = this.canvasPred.nativeElement;
+    const ctx = canvas.getContext('2d');
 
     canvas.width = this.videoWidth;
     canvas.height = this.videoHeight;
@@ -119,9 +119,9 @@ export class ObjDetectionComponent implements OnInit {
     // clear canvas before each drawing
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     // Font options.
-    let font = "16px sans-serif";
+    const font = '16px sans-serif';
     ctx.font = font;
-    ctx.textBaseline = "top";
+    ctx.textBaseline = 'top';
     ctx.drawImage(this.videoElement.nativeElement, 0, 0, canvas.width, canvas.height);
 
     // draw box around each predicted object
@@ -131,11 +131,11 @@ export class ObjDetectionComponent implements OnInit {
       const width = p.bbox[2];
       const height = p.bbox[3];
       // bounding box
-      ctx.strokeStyle = "#00FFFF";
+      ctx.strokeStyle = '#00FFFF';
       ctx.lineWidth = 2;
       ctx.strokeRect(x, y, width, height);
       // label background
-      ctx.fillStyle = "#00FFFF";
+      ctx.fillStyle = '#00FFFF';
       const textWidth = ctx.measureText(p.class).width;
       const textHeight = parseInt(font, 10);
       ctx.fillRect(x, y, textWidth + 4, textHeight + 4);
@@ -145,8 +145,8 @@ export class ObjDetectionComponent implements OnInit {
     predictions.forEach(p => {
       const x = p.bbox[0];
       const y = p.bbox[1];
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = '#000000';
       ctx.fillText(p.class, x, y);
     });
-  };
+  }
 }

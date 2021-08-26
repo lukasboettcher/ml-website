@@ -13,8 +13,8 @@ export class MnistComponent implements OnInit {
 
   // vars for state of component
   doTutorial: boolean = null;
-  modelLoaded: string = '';
-  gotCustomModel: boolean = false;
+  modelLoaded = '';
+  gotCustomModel = false;
 
   // vars for models and results
   private model: any;
@@ -49,35 +49,35 @@ export class MnistComponent implements OnInit {
   }
 
   // handle model loading
-  async loadPretrainedModel() {
-    console.log("loading pretrained model...");
-    let path: string = 'assets/tfjs-models/mnist-recognition/model.json'
+  async loadPretrainedModel(): Promise<void> {
+    console.log('loading pretrained model...');
+    const path = 'assets/tfjs-models/mnist-recognition/model.json';
 
     tf.loadLayersModel(path)
       .then(loadedModel => {
         this.model = loadedModel;
-        console.log("loaded pretrained model");
+        console.log('loaded pretrained model');
         this.modelLoaded = 'pre';
       })
-      .catch(e => console.log("failed to load model: " + e))
+      .catch(e => console.log('failed to load model: ' + e));
   }
-  async loadCustomModel() {
-    console.log("loading custom model...");
+  async loadCustomModel(): Promise<void> {
+    console.log('loading custom model...');
     this.model = this.customModel;
     this.modelLoaded = 'custom';
-    console.log("loaded custom model...");
+    console.log('loaded custom model...');
   }
   importCustomModel(model: any): void {
     this.customModel = model;
     // if custom model was previously loaded and new model is submitted,
     // load new model automatically
-    if (this.modelLoaded == 'custom') {
+    if (this.modelLoaded === 'custom') {
       this.loadCustomModel();
     }
     this.gotCustomModel = true;
   }
 
-  chooseTutorial(b: boolean) {
+  chooseTutorial(b: boolean): void {
     this.doTutorial = b;
   }
 
@@ -87,7 +87,7 @@ export class MnistComponent implements OnInit {
     // console.log(i);
     this.convertCanvasTensor(i).then(
       t => {
-        let prediction = this.model.predict(t);
+        const prediction = this.model.predict(t);
         this.results = Array.from(prediction.dataSync());
         this.barChartData[0].data = this.results;
         this.prediction = this.labelData(this.results);
@@ -97,7 +97,7 @@ export class MnistComponent implements OnInit {
 
   // convert image data into a canvas that can be interpreted by tensorflow
   async convertCanvasTensor(i: ImageData): Promise<Tensor> {
-    let unit = tf.browser.fromPixels(i)
+    const unit = tf.browser.fromPixels(i)
       // convert 3d tensor to 2d tensor
       .resizeNearestNeighbor([28, 28])
       // normalize data
@@ -115,7 +115,7 @@ export class MnistComponent implements OnInit {
     let prob = d[0];
     let label = 0;
 
-    for (var i = 1; i < d.length; i++) {
+    for (let i = 1; i < d.length; i++) {
       if (d[i] > prob) {
         label = i;
         prob = d[i];

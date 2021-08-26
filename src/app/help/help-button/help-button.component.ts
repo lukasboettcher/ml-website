@@ -14,7 +14,7 @@ export class HelpButtonComponent implements OnInit {
   }
 
   onHelpClick(content): void {
-    const modalReference = this.modalService.open(content,{
+    const modalReference = this.modalService.open(content, {
       size: 'xl',
       scrollable: true
     }).result.then(

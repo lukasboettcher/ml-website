@@ -1,11 +1,11 @@
-import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-landscape-canvas',
   templateUrl: './landscape-canvas.component.html',
   styleUrls: ['./landscape-canvas.component.css']
 })
-export class LandscapeCanvasComponent implements OnInit {
+export class LandscapeCanvasComponent implements OnInit, AfterViewInit {
 
   constructor() { }
 
