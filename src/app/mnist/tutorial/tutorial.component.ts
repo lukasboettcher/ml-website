@@ -10,7 +10,7 @@ import { Label, Color } from 'ng2-charts';
   templateUrl: './tutorial.component.html',
   styleUrls: ['./tutorial.component.css']
 })
-export class TutorialComponent {
+export class TutorialComponent implements OnInit {
 
   constructor() { }
 
@@ -72,7 +72,8 @@ export class TutorialComponent {
   lineChartType = 'line';
   prog = document.getElementById('progress');
 
-
+  ngOnInit(): void {
+  }
 
   // use the Data class from google to get mnist database
   async loadData(): Promise<void> {

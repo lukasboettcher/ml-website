@@ -4,7 +4,7 @@ import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, Vie
   templateUrl: './gan-transfer-webcam.component.html',
   styleUrls: ['./gan-transfer-webcam.component.css']
 })
-export class GanTransferWebcamComponent implements AfterViewInit {
+export class GanTransferWebcamComponent implements OnInit, AfterViewInit {
 
   @ViewChild('video')
   public video: ElementRef<HTMLVideoElement>;
@@ -16,7 +16,8 @@ export class GanTransferWebcamComponent implements AfterViewInit {
 
   constructor() { }
 
-
+  ngOnInit(): void {
+  }
 
   public ngAfterViewInit(): void {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {

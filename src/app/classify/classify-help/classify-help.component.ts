@@ -5,12 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './classify-help.component.html',
   styleUrls: ['./classify-help.component.css']
 })
-export class ClassifyHelpComponent {
+export class ClassifyHelpComponent implements OnInit {
 
   public page = 1;
   basePath = 'assets/classify-images';
 
   constructor() { }
 
-
+  ngOnInit(): void {
+  }
 }

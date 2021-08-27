@@ -28,7 +28,7 @@
               "src/styles.css"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [
+            "allowedCommonJsDependencies":[
               "uuid",
               "@tensorflow-models/coco-ssd",
               "@tensorflow/tfjs-vis",
@@ -102,11 +102,15 @@
           }
         },
         "lint": {
-          "builder": "@angular-eslint/builder:lint",
+          "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "lintFilePatterns": [
-              "src/**/*.ts",
-              "src/**/*.html"
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
             ]
           }
         },
@@ -125,8 +129,5 @@
       }
     }
   },
-  "defaultProject": "ml-website",
-  "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
-  }
+  "defaultProject": "ml-website"
 }

@@ -5,12 +5,13 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './cartpole-help.component.html',
   styleUrls: ['./cartpole-help.component.css']
 })
-export class CartpoleHelpComponent {
+export class CartpoleHelpComponent implements OnInit {
 
   public page = 1;
   basePath = 'assets/cartpole-images';
 
   constructor() { }
 
-
+  ngOnInit(): void {
+  }
 }
