@@ -5,11 +5,12 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home-help.component.html',
   styleUrls: ['./home-help.component.css']
 })
-export class HomeHelpComponent {
+export class HomeHelpComponent implements OnInit {
 
   public page = 1;
   constructor() { }
 
-
+  ngOnInit(): void {
+  }
 
 }

@@ -7,7 +7,7 @@ import * as tf from '@tensorflow/tfjs';
   templateUrl: './obj-detection.component.html',
   styleUrls: ['./obj-detection.component.css']
 })
-export class ObjDetectionComponent {
+export class ObjDetectionComponent implements OnInit {
 
   // vars for canvas elements
   @ViewChild('video', { static: true }) videoElement: ElementRef;
@@ -44,7 +44,8 @@ export class ObjDetectionComponent {
     this.modelLoaded = true;
   }
 
-
+  ngOnInit(): void {
+  }
 
   // handle camera start
   startCamera(): void {
