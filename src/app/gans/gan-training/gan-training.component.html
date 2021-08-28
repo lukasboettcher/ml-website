@@ -1,10 +1,17 @@
-<p>gan-training works!</p>
-<div>
-  <canvas #fake width="280" height="28"></canvas>
-</div>
-<div>
-  <canvas #real width="280" height="280"></canvas>
-</div>
+<section>
+  <h1>mnist training</h1>
+  <div>
+    <canvas #fake width="280" height="28"></canvas>
+  </div>
+  <div>
+    <canvas #real width="280" height="280"></canvas>
+  </div>
 
-<button [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample pretrained</button>
-<button [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'cancel loop':'sample loop'}}</button>
+  <button [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample pretrained</button>
+  <button [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'cancel loop':'sample loop'}}</button>
+</section>
+<section>
+  <h1>face generation</h1>
+
+
+</section>
