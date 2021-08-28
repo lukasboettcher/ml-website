@@ -21,5 +21,13 @@
     <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
   </select>
 
+  <div>
+    <canvas #faceCanvas id="canvas" width="256" height="256">
+      Your browser does not support the canvas element.
+    </canvas>
+  </div>
+  <button [disabled]="stop || !faceModelReady" (click)="abort()">abort</button>
+  <button [disabled]="!faceModelReady" (click)="animate(faceCanvas)">animate</button>
+  <button [disabled]="!faceModelReady" (click)="generate(faceCanvas)">generate</button>
 
 </section>
