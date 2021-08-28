@@ -12,6 +12,10 @@
 </section>
 <section>
   <h1>face generation</h1>
+  <div>
+    <label for="range">latent slider: {{latentRange}} </label>
+    <input [disabled]="!faceModelReady" [(ngModel)]="latentRange" (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume" min="0" max="400" value="0">
+  </div>
   <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01" (change)="onFaceModelChange(faceCanvas)" [(ngModel)]="currFaceModelUrl">
     <option selected disabled value="">choose model</option>
     <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
