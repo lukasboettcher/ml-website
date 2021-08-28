@@ -25,7 +25,6 @@ export class GanTransferInputComponent implements OnInit {
   async onSelectChange(element: HTMLImageElement, select: HTMLSelectElement, uploadElem: HTMLInputElement): Promise<void> {
     const value = select.value;
     if (value === 'file') {
-      console.log('file selected');
       uploadElem.onchange = (evt) => {
         const f = (evt.target as HTMLInputElement).files[0];
         const fileReader = new FileReader();
