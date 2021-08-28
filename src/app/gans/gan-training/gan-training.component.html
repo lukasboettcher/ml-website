@@ -12,6 +12,10 @@
 </section>
 <section>
   <h1>face generation</h1>
+  <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01" (change)="onFaceModelChange(faceCanvas)" [(ngModel)]="currFaceModelUrl">
+    <option selected disabled value="">choose model</option>
+    <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
+  </select>
 
 
 </section>
