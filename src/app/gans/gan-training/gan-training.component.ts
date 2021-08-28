@@ -138,4 +138,15 @@ export class GanTrainingComponent implements OnInit {
 
     await tf.browser.toPixels(output, canvas);
   }
+
+  generate(canvas: HTMLCanvasElement): void {
+    const output = tf.tidy(() => {
+      const z = tf.randomNormal([1, 128]);
+      const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(0.5));
+      // return image_enlarge(y, 4);
+      return y as tf.Tensor2D;
+
+    });
+    tf.browser.toPixels(output, canvas);
+  }
 }
