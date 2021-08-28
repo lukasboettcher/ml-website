@@ -25,6 +25,22 @@ export class GanTrainingComponent implements OnInit {
 
   sliderParams: { shape: number[], shift: tf.Tensor, freq: tf.Tensor };
 
+  listFaceModels = [
+    {
+      path: 'https://storage.googleapis.com/store.alantian.net/tfjs_gan/chainer-dcgan-celebahq-64/tfjs_SmoothedGenerator_50000/model.json',
+      desc: 'dcgan'
+    },
+    {
+      path: 'https://storage.googleapis.com/store.alantian.net/tfjs_gan/chainer-resent128-celebahq-128/tfjs_SmoothedGenerator_20000/model.json',
+      desc: 'resent128'
+    },
+    {
+      path: 'https://storage.googleapis.com/store.alantian.net/tfjs_gan/chainer-resent256-celebahq-256/tfjs_SmoothedGenerator_40000/model.json',
+      desc: 'resent256'
+    }
+  ];
+
+
   constructor() { }
 
   ngOnInit(): void {
