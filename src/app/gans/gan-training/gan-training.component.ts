@@ -17,6 +17,14 @@ export class GanTrainingComponent implements OnInit {
   modelsLoaded = false;
   loopId;
 
+  latentRange = 0;
+  currFaceModel: tf.LayersModel;
+  currFaceModelUrl = '';
+  faceModelReady = false;
+  stop = true;
+
+  sliderParams: { shape: number[], shift: tf.Tensor, freq: tf.Tensor };
+
   constructor() { }
 
   ngOnInit(): void {
