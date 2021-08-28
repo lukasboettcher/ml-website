@@ -139,6 +139,10 @@ export class GanTrainingComponent implements OnInit {
     await tf.browser.toPixels(output, canvas);
   }
 
+  abort(): void {
+    this.stop = true;
+  }
+
   generate(canvas: HTMLCanvasElement): void {
     const output = tf.tidy(() => {
       const z = tf.randomNormal([1, 128]);
@@ -149,4 +153,28 @@ export class GanTrainingComponent implements OnInit {
     });
     tf.browser.toPixels(output, canvas);
   }
+
+  async animate(canvas: HTMLCanvasElement): Promise<void> {
+    this.stop = false;
+    const inputShape = this.currFaceModel.inputs[0].shape.slice(1);
+    const shift = tf.randomNormal(inputShape).expandDims(0);
+    const freq = tf.randomNormal(inputShape, 0, .1).expandDims(0);
+
+    let i = 0;
+    while (i < 400) {
+      if (this.stop) {
+        break;
+      }
+      i++;
+      const output = tf.tidy(() => {
+        const z = tf.sin(tf.scalar(i).mul(freq).add(shift));
+        const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(.5));
+        return y as tf.Tensor2D;
+      });
+
+      await tf.browser.toPixels(output, canvas);
+      await tf.nextFrame();
+    }
+  }
+
 }
