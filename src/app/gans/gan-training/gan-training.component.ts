@@ -98,4 +98,31 @@ export class GanTrainingComponent implements OnInit {
     tf.dispose(combinedReals);
   }
 
+  //////////////////////////////////////////////////////
+
+  async onFaceModelChange(canvas: HTMLCanvasElement): Promise<void> {
+    this.faceModelReady = false;
+    this.stop = true;
+
+    this.currFaceModel = await tf.loadLayersModel(this.currFaceModelUrl);
+
+    this.currFaceModel.summary();
+
+
+    const [shape, shift, freq] = tf.tidy(() => {
+      const inputShape = this.currFaceModel.inputs[0].shape.slice(1);
+      const input = tf.randomNormal(inputShape).expandDims(0);
+      const variance = tf.randomNormal(inputShape, 0, .1).expandDims(0);
+      this.currFaceModel.predict(input);
+      return [inputShape, input, variance];
+    });
+
+    this.sliderParams = {
+      shape,
+      shift,
+      freq
+    };
+
+    this.faceModelReady = true;
+  }
 }
