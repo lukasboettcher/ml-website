@@ -125,4 +125,17 @@ export class GanTrainingComponent implements OnInit {
 
     this.faceModelReady = true;
   }
+
+  async onFaceLatentChange(value: string, canvas: HTMLCanvasElement): Promise<void> {
+    console.log('cahnge');
+
+    const input = Number.parseInt(value, 10);
+    const output = tf.tidy(() => {
+      const z = tf.sin(tf.scalar(input).mul(this.sliderParams.freq).add(this.sliderParams.shift));
+      const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(.5));
+      return y as tf.Tensor2D;
+    });
+
+    await tf.browser.toPixels(output, canvas);
+  }
 }
