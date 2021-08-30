@@ -1,1 +1,5 @@
 <p>mnist gan training works!</p>
+<button (click)="start(canvas)">start, curr train: {{trainStep}}/1375</button>
+<button (click)="stopTraining = true">stop</button>
+<button (click)="sample(canvas)">sample</button>
+<canvas #canvas></canvas>
