@@ -1,5 +1,8 @@
 <p>mnist gan training works!</p>
-<button (click)="start(canvas)">start, curr train: {{trainStep}}/1375</button>
-<button (click)="stopTraining = true">stop</button>
-<button (click)="sample(canvas)">sample</button>
-<canvas #canvas></canvas>
+<button [disabled]="!mnistReady" (click)="start(canvas)">start, curr train: {{trainStep}}/{{trainTotal}} [{{trainStep / trainTotal | percent}}]</button>
+<button [disabled]="!mnistReady" (click)="stopTraining = true">stop</button>
+<button [disabled]="!mnistReady" (click)="sample(canvas)">sample</button>
+<!-- <button (click)="newsample(canvas)">sample</button> -->
+<div>
+    <canvas #canvas></canvas>
+</div>
