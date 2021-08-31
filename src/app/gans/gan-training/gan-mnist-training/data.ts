@@ -87,7 +87,7 @@ export class MnistData {
                         datasetBytesView[j] = imageData.data[j * 4] / 255;
                     }
 
-                    console.log('Processed chunk ' + i);
+                    // console.log('Processed chunk ' + i);
                 }
                 this.datasetImages = new Float32Array(datasetBytesBuffer);
 
