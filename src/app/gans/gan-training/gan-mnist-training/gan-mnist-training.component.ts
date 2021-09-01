@@ -28,6 +28,7 @@ export class GanMnistTrainingComponent implements OnInit {
   DIS_BIASES: tf.Variable[];
 
   mnistReady = false;
+  weightsReady = false;
   stopTraining = true;
 
   constructor() { }
@@ -65,6 +66,8 @@ export class GanMnistTrainingComponent implements OnInit {
       this.createTfVariable([90]),
       this.createTfVariable([1])
     ];
+    this.trainStep = 0;
+    this.weightsReady = true;
   }
 
   createTfVariable(shape, mean = 0, std = 0.1): tf.Variable<tf.Rank> {
