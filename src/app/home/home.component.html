@@ -24,7 +24,7 @@
 
             <p>Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in vier Lerneinheiten aufgeteilt, die
                 die Teilgebiete „Überwachtes Lernen“ und „Bestärkendes Lernen“ thematisieren.</p>
-            <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+            <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
                 <ngb-panel>
                     <ng-template ngbPanelTitle>
                         <span> <b>Überwachtes Lernen</b> </span>
@@ -41,8 +41,9 @@
                                 handgeschriebene Zahlen zu erkennen.
                             </li>
                             <li class="my-3">
-                                <h5><a routerLink="object">Objekterkennung</a> und <a routerLink="classify">Klassifizierung</a>
-                            </h5> 
+                                <h5><a routerLink="object">Objekterkennung</a> und <a
+                                        routerLink="classify">Klassifizierung</a>
+                                </h5>
                                 Diese beiden Komponenten demonstrieren, wie bereits trainierte Modelle für verschiedene
                                 Anwendungsfälle verwendet werden können. In der Komponente „Klassifizierung“ wird
                                 außerdem die Idee des Transfer-Lernens verwendet, um ein bestehendes Modell in seiner
@@ -67,6 +68,32 @@
                                 CartPole ist ein berühmtes Problem, bei dem ein beweglicher Wagen versucht, einen Stab
                                 so lange wie möglich zu balancieren. In dieser Komponente wird ein neuronales Netz
                                 trainiert, um dieses Spiel bestmöglich zu absolvieren.
+                            </li>
+                        </ul>
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span> <b>Unüberwachtes Lernen</b> </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Beim unüberwachten Lernen versucht die KI Gesetzmäßigkeiten und Muster zu finden, die vor dem
+                        Training noch nicht bekannt sind. Hier gibt es viele Anwendungsmöglichkeiten.
+                        Besonders interessant sind Algorithmen, die selbstständig z.B. Kunst erzeugen können.
+                        Folgende Lerneinheiten beschäftigen sich mit unüberwachtem Lernen:
+                        <ul>
+                            <li class="my-3">
+                                <h5><a routerLink="gan-training">GAN Training</a> </h5>
+                                Was sind GANs? Und wofür können diese verwendet werden?
+                            </li>
+                            <li class="my-3">
+                                <h5><a routerLink="gan-transfer">Style Transfer</a></h5>
+                                Verwende eine GAN basierte KI, um den Stil eines Bildes auf ein neues Bild zu
+                                übertragen.
+                            </li>
+                            <li class="my-3">
+                                <h5><a routerLink="gan-landscape">Landschaften erzeugen</a></h5>
+                                Male einen Sketch einer Landschaft und lass den Computer die Zeichnung interpretieren.
                             </li>
                         </ul>
                     </ng-template>
