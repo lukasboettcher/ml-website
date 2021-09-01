@@ -1,39 +1,110 @@
-<section>
-  <h1>mnist training</h1>
-  <div>
-    <canvas #fake width="280" height="28"></canvas>
-  </div>
-  <div>
-    <canvas #real width="280" height="280"></canvas>
+<div class="container">
+  <div class="row mb-3">
+    <div class="col-md-7">
+      <h3>MNIST GAN Training</h3>
+      <p>
+        was sind gans?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
+        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
+        inventore!
+      </p>
+      <p>
+        wie funktioniert es mit mnist?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
+        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
+        eveniet nesciunt.
+      </p>
+    </div>
+    <div class="col align-self-center">
+      <figure class="figure">
+        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
+        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
+      </figure>
+    </div>
   </div>
 
-  <button [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample pretrained</button>
-  <button [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'cancel loop':'sample loop'}}</button>
-</section>
-<section>
-  <h1>face generation</h1>
-  <div>
-    <label for="range">latent slider: {{latentRange}} </label>
-    <input [disabled]="!faceModelReady" [(ngModel)]="latentRange" (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume" min="0" max="400" value="0">
-  </div>
-  <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01" (change)="onFaceModelChange(faceCanvas)" [(ngModel)]="currFaceModelUrl">
-    <option selected disabled value="">choose model</option>
-    <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
-  </select>
+  <app-gan-mnist-training></app-gan-mnist-training>
 
-  <div>
-    <canvas class="face-canvas" #faceCanvas id="canvas" width="256" height="256">
-      Your browser does not support the canvas element.
-    </canvas>
-  </div>
-  <button [disabled]="stop || !faceModelReady" (click)="abort()">abort</button>
-  <button [disabled]="!faceModelReady" (click)="animate(faceCanvas)">animate</button>
-  <button [disabled]="!faceModelReady" (click)="generate(faceCanvas)">generate</button>
+  <hr>
 
-</section>
-
-<section>
-  <div class="border">
-    <app-gan-mnist-training></app-gan-mnist-training>
+  <div class="row my-3">
+    <div class="col-md-8">
+      <h3>vortrainiertes mnist gan modell</h3>
+      <p>
+        was sind gans?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
+        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
+        inventore!
+      </p>
+      <p>
+        wie funktioniert es mit mnist?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
+        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
+        eveniet nesciunt.
+      </p>
+    </div>
+    <div class="col text-center">
+      <!-- <figure class="figure">
+        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
+        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
+      </figure> -->
+      <button class="btn btn-primary" [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample
+        pretrained</button>
+      <button class="btn btn-primary" [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'cancel
+        loop':'sample
+        loop'}}</button>
+      <div>
+        <canvas #fake width="280" height="28"></canvas>
+      </div>
+      <div>
+        <canvas #real width="280" height="280"></canvas>
+      </div>
+    </div>
   </div>
-</section>
+
+  <div class="row mb-3">
+    <div class="col-md-8">
+      <h3>gesichter generieren</h3>
+      <p>
+        was sind gans?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
+        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
+        inventore!
+      </p>
+      <p>
+        wie funktioniert es mit mnist?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
+        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
+        eveniet nesciunt.
+      </p>
+    </div>
+    <div class="col text-center">
+      <!-- <figure class="figure">
+        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
+        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
+      </figure> -->
+      <div>
+        <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
+          (change)="onFaceModelChange(faceCanvas)" [(ngModel)]="currFaceModelUrl">
+          <option selected disabled value="">choose model</option>
+          <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
+        </select>
+        <div>
+          <label for="range">latent slider: {{latentRange}} </label>
+          <input [disabled]="!faceModelReady" [(ngModel)]="latentRange"
+            (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume" min="0"
+            max="400" value="0">
+        </div>
+        <div>
+          <button class="btn btn-primary" [disabled]="stop || !faceModelReady" (click)="abort()">abort</button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">animate</button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">generate</button>
+        </div>
+
+        <canvas class="face-canvas" #faceCanvas id="canvas" width="256" height="256">
+          Your browser does not support the canvas element.
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
