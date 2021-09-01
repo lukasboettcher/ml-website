@@ -85,9 +85,9 @@
       </figure> -->
       <div>
         <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
-          (change)="onFaceModelChange(faceCanvas)" [(ngModel)]="currFaceModelUrl">
+           [(ngModel)]="currFaceModelUrl">
           <option selected disabled value="">choose model</option>
-          <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}</option>
+          <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}</option>
         </select>
         <div>
           <label for="range">latent slider: {{latentRange}} </label>
