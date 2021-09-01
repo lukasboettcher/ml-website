@@ -104,13 +104,15 @@ export class GanTrainingComponent implements OnInit {
 
   //////////////////////////////////////////////////////
 
-  async onFaceModelChange(canvas: HTMLCanvasElement): Promise<void> {
+  async onFaceModelChange(factor: string): Promise<void> {
+    this.faceImageFactor = Number.parseInt(factor, 10);
+
     this.faceModelReady = false;
     this.stop = true;
 
     this.currFaceModel = await tf.loadLayersModel(this.currFaceModelUrl);
 
-    this.currFaceModel.summary();
+    // this.currFaceModel.summary();
 
 
     const [shape, shift, freq] = tf.tidy(() => {
@@ -137,7 +139,7 @@ export class GanTrainingComponent implements OnInit {
     const output = tf.tidy(() => {
       const z = tf.sin(tf.scalar(input).mul(this.sliderParams.freq).add(this.sliderParams.shift));
       const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(.5));
-      return y as tf.Tensor2D;
+      return this.imageResize(y as tf.Tensor2D, this.faceImageFactor);
     });
 
     await tf.browser.toPixels(output, canvas);
@@ -152,7 +154,7 @@ export class GanTrainingComponent implements OnInit {
       const z = tf.randomNormal([1, 128]);
       const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(0.5));
       // return image_enlarge(y, 4);
-      return y as tf.Tensor2D;
+      return this.imageResize(y as tf.Tensor2D, this.faceImageFactor);
 
     });
     tf.browser.toPixels(output, canvas);
@@ -173,7 +175,7 @@ export class GanTrainingComponent implements OnInit {
       const output = tf.tidy(() => {
         const z = tf.sin(tf.scalar(i).mul(freq).add(shift));
         const y = (this.currFaceModel.predict(z) as tf.Tensor2D).squeeze().transpose([1, 2, 0]).div(tf.scalar(2)).add(tf.scalar(.5));
-        return y as tf.Tensor2D;
+        return this.imageResize(y as tf.Tensor2D, this.faceImageFactor);
       });
 
       await tf.browser.toPixels(output, canvas);
