@@ -1,8 +1,95 @@
-<p>mnist gan training works!</p>
-<button [disabled]="!mnistReady" (click)="start(canvas)">start, curr train: {{trainStep}}/{{trainTotal}} [{{trainStep / trainTotal | percent}}]</button>
-<button [disabled]="!mnistReady" (click)="stopTraining = true">stop</button>
-<button [disabled]="!mnistReady" (click)="sample(canvas)">sample</button>
-<!-- <button (click)="newsample(canvas)">sample</button> -->
-<div class="border">
-    <canvas #canvas></canvas>
+<div class="row my-3 align-items-center">
+
+    <div class="col-md-8">
+        <h1>mnist gan training</h1>
+        <h4>Schritt 1: Datenbank laden</h4>
+        <p>
+            Zunächst muss die Datenbank mit den Bildern geladen werden.
+            Glücklicherweise ist diese frei zugänglich und kann in Form einer großen Datei geladen werden.
+            Die Datei ist eine sogenannte <a
+                href="https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png">Sprite-Datei</a>,
+            das heißt sie ist ein großes Bild, worin die eigentlichen
+            kleinen Bilder der Zahlen in einem Raster gespeichert sind.
+            Erstellt wurde die Datenbank von der amerikanischen Behörde NIST,
+            kurz für National Institute of Standards and Technology.
+        </p>
+    </div>
+    <div class="col-md-4 text-center">
+        <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success': mnistReady}"
+            (click)="loadMnist()">MNIST
+            Datenbank Laden</button>
+    </div>
+</div>
+
+<div class="row my-3 align-items-center" *ngIf="mnistReady">
+    <div class="col-md-8">
+        <h4>Schritt 2: Neuronales Netz erstellen</h4>
+        <p>
+            Nun kommt der wichtigste Teil. Es muss über die Struktur des Netzes entschieden werden. Ein neuronales
+            Netz besteht aus so genannten künstlichen Neuronen, die das Verhalten menschlicher Gehirnzellen
+            nachbilden sollen. Die Neuronen sind in Schichten strukturiert. Bei der Bilderkennung erhalten die
+            Neuronen Daten aus der vorherigen Schicht und berechnen daraus neue Daten, die sie an die nächste
+            Schicht weiterreichen.
+        </p>
+        <p>
+            In diesem Beispiel können zwei verschiedene Modelle für ein neuronales Netz verwendet werden: Ein
+            <b>konvolutionales</b> Modell oder ein <b>vollverknüpftes</b> Modell.
+            Du kannst beide Modelle trainieren und ausprobieren.
+        </p>
+        <div class="btn-group-vertical d-flex my-2">
+            <button type="submit" class="btn btn-primary" [disabled]="!mnistReady"
+                [ngClass]="{'btn-success': weightsReady}" (click)="createWeights()">TF vars erstellen</button>
+        </div>
+    </div>
+    <div class="col-md-4 text-center">
+        <figure class="figure">
+            <img src="assets/mnist-images/neural-net.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">Einfaches neuronales Netz</figcaption>
+        </figure>
+    </div>
+</div>
+<div class="row my-3 align-items-center" *ngIf="weightsReady">
+    <div class="col-lg-8">
+        <h4>Schritt 3: Training</h4>
+        <p>
+            Die Daten sind geladen, und die Modelle stehen bereit. Nun muss das neuronale Netz trainiert werden.
+            Hierfür werden die Daten zunächst in zwei Teile getrennt, Trainingsdaten und Testdaten.
+        </p>
+        <p>
+            Die Trainingsdaten werden zum Lernen genutzt: das neuronale Netz erhält die Bilder der handschriftlich
+            geschriebenen Ziffern und dazu die Information, welche Ziffern dort zu sehen sind, und lernt anhand
+            dessen, die Ziffern zu identifizieren.
+        </p>
+        <p>
+            Die Testdaten werden danach genutzt, um zu überprüfen, wie gut das trainierte Netz seine Aufgabe
+            erledigt.
+        </p>
+    </div>
+
+    <div class="col-lg-4 text-center">
+        <div class="flex-row d-flex flex-wrap">
+            <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!mnistReady || !weightsReady || trainStep == trainTotal"
+                (click)="start(canvas)" [ngClass]="{'btn-success': trainStep == trainTotal}">
+                {{trainStep == 0 ? 'Training Starten' : stopTraining ? 'Training Fortsetzen' : 'Training Pausieren'}}
+            </button>
+            <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!mnistReady || !weightsReady"
+                (click)="sample(canvas)">Neue Zahl generieren</button>
+        </div>
+
+        <div class="row justify-content-center my-2">
+            <div class="col-auto text-center">
+                <label for="progress" class="pt-1 mr-1">
+                    <span class="badge badge-pill badge-light py-1">Fortschritt: [{{trainStep /
+                        trainTotal | percent}}]</span>
+                </label>
+            </div>
+            <div class="col-auto text-center">
+                <progress id="progress" class="my-2" value="{{trainStep}}" max="{{trainTotal}}"></progress>
+            </div>
+        </div>
+        <!-- <button (click)="newsample(canvas)">sample</button> -->
+        <div class="">
+            <canvas #canvas></canvas>
+        </div>
+    </div>
 </div>
