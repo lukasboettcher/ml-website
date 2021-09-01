@@ -96,9 +96,9 @@
             max="400" value="0">
         </div>
         <div>
-          <button class="btn btn-primary" [disabled]="stop || !faceModelReady" (click)="abort()">abort</button>
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">animate</button>
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">generate</button>
+          <!-- <button class="btn btn-primary" [disabled]="stop || !faceModelReady" (click)="abort()">abort</button> -->
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">{{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}</button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">Gesicht generieren</button>
         </div>
 
         <canvas class="face-canvas" #faceCanvas id="canvas" width="256" height="256">
