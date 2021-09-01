@@ -1,4 +1,3 @@
-import * as tf from '@tensorflow/tfjs';
 /**
  * @license
  * Copyright 2018 Google LLC. All Rights Reserved.
@@ -16,7 +15,7 @@ import * as tf from '@tensorflow/tfjs';
  * =============================================================================
  */
 
-// import * as tf from '@tensorflow/tfjs';
+import * as tf from '@tensorflow/tfjs';
 
 const IMAGE_SIZE = 784;
 const NUM_CLASSES = 10;
