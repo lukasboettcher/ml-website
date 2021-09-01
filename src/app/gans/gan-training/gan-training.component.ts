@@ -181,4 +181,15 @@ export class GanTrainingComponent implements OnInit {
     }
   }
 
+  imageResize(y: tf.Tensor2D, factor: number): tf.Tensor2D {
+    if (factor === 1) {
+      return y;
+    }
+    const size = y.shape[0];
+    return y.expandDims(2).tile([1, 1, factor, 1]
+    ).reshape([size, size * factor, 3]
+    ).expandDims(1).tile([1, factor, 1, 1]
+    ).reshape([size * factor, size * factor, 3]);
+  }
+
 }
