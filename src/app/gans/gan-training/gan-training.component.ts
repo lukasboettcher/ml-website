@@ -161,6 +161,10 @@ export class GanTrainingComponent implements OnInit {
   }
 
   async animate(canvas: HTMLCanvasElement): Promise<void> {
+    if (!this.stop) {
+      this.stop = true;
+      return;
+    }
     this.stop = false;
     const inputShape = this.currFaceModel.inputs[0].shape.slice(1);
     const shift = tf.randomNormal(inputShape).expandDims(0);
