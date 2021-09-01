@@ -80,6 +80,10 @@ export class GanMnistTrainingComponent implements OnInit {
   }
 
   async start(canvas: HTMLCanvasElement): Promise<void> {
+    if (!this.stopTraining) {
+      this.stopTraining = true;
+      return;
+    }
     this.stopTraining = false;
 
     const disOpt = tf.train.sgd(0.025);
