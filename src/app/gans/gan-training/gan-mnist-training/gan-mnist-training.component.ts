@@ -33,8 +33,6 @@ export class GanMnistTrainingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.loadMnist();
-    this.createWeights();
   }
 
   async loadMnist(): Promise<void> {
