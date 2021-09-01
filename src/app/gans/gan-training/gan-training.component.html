@@ -3,23 +3,43 @@
     <div class="col-md-7">
       <h3>MNIST GAN Training</h3>
       <p>
-        was sind gans?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
-        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
-        inventore!
+        Neben den breits vorgestellten Arten des maschinellen Lernens, nämlich das überwachte und das verstärkende
+        Lernen, gibt es auch noch eine dritte Art.
+        Diese nennt sich unüberwachtes Lernen, also der Gegensatz zum überwachten maschinellen Lernen.
+        Der Unterschied liegt darin, wie die Maschine trainiert wird. Daraus ergeben sich dann auch neue
+        Anwendungsmöglichkeiten, wofür die künstliche Intelligenz verwendet werden kann.
       </p>
       <p>
-        wie funktioniert es mit mnist?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
-        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
-        eveniet nesciunt.
+        Konkret werden bei dem unüberwachten maschinellen Lernen zum Training keine kategorisierten Daten benutzt,
+        sondern es wird einfach ein großer Haufen an Daten in den Algorithmus gefüttert, mit dem Ziel, dass dieser
+        Muster erkennt.
       </p>
     </div>
     <div class="col align-self-center">
       <figure class="figure">
-        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
-        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
+        <img src="assets/gan-images/unsup-clustering.png" class="figure-img img-fluid rounded mb-1">
+        <figcaption class="figure-caption">Unüberwachtes Lernen</figcaption>
       </figure>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col">
+      <p>
+        Da das unüberwachte maschinelle Lernen ein riesiger Oberbegriff für sehr viele Methoden ist, werden wir uns hier
+        praktisch nur mit einer speziellen Art von Algorithmen auseinandersetzen. Diese nennen sich GANs, kurz für
+        Generative Adversarial Networks.
+        GANs sind neuronale Netze die eigentlich aus zwei Netzen bestehen, einem Generator und einem Diskriminator.
+        Der Generator erzeugt Daten und der Diskriminator bewertet, wie gut die erzeugten Daten vom Generator sind,
+        verglichen mit echten Daten.
+        Hierbei treten die beiden Netze in einer Art Wettkampf gegeneinander an. Da der Generator versucht den
+        Diskriminator zu betrügen, muss er dabei das Muster der Eingabedaten erlernen, die er versucht zu imi­tie­ren.
+      </p>
+      <p>
+        Dies können wir sehr leicht anhand eines Beispiels mit dem MNIST Datensatz ausprobieren. Das bedeutet wir
+        füttern den GAN Algorithmus mit sehr vielen Bildern von Zahlen und durch den Wettkampf sollte der Generator
+        lernen, wie Zahlen aussehen.
+      </p>
     </div>
   </div>
 
@@ -29,18 +49,20 @@
 
   <div class="row my-3">
     <div class="col-md-8">
-      <h3>vortrainiertes mnist gan modell</h3>
+      <h3>Vortrainiertes MNIST GAN Modell</h3>
       <p>
-        was sind gans?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
-        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
-        inventore!
+        Das Training eines GAN Netzes ist sehr auswendig. Deswegen ist es schwer ein solches Netzwerk von Grund auf zu
+        trainieren.
+        Verglichen mit der MNIST Zahlenerkennung bedarf es deutlich mehr Rechenaufwand für das Training. Intuitiv lässt
+        sich das dadurch erklären, dass der Algorithmus nicht nur entscheiden muss, um welche Zahl es sich handelt,
+        sonder er muss auch lernen wie er eine Zahl erstellen kann mit dem Generator.
       </p>
       <p>
-        wie funktioniert es mit mnist?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
-        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
-        eveniet nesciunt.
+        Deswegen werden oft Hochleistungscomputer verwendet mit vielen Prozessoren und Grafikkarten, um große und
+        umfangreiche Modelle zu erstellen, die es schaffen die Eingabedaten au­then­tisch zu kopieren.
+        Glücklicherweise können wir solche Modelle einfach laden und ausprobieren, ohne sie zuerst zu trainieren.
+        Beispielsweise für MNIST existiert ein Modell, welches Zahlen erzeugen kann, die vom Original nicht zu
+        unterscheiden sind.
       </p>
     </div>
     <div class="col text-center">
@@ -64,18 +86,20 @@
 
   <div class="row mb-3">
     <div class="col-md-8">
-      <h3>gesichter generieren</h3>
+      <h3>Gesichter Generieren</h3>
       <p>
-        was sind gans?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse eaque delectus aliquid? Numquam cumque consequatur
-        facere, quo quas, quaerat consectetur dolore magni, ducimus unde porro atque impedit. Dignissimos, voluptatem
-        inventore!
+        Schwarz weiße Zahlen sind natürlich nur mäßig interessant. Das haben sich einige Forscher von der Universität
+        Montreal auch gedacht und haben ein neuronales GAN Netzwerk entworfen, welches besonders gut für Bilder geeignet
+        ist.
+        Damit war es möglich ein Modell zu trainieren, basierend auf dem CelebAHQ Datensatz, welches menschliche
+        Gesichter erstellen kann.
+        Bei dem CelebAHQ Datensatz handelt es sich um eine Sammlung von 30.000 Por­t­räts von Schauspielern, wodurch es
+        möglich ist mit dem Modell gesichter zu erzeugen, die verblüffend echt aussehen und die
+        so noch nicht existieren.
       </p>
       <p>
-        wie funktioniert es mit mnist?
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio commodi voluptate, voluptatem molestias
-        ratione quae delectus dolore ex cumque consectetur veniam doloribus natus quidem magni ducimus vel perferendis
-        eveniet nesciunt.
+        Tatsächlich ist es dem GAN hierbei ziemlich egal, woraus die Eingabedaten bestehen. Je nach Datensatz kann das
+        Netzwerk Gesichter, Autos, Landschaften und vieles weiteres lernen.
       </p>
     </div>
     <div class="col text-center">
@@ -84,10 +108,10 @@
         <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
       </figure> -->
       <div>
-        <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
-           [(ngModel)]="currFaceModelUrl">
+        <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01" [(ngModel)]="currFaceModelUrl">
           <option selected disabled value="">choose model</option>
-          <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}</option>
+          <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}
+          </option>
         </select>
         <div>
           <label for="range">latent slider: {{latentRange}} </label>
@@ -97,8 +121,10 @@
         </div>
         <div>
           <!-- <button class="btn btn-primary" [disabled]="stop || !faceModelReady" (click)="abort()">abort</button> -->
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">{{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}</button>
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">Gesicht generieren</button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">{{stop ? 'Gesichter
+            Animieren' : 'Animation abbrechen'}}</button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">Gesicht
+            generieren</button>
         </div>
 
         <canvas class="face-canvas" #faceCanvas id="canvas" width="256" height="256">
