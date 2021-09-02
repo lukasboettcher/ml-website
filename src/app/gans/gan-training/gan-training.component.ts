@@ -97,7 +97,7 @@ export class GanTrainingComponent implements OnInit {
   }
 
   async sampleFromMnist(realCanvas: HTMLCanvasElement): Promise<void> {
-    const combinedReals = sampleFromMnistData(10);
+    const combinedReals = sampleFromMnistData(5);
     await tf.browser.toPixels(combinedReals, realCanvas);
     tf.dispose(combinedReals);
   }
