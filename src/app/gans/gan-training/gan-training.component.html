@@ -48,12 +48,13 @@
   <hr class="my-5">
 
   <div class="row my-3">
-    <div class="col-md-8">
+    <div class="col-lg-8">
       <h3>Vortrainiertes MNIST GAN Modell</h3>
       <p>
         Das Training eines GAN Netzes ist sehr aufwendig. Deswegen ist es schwer ein solches Netzwerk von Grund auf zu
         trainieren.
-        Verglichen mit der MNIST Zahlenerkennung bedarf es deutlich mehr Rechenaufwand für das Training. Intuitiv lässt
+        Verglichen mit der <a routerLink="/mnist">MNIST Zahlenerkennung</a> bedarf es deutlich mehr Rechenaufwand für
+        das Training. Intuitiv lässt
         sich das dadurch erklären, dass der Algorithmus nicht nur entscheiden muss, um welche Zahl es sich handelt,
         sonder er muss auch lernen wie er eine Zahl erstellen kann mit dem Generator.
       </p>
@@ -65,27 +66,38 @@
         unterscheiden sind.
       </p>
     </div>
-    <div class="col text-center">
+    <div class="col-lg-4 text-center">
       <!-- <figure class="figure">
         <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
         <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
       </figure> -->
-      <button class="btn btn-primary" [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample
-        pretrained</button>
-      <button class="btn btn-primary" [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'cancel
-        loop':'sample
-        loop'}}</button>
-      <div>
-        <canvas #fake width="280" height="28"></canvas>
-      </div>
-      <div>
+      <!-- <button class="btn btn-primary" [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample
+        pretrained</button> -->
+      <button class="btn btn-primary" [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'Generieren
+        abbrechen':'MNIST Zahlen erstellen'}}</button>
+      <div class="mt-1">
+        <div>
+          <div>
+            <span>Fake MNIST</span>
+          </div>
+          <div>
+            <canvas class="border" #fake width="280" height="28"></canvas>
+          </div>
+        </div>
+        <div>
+          <div>
+            <span>Echte MNIST</span>
+          </div>
+          <div>
             <canvas class="border" #real width="280" height="140"></canvas>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row mb-3">
-    <div class="col-md-8">
+    <div class="col-lg-7">
       <h3>Gesichter Generieren</h3>
       <p>
         Schwarz weiße Zahlen sind natürlich nur mäßig interessant. Das haben sich einige Forscher von der Universität
@@ -100,6 +112,12 @@
       <p>
         Tatsächlich ist es dem GAN hierbei ziemlich egal, woraus die Eingabedaten bestehen. Je nach Datensatz kann das
         Netzwerk Gesichter, Autos, Landschaften und vieles weiteres lernen.
+      </p>
+      <p>
+        Um nun Gesichter zu erstellen, kannst du eines der Modelle auswählen und dann entweder eine Animation starten
+        oder einzelne Bilder generieren.
+        Es stehen drei Modelle zur Auswahl. DCGAN ist ein kleines Modell, welches schnell Ausgaben erzeugt, während die
+        beiden Resnet Modelle komplexer sind, und dementsprechend auch detailiertere Ausgaben erzeugen können.
       </p>
     </div>
     <div class="col-lg-5">
