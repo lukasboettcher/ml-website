@@ -133,8 +133,6 @@ export class GanTrainingComponent implements OnInit {
   }
 
   async onFaceLatentChange(value: string, canvas: HTMLCanvasElement): Promise<void> {
-    console.log('cahnge');
-
     const input = Number.parseInt(value, 10);
     const output = tf.tidy(() => {
       const z = tf.sin(tf.scalar(input).mul(this.sliderParams.freq).add(this.sliderParams.shift));
