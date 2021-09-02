@@ -3,15 +3,14 @@
     <div class="col-md-8">
         <h4>Schritt 1: Datenbank laden</h4>
         <p>
-            [TEXT WIP]
-            Zunächst muss die Datenbank mit den Bildern geladen werden.
-            Glücklicherweise ist diese frei zugänglich und kann in Form einer großen Datei geladen werden.
-            Die Datei ist eine sogenannte <a
-                href="https://storage.googleapis.com/learnjs-data/model-builder/mnist_images.png">Sprite-Datei</a>,
-            das heißt sie ist ein großes Bild, worin die eigentlichen
-            kleinen Bilder der Zahlen in einem Raster gespeichert sind.
-            Erstellt wurde die Datenbank von der amerikanischen Behörde NIST,
-            kurz für National Institute of Standards and Technology.
+            Wie auch bei dem überwachten maschinellen Lernen, muss zuerst die MNIST Datenbank geladen werden.
+            Damit das Training schnell funktioniert, werden wir hierbei die MNIST Zahlen nicht kategorisieren, sonder
+            als einen großen Haufen verwenden.
+            Dadurch wird das Ergebnis zwar nicht so gut aussehen, dafür erreichen wir schneller eine Ausgabe, wo Zahlen
+            erkennbar sind.
+            Wenn du ein Modell sehen möchtest, dass lange auf den einzelnen Zahlen trainiert wurde, kannst du dir unten
+            das vortrainierte MNIST GAN Modell anschauen und versuchen die vom Generator erzeugten Zahlen von den echten
+            zu unterscheiden.
         </p>
     </div>
     <div class="col-md-4 text-center">
@@ -23,28 +22,27 @@
 
 <div class="row my-3 align-items-center" *ngIf="mnistReady">
     <div class="col-md-8">
-        <h4>Schritt 2: Neuronales Netz erstellen</h4>
+        <h4>Schritt 2: Neuronale Netze erstellen</h4>
         <p>
-            Nun kommt der wichtigste Teil. Es muss über die Struktur des Netzes entschieden werden. Ein neuronales
-            Netz besteht aus so genannten künstlichen Neuronen, die das Verhalten menschlicher Gehirnzellen
-            nachbilden sollen. Die Neuronen sind in Schichten strukturiert. Bei der Bilderkennung erhalten die
-            Neuronen Daten aus der vorherigen Schicht und berechnen daraus neue Daten, die sie an die nächste
-            Schicht weiterreichen.
-        </p>
-        <p>
-            In diesem Beispiel können zwei verschiedene Modelle für ein neuronales Netz verwendet werden: Ein
-            <b>konvolutionales</b> Modell oder ein <b>vollverknüpftes</b> Modell.
-            Du kannst beide Modelle trainieren und ausprobieren.
+            Nun müssen wir die beiden neuronalen Netze erstellen.
+            Ein Netz für den Generator und eins for den Diskriminator.
+            Das Diskriminator Netz bekommt als Eingabe ein Bild einer MNIST Zahl, also
+            <span><code>28 x 28 = 784</code></span> Pixel.
+            Die 784 Pixel werden dann in drei Ebenen herunterskaliert, auf 200, 90 und zum Schluss eine einzige Ausgabe,
+            welche dann als Wahrscheinlichkeit für die Echtheit verwendet wird.
+            Das Generator Netz ist genau invers Aufgebaut. Als Eingabe bekommt das Netz einen Zufallsvektor mit 100
+            Werten, welche auf die 784 Pixel hochskaliert werden.
         </p>
         <div class="btn-group-vertical d-flex my-2">
             <button type="submit" class="btn btn-primary" [disabled]="!mnistReady"
-                [ngClass]="{'btn-success': weightsReady}" (click)="createWeights()">TF vars erstellen</button>
+                [ngClass]="{'btn-success': weightsReady}" (click)="createWeights()">Tensorflow Variablen
+                erstellen</button>
         </div>
     </div>
     <div class="col-md-4 text-center">
         <figure class="figure">
-            <img src="assets/mnist-images/neural-net.png" class="figure-img img-fluid rounded mb-1">
-            <figcaption class="figure-caption">Einfaches neuronales Netz</figcaption>
+            <img src="assets/gan-images/gan-network-setup.png" class="figure-img img-fluid rounded mb-1">
+            <figcaption class="figure-caption">GAN Netzwerk aufbau</figcaption>
         </figure>
     </div>
 </div>
@@ -52,25 +50,28 @@
     <div class="col-lg-8">
         <h4>Schritt 3: Training</h4>
         <p>
-            Die Daten sind geladen, und die Modelle stehen bereit. Nun muss das neuronale Netz trainiert werden.
-            Hierfür werden die Daten zunächst in zwei Teile getrennt, Trainingsdaten und Testdaten.
+            Während des Trainings beginnt der Generator zufällige Ausgaben zu erzeugen.
+            Zu Beginn sieht das erzeugte Bild nach nichts aus, da der Generator noch nicht gelernt hat, wie MNIST Zahlen
+            aussehen.
+            Gleichermaßen hat der Diskriminator noch nicht gelernt, wie echte MNIST Zahlen aussehen.
+            Da die beiden Netzwerke gegeneinander antreten, verbessern sie sich gegenseitig Schritt für Schritt.
         </p>
         <p>
-            Die Trainingsdaten werden zum Lernen genutzt: das neuronale Netz erhält die Bilder der handschriftlich
-            geschriebenen Ziffern und dazu die Information, welche Ziffern dort zu sehen sind, und lernt anhand
-            dessen, die Ziffern zu identifizieren.
-        </p>
-        <p>
-            Die Testdaten werden danach genutzt, um zu überprüfen, wie gut das trainierte Netz seine Aufgabe
-            erledigt.
+            Für dieses relativ simple GAN Netzwerk sollten nach ca. 1000 Trainingsschritten Formen erkennbar sein, die
+            MNIST Zahlen entsprechen. Nach allen 4000 Trainingsschritten kannst du beliebig viele künstliche MNIST
+            Bilder erzeugen, die den echten Zahlen teilweise ähnlich sein sollten.
+            Da das Training im Webbrowser durchgeführt wird, kann das Netzwerk leider keine super Ergebnisse erzeugen,
+            trotzdem wird hierdurch der Ablauf gut dargestellt.
         </p>
     </div>
 
     <div class="col-lg-4 text-center">
         <div class="flex-row d-flex flex-wrap">
-            <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!mnistReady || !weightsReady || trainStep == trainTotal"
-                (click)="start(canvas)" [ngClass]="{'btn-success': trainStep == trainTotal}">
-                {{trainStep == 0 ? 'Training Starten' : stopTraining ? 'Training Fortsetzen' : 'Training Pausieren'}}
+            <button class="btn btn-primary flex-grow-1 m-1"
+                [disabled]="!mnistReady || !weightsReady || trainStep == trainTotal" (click)="start(canvas)"
+                [ngClass]="{'btn-success': trainStep == trainTotal}">
+                {{trainStep == 0 ? 'Training Starten' : stopTraining ? 'Training Fortsetzen' : 'Training Pausieren' }}
+                {{trainStep}} / {{trainTotal}}
             </button>
             <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!mnistReady || !weightsReady"
                 (click)="sample(canvas)">Neue Zahl generieren</button>
