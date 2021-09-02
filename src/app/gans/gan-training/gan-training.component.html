@@ -102,34 +102,48 @@
         Netzwerk Gesichter, Autos, Landschaften und vieles weiteres lernen.
       </p>
     </div>
-    <div class="col text-center">
-      <!-- <figure class="figure">
-        <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
-        <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
-      </figure> -->
-      <div>
-        <select [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01" [(ngModel)]="currFaceModelUrl">
-          <option selected disabled value="">choose model</option>
-          <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}
-          </option>
-        </select>
+    <div class="col-lg-5">
+      <div class="d-flex flex-column justify-content-center align-items-center">
         <div>
-          <label for="range">latent slider: {{latentRange}} </label>
-          <input [disabled]="!faceModelReady" [(ngModel)]="latentRange"
-            (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume" min="0"
-            max="400" value="0">
-        </div>
-        <div>
-          <!-- <button class="btn btn-primary" [disabled]="stop || !faceModelReady" (click)="abort()">abort</button> -->
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">{{stop ? 'Gesichter
-            Animieren' : 'Animation abbrechen'}}</button>
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">Gesicht
-            generieren</button>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Gesichts Modell</label>
+            </div>
+            <select class="custom-select" [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
+              [(ngModel)]="currFaceModelUrl">
+              <option selected disabled value="">Modell Auswählen</option>
+              <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}
+              </option>
+            </select>
+          </div>
         </div>
 
-        <canvas class="face-canvas" #faceCanvas id="canvas" width="256" height="256">
-          Your browser does not support the canvas element.
-        </canvas>
+        <div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">latent slider: {{latentRange}}</span>
+            </div>
+            <div class="inline-range">
+              <input class="form-control-range" [disabled]="!faceModelReady" [(ngModel)]="latentRange"
+                (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume"
+                min="0" max="400" value="0">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">
+            {{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}
+          </button>
+          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">
+            Gesicht Generieren
+          </button>
+        </div>
+        <div class="mt-3">
+          <canvas class="face-canvas border" #faceCanvas id="canvas" width="256" height="256">
+            Your browser does not support the canvas element.
+          </canvas>
+        </div>
       </div>
     </div>
   </div>
