@@ -2,3 +2,14 @@
     width: 256;
     height: 256;
 }
+
+.inline-range {
+    height: calc(1.5em + .75rem + 2px);
+    padding: .5rem 1rem;
+    width: 100%;
+    position: relative;
+    flex: 1 1 auto;
+    width: 1%;
+    background: white;
+    border: 1px solid #ced4da;
+}
