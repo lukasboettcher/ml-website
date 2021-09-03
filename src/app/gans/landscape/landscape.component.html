@@ -56,15 +56,15 @@
             </div>
 
             <select #styleselect class="custom-select mb-3">
-                <option value="random">random</option>
+                <option value="random">Umgebung auswählen</option>
                 <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" value="{{n}}">
                     {{n}}
                 </option>
             </select>
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button class="btn btn-primary" (click)="sendRequest(styleselect.value)">Submit</button>
-                <button class="btn btn-danger" (click)="inputCanvas.resetCanvas()">Reset</button>
+                <button class="btn btn-primary" (click)="sendRequest(styleselect.value)">Generieren</button>
+                <button class="btn btn-danger" (click)="inputCanvas.resetCanvas()">Zurücksetzen</button>
             </div>
         </div>
     </div>
