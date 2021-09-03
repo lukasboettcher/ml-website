@@ -3,27 +3,25 @@
         <div class="col">
             <h3>Landschaftserstellung mit GANs</h3>
             <p>
-                [TEXT WIP]
-                Generative Adversarial Networks, kurz GANs, sind eine Untergruppe von Algorithmen des unüberwachten
-                maschinellen Lernens.
-                Unüberwacht bedeutet hier, dass für das Training eines solchen Algorithmus keine sortierten Daten
-                benötigt werden.
-                GANs bestehen aus zwei Netzwerken, einem Generator und einem Diskriminator.
-                Dabei versucht der Generator neue Daten zu erstellen und der Diskriminator versucht diese von echten
-                Daten zu unterscheiden.
-                In diesem Beispiel wurde ein GAN mit Landschaftsbildern trainiert, sodass der Generator in der lage ist
-                solche selbsständig zu erzeugen.
-            </p>
-            <p>Zeichne etwas und das GAN Netzwerk versucht ein Bild zu erzeugen.</p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quidem, officiis nemo quaerat sit esse
-                laboriosam illo perferendis deserunt alias animi, ad culpa. Fuga voluptatibus eos voluptas quisquam,
-                totam et.
+                Ein weiteres Anwendungs­szenario für Generative Adversarial Networks ist die Bilderstellung basierend
+                auf einer semantischen Eingabe.
+                Eine semantische Eingabe kann man sich so vorstellen, dass dem Generator als Eingabe nicht nur zufällige
+                Daten gegeben werden, sonder ausgewählte Daten, welche die Ausgabe direkt beeinflussen sollen.
             </p>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam quidem, officiis nemo quaerat sit esse
-                laboriosam illo perferendis deserunt alias animi, ad culpa. Fuga voluptatibus eos voluptas quisquam,
-                totam et.
+                In diesem Beispiel hier bedeutet dies konkret, dass ein GAN Netzwerk mit sehr vielen Bildern von
+                Landschaften trainiert wurde, wobei die einzelnen Elemente der Trainingsbilder in Kategorien unterteilt
+                wurden, sodass der Generator lernt, wie z.B. ein Baum in ein Bild einer Wiese passt.
+            </p>
+            <p>
+                Auf dem Canvas unten kannst du aus verschiedenen Kategorien auswählen und einen Sketch zeichnen.
+                Wenn du diesen dann an das GAN Modell schickst, versucht dieses ein "echt" aussehendes Bild zu erzeugen.
+                Zu Beginn ist auf dem Canvas ein Meer mit Himmel abgebildet, wenn du generieren klickst, sollte das
+                ergebnis unten abgebildet werden.
+                Probiere einfach aus das Bild zu verändern, indem du etwas Sand als Strand unten auf dem Canvas
+                einzeichnest.
+                Das Ergebnis sollte nun einen Strand abbilden. Zusätzlich kannst du das Bild in verschiedenen Umgebungen
+                und Tageszeiten erstellen.
             </p>
         </div>
     </div>
