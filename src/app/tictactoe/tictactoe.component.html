@@ -6,8 +6,7 @@
     </div>
     <div class="row">
         <div class="col">
-            <p>draw below</p>
-            <p>c to clean</p>
+            <p>draw below, or c to clean</p>
         </div>
     </div>
     <div class="row">
@@ -17,4 +16,11 @@
             </div>
         </div>
     </div>
+
+    <label for="stroke-width">width: </label>
+    <select id="stroke-width">
+        <option *ngFor="let x of widths" (click)="onWidthChange(x)">{{x}} pixels</option>
+    </select>
+    <label for="stroke-color">stroke color: </label>
+    <input type="color" name="" id="stroke-color" (change)="onColorChange($event.target.value)">
 </div>
