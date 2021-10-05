@@ -10,6 +10,7 @@ import { NotfoundComponent } from './help/notfound/notfound.component';
 import { LandscapeComponent } from './gans/landscape/landscape.component';
 import { GanTransferComponent } from './gans/gan-transfer/gan-transfer.component';
 import { GanTrainingComponent } from './gans/gan-training/gan-training.component';
+import { TictactoeComponent } from './tictactoe/tictactoe.component';
 
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: 'gan-landscpe', component: LandscapeComponent },
   { path: 'gan-transfer', component: GanTransferComponent },
   { path: 'gan-training', component: GanTrainingComponent },
+  { path: 'tictactoe', component: TictactoeComponent },
   { path: '404', component: NotfoundComponent },
   // wildcard URL
   { path: '**', redirectTo: '/404' }

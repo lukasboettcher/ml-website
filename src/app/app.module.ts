@@ -32,6 +32,7 @@ import { GanTransferComponent } from './gans/gan-transfer/gan-transfer.component
 import { GanTransferInputComponent } from './gans/gan-transfer/gan-transfer-input/gan-transfer-input.component';
 import { GanTransferWebcamComponent } from './gans/gan-transfer/gan-transfer-webcam/gan-transfer-webcam.component';
 import { GanMnistTrainingComponent } from './gans/gan-training/gan-mnist-training/gan-mnist-training.component';
+import { TictactoeComponent } from './tictactoe/tictactoe.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { GanMnistTrainingComponent } from './gans/gan-training/gan-mnist-trainin
     GanTransferComponent,
     GanTransferInputComponent,
     GanTransferWebcamComponent,
-    GanMnistTrainingComponent
+    GanMnistTrainingComponent,
+    TictactoeComponent
   ],
   imports: [
     BrowserModule,
