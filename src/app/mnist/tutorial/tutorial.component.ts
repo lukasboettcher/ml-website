@@ -26,7 +26,7 @@ export class TutorialComponent implements OnInit {
   stages: boolean[] = new Array(4).fill(false);
 
   // stage 1: load data
-  private dataClass: Data;
+  dataClass: Data;
   private trainData;
   trainDataLength: number;
   private testData;

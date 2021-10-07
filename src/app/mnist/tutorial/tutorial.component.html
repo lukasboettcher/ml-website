@@ -15,7 +15,8 @@
         </div>
         <div class="col-md-4 text-center">
             <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success': stages[0]}"
-                (click)="loadData()">Datenbank Laden</button>
+                (click)="loadData()">Datenbank Laden <span *ngIf="dataClass&&!stages[0]" class="spinner-border spinner-border-sm"></span>
+            </button>
         </div>
     </div>
 

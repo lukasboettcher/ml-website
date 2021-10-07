@@ -16,7 +16,8 @@
     <div class="col-md-4 text-center">
         <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success': mnistReady}"
             (click)="loadMnist()">MNIST
-            Datenbank Laden</button>
+            Datenbank Laden <span *ngIf="mnstdata&&!mnistReady" class="spinner-border spinner-border-sm"></span>
+        </button>
     </div>
 </div>
 
