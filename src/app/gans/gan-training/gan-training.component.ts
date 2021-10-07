@@ -21,6 +21,7 @@ export class GanTrainingComponent implements OnInit {
   currFaceModel: tf.LayersModel;
   currFaceModelUrl = '';
   faceModelReady = false;
+  faceModelLoading = false;
   stop = true;
   faceImageFactor = 0;
 
@@ -106,7 +107,7 @@ export class GanTrainingComponent implements OnInit {
 
   async onFaceModelChange(factor: string): Promise<void> {
     this.faceImageFactor = Number.parseInt(factor, 10);
-
+    this.faceModelLoading = true;
     this.faceModelReady = false;
     this.stop = true;
 
@@ -128,7 +129,7 @@ export class GanTrainingComponent implements OnInit {
       shift,
       freq
     };
-
+    this.faceModelLoading = false;
     this.faceModelReady = true;
   }
 

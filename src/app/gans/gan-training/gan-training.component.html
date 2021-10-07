@@ -125,7 +125,9 @@
         <div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Gesichts Modell</label>
+              <label class="input-group-text" for="inputGroupSelect01">
+                <span class="pr-2">Gesichts Modell</span>  <span *ngIf="faceModelLoading" class="spinner-border spinner-border-sm pl-2"></span>
+              </label>
             </div>
             <select class="custom-select" [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
               [(ngModel)]="currFaceModelUrl">
