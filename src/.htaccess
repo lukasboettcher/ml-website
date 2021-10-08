@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteBase /ki/
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !^/assets/(.+)$
+RewriteRule ^(.+)$ index.html?path=$1 [L]
