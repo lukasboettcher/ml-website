@@ -1,20 +1,135 @@
 .sketch-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 1em;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
+body{
+  min-height: 1250px;
+  min-width: 1340px;
+  height: 100%;
+  width: 100%;
+/* font-size:100pt; */
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.container{
+     
+  min-height: 1250px;
+  min-width: 1340px;
+  height: 100%;
+  width: 100%;
   
-  h1 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+
+  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  float: left;
+
+
+}
+
+.controlsection{
+  grid-column-start: 1;
+  grid-column-end: 3;
+
+  grid-row-start: 1;
+  grid-row-end: 2;
+
+  float: left;
   
-  p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+  box-sizing: border-box;
+  border: 1px solid #000000;
+}
+
+.boardsection{
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 2;
+  grid-row-end: 5;
+
+  float: left;
+
+  box-sizing: border-box;
+  border: 1px solid #000000;
+
+
+}
+
+.diagramsection{
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+  grid-row-start: 5;
+  grid-row-end: 8;
+
+  float: left;
+
+
+  box-sizing: border-box;
+  border: 1px solid #000000;
+}
+
+.treesection{
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  grid-row-start: 2;
+  grid-row-end: 8;
+
+  float: left;
+
+  box-sizing: border-box;
+  border: 1px solid #000000;
+
+}
+
+.buttons{
+  margin-top: 3.33%;
+  margin-left: 1%;
+  background-color:rgb(85, 84, 84);
+  color:rgb(255, 255,255);
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  border:solid rgb(85, 84, 84);
+  border-radius: 5pt;
+  
+}
+
+.buttons:hover{
+  background-color: rgb(151, 151, 151);
+  color: rgb(0,0,0);
+  border: solid rgb(85, 84, 84)
+}
+
+.counter{
+  margin-top: 3.33%;
+  margin-left: 1%;
+  color:rgb(0, 0, 0);
+  font-size: 200%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  border:solid rgb(85, 84, 84);
+}
