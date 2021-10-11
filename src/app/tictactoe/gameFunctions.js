@@ -83,8 +83,7 @@ function resetGame(){
     boardCanvas.loop()
     treeCanvas.loop()
     agentTurn()
-  
-  }
+}
 
 /**
  * Function to makes the agents turn. 
