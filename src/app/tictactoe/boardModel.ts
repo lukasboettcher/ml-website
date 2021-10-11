@@ -8,7 +8,7 @@ class Board {
     private p2: number;
     private dimension: number;
     public currentPlayer: number;
-    private winner;
+    public winner;
     private isEmpty: boolean;
     private symmetries: number[][];
     private inverseIndex: number;
