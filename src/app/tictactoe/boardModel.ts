@@ -3,11 +3,11 @@
  * Class to create a board of the game tic-tac-toe.
  */
 class Board {
-    private board: number[][];
+    public board: number[][];
     private p1: number;
     private p2: number;
     private dimension: number;
-    private currentPlayer: number;
+    public currentPlayer: number;
     private winner;
     private isEmpty: boolean;
     private symmetries: number[][];
@@ -293,7 +293,7 @@ class Board {
      * Method to calculate all following boards.
      * @returns an array with all possible nextBoards.
      */
-    getAllSymmetricalNextBoards(): number[] {
+    getAllSymmetricalNextBoards(): Board[] {
         const pos = this.getAvailablePositions();
         const nsb = [];
         const right = [];
