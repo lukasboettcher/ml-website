@@ -1,17 +1,17 @@
 import { Board } from './boardModel';
 /**
  * Class to create an intelligent agent object which learns via reinforcement learning for the game tic-tac-toe.
-*/
+ */
 
 class Agent {
 
-    private opponent: number;
-    private playerSymbol: number;
-    private playsInCurrentGame: number[][];
-    private states: number[];
-    private deletedStatesInCurrentGame: number[];
+    public opponent: number;
+    public playerSymbol: number;
+    private playsInCurrentGame: [string, Board][];
+    private states: Board[][];
+    private deletedStatesInCurrentGame: Board[];
     private hasLearned: boolean;
-    private emptyKeys: number[];
+    private emptyKeys: string[];
 
 
     /**
@@ -39,7 +39,7 @@ class Agent {
     }
     /**
      * Method to clear the possible states from empty keys and values from other keys which where learned not to make.
-     * Also clears the deletedStatesInCurrentGame and playsInCurrentGame 
+     * Also clears the deletedStatesInCurrentGame and playsInCurrentGame
      * attributes and resets the hasLearned attribute to false for a new game.
      */
     reset(): void {
@@ -56,7 +56,7 @@ class Agent {
     }
 
     /**
-     * Method to choose a move given a board situation. 
+     * Method to choose a move given a board situation.
      * Is chosen at random, when there are multiple move to choose from. Else the only possible move.
      * @returns the move, the agent makes.
      */
@@ -118,12 +118,12 @@ class Agent {
         for (let i = 0; i < this.states[key].length; i++) {
             const state = this.states[key][i].deepCopy();
             state.getMinimalSymmetry();
-            if (JSON.stringify(state.board) == JSON.stringify(deletingVal.board)) {
+            if (JSON.stringify(state.board) === JSON.stringify(deletingVal.board)) {
                 delete this.states[key][i];
             }
         }
         this.states[key] = this.states[key].filter(el => el);
-        if (this.states[key].length == 0) {
+        if (this.states[key].length === 0) {
             this.emptyKeys.push(key);
             return false;
         }
@@ -134,74 +134,90 @@ class Agent {
 
     /**
      * Method to delete all values which represent the given board.
-     * @param {*} board the board which value should be deleted from the strategy.
      */
-    deleteAll(board) {
+    deleteAll(board): void {
         const copy = board.deepCopy();
         copy.getMinimalSymmetry();
+
         for (const k in this.states) {
-            for (let i = 0; i < this.states[k].length; i++) {
-                const copiedMinState = this.states[k][i].deepCopy();
-                copiedMinState.getMinimalSymmetry();
-                if (JSON.stringify(copy.board) == JSON.stringify(copiedMinState.board)) {
-                    this.deletedStatesInCurrentGame.push(copy.deepCopy());
-                    delete this.states[k][i];
+            if (this.states.hasOwnProperty(k)) {
+                for (let i = 0; i < this.states[k].length; i++) {
+                    const copiedMinState = this.states[k][i].deepCopy();
+                    copiedMinState.getMinimalSymmetry();
+                    if (JSON.stringify(copy.board) === JSON.stringify(copiedMinState.board)) {
+                        this.deletedStatesInCurrentGame.push(copy.deepCopy());
+                        delete this.states[k][i];
+                    }
+                }
+                this.states[k] = this.states[k].filter(el => el);
+
+                if (this.states[k].length === 0) {
+                    this.emptyKeys.push(k);
                 }
             }
-            this.states[k] = this.states[k].filter(el => el);
 
-            if (this.states[k].length == 0) {
-                this.emptyKeys.push(k);
-            }
         }
     }
 
     /**
      * Method to delete all values which direct next move can lead to the given key.
-     * @param {*} key the key that the values which need to be deleted could reach.
      */
-    deleteValuesLeadingToKey(key) {
+    deleteValuesLeadingToKey(key): void {
         const valToDelete = [];
         for (const k in this.states) {
-            const len = this.states[k].length;
-            for (let i = 0; i < len; i++) {
-                const follow = this.states[k][i].getAllSymmetricalNextBoards();
-                for (let j = 0; j < follow.length; j++) {
-                    const copiedMinFollow = follow[j];
-                    copiedMinFollow.getMinimalSymmetry();
-                    if (JSON.stringify(copiedMinFollow.board) == key) {
-                        valToDelete.push([k, this.states[k][i].deepCopy()]);
+            if (this.states.hasOwnProperty(k)) {
+                const len = this.states[k].length;
+                for (let i = 0; i < len; i++) {
+                    const follow = this.states[k][i].getAllSymmetricalNextBoards();
+                    // for (let j = 0; j < follow.length; j++) {
+                    //     const copiedMinFollow = follow[j];
+                    //     copiedMinFollow.getMinimalSymmetry();
+                    //     if (JSON.stringify(copiedMinFollow.board) === key) {
+                    //         valToDelete.push([k, this.states[k][i].deepCopy()]);
+                    //     }
+                    // }
+                    for (const f of follow) {
+                        const copiedMinFollow = f;
+                        copiedMinFollow.getMinimalSymmetry();
+                        if (JSON.stringify(copiedMinFollow.board) === key) {
+                            valToDelete.push([k, this.states[k][i].deepCopy()]);
+                        }
                     }
                 }
             }
+
         }
-        if (valToDelete.length != 0) {
-            for (let i = 0; i < valToDelete.length; i++) {
-                this.deleteAll(valToDelete[i][1]);
+        if (valToDelete.length !== 0) {
+            // for (let i = 0; i < valToDelete.length; i++) {
+            //     this.deleteAll(valToDelete[i][1]);
+            // }
+            for (const val of valToDelete) {
+                this.deleteAll(val[1]);
             }
         }
     }
 
     /**
      * Method to create the strategy of the agent.
-     * @param {*} board the boardsituation where the next move is made by the current player.
-     * @param {*} player the player who is the current player
      */
-    getAllPossibleStates(board, player) {
+    getAllPossibleStates(board, player): void {
         const winner = board.getWinner();
-        if (winner == undefined) {
+        if (winner === undefined) {
             const copy = board.deepCopy();
             copy.getMinimalSymmetry();
             const possibleNextBoards = copy.getAllSymmetricalNextBoards();
 
-            if (player == this.opponent && possibleNextBoards.length > 1) {
-                if (this.states[JSON.stringify(copy.board)] == undefined) {
+            if (player === this.opponent && possibleNextBoards.length > 1) {
+                if (this.states[JSON.stringify(copy.board)] === undefined) {
                     this.states[JSON.stringify(copy.board)] = possibleNextBoards;
                 }
             }
 
-            for (let i = 0; i < possibleNextBoards.length; i++) {
-                this.getAllPossibleStates(possibleNextBoards[i], copy.currentPlayer);
+            // for (let i = 0; i < possibleNextBoards.length; i++) {
+            //     this.getAllPossibleStates(possibleNextBoards[i], copy.currentPlayer);
+            // }
+            for (const move of possibleNextBoards) {
+                this.getAllPossibleStates(move, copy.currentPlayer);
             }
         }
     }
@@ -210,17 +226,18 @@ class Agent {
 /**
  * Class to create an Agent with alpha-beta strategy.
  */
-class perfectAgent {
+class PerfectAgent {
+    private playerSymbol;
+    private opponent;
     constructor(playerSymbol = 2, opponent = 1) {
         this.playerSymbol = playerSymbol;
         this.opponent = opponent;
     }
     /**
      * Method to evaluate the next best move via alpha-beta tree-pruning.
-     * @param {*} board the current board situation.
      * @returns the best possible move on the current board situation.
      */
-    chooseAction(board) {
+    chooseAction(board): number {
         // Call alpha beta with -inf and +inf
         const copy = board.deepCopy();
         const bestMove = this.alphaBeta(copy, this.playerSymbol, -2, 2);
@@ -228,15 +245,15 @@ class perfectAgent {
     }
     /**
      * Alpha-Beta tree-pruning algorithm to evaluate the best possible move on a given board, for a player.
-     * @param {*} board the current board situation.
-     * @param {*} player the player whose best move should be evaluated.
-     * @param {*} alpha the lower bound.
-     * @param {*} beta the upper bound.
+     * @param board the current board situation.
+     * @param player the player whose best move should be evaluated.
+     * @param alpha the lower bound.
+     * @param beta the upper bound.
      * @returns the best possible move for the player.
      */
-    alphaBeta(board, player, alpha, beta) {
-        let opp
-        if (player == this.playerSymbol) {
+    alphaBeta(board, player, alpha, beta): [number, number] {
+        let opp;
+        if (player === this.playerSymbol) {
             opp = this.opponent;
         } else {
             opp = this.playerSymbol;
@@ -245,41 +262,54 @@ class perfectAgent {
         // case the game in current situation has ended
         // return [Ergebnis, -]
         const winner = board.getWinner();
-        if (winner != undefined) {
-            if (winner == player) {
+        if (winner !== undefined) {
+            if (winner === player) {
                 return [1, undefined];
             }
 
-            if (winner == opp) {
+            if (winner === opp) {
                 return [-1, undefined];
             }
 
-            if (winner == 0) {
+            if (winner === 0) {
                 return [0, undefined];
             }
         }
 
-        let bestMove
+        let bestMove;
         let bestValue = alpha;
 
         const possibleMoves = board.getAvailablePositions();
-        for (let i = 0; i < possibleMoves.length; i++) {
+        // for (let i = 0; i < possibleMoves.length; i++) {
 
+        //     const copy = board.deepCopy();
+        //     copy.setPlayer(possibleMoves[i]);
+        //     const result = this.alphaBeta(copy, opp, -beta, -bestValue);
+        //     const value = result[0] * (-1);
+        //     if (value > bestValue) {
+        //         bestValue = value;
+        //         bestMove = possibleMoves[i];
+        //         if (bestValue >= beta) {
+        //             break;
+        //         }
+        //     }
+        // }
+        for (const move of possibleMoves) {
             const copy = board.deepCopy();
-            copy.setPlayer(possibleMoves[i]);
+            copy.setPlayer(move);
             const result = this.alphaBeta(copy, opp, -beta, -bestValue);
             const value = result[0] * (-1);
             if (value > bestValue) {
                 bestValue = value;
-                bestMove = possibleMoves[i];
+                bestMove = move;
                 if (bestValue >= beta) {
                     break;
                 }
             }
         }
         return [bestValue, bestMove];
-
-
     }
 
 }
+
+export {Agent, PerfectAgent};
