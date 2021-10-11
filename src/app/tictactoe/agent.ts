@@ -206,13 +206,11 @@ class Agent {
             const copy = board.deepCopy();
             copy.getMinimalSymmetry();
             const possibleNextBoards = copy.getAllSymmetricalNextBoards();
-
             if (player === this.opponent && possibleNextBoards.length > 1) {
                 if (this.states[JSON.stringify(copy.board)] === undefined) {
                     this.states[JSON.stringify(copy.board)] = possibleNextBoards;
                 }
             }
-
             // for (let i = 0; i < possibleNextBoards.length; i++) {
             //     this.getAllPossibleStates(possibleNextBoards[i], copy.currentPlayer);
             // }
