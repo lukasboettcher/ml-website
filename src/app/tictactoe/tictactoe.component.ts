@@ -10,22 +10,9 @@ import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, 
 })
 export class TictactoeComponent implements OnInit {
 
-  // agent: Agent;
-  // board: Board;
-  // agent2: PerfectAgent;
-  // againstPerfectAgent: boolean;
-  // gameCounter: number;
-  // learningCurve: number;
-  // boardCanvas: p5;
-  // treeCanvas: p5;
-  // diagramCanvas: p5;
-  // situationsInCurrentGame:any[][][];
-  // colorMode: string;
-  // winner: number;
-
-  agent = new Agent(1, 2);
-  agent2 = new PerfectAgent(2, 1);
-  board = new Board(this.agent.playerSymbol, this.agent.opponent);
+  agent: Agent;
+  agent2: PerfectAgent;
+  board: Board;
   againstPerfectAgent = false;
   gameCounter = 0;
   learningCurve = 0;
@@ -34,20 +21,12 @@ export class TictactoeComponent implements OnInit {
   diagrammCanvas;
   situationsInCurrentGame = [];
   colorMode = 'red-green';
+  buttonsDisabled = false;
 
-  constructor() { 
-    // this.agent = new Agent(1,2);
-    // this.board = new Board(1,2);
-    // this.agent2 = new PerfectAgent(2,1);
-    // this.againstPerfectAgent = false;
-    // this.gameCounter = 0;
-    // this.learningCurve = 0;
-    // this.situationsInCurrentGame.push([[[this.board.deepCopy(),1]]])
-    // this.colorMode = 'red-green'
-    // this.boardCanvas = new p5(this.boardSketch, 'board')
-    // this.treeCanvas = new p5(this.treeSketch, 'tree')
-    // this.diagrammCanvas = new p5(this.diagrammCanvas, 'diagram')
-    
+  constructor() {
+    this.agent = new Agent(1, 2);
+    this.agent2 = new PerfectAgent(2, 1);
+    this.board = new Board(this.agent.playerSymbol, this.agent.opponent);
   }
 
   ngOnInit(): void {
@@ -62,8 +41,6 @@ export class TictactoeComponent implements OnInit {
     this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
     this.agentTurn();
   }
-
-
 
   /**
    * Function to reset the current game, so a new game can be played.
@@ -107,8 +84,6 @@ export class TictactoeComponent implements OnInit {
         this.perfectAgentTurn();
       }
     }
-
-
   }
 
   /**
@@ -170,7 +145,6 @@ export class TictactoeComponent implements OnInit {
           this.agentTurn();
         } else {
           this.gameHasEnded();
-
         }
       }
     } catch (err) { }
@@ -188,7 +162,6 @@ export class TictactoeComponent implements OnInit {
       this.resetGame();
       this.perfectAgentPlay();
     }
-
   }
 
   /**
@@ -212,49 +185,27 @@ export class TictactoeComponent implements OnInit {
   /**
    * Function to disable all buttons.
    */
-  async disableBtns(): Promise<void> {
-    // const buttons = document.querySelectorAll('button');
-    // for (const button of buttons) {
-    //   button.disabled = true;
-    // }
-    // TOTO
+  disableBtns(): void {
+    this.buttonsDisabled = true;
   }
 
   /**
    * Function to enable all buttons.
    */
   enableBtns(): void {
-    // const buttons = document.querySelectorAll('button');
-    // for (const button of buttons) {
-    //   button.disabled = false;
-    // }
-    // TODO
+    this.buttonsDisabled = false;
   }
 
-
-
-
-
-
   boardSketch = (p) => {
-
     let canvas;
-
     let dimension;
-
     let offset;
-
     let height;
-
     let width;
 
     p.setup = () => {
-
-
       height = document.getElementById('board').clientHeight;
-
       width = document.getElementById('board').clientWidth;
-
 
       offset = { x: undefined, y: 10 };
 
@@ -265,32 +216,23 @@ export class TictactoeComponent implements OnInit {
       } else {
         offset.x = (height - dimension) / 2;
       }
-
-
       canvas = p.createCanvas(dimension, dimension);
 
       const x = offset.x;
       const y = canvas.position().y + offset.y / 2;
       canvas.position(x, y);
-
-
     };
 
     p.draw = () => {
-      // if(board.isEmpty){
-      //     situationsInCurrentGame.push([[board.deepCopy(),1]])
-      //     agentTurn()
-      // }
       drawBoardC(p, 0, 0, dimension, { r: 169, g: 169, b: 169 }, this.board);
       const winner = this.board.getWinner();
       if (winner !== undefined) {
         p.fill(162, 0, 255);
-        p.textAlign(p.CENTER, p.CENTER);
+        p.textAlign(p.TOP, p.TOP);
         p.textSize(dimension / 7);
         p.stroke(255, 255, 255);
         if (winner === this.agent.opponent) {
           p.text('Du gewinnst!', 0, 0, dimension, dimension);
-
         }
 
         if (winner === this.agent.playerSymbol) {
@@ -298,7 +240,6 @@ export class TictactoeComponent implements OnInit {
         }
 
         if (winner === 0) {
-
           p.text('Unentschieden', 0, 0, dimension, dimension);
         }
       }
@@ -311,9 +252,7 @@ export class TictactoeComponent implements OnInit {
         const col = Math.floor(3 * p.mouseX / dimension);
         const row = Math.floor(3 * p.mouseY / dimension);
         this.playerTurn([row, col]);
-
       }
-
     };
   }
 
@@ -440,8 +379,6 @@ export class TictactoeComponent implements OnInit {
         p.stroke(0, 0, 255);
         p.point(xVal, yVal);
       }
-
     };
   }
-
 }
