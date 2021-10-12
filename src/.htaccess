@@ -1,5 +1,5 @@
 RewriteEngine on
-RewriteBase /ki/
+RewriteBase /
 
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
