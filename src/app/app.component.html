@@ -2,13 +2,25 @@
   <!-- Navbar always visible -->
   <app-navbar></app-navbar>
   <div class="row">
-      <div class="col">
-          <!-- display components from router here -->
-          <router-outlet></router-outlet>
-      </div>
+    <div class="col">
+      <!-- display components from router here -->
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>
 <!-- constant footer -->
 <footer class="main-footer px-3">
-  <p>Erstellt von <a href="https://github.com/lukasboettcher">Lukas Böttcher</a>, weiterentwickelt von der <a href="https://www.ddi.inf.uni-kiel.de/de">AG für Didaktik der Informatik CAU</a>. <a routerLink="/imprint">Impressum</a></p>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9">
+        <p>Erstellt von <a href="https://github.com/lukasboettcher">Lukas Böttcher</a>, weiterentwickelt von der <a
+            href="https://www.ddi.inf.uni-kiel.de/de">AG für Didaktik der Informatik CAU</a>. <a
+            routerLink="/imprint">Impressum</a></p>
+      </div>
+      <div class="col-sm-3">
+        <img src="assets/branding/tf-norm-de-blackgreyfaku-rgb-0720.png" class="figure-img img-fluid rounded mb-1"
+          style="height: 40px; margin-top: -5px;">
+      </div>
+    </div>
+  </div>
 </footer>
