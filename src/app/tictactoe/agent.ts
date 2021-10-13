@@ -79,7 +79,7 @@ class Agent {
             if (copy.getAvailablePositions().length > 1) {
                 // Something went horribly wrong.
                 // resetAll();
-                location.reload();
+                // location.reload();
 
             }
             copy.invertBoardToActualOne();
