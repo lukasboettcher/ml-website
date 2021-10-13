@@ -132,14 +132,14 @@ function timeout(ms): Promise<() => void> {
  * @param agent the agent of the game.
  */
 async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
-                                 boardDimension, agent, colorMode, situationsInCurrentGame): Promise<void> {
+                                 boardDimension, agent, situationsInCurrentGame): Promise<void> {
 
     try {
         for (let i = 0; i < situationsInCurrentGame.length; i++) {
             const xCoordinate = (width - situationsInCurrentGame[i].length *
                 boardDimension - (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2;
             drawBoardRow(p, xCoordinate, i * (boardDimension + offsetHeight),
-                boardDimension, situationsInCurrentGame[i], i, width, offsetWidth, colorMode, situationsInCurrentGame);
+                boardDimension, situationsInCurrentGame[i], i, width, offsetWidth, situationsInCurrentGame);
         }
 
         if (board.winner === agent.opponent && agent.hasLearned) {
@@ -148,7 +148,7 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
                 const xCoordinate = (width - situationsInCurrentGame[i].length *
                     boardDimension - (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2;
                 drawBoardRow(p, xCoordinate, i * (boardDimension + offsetHeight),
-                    boardDimension, situationsInCurrentGame[i], i, width, offsetWidth, colorMode, situationsInCurrentGame);
+                    boardDimension, situationsInCurrentGame[i], i, width, offsetWidth, situationsInCurrentGame);
             }
             const timer = 50;
             for (let i = situationsInCurrentGame.length - 1; i >= 0; i--) {
@@ -161,51 +161,63 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
                         stateCopy.getMinimalSymmetry();
                         if (JSON.stringify(copy.board) === JSON.stringify(stateCopy.board) && situationsInCurrentGame[i][j][1] === 2) {
                             found = true;
-                            if (colorMode === 'red-green') {
+                            // if (colorMode === 'red-green') {
                                 let red = 0;
-                                let green = 255;
+                                let green = 145;
                                 const shift = 17;
-                                let blue = 0;
-                                const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
-                                    (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
-                                const yCoordinate = (i) * (boardDimension + offsetHeight);
-                                while (green > 0 && red <= 255) {
-                                    drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
-                                        { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
-
-                                    await timeout(timer);
-
-
-                                    if (blue < 255 && red < 255) {
-                                        blue += shift;
-                                        red += shift;
-                                    } else {
-                                        green -= shift;
-                                        blue -= shift;
-                                    }
-                                }
-                            } else {
-                                let red = 0;
                                 let blue = 255;
-                                let green = 0;
-                                const shift = 17;
                                 const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
                                     (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
                                 const yCoordinate = (i) * (boardDimension + offsetHeight);
-                                while (blue > 0) {
+                                while (green < 255 || red < 255) {
                                     drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
                                         { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
-
                                     await timeout(timer);
-
-                                    if (green < 255 && red < 255) {
-                                        green += shift;
-                                        red += shift;
-                                    } else {
-                                        blue -= shift;
+                                    red += shift
+                                    green += shift
+                                    if(red > 255){
+                                        red = 255
+                                    }
+                                    if(green > 255){
+                                        green = 255
                                     }
                                 }
-                            }
+                                while (green != 138 || red != 138 || blue != 138) {
+                                    red -= shift
+                                    green -= shift
+                                    blue -= shift
+                                    if(red < 138){
+                                        red = 138
+                                        blue = 138
+                                        green = 138
+                                    }
+                                    drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
+                                        { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
+                                    await timeout(timer);
+                                }
+
+                            // } else {
+                            //     let red = 0;
+                            //     let blue = 255;
+                            //     let green = 0;
+                            //     const shift = 17;
+                            //     const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
+                            //         (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
+                            //     const yCoordinate = (i) * (boardDimension + offsetHeight);
+                            //     while (blue > 0) {
+                            //         drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
+                            //             { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
+
+                            //         await timeout(timer);
+
+                            //         if (green < 255 && red < 255) {
+                            //             green += shift;
+                            //             red += shift;
+                            //         } else {
+                            //             blue -= shift;
+                            //         }
+                            //     }
+                            // }
                             break;
                         }
                     }
@@ -219,7 +231,7 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
         }
 
     } catch (err) {
-        treeVisualization(p, width, offsetWidth, offsetHeight, board, boardDimension, agent, colorMode, situationsInCurrentGame);
+        treeVisualization(p, width, offsetWidth, offsetHeight, board, boardDimension, agent, situationsInCurrentGame);
         // catched the case that the tree visualization wasn't completely finished when restart the game. Has no impact on game or agent.
     }
 }
@@ -236,7 +248,7 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
  * @param offsetWidth where the first board should be draw.
  */
 async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, index, width,
-                            offsetWidth, colorMode, situationsInCurrentGame): Promise<void> {
+                            offsetWidth, situationsInCurrentGame): Promise<void> {
     try {
 
         let posX = startX;
@@ -245,18 +257,10 @@ async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, 
         const timer = 80;
         for (let i = 0; i < boardArray.length; i++) {
             if (boardArray[i][1] === 0) {
-                if (colorMode === 'red-green') {
-                    color = { r: 255, g: 0, b: 0 };
-                } else {
-                    color = { r: 255, g: 255, b: 0 };
-                }
+                color = {r:138, g: 138, b: 138}//{ r: 255, g: 0, b: 0 };
             } else {
                 if (boardArray[i][1] === 2) {
-                    if (colorMode === 'red-green') {
-                        color = { r: 0, g: 255, b: 0 };
-                    } else {
-                        color = { r: 0, g: 0, b: 255 };
-                    }
+                    color = { r: 0, g: 145, b: 255 }//{ r: 0, g: 255, b: 0 };
                 } else {
                     color = { r: 255, g: 255, b: 255 };
                 }
