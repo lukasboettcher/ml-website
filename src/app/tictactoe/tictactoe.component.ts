@@ -30,12 +30,19 @@ export class TictactoeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initCanvases();
+    try {
+      this.initCanvases();
+
+    }catch(err){
+      //TODO!
+      console.log(err)
+    }
   }
 
-  initCanvases(): void {
+  async initCanvases(): Promise<any> {
     this.situationsInCurrentGame = [];
     this.situationsInCurrentGame.push([[this.board.deepCopy(), 1]]);
+    await timeout(5)
     this.treeCanvas = new p5(this.treeSketch, 'tree');
     this.boardCanvas = new p5(this.boardSketch, 'board');
     this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
