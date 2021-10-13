@@ -6,12 +6,12 @@ class Board {
     public board: number[][];
     private p1: number;
     private p2: number;
-    private dimension: number;
+    public dimension: number;
     public currentPlayer: number;
     public winner;
-    private isEmpty: boolean;
-    private symmetries: number[][];
-    private inverseIndex: number;
+    public isEmpty: boolean;
+    public symmetries: number[][];
+    public inverseIndex: number;
 
     constructor(p1, p2) {
         /**
