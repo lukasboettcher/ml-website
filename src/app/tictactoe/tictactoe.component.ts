@@ -20,7 +20,7 @@ export class TictactoeComponent implements OnInit {
   treeCanvas;
   diagrammCanvas;
   situationsInCurrentGame = [];
-  colorMode = 'red-green';
+  // colorMode = 'red-green';
   buttonsDisabled = false;
 
   constructor() {
@@ -178,16 +178,16 @@ export class TictactoeComponent implements OnInit {
     location.reload();
   }
 
-  /**
-   * Function to switch the color mode from red-green to blue-yellow and vice versa.
-   */
-  switchColorMode(): void {
-    if (this.colorMode === 'red-green') {
-      this.colorMode = 'blue-yellow';
-    } else {
-      this.colorMode = 'red-green';
-    }
-  }
+  // /**
+  //  * Function to switch the color mode from red-green to blue-yellow and vice versa.
+  //  */
+  // switchColorMode(): void {
+  //   if (this.colorMode === 'red-green') {
+  //     this.colorMode = 'blue-yellow';
+  //   } else {
+  //     this.colorMode = 'red-green';
+  //   }
+  // }
 
   /**
    * Function to disable all buttons.
@@ -225,29 +225,31 @@ export class TictactoeComponent implements OnInit {
       }
       canvas = p.createCanvas(dimension, dimension);
 
-      const x = offset.x;
+      const x = canvas.position().x + offset.x / 2;
       const y = canvas.position().y + offset.y / 2;
       canvas.position(x, y);
     };
 
     p.draw = () => {
-      drawBoardC(p, 0, 0, dimension, { r: 169, g: 169, b: 169 }, this.board);
+      drawBoardC(p, 0, 0, dimension, { r: 0, g: 145, b: 255 }, this.board);
       const winner = this.board.getWinner();
       if (winner !== undefined) {
-        p.fill(162, 0, 255);
-        p.textAlign(p.TOP, p.TOP);
+        p.fill(0, 0, 0);
+        p.textAlign(p.CENTER, p.TOP);
         p.textSize(dimension / 7);
-        p.stroke(255, 255, 255);
+        p.stroke(0, 0, 0);
+        let yText = dimension / 2 - dimension / 14
         if (winner === this.agent.opponent) {
-          p.text('Du gewinnst!', 0, 0, dimension, dimension);
+
+          p.text('Du gewinnst!',0, yText, dimension, dimension);
         }
 
         if (winner === this.agent.playerSymbol) {
-          p.text('Der Agent gewinnt!', 0, 0, dimension, dimension);
+          p.text('Der Agent gewinnt!', 0, yText, dimension, dimension);
         }
 
         if (winner === 0) {
-          p.text('Unentschieden', 0, 0, dimension, dimension);
+          p.text('Unentschieden', 0, yText, dimension, dimension);
         }
       }
     };
@@ -280,7 +282,7 @@ export class TictactoeComponent implements OnInit {
       offsetWidth = 20;
       offsetHeight = 2 * offsetWidth;
       boardDimension = Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
-      const agentColor = { r: 255, g: 229, b: 204 };
+      const agentColor = {r:220,g:220,b:220}//{ r: 255, g: 229, b: 204 };
       const playerColor = { r: 255, g: 255, b: 255 };
       const maxNumberofBoardsInHeight = 10;
       const x = 0;
@@ -318,7 +320,7 @@ export class TictactoeComponent implements OnInit {
 
     p.draw = () => {
       treeVisualization(p, width, offsetWidth, offsetHeight, this.board,
-        boardDimension, this.agent, this.colorMode, this.situationsInCurrentGame);
+        boardDimension, this.agent, this.situationsInCurrentGame);
     };
   }
 
