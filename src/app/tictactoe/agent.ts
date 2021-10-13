@@ -34,7 +34,7 @@ class Agent {
         const board = new Board(this.playerSymbol, this.opponent);
         // (create the policy) instead of creating a new one, try loading it from an asset
         // this.getAllPossibleStates(board, opponent);
-        this.loadStrategies();
+        this.loadStrategies(board, opponent);
 
         // // use this to download the states Object
         // const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.states));
@@ -49,7 +49,7 @@ class Agent {
         this.emptyKeys = [];
     }
 
-    async loadStrategies(): Promise<void> {
+    async loadStrategies(board, opponent): Promise<void> {
         // const response = await fetch('assets/tictactoe/states.json');
         // const responseJson = await response.json();
         // for (const key in responseJson) {
@@ -108,7 +108,7 @@ class Agent {
                 // this.states = data;
             })
             .catch(() => {
-                // this.getAllPossibleStates(board, opponent);
+                this.getAllPossibleStates(board, opponent);
             });
     }
 
