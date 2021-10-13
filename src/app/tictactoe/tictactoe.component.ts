@@ -33,16 +33,16 @@ export class TictactoeComponent implements OnInit {
     try {
       this.initCanvases();
 
-    }catch(err){
-      //TODO!
-      console.log(err)
+    } catch (err) {
+      // TODO!
+      console.log(err);
     }
   }
 
   async initCanvases(): Promise<any> {
     this.situationsInCurrentGame = [];
     this.situationsInCurrentGame.push([[this.board.deepCopy(), 1]]);
-    await timeout(5)
+    await timeout(5);
     this.treeCanvas = new p5(this.treeSketch, 'tree');
     this.boardCanvas = new p5(this.boardSketch, 'board');
     this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
@@ -238,10 +238,10 @@ export class TictactoeComponent implements OnInit {
         p.textAlign(p.CENTER, p.TOP);
         p.textSize(dimension / 7);
         p.stroke(0, 0, 0);
-        let yText = dimension / 2 - dimension / 14
+        const yText = dimension / 2 - dimension / 14;
         if (winner === this.agent.opponent) {
 
-          p.text('Du gewinnst!',0, yText, dimension, dimension);
+          p.text('Du gewinnst!', 0, yText, dimension, dimension);
         }
 
         if (winner === this.agent.playerSymbol) {
@@ -282,7 +282,7 @@ export class TictactoeComponent implements OnInit {
       offsetWidth = 20;
       offsetHeight = 2 * offsetWidth;
       boardDimension = Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
-      const agentColor = {r:220,g:220,b:220}//{ r: 255, g: 229, b: 204 };
+      const agentColor = { r: 220, g: 220, b: 220 }; // { r: 255, g: 229, b: 204 };
       const playerColor = { r: 255, g: 255, b: 255 };
       const maxNumberofBoardsInHeight = 10;
       const x = 0;

@@ -179,8 +179,8 @@ class Agent {
                     this.playsInCurrentGame = this.playsInCurrentGame.slice(0, this.playsInCurrentGame.length - 1);
                 }
             }
-            for(const b of this.deletedStatesInCurrentGame){
-                this.deleteAll(b.deepCopy())
+            for (const b of this.deletedStatesInCurrentGame) {
+                this.deleteAll(b.deepCopy());
             }
 
         }
