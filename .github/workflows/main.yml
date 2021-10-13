@@ -46,6 +46,6 @@ jobs:
             SOURCE: "dist/ml-website/"
             REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
             REMOTE_USER: ${{ secrets.REMOTE_USER }}
-            TARGET: "/home/mlwebsite/stuff/" # temporary dir until permissions are fixed
-            # TARGET: ${{ secrets.REMOTE_TARGET }}
+            # TARGET: "/home/mlwebsite/stuff/" # temporary dir until permissions are fixed
+            TARGET: ${{ secrets.REMOTE_TARGET }}
             # EXCLUDE: "/dist/, /node_modules/"
