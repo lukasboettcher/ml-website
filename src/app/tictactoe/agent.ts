@@ -34,6 +34,16 @@ class Agent {
         const board = new Board(this.playerSymbol, this.opponent);
         // create the policy
         this.getAllPossibleStates(board, opponent);
+
+        // // use this to download the states Object
+        // const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.states));
+        // const downloadAnchorNode = document.createElement('a');
+        // downloadAnchorNode.setAttribute('href', dataStr);
+        // downloadAnchorNode.setAttribute('download', 'states.json');
+        // document.body.appendChild(downloadAnchorNode); // required for firefox
+        // downloadAnchorNode.click();
+        // downloadAnchorNode.remove();
+
         // tracks which Keys where emptied during the learning process
         this.emptyKeys = [];
     }
@@ -310,4 +320,4 @@ class PerfectAgent {
 
 }
 
-export {Agent, PerfectAgent};
+export { Agent, PerfectAgent };
