@@ -32,8 +32,9 @@ class Agent {
         this.hasLearned = false;
         // create a initial empty board for creation of the policy
         const board = new Board(this.playerSymbol, this.opponent);
-        // create the policy
-        this.getAllPossibleStates(board, opponent);
+        // (create the policy) instead of creating a new one, try loading it from an asset
+        // this.getAllPossibleStates(board, opponent);
+        this.loadStrategies();
 
         // // use this to download the states Object
         // const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(this.states));
@@ -47,6 +48,70 @@ class Agent {
         // tracks which Keys where emptied during the learning process
         this.emptyKeys = [];
     }
+
+    async loadStrategies(): Promise<void> {
+        // const response = await fetch('assets/tictactoe/states.json');
+        // const responseJson = await response.json();
+        // for (const key in responseJson) {
+        //     if (Object.prototype.hasOwnProperty.call(responseJson, key)) {
+        //         const element = responseJson[key];
+        //         this.states[key] = [];
+        //         element.map(bstate => {
+        //             const newBoard = new Board(bstate.p1, bstate.p2);
+        //             newBoard.board = bstate.board;
+        //             newBoard.currentPlayer = bstate.currentPlayer;
+        //             newBoard.dimension = bstate.dimension;
+        //             newBoard.inverseIndex = bstate.inverseIndex;
+        //             newBoard.isEmpty = bstate.isEmpty;
+        //             newBoard.symmetries = bstate.symmetries;
+        //             newBoard.winner = bstate.winner;
+        //             this.states[key].push(newBoard);
+        //             return newBoard;
+        //         });
+        //     }
+        // }
+        // console.warn(this.states);
+        fetch('assets/tictactoe/states.json')
+            .then(response => response.json())
+            .then(data => {
+                for (const key in data) {
+                    if (Object.prototype.hasOwnProperty.call(data, key)) {
+                        const element = data[key];
+                        this.states[key] = [];
+                        element.forEach(bstate => {
+                            const newBoard = new Board(bstate.p1, bstate.p2);
+                            newBoard.board = bstate.board;
+                            newBoard.currentPlayer = bstate.currentPlayer;
+                            newBoard.dimension = bstate.dimension;
+                            newBoard.inverseIndex = bstate.inverseIndex;
+                            newBoard.isEmpty = bstate.isEmpty;
+                            newBoard.symmetries = bstate.symmetries;
+                            newBoard.winner = bstate.winner;
+                            this.states[key].push(newBoard);
+                        });
+                        // element.map(bstate => {
+                        //     const newBoard = new Board(bstate.p1, bstate.p2);
+                        //     newBoard.board = bstate.board;
+                        //     newBoard.currentPlayer = bstate.currentPlayer;
+                        //     newBoard.dimension = bstate.dimension;
+                        //     newBoard.inverseIndex = bstate.inverseIndex;
+                        //     newBoard.isEmpty = bstate.isEmpty;
+                        //     newBoard.symmetries = bstate.symmetries;
+                        //     newBoard.winner = bstate.winner;
+                        //     this.states[key].push(newBoard);
+                        //     return newBoard;
+                        // });
+                    }
+                }
+                // console.warn(this.states);
+
+                // this.states = data;
+            })
+            .catch(() => {
+                // this.getAllPossibleStates(board, opponent);
+            });
+    }
+
     /**
      * Method to clear the possible states from empty keys and values from other keys which where learned not to make.
      * Also clears the deletedStatesInCurrentGame and playsInCurrentGame
