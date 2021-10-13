@@ -25,7 +25,7 @@ class Agent {
         // array to track which moves where made within a game
         this.playsInCurrentGame = [];
         // the policy of the agent
-        this.states = [];
+        this.states = Object();
         // tracks which states where deleted through a game
         this.deletedStatesInCurrentGame = [];
         // tracks if the learn process for a single game was finished
