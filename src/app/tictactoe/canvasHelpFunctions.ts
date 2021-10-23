@@ -162,34 +162,34 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
                         if (JSON.stringify(copy.board) === JSON.stringify(stateCopy.board) && situationsInCurrentGame[i][j][1] === 2) {
                             found = true;
                             // if (colorMode === 'red-green') {
-                                let red = 0;
-                                let green = 145;
-                                const shift = 17;
-                                let blue = 255;
-                                const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
+                            let red = 0;
+                            let green = 145;
+                            const shift = 17;
+                            let blue = 255;
+                            const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
                                     (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
-                                const yCoordinate = (i) * (boardDimension + offsetHeight);
-                                while (green < 255 || red < 255) {
+                            const yCoordinate = (i) * (boardDimension + offsetHeight);
+                            while (green < 255 || red < 255) {
                                     drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
                                         { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
                                     await timeout(timer);
-                                    red += shift
-                                    green += shift
-                                    if(red > 255){
-                                        red = 255
+                                    red += shift;
+                                    green += shift;
+                                    if (red > 255){
+                                        red = 255;
                                     }
-                                    if(green > 255){
-                                        green = 255
+                                    if (green > 255){
+                                        green = 255;
                                     }
                                 }
-                                while (green != 138 || red != 138 || blue != 138) {
-                                    red -= shift
-                                    green -= shift
-                                    blue -= shift
-                                    if(red < 138){
-                                        red = 138
-                                        blue = 138
-                                        green = 138
+                            while (green !== 138 || red !== 138 || blue !== 138) {
+                                    red -= shift;
+                                    green -= shift;
+                                    blue -= shift;
+                                    if (red < 138){
+                                        red = 138;
+                                        blue = 138;
+                                        green = 138;
                                     }
                                     drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
                                         { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
@@ -257,10 +257,10 @@ async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, 
         const timer = 80;
         for (let i = 0; i < boardArray.length; i++) {
             if (boardArray[i][1] === 0) {
-                color = {r:138, g: 138, b: 138}//{ r: 255, g: 0, b: 0 };
+                color = {r: 138, g: 138, b: 138}; // { r: 255, g: 0, b: 0 };
             } else {
                 if (boardArray[i][1] === 2) {
-                    color = { r: 0, g: 145, b: 255 }//{ r: 0, g: 255, b: 0 };
+                    color = { r: 0, g: 145, b: 255 }; // { r: 0, g: 255, b: 0 };
                 } else {
                     color = { r: 255, g: 255, b: 255 };
                 }
