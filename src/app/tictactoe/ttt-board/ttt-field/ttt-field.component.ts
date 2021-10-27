@@ -23,6 +23,31 @@ export class TttFieldComponent implements OnInit {
     this.ctx = this.canvas.nativeElement.getContext('2d');
   }
 
+
+  public set value(v: string) {
+    if (this.state !== '') {
+      return;
+    }
+    if (v === 'circle') {
+      this.state = 'circle';
+      this.clearCanvas();
+      this.drawCircle();
+    } else if (v === 'cross') {
+      this.state = 'cross';
+      this.clearCanvas();
+      this.drawCross();
+    }
+  }
+
+
+  public get currentState(): string {
+    return this.state;
+  }
+
+
+  reset(): void {
+    this.state = '';
+    this.clearCanvas();
   }
 
   private drawCross(): void {
