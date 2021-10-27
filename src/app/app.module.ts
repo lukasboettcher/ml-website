@@ -34,6 +34,8 @@ import { GanTransferWebcamComponent } from './gans/gan-transfer/gan-transfer-web
 import { GanMnistTrainingComponent } from './gans/gan-training/gan-mnist-training/gan-mnist-training.component';
 import { ImprintComponent } from './help/imprint/imprint.component';
 import { TictactoeComponent } from './tictactoe/tictactoe.component';
+import { TttBoardComponent } from './tictactoe/ttt-board/ttt-board.component';
+import { TttFieldComponent } from './tictactoe/ttt-board/ttt-field/ttt-field.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +65,9 @@ import { TictactoeComponent } from './tictactoe/tictactoe.component';
     GanTransferWebcamComponent,
     GanMnistTrainingComponent,
     ImprintComponent,
-    TictactoeComponent
+    TictactoeComponent,
+    TttBoardComponent,
+    TttFieldComponent
   ],
   imports: [
     BrowserModule,
