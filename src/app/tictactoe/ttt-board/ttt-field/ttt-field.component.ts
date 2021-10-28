@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ttt-field',
@@ -10,6 +10,9 @@ export class TttFieldComponent implements OnInit {
   state: string;
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
+  @Output()
+  clicked = new EventEmitter();
+
   private ctx: CanvasRenderingContext2D;
   private width = 300;
   private height = 300;
@@ -29,6 +32,12 @@ export class TttFieldComponent implements OnInit {
       this.clearCanvas();
       this.drawCross();
     }
+  }
+
+
+  @HostListener('click')
+  onClick(): void {
+    this.clicked.emit(null);
   }
 
   private drawCross(): void {
