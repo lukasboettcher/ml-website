@@ -28,6 +28,21 @@ export class TttBoardComponent implements OnInit {
 
   onFieldClicked(id: number): void {
     this.states[id] = this.playerSymbol;
+    setTimeout(this.randomComputerStep.bind(this), 100);
+    // this.randomComputerStep();
+  }
+
+  private randomComputerStep(): void {
+    const idxs = [];
+    for (let i = 0; i < this.states.length; i++) {
+      if (this.states[i] === '') {
+        idxs.push(i);
+      }
+    }
+    if (idxs.length > 0) {
+      const idx = Math.floor(Math.random() * idxs.length);
+      this.states[idxs[idx]] = this.computerSymbol;
+    }
   }
 
 }
