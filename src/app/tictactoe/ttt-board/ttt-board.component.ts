@@ -35,7 +35,8 @@ export class TttBoardComponent implements OnInit {
     }
   }
 
-  private randomComputerStep(): void {
+  private async randomComputerStep(): Promise<number> {
+    await new Promise(resolve => setTimeout(resolve, 100));
     const idxs = [];
     for (let i = 0; i < this.states.length; i++) {
       if (this.states[i] === '') {
@@ -45,7 +46,9 @@ export class TttBoardComponent implements OnInit {
     if (idxs.length > 0) {
       const idx = Math.floor(Math.random() * idxs.length);
       this.states[idxs[idx]] = this.computerSymbol;
+      return idxs[idx];
     }
+    return -1;
   }
 
 }
