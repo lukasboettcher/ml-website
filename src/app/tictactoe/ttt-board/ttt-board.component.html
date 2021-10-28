@@ -1,5 +1,5 @@
-<div>
-    <button (click)="field.value = 'cross'">cross</button>
-    <button (click)="field.value = 'circle'">circle</button>
-    <button (click)="field.reset()">reset</button>
+<div class="ttt-field">
+    <app-ttt-field *ngFor="let state of states; index as i" [state]="state" (clicked)="onFieldClicked(i)"></app-ttt-field>
 </div>
+
+<button (click)="reset()">reset</button>
