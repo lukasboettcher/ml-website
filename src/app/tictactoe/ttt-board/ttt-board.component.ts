@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TttBoardComponent implements OnInit {
 
+  @Input() interactive = false;
   public states: string[];
   private playerSymbol = 'cross';
   private computerSymbol = 'circle';
@@ -27,9 +28,11 @@ export class TttBoardComponent implements OnInit {
   }
 
   onFieldClicked(id: number): void {
-    this.states[id] = this.playerSymbol;
-    setTimeout(this.randomComputerStep.bind(this), 100);
-    // this.randomComputerStep();
+    if (this.interactive) {
+      this.states[id] = this.playerSymbol;
+      setTimeout(this.randomComputerStep.bind(this), 100);
+      // this.randomComputerStep();
+    }
   }
 
   private randomComputerStep(): void {
