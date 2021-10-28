@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ttt-field',
@@ -6,14 +6,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./ttt-field.component.css']
 })
 export class TttFieldComponent implements OnInit {
-
+  @Input()
+  state: string;
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
   private ctx: CanvasRenderingContext2D;
   private width = 300;
   private height = 300;
   private strokeWidth = 30;
-  private state = '';
 
   constructor() { }
 
@@ -21,33 +21,14 @@ export class TttFieldComponent implements OnInit {
     this.canvas.nativeElement.width = this.width;
     this.canvas.nativeElement.height = this.height;
     this.ctx = this.canvas.nativeElement.getContext('2d');
-  }
 
-
-  public set value(v: string) {
-    if (this.state !== '') {
-      return;
-    }
-    if (v === 'circle') {
-      this.state = 'circle';
+    if (this.state === 'circle') {
       this.clearCanvas();
       this.drawCircle();
-    } else if (v === 'cross') {
-      this.state = 'cross';
+    } else if (this.state === 'cross') {
       this.clearCanvas();
       this.drawCross();
     }
-  }
-
-
-  public get currentState(): string {
-    return this.state;
-  }
-
-
-  reset(): void {
-    this.state = '';
-    this.clearCanvas();
   }
 
   private drawCross(): void {
