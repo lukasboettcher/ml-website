@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-ttt-board',
@@ -13,6 +13,10 @@ export class TttBoardComponent implements OnInit {
 
   constructor() {
     this.states = Array.from({ length: 9 }, () => '');
+  }
+
+  @Input('states') set setState(s: string[]) {
+    this.states = s;
   }
 
   ngOnInit(): void {
