@@ -1,0 +1,7 @@
+.ttt-field {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    background-color: #0091ff;
+    border: solid 1px black;
+    max-width: 500px;
+}
