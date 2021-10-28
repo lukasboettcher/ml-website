@@ -37,7 +37,9 @@ export class TttFieldComponent implements OnInit {
   @HostListener('touchdown')
   @HostListener('click')
   onClick(): void {
-    this.clicked.emit(null);
+    if (this.state === '') {
+      this.clicked.emit(null);
+    }
   }
 
   private drawCross(): void {
