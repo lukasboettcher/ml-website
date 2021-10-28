@@ -7,9 +7,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TttBoardComponent implements OnInit {
 
-  constructor() { }
+  public states: string[];
+  private playerSymbol = 'cross';
+  private computerSymbol = 'circle';
+
+  constructor() {
+    this.states = Array.from({ length: 9 }, () => '');
+  }
 
   ngOnInit(): void {
+  }
+
+  reset(): void {
+    this.states = Array.from({ length: 9 }, () => '');
+  }
+
+  onFieldClicked(id: number): void {
+    this.states[id] = this.playerSymbol;
   }
 
 }
