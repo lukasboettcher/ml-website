@@ -30,8 +30,44 @@ export class TttBoardComponent implements OnInit {
   onFieldClicked(id: number): void {
     if (this.interactive) {
       this.states[id] = this.playerSymbol;
-      setTimeout(this.randomComputerStep.bind(this), 100);
-      // this.randomComputerStep();
+  private checkWinner(states: string[], lastMove: number, player: string): void {
+    const row = Math.trunc(lastMove / 3);
+    const col = lastMove - row * 3;
+    for (let i = 0; i < 3; i++) {
+      if (states[row * 3 + i] !== player) {
+        break;
+      }
+      if (i === 2) {
+        this.winner = player;
+      }
+    }
+    for (let i = 0; i < 3; i++) {
+      if (states[i * 3 + col] !== player) {
+        break;
+      }
+      if (i === 2) {
+        this.winner = player;
+      }
+    }
+    if (row === col) {
+      for (let i = 0; i < 3; i++) {
+        if (states[i * 3 + i] !== player) {
+          break;
+        }
+        if (i === 2) {
+          this.winner = player;
+        }
+      }
+    }
+    if (row + col === 2) {
+      for (let i = 0; i < 3; i++) {
+        if (states[i * 3 + 2 - i] !== player) {
+          break;
+        }
+        if (i === 2) {
+          this.winner = player;
+        }
+      }
     }
   }
 
