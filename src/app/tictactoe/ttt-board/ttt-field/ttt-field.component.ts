@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Host, HostListener, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-ttt-field',
@@ -34,7 +34,7 @@ export class TttFieldComponent implements OnInit {
     }
   }
 
-
+  @HostListener('touchdown')
   @HostListener('click')
   onClick(): void {
     this.clicked.emit(null);
