@@ -11,6 +11,7 @@ export class TttBoardComponent implements OnInit {
   public states: string[];
   private playerSymbol = 'cross';
   private computerSymbol = 'circle';
+  public winner = '';
 
   constructor() {
     this.states = Array.from({ length: 9 }, () => '');
@@ -25,11 +26,19 @@ export class TttBoardComponent implements OnInit {
 
   reset(): void {
     this.states = Array.from({ length: 9 }, () => '');
+    this.winner = '';
   }
 
-  onFieldClicked(id: number): void {
-    if (this.interactive) {
+  async onFieldClicked(id: number): Promise<void> {
+    if (this.interactive && !this.winner) {
       this.states[id] = this.playerSymbol;
+      this.checkWinner(this.states, id, this.playerSymbol);
+      this.randomComputerStep().then((cid) => {
+        this.checkWinner(this.states, cid, this.computerSymbol);
+      });
+    }
+  }
+
   private checkWinner(states: string[], lastMove: number, player: string): void {
     const row = Math.trunc(lastMove / 3);
     const col = lastMove - row * 3;
