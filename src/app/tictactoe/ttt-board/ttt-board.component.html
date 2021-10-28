@@ -1,5 +1,9 @@
 <div class="ttt-field">
-    <app-ttt-field *ngFor="let state of states; index as i" [state]="state" (clicked)="onFieldClicked(i)"></app-ttt-field>
+    <app-ttt-field *ngFor="let state of states; index as i" [state]="state" (clicked)="onFieldClicked(i)">
+    </app-ttt-field>
 </div>
 
-<button (click)="reset()">reset</button>
+<div>
+    <button (click)="reset()">reset</button>
+    <span *ngIf="winner" style="background: red;">Game over, won by {{winner}}</span>
+</div>
