@@ -1,5 +1,10 @@
 <div>
+    <p>example full board</p>
     <app-ttt-board></app-ttt-board>
+    <p>example small board</p>
+    <div style="width: 100px;">
+        <app-ttt-board [states]="['cross', 'circle','cross', 'circle','cross', 'circle','cross', 'circle','']"></app-ttt-board>
+    </div>
 </div>
 <div class="container">
     <div *ngIf="false">
@@ -28,18 +33,21 @@
         <label for="stroke-color">stroke color: </label>
         <input type="color" name="" id="stroke-color" (change)="onColorChange($event.target.value)">
     </div>
-    
+
     <div id="control" class="controlsection">
         <span class="counter">
             <span>Gespielte Spiele:</span>
             <span id="gameCounter">0</span>
         </span>
 
-        <button id="restart" type="button" class="buttons" [disabled]="buttonsDisabled" (click)="resetGame()">Neues Spiel</button>
-        <button id="perfectAgent" type="button" class="buttons" [disabled]="buttonsDisabled" (click)="perfectAgentPlay()">Optimales
+        <button id="restart" type="button" class="buttons" [disabled]="buttonsDisabled" (click)="resetGame()">Neues
+            Spiel</button>
+        <button id="perfectAgent" type="button" class="buttons" [disabled]="buttonsDisabled"
+            (click)="perfectAgentPlay()">Optimales
             Spiel</button>
         <!-- <button id="colorMode" type="button" class="buttons" [disabled]="buttonsDisabled" (click)="switchColorMode()">Farbmodus wechseln</button> -->
-        <button id="reset" type="button" class="buttons" [disabled]="buttonsDisabled" (click)="resetAll()">Zurücksetzen</button>
+        <button id="reset" type="button" class="buttons" [disabled]="buttonsDisabled"
+            (click)="resetAll()">Zurücksetzen</button>
     </div>
 
     <div id="board" class="boardsection"></div>
