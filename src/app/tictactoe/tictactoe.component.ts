@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as p5 from 'p5';
+import * as $ from 'jquery';
 import { Board } from './boardModel';
 import { Agent, PerfectAgent } from './agent';
 import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, treeVisualization } from './canvasHelpFunctions';
@@ -223,11 +224,12 @@ export class TictactoeComponent implements OnInit {
       } else {
         offset.x = (height - dimension) / 2;
       }
+      dimension = parseInt($('#board_section').css('width'), 10)*0.8
       canvas = p.createCanvas(dimension, dimension);
 
-      const x = canvas.position().x + offset.x / 2;
-      const y = canvas.position().y + offset.y / 2;
-      canvas.position(x, y);
+      //const x = canvas.position().x + offset.x / 2;
+      //const y = canvas.position().y + offset.y / 2;
+      //canvas.position(x, y);
     };
 
     p.draw = () => {
@@ -276,8 +278,7 @@ export class TictactoeComponent implements OnInit {
       const height = document.getElementById('tree').clientHeight;
 
       width = document.getElementById('tree').clientWidth;
-
-      p.createCanvas(width, height);
+      p.createCanvas(width, 200 );
 
       offsetWidth = 20;
       offsetHeight = 2 * offsetWidth;
@@ -326,48 +327,44 @@ export class TictactoeComponent implements OnInit {
 
 
   diagrammSketch = (p) => {
-    let width;
-    let height;
+    let dimension
     let xAxisStart;
     let yAxisStart;
     let xAxisEnd;
     let yAxisEnd;
     p.setup = () => {
-      height = document.getElementById('diagram').clientHeight;
-
-      width = document.getElementById('diagram').clientWidth;
-
-      const canvas = p.createCanvas(width, height);
-      p.textSize(Math.min(height * 0.05, width * 0.05));
+      dimension = parseInt($('#diagram_section').css('width'), 10)*0.8
+      const canvas = p.createCanvas(dimension, dimension);
+      p.textSize(Math.min(dimension * 0.05, dimension * 0.05));
       p.textAlign(p.CENTER);
-      p.text('y: #gewonnen + #unentschieden - #verloren, x: #Spiele ', 0, 0, width, height / 3);
+      p.text('y: #gewonnen + #unentschieden - #verloren\n x: #Spiele ', 0, 0, dimension, dimension / 3);
 
       p.strokeWeight(3);
       // y-Achse
-      const lineStartXyAxis = width / 6;
-      const lineStartYyAxis = height / 6;
-      p.line(lineStartXyAxis, lineStartYyAxis, lineStartXyAxis, height);
+      const lineStartXyAxis = dimension / 6;
+      const lineStartYyAxis = dimension / 6;
+      p.line(lineStartXyAxis, lineStartYyAxis, lineStartXyAxis, dimension);
       p.line(lineStartXyAxis, lineStartYyAxis, lineStartXyAxis - 10, lineStartYyAxis + 10);
       p.line(lineStartXyAxis, lineStartYyAxis, lineStartXyAxis + 10, lineStartYyAxis + 10);
 
       // x-Achse
       const lineStartXxAxis = lineStartXyAxis;
-      const lineStartYxAxis = (height + lineStartYyAxis) / 2;
-      p.line(lineStartXxAxis, lineStartYxAxis, width - width / 6, lineStartYxAxis);
-      p.line(width - width / 6, lineStartYxAxis, width - width / 6 - 10, lineStartYxAxis - 10);
-      p.line(width - width / 6, lineStartYxAxis, width - width / 6 - 10, lineStartYxAxis + 10);
+      const lineStartYxAxis = (dimension + lineStartYyAxis) / 2;
+      p.line(lineStartXxAxis, lineStartYxAxis, dimension - dimension / 6, lineStartYxAxis);
+      p.line(dimension - dimension / 6, lineStartYxAxis, dimension - dimension / 6 - 10, lineStartYxAxis - 10);
+      p.line(dimension - dimension / 6, lineStartYxAxis, dimension - dimension / 6 - 10, lineStartYxAxis + 10);
 
       // init the axis starting points
       xAxisStart = lineStartXyAxis;
       yAxisStart = lineStartYxAxis;
-      xAxisEnd = width - width / 6;
-      yAxisEnd = height;
+      xAxisEnd = dimension - dimension / 6;
+      yAxisEnd = dimension;
 
       p.noStroke();
       p.textAlign(p.CENTER, p.CENTER);
       p.textSize(20);
       p.text('x', xAxisEnd + 12, yAxisStart);
-      p.text('y', xAxisStart, (height / 6) - 12);
+      p.text('y', xAxisStart, (dimension / 6) - 12);
     };
 
     p.draw = () => {
