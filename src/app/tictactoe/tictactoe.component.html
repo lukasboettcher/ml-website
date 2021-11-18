@@ -1,5 +1,113 @@
 <div class="container">
-    <div class="row" style="margin-bottom: 3%;">
+    <h3>Tic Tac Toe</h3>
+    <div class="row my-3 align-items-center">
+        <div class="col-md-10">
+           <p>
+                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam 
+           </p>
+        </div>
+    </div>
+    <div class="row my-3 align-items-center">
+        <div class="col-md-10">
+            <h4>Aufgabe 1:</h4>
+            <p>Spiele 30 Spiele und betrachte dabei in jedem Zug den Spielbaum, der rechts dargestellt wird, genau. Beantworte dabei die folgenden Fragen.
+                <br/>
+                 <strong>Hinweis:</strong> Achte darauf, dass du auch mindestens einmal „absichtlich“ verlierst und unentschieden spielst.</p>
+        </div>
+    </div>
+    <div class="row my-3 align-items-center">
+        <div class="col-md-10">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-link active" id="nav-1a_tab" data-toggle="tab" href="#nav-1a_task" role="tab" aria-controls="nav-1a" aria-selected="true"><b>a)</b></a>
+                  <a class="nav-link disabled" id="nav-1b_tab" data-toggle="tab" href="#nav-1b_task" role="tab" aria-controls="nav-1b" aria-selected="false"><b>b)</b></a>
+                  <a class="nav-link disabled" id="nav-1c_tab" data-toggle="tab" href="#nav-1c_task" role="tab" aria-controls="nav-1c" aria-selected="false"><b>c)</b></a>
+                  <a class="nav-link disabled" id="nav-1d_tab" data-toggle="tab" href="#nav-1d_task" role="tab" aria-controls="nav-1d" aria-selected="false"><b>d)</b></a>
+                  <a class="nav-link disabled" id="nav-1e_tab" data-toggle="tab" href="#nav-1e_task" role="tab" aria-controls="nav-1e" aria-selected="false"><b>e)</b></a>
+                  <a class="nav-link" id="nav-1f_tab" data-toggle="tab" href="#nav-1f_task" role="tab" aria-controls="nav-1f_task" aria-selected="false"><b>f)</b></a>
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-1a_task" role="tabpanel" aria-labelledby="nav-home-tab">Was wird in den Zeilen mit dem Buchstaben A und was wird in den Zeilen mit dem Buchstaben S angezeigt? Fällt dir etwas Besonderes an den Zeilen mit Buchstaben A auf? Wenn ja, was und welchen Grund könnte dies haben?
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1a" (change)="fieldsChange($event)">
+                        <label class="form-check-label" for="check1a">
+                          Fertig?
+                        </label>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="nav-1b_task" role="tabpanel" aria-labelledby="nav-profile-tab">Wählt der Agent in jedem Spiel den gleichen Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1b" (change)="fieldsChange($event)">
+                        <label class="form-check-label" for="check1b">
+                          Fertig?
+                        </label>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="nav-1c_task" role="tabpanel" aria-labelledby="nav-contact-tab">Wenn du ein Spiel verloren hast, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1c" (change)="fieldsChange($event)">
+                        <label class="form-check-label" for="check1c">
+                          Fertig?
+                        </label>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="nav-1d_task" role="tabpanel" aria-labelledby="nav-contact-tab">Wenn ein Spiel unentschieden ausgegangen ist, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?<div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="check1d" (change)="fieldsChange($event)">
+                    <label class="form-check-label" for="check1d">
+                      Fertig?
+                    </label>
+                  </div>
+                </div>
+                <div class="tab-pane fade" id="nav-1e_task" role="tabpanel" aria-labelledby="nav-contact-tab">Wenn du ein Spiel gewonnen hast, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1e" (change)="fieldsChange($event)">
+                        <label class="form-check-label" for="check1e">
+                          Fertig?
+                        </label>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="nav-1f_task" role="tabpanel" aria-labelledby="nav-contact-tab">Was lässt sich aus diesen Veränderungen des Spielbaums und der Kurve schließen?
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="check1f" (change)="fieldsChange($event)">
+                        <label class="form-check-label" for="check1f">
+                          Fertig?
+                        </label>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-3 align-items-center" id="task2" style="display: none;">
+        <div class="col-md-10">
+            <h4>Aufgabe 2:</h4>
+            <p>Versuche nun ausgehend von deinen Beobachtungen zu beschreiben, wie der Agent spielt. Gehe dabei insbesondere darauf ein, wie sich das Verhalten mit der Anzahl der Spiele möglicherweise verändert. Beantworte dann, ob der Agent nach einer Vielzahl von Spielen noch verlieren kann. Begründe deine Antwort.
+            </p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="check2" (change)="fieldsChange($event)">
+                <label class="form-check-label" for="check2">
+                  Fertig?
+                </label>
+              </div>
+        </div>
+    </div>
+    <div class="row my-3 align-items-center" id="task3"  style="display: none;">
+        <div class="col-md-10">
+            <h4>Aufgabe 3:</h4>
+            <p>Versuche nun, ausgehend von deiner Beschreibung, einen Algorithmus in natürlicher Sprache zu formulieren, der den Spielablauf beschreibt.
+            </p>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="check3" (change)="fieldsChange($event)">
+                <label class="form-check-label" for="check3">
+                  Fertig?
+                </label>
+              </div>
+        </div>
+    </div>
+    
+    
+
+    <div class="row" style="margin-bottom: 3%; margin-top: 3%;">
         <div class="col-md" style="text-align: center;">
             <span class="counter">
                 Gespielte Spiele:
@@ -45,6 +153,5 @@
             <div id="tree"></div>
         </div>
     </div>
-
 
 </div>
