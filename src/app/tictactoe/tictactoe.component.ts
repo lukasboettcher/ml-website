@@ -3,6 +3,7 @@ import * as p5 from 'p5';
 import * as $ from 'jquery';
 import { Board } from './boardModel';
 import { Agent, PerfectAgent } from './agent';
+import "bootstrap";
 import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, treeVisualization } from './canvasHelpFunctions';
 @Component({
   selector: 'app-tictactoe',
@@ -50,6 +51,47 @@ export class TictactoeComponent implements OnInit {
     this.agentTurn();
   }
 
+  fieldsChange(values:any):void {
+    let checked = values.currentTarget.checked
+    let id = values.currentTarget.id
+    console.log(id)
+    switch (true){
+      case id.localeCompare("check1a") == 0 && checked:
+          $('#nav-1a_tab').removeClass("active")
+          $('#nav-1b_tab').removeClass("disabled").click()
+        break
+      case id.localeCompare("check1b") == 0 && checked:
+          $('#nav-1b_tab').removeClass("active")
+          $('#nav-1c_tab').removeClass("disabled").click()
+        break
+      case id.localeCompare("check1c") == 0 && checked:
+        $('#nav-1c_tab').removeClass("active")
+        $('#nav-1d_tab').removeClass("disabled").click()
+        break
+      case id.localeCompare("check1d") == 0 && checked:
+        $('#nav-1d_tab').removeClass("active")
+        $('#nav-1e_tab').removeClass("disabled").click()
+        break
+      case id.localeCompare("check1e") == 0 && checked:
+        $('#nav-1e_tab').removeClass("active")
+        $('#nav-1f_tab').removeClass("disabled").click()
+        break
+      case id.localeCompare("check1f") == 0 && checked:
+        $('#task2').show()
+        break
+      case id.localeCompare("check2") == 0 && checked:
+        $('#task3').show()
+        break
+      case id.localeCompare("check3") == 0 && checked:
+        alert("Super! Du bist mit allen Aufgaben fertig!")
+        break
+      default:
+        console.log("test")
+        break
+
+    }
+  }
+ 
   /**
    * Function to reset the current game, so a new game can be played.
    */
