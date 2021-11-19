@@ -54,7 +54,6 @@ export class TictactoeComponent implements OnInit {
   fieldsChange(values:any):void {
     let checked = values.currentTarget.checked
     let id = values.currentTarget.id
-    console.log(id)
     switch (true){
       case id.localeCompare("check1a") == 0 && checked:
           $('#nav-1a_tab').removeClass("active")
