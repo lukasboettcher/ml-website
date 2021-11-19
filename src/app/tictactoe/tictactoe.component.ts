@@ -319,8 +319,10 @@ export class TictactoeComponent implements OnInit {
     p.setup = () => {
       const height = document.getElementById('tree').clientHeight;
 
-      width = document.getElementById('tree').clientWidth;
-      p.createCanvas(width, 200 );
+      width = parseInt($('#tree_area').css('width'),10)
+      //TODO Elemente passen sich auf unterschiedliche width an. 
+      //Damit es nicht so komisch aussieht height aus width berechnen? 
+      p.createCanvas(width,  1150);
 
       offsetWidth = 20;
       offsetHeight = 2 * offsetWidth;
@@ -375,7 +377,7 @@ export class TictactoeComponent implements OnInit {
     let xAxisEnd;
     let yAxisEnd;
     p.setup = () => {
-      dimension = parseInt($('#diagram_section').css('width'), 10)*0.8
+      dimension = parseInt($('#board_section').css('width'), 10)*0.8
       const canvas = p.createCanvas(dimension, dimension);
       p.textSize(Math.min(dimension * 0.05, dimension * 0.05));
       p.textAlign(p.CENTER);
