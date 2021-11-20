@@ -209,6 +209,21 @@
                 </button>
             </div>
 
+            <div class="col text-center">
+                <div #trainGraph></div>
+                <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
+                    <div class="col-auto text-center">
+                        <label for="progress" class="pt-1 mr-2">
+                            <span class="badge badge-pill badge-light py-1">Fortschritt:</span>
+                        </label>
+                    </div>
+                    <div class="col-auto text-center">
+                        <progress id="progress" class="my-2" value="0" #trainProgress
+                            max="{{trainTotalBatches}}"></progress>
+                    </div>
+                </div>
+            </div>
+
             <div class="my-2" *ngIf="trainingDone">
                 <p>
                     Dein neuronales Netzwerk ist fertig trainiert!
@@ -220,41 +235,6 @@
                     versucht das neuronale Netz, diese zu erkennen.
                 </p>
             </div>
-
-        </div>
-        <div class="col-lg-4 text-center">
-            <div class="card my-2">
-                <div class="card-body">
-                    <p class="card-text">
-                        Die <b>Batchsize</b> gibt an, wie viele Bilder nacheinander von dem Modell verarbeitet werden,
-                        bis
-                        dieses optimiert wird. Die <b>Epochen</b> geben an, wie oft alle Trainingsdaten durchgearbeitet
-                        werden.
-                    </p>
-                </div>
-            </div>
-
-            <div #trainGraph></div>
-            <!-- <div class="chart-wrapper my-2" *ngIf="trainingRunning || trainingDone">
-                <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
-                    [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
-                    [plugins]="lineChartPlugins">
-                </canvas>
-            </div> -->
-
-            <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
-                <div class="col-auto text-center">
-                    <label for="progress" class="pt-1 mr-2">
-                        <span class="badge badge-pill badge-light py-1">Fortschritt:</span>
-                    </label>
-                </div>
-                <div class="col-auto text-center">
-                    <!-- <progress id="progress" class="my-2" value="{{trainBatchCount}}" -->
-                    <progress id="progress" class="my-2" value="0" #trainProgress
-                        max="{{trainTotalBatches}}"></progress>
-                </div>
-            </div>
-
 
         </div>
     </div>
