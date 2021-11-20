@@ -171,15 +171,24 @@
                     <option disabled>Epochs</option>
                     <option *ngFor="let x of availEpochs" [ngValue]="x">{{x}}</option>
                 </select>.
-                <br>
                 Von diesen Parametern hängt ab, wie viele Schritte das Training benötigt.
+                Die <b>Batchsize</b> gibt an, wie viele Bilder pro Trainingsschritt von dem Modell verarbeitet werden,
+                während dieses optimiert wird. Die <b>Epochen</b> geben an, wie oft alle Trainingsdaten insgesamt
+                durchgearbeitet werden.
+            </p>
+            <p>
+                Das bedeutet je größer die Batchsize, desto mehr Bilder werden auf einmal verarbeitet. Das sorgt für
+                mehr Rechenaufwand und dauert länger - kann aber auch besser Ergebnisse erziehlen.
+                Ebenso führen mehr Epochen zu mehr Rechenaufwand, da bei 10 Epochen, jedes Bild auch 10 mal verarbeitet
+                wird.
             </p>
             <p>
                 Bei einer Batchsize von <code class="px-1">{{trainBatchSize}}</code> und <code
                     class="px-1">{{trainEpochs}}</code>
                 Epochen umfasst das Training <code
                     class="px-1">{{(trainDataLength / trainBatchSize) * trainEpochs * 0.85 + 0.5 | number:'1.0-0'}}</code>
-                Schritte.
+                Schritte. Das kommt dadurch, da von den <code class="px-1">{{trainDataLength | number:'1.0-0'}}</code>
+                Bildern 15% zum Testen verwendet werden und nicht für das Training.
             </p>
             <!-- <p>
                 Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
