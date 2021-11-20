@@ -2,22 +2,6 @@
   <div class="row mb-3">
     <div class="col-auto">
       <h3>MNIST Zahlenerkennung</h3>
-      <!-- <p>
-        MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen.
-        Diese werden oft verwendet, um ein neuronales Netz zu trainieren, um Zahlen zu erkennen.
-        Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher Wert zugeordnet, sodass der Computer überprüfen kann, ob
-        seine Auswertung korrekt war.
-      </p> old-->
-
-      <!-- <p>
-        Eine Aufgabe, die sich mit Methoden der KI besonders gut lösen lässt, ist die Erkennung von Handschriften. So
-        können z.B. die Adressen auf Briefen maschinell gelesen und diese schneller sortiert werden.
-      </p>
-      <p>
-        MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen. Diese werden oft verwendet, um ein
-        neuronales Netz zu trainieren, um Zahlen zu erkennen. Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher
-        Wert zugeordnet, sodass der Computer überprüfen kann, ob seine Auswertung korrekt war.
-      </p> -->
       <p>
         In diesem Teil der Webseite kannst du mit einem neuronalen Netz experimentieren, dass handschriftliche Ziffern
         erkennt. Diese Technik kommt zum Beispiel bei der automatischen Sortierung von Briefen zum Einsatz.
@@ -34,19 +18,7 @@
     </div>
   </div>
 
-  <!-- <div class="row my-3" *ngIf="doTutorial == null">
-    <div class="col">
-      <h6 class="text-center">Tutorial Überspringen?
-        <div class="btn-group mx-3">
-          <button type="button" class="btn btn-success" (click)="chooseTutorial(true)">Nein</button>
-          <button type="button" class="btn btn-danger" (click)="chooseTutorial(false)">Ja</button>
-        </div>
-      </h6>
-    </div>
-  </div> -->
-
   <div class="row my-3" *ngIf="true">
-    <!-- <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial> -->
     <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
 
