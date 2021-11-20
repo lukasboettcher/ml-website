@@ -150,7 +150,7 @@ export class TutorialComponent implements OnInit {
     this.trainingRunning = true;
 
     // const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
-    const metrics = ['loss', 'acc'];
+    const metrics = ['acc'];
     // const container = {
     //   name: 'show.fitCallbacks',
     //   tab: 'Training',
