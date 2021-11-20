@@ -158,7 +158,10 @@ export class TutorialComponent implements OnInit {
     //     height: '1000px'
     //   }
     // };
-    const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics);
+    const tfvisOptions = {
+      yLabel: 'Genauigkeit in Prozent'
+    };
+    const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics, tfvisOptions);
     console.log(visCallbacks);
 
     await this.model.fit(this.trainData.xs, this.trainData.labels, {
