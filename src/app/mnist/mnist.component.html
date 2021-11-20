@@ -78,6 +78,13 @@
         </ngb-accordion>
       </div>
     </div>
+
+    <div class="row justify-content-center my-3">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': stages[1]}"
+          (click)="stages[1] = true">Das Netz selbst trainieren
+          <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
+        </button>
       </div>
     </div>
   </div>
