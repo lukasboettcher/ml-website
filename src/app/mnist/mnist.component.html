@@ -13,7 +13,46 @@
       </p>
       <div class="text-center">
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
-          (click)="loadPretrainedModel()">Okay, los geht's</button>
+    <div class="row justify-content-center my-3">
+      <div class="col-md-8">
+        <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 1</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Was bedeutet die grafische Anzeige der Auswertung und wie wird die darunter angezeigte Vorhersage daraus
+              ermittelt? Wie kannst du deine Vermutung überprüfen?
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 2</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Versuche eine Eingabe für das neuronale Netz (also eine gemalte Ziffer) zu erzeugen, bei der sich das Netz
+              nicht eindeutig entscheiden kann und eine andere Eingabe bei der die Entscheidung sehr eindeutig ist.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 3</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Male verschiedene Ziffern auf ein Blatt Papier und merke dir, welche Ziffer du jeweils meintest. Lass dann
+              jemand anderen deine Ziffern erkennen. Wieviele Fehler hat die Person gemacht? Wieviele Fehler macht das
+              neuronale Netz, wenn du die Ziffern so genau wie möglich in der Zeichenfläche nachzeichnest?
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
       </div>
     </div>
   </div>
