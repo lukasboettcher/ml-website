@@ -1,14 +1,15 @@
 <div class="container">
   <div class="row mb-3">
-    <div class="col-md-7">
+    <div class="col-auto">
       <h3>MNIST Zahlenerkennung</h3>
       <!-- <p>
         MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen.
         Diese werden oft verwendet, um ein neuronales Netz zu trainieren, um Zahlen zu erkennen.
         Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher Wert zugeordnet, sodass der Computer überprüfen kann, ob
         seine Auswertung korrekt war.
-      </p> -->
-      <p>
+      </p> old-->
+
+      <!-- <p>
         Eine Aufgabe, die sich mit Methoden der KI besonders gut lösen lässt, ist die Erkennung von Handschriften. So
         können z.B. die Adressen auf Briefen maschinell gelesen und diese schneller sortiert werden.
       </p>
@@ -16,10 +17,20 @@
         MNIST ist eine Bildersammlung von handschriftlich geschriebenen Zahlen. Diese werden oft verwendet, um ein
         neuronales Netz zu trainieren, um Zahlen zu erkennen. Jedem Bild einer Zahl ist dabei auch ihr tatsächlicher
         Wert zugeordnet, sodass der Computer überprüfen kann, ob seine Auswertung korrekt war.
+      </p> -->
+      <p>
+        In diesem Teil der Webseite kannst du mit einem neuronalen Netz experimentieren, dass handschriftliche Ziffern
+        erkennt. Diese Technik kommt zum Beispiel bei der automatischen Sortierung von Briefen zum Einsatz.
       </p>
-    </div>
-    <div class="col align-self-center">
-
+      <p>
+        Neuronale Netze müssen anhand von vielen Daten für Ihren späteren Einsatzzweck trainiert werden. Du wirst hier
+        zuerst ein schon fertig trainiertes Netz verwenden und kannst dann auch den Trainingsprozess selbst ein wenig
+        genauer unter die Lupe nehmen.
+      </p>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+          (click)="loadPretrainedModel()">Okay, los geht's</button>
+      </div>
     </div>
   </div>
 
@@ -34,7 +45,7 @@
     </div>
   </div> -->
 
-  <div class="row my-3">
+  <div class="row my-3" *ngIf="true">
     <!-- <app-tutorial (modelCreated)="importCustomModel($event)" *ngIf="doTutorial"></app-tutorial> -->
     <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
