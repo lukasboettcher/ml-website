@@ -89,10 +89,25 @@
     </div>
   </div>
 
-  <div class="row my-3" *ngIf="true">
+  <div class="row my-3" *ngIf="stages[1]">
     <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
 
+  <div class="my-3" *ngIf="stages[1]">
+    <!-- draw area own model-->
+    <div class="row my-5 justify-content-around" *ngIf="stages[1] && customModel">
+      <app-draw-digit [modelLoaded]="customModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
+      <div class="col-md ml-3">
+        <div style="max-width: 800px;">
+          <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{predictionCustom}}</span></h4>
+        </div>
+      </div>
+    </div>
+    <!-- /draw area own model-->
+  </div>
 
 
   <div class="row justify-content-center mt-5 mb-4" *ngIf="stages[1]">
@@ -135,6 +150,7 @@
       </ngb-accordion>
     </div>
   </div>
+
   <!-- <div class="row my-5"> old model chooser
     <div class="col-md-8">
       <h2>Modell auswählen</h2>
