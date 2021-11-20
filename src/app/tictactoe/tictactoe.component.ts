@@ -306,6 +306,12 @@ export class TictactoeComponent implements OnInit {
         this.playerTurn([row, col]);
       }
     };
+
+    p.windowResized = () => {
+      p.remove()
+      this.boardCanvas = new p5(this.boardSketch, 'board');
+
+    }
   }
 
   treeSketch = (p) => {
@@ -314,20 +320,25 @@ export class TictactoeComponent implements OnInit {
     let offsetWidth;
     let offsetHeight;
     let width;
+    let height;
 
     p.setup = () => {
-      const height = document.getElementById('tree').clientHeight;
-
-      width = parseInt($('#tree_area').css('width'),10)
+      //const height = document.getElementById('tree').clientHeight;
+      const widthScale = 0.75
+      width = parseInt($('#tree_area').css('width'),10)*widthScale
+      
+      boardDimension = (3*width) / 29
+      let offset = boardDimension / 4
+      height = 10*boardDimension + 9*offset
       //TODO Elemente passen sich auf unterschiedliche width an. 
       //Damit es nicht so komisch aussieht height aus width berechnen? 
-      p.createCanvas(width,  1150);
+      p.createCanvas(width, height)  //1150);
 
-      offsetWidth = 20;
-      offsetHeight = 2 * offsetWidth;
-      boardDimension = Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
+      offsetWidth = offset//20;
+      offsetHeight = offset//2 * offsetWidth;
+      //boardDimension = //Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
       const agentColor = { r: 220, g: 220, b: 220 }; // { r: 255, g: 229, b: 204 };
-      const playerColor = { r: 255, g: 255, b: 255 };
+      const playerColor = { r: 248, g: 249, b: 250 };
       const maxNumberofBoardsInHeight = 10;
       const x = 0;
       let y = 0;
@@ -366,6 +377,11 @@ export class TictactoeComponent implements OnInit {
       treeVisualization(p, width, offsetWidth, offsetHeight, this.board,
         boardDimension, this.agent, this.situationsInCurrentGame);
     };
+
+    p.windowResized = () => {
+      p.remove()
+      this.treeCanvas = new p5(this.treeSketch, 'tree')
+    }
   }
 
 
@@ -429,5 +445,10 @@ export class TictactoeComponent implements OnInit {
         p.point(xVal, yVal);
       }
     };
+
+    // p.windowResized = () =>{
+    //   p.remove()
+    //   this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
+    // }
   }
 }
