@@ -3,11 +3,15 @@
         <div class="col-md-8">
             <h3>Selbst Trainieren</h3>
             <p>
-              In diesem Abschnitt nehmen wir kein vortrainiertes Netz, sondern lassen das Training erst live stattfinden. Wir
-              brauchen dazu eine große Menge an handschriftlichen Ziffern, die das Netz für das Training verwenden kann. Dazu
-              verwenden wir die sogenannte "MNIST" Datenbank. Diese wird oft verwendet, um ein maschinelles Lernverfahren, das
-              Zahlen erkennen soll, zu trainieren oder seine Leistung zu überprüfen. Jedem Bild einer Zahl ist dabei auch ihr
-              tatsächlicher Wert zugeordnet.
+                In diesem Abschnitt nehmen wir kein vortrainiertes Netz, sondern lassen das Training erst live
+                stattfinden. Wir
+                brauchen dazu eine große Menge an handschriftlichen Ziffern, die das Netz für das Training verwenden
+                kann. Dazu
+                verwenden wir die sogenannte "MNIST" Datenbank. Diese wird oft verwendet, um ein maschinelles
+                Lernverfahren, das
+                Zahlen erkennen soll, zu trainieren oder seine Leistung zu überprüfen. Jedem Bild einer Zahl ist dabei
+                auch ihr
+                tatsächlicher Wert zugeordnet.
             </p>
             <h4>Schritt 1: Datenbank laden</h4>
             <p>
@@ -22,15 +26,16 @@
             </p>
             <div class="text-center">
                 <button type="submit" class="btn btn-primary" [ngClass]="{'btn-success': stages[0]}"
-                (click)="loadData()">Datenbank Laden <span *ngIf="dataClass&&!stages[0]" class="spinner-border spinner-border-sm"></span>
-            </button>
+                    (click)="loadData()">Datenbank Laden <span *ngIf="dataClass&&!stages[0]"
+                        class="spinner-border spinner-border-sm"></span>
+                </button>
             </div>
         </div>
         <div class="col-md-4 text-center">
             <figure class="figure">
                 <img src="assets/home-images/mnist.png" class="figure-img img-fluid rounded mb-1">
                 <figcaption class="figure-caption">MNIST Sprite-Datei</figcaption>
-              </figure>
+            </figure>
         </div>
     </div>
 
