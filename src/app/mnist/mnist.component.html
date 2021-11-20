@@ -13,6 +13,31 @@
       </p>
       <div class="text-center">
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+          (click)="loadPretrainedModel()">Okay, los geht's
+          <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="stages[0]" class="my-5">
+    <p>
+      Male hier mit deiner Maus (oder einem Finger oder Stift bei einem Touchscreen) eine Ziffer in das Feld und klicke
+      Auswerten um zu sehen, welche Ziffer das Netz erkennt.
+    </p>
+    <!-- draw area -->
+    <div class="row my-5 justify-content-around" *ngIf="modelLoaded">
+      <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
+      <div class="col-md ml-3">
+        <div style="max-width: 800px;">
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
+        </div>
+      </div>
+    </div>
+    <!-- /draw area -->
+
     <div class="row justify-content-center my-3">
       <div class="col-md-8">
         <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
@@ -79,18 +104,6 @@
           Selbsterstelltes Modell'}}</button>
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
           (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
-      </div>
-    </div>
-  </div>
-
-  <div class="row my-5 justify-content-around">
-    <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
-    <div class="col-md ml-3">
-      <div>
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-          [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-        </canvas>
-        <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
       </div>
     </div>
   </div>
