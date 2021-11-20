@@ -25,6 +25,9 @@ export class MnistComponent implements OnInit {
   results: number[];
   prediction: number;
 
+  resultsCustom: number[];
+  predictionCustom: number;
+
   // parameters for ng2-charts
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -41,6 +44,10 @@ export class MnistComponent implements OnInit {
   public barChartLegend = true;
   public barChartPlugins = [];
   public barChartData: ChartDataSets[] = [
+    { data: [], label: 'Wahrscheinlichkeiten' }
+  ];
+
+  public barChartDataCustom: ChartDataSets[] = [
     { data: [], label: 'Wahrscheinlichkeiten' }
   ];
 
@@ -70,7 +77,7 @@ export class MnistComponent implements OnInit {
   async loadCustomModel(): Promise<void> {
     this.currentlyLoading = true;
     console.log('loading custom model...');
-    this.model = this.customModel;
+    // this.model = this.customModel;
     this.modelLoaded = 'custom';
     console.log('loaded custom model...');
     this.currentlyLoading = false;
@@ -99,6 +106,20 @@ export class MnistComponent implements OnInit {
         this.results = Array.from(prediction.dataSync());
         this.barChartData[0].data = this.results;
         this.prediction = this.labelData(this.results);
+        // console.log(this.results);
+      });
+  }
+
+    // get canvas image and interpret it
+  // save results afterwards
+  onClassifyCustom(i: ImageData): void {
+    // console.log(i);
+    this.convertCanvasTensor(i).then(
+      t => {
+        const prediction = this.customModel.predict(t);
+        this.resultsCustom = Array.from(prediction.dataSync());
+        this.barChartDataCustom[0].data = this.resultsCustom;
+        this.predictionCustom = this.labelData(this.resultsCustom);
         // console.log(this.results);
       });
   }
