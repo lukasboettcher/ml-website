@@ -93,6 +93,48 @@
     <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
 
+
+
+  <div class="row justify-content-center mt-5 mb-4" *ngIf="stages[1]">
+    <div class="col-md-8">
+      <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 4</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Wie gut funktioniert das selbst trainierte Netz im Vergleich zum Vortrainierten? Unterscheide dabei zwischen
+            der tatsächlichen Vorhersage und der Sicherheit dieser Vorhersage.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 5</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Experimentiere mit verschiedenen Werten beim Training und prüfe, ob sich die Genauigkeit verbessert. Wie
+            könnte man möglichst systematisch prüfen, wie gut ein trainiertes Netz am Ende funktioniert um die optimalen
+            Parameter zu ermitteln?
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 6</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Versuche anhand des bisher gesehenen zu beschreiben, was man alles tun muss, damit ein neuronales Netz
+            Gesichter auf Bildern erkennt.
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
   <!-- <div class="row my-5"> old model chooser
     <div class="col-md-8">
       <h2>Modell auswählen</h2>
