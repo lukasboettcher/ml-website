@@ -12,6 +12,9 @@ import { Label } from 'ng2-charts';
 export class MnistComponent implements OnInit {
 
   // vars for state of component
+  // also use stages for mnist parent component
+  stages: boolean[] = new Array(4).fill(false);
+  currentlyLoading = false;
   doTutorial: boolean = null;
   modelLoaded = '';
   gotCustomModel = false;
@@ -50,6 +53,7 @@ export class MnistComponent implements OnInit {
 
   // handle model loading
   async loadPretrainedModel(): Promise<void> {
+    this.currentlyLoading = true;
     console.log('loading pretrained model...');
     const path = 'assets/tfjs-models/mnist-recognition/model.json';
 
@@ -58,14 +62,18 @@ export class MnistComponent implements OnInit {
         this.model = loadedModel;
         console.log('loaded pretrained model');
         this.modelLoaded = 'pre';
+        this.currentlyLoading = false;
+        this.stages[0] = true;
       })
       .catch(e => console.log('failed to load model: ' + e));
   }
   async loadCustomModel(): Promise<void> {
+    this.currentlyLoading = true;
     console.log('loading custom model...');
     this.model = this.customModel;
     this.modelLoaded = 'custom';
     console.log('loaded custom model...');
+    this.currentlyLoading = false;
   }
   importCustomModel(model: any): void {
     this.customModel = model;
