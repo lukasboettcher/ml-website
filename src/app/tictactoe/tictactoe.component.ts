@@ -85,7 +85,6 @@ export class TictactoeComponent implements OnInit {
         alert("Super! Du bist mit allen Aufgaben fertig!")
         break
       default:
-        console.log("test")
         break
 
     }
