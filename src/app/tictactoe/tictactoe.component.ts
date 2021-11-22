@@ -68,16 +68,19 @@ export class TictactoeComponent implements OnInit {
         $('#nav-1d_tab').removeClass("disabled").click()
         break
       case id.localeCompare("check1d") == 0 && checked:
-        $('#nav-1d_tab').removeClass("active")
-        $('#nav-1e_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1e") == 0 && checked:
-        $('#nav-1e_tab').removeClass("active")
-        $('#nav-1f_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1f") == 0 && checked:
         $('#task2').show()
         break
+      // case id.localeCompare("check1d") == 0 && checked:
+      //   $('#nav-1d_tab').removeClass("active")
+      //   $('#nav-1e_tab').removeClass("disabled").click()
+      //   break
+      // case id.localeCompare("check1e") == 0 && checked:
+      //   $('#nav-1e_tab').removeClass("active")
+      //   $('#nav-1f_tab').removeClass("disabled").click()
+      //   break
+      // case id.localeCompare("check1f") == 0 && checked:
+      //   $('#task2').show()
+      //   break
       case id.localeCompare("check2") == 0 && checked:
         $('#task3').show()
         break

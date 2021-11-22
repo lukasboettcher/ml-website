@@ -10,7 +10,7 @@
     <div class="row my-3 align-items-center">
         <div class="col-md-10">
             <h4>Aufgabe 1:</h4>
-            <p>Spiele 30 Spiele und betrachte dabei in jedem Zug den Spielbaum, der rechts dargestellt wird, genau. Beantworte dabei die folgenden Fragen.
+            <p>Spiele 30 Spiele und betrachte dabei in jedem Zug den Spielbaum, der rechts dargestellt wird, und das Koordinatensystem, das unter dem Spielfeld dargstellt wird, genau. Beantworte währenddessen die folgenden Fragen.
                 <br/>
                  <strong>Hinweis:</strong> Achte darauf, dass du auch mindestens einmal „absichtlich“ verlierst und unentschieden spielst.</p>
         </div>
@@ -23,14 +23,14 @@
                   <a class="nav-link disabled" id="nav-1b_tab" data-toggle="tab" href="#nav-1b_task" role="tab" aria-controls="nav-1b" aria-selected="false"><b>b)</b></a>
                   <a class="nav-link disabled" id="nav-1c_tab" data-toggle="tab" href="#nav-1c_task" role="tab" aria-controls="nav-1c" aria-selected="false"><b>c)</b></a>
                   <a class="nav-link disabled" id="nav-1d_tab" data-toggle="tab" href="#nav-1d_task" role="tab" aria-controls="nav-1d" aria-selected="false"><b>d)</b></a>
-                  <a class="nav-link disabled" id="nav-1e_tab" data-toggle="tab" href="#nav-1e_task" role="tab" aria-controls="nav-1e" aria-selected="false"><b>e)</b></a>
-                  <a class="nav-link disabled" id="nav-1f_tab" data-toggle="tab" href="#nav-1f_task" role="tab" aria-controls="nav-1f_task" aria-selected="false"><b>f)</b></a>
+                  <!-- <a class="nav-link disabled" id="nav-1e_tab" data-toggle="tab" href="#nav-1e_task" role="tab" aria-controls="nav-1e" aria-selected="false"><b>e)</b></a>
+                  <a class="nav-link disabled" id="nav-1f_tab" data-toggle="tab" href="#nav-1f_task" role="tab" aria-controls="nav-1f_task" aria-selected="false"><b>f)</b></a> -->
                 </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-1a_task" role="tabpanel" aria-labelledby="nav-home-tab">
                     <p>
-                        Was wird in den Zeilen mit dem Buchstaben A und was wird in den Zeilen mit dem Buchstaben S angezeigt? Fällt dir etwas Besonderes an den Zeilen mit Buchstaben A auf? Wenn ja, was und welchen Grund könnte dies haben?
+                        Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim Spielen auffällt. 
                     </p>
                     <div class="form-check">
                         <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1a" (change)="fieldsChange($event)">
@@ -41,7 +41,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-1b_task" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <p>
-                        Wählt der Agent in jedem Spiel den gleichen Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.
+                        Versuche in mehreren Spielen dieselbe Spielsituation zu erzeugen. Wählt der Agent in jedem Spiel denselben Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.
                     </p>
                     <div class="form-check">
                         <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1b" (change)="fieldsChange($event)">
@@ -52,7 +52,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-1c_task" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <p>
-                        Wenn du ein Spiel verloren hast, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
+                        Was passiert mit dem Spielbaum und der Kurve am Ende eines Spiels - wenn man gewinnt, verliert oder unentschieden spielt?
                     </p>
                     <div class="form-check">
                         <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1c" (change)="fieldsChange($event)">
@@ -63,7 +63,7 @@
                 </div>
                 <div class="tab-pane fade" id="nav-1d_task" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <p>
-                        Wenn ein Spiel unentschieden ausgegangen ist, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
+                        Was lässt sich aus diesen Veränderungen des Spielbaums und der Kurve schließen?
                     </p>
                     <div class="form-check">     
                         <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1d" (change)="fieldsChange($event)">
@@ -72,7 +72,7 @@
                         </label>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="nav-1e_task" role="tabpanel" aria-labelledby="nav-contact-tab">
+                <!-- <div class="tab-pane fade" id="nav-1e_task" role="tabpanel" aria-labelledby="nav-contact-tab">
                     <p>
                         Wenn du ein Spiel gewonnen hast, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
                     </p>
@@ -93,14 +93,14 @@
                           Fertig?
                         </label>
                       </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
     <div class="row my-3 align-items-center" id="task2" style="display: none;">
         <div class="col-md-10">
             <h4>Aufgabe 2:</h4>
-            <p>Versuche nun ausgehend von deinen Beobachtungen zu beschreiben, wie der Agent spielt. Gehe dabei insbesondere darauf ein, wie sich das Verhalten mit der Anzahl der Spiele möglicherweise verändert. Beantworte dann, ob der Agent nach einer Vielzahl von Spielen noch verlieren kann. Begründe deine Antwort.
+            <p>Versuche nun ausgehend von deinen Beobachtungen zu beschreiben, wie der Agent spielt und lernt. Gehe dabei insbesondere darauf ein, wie sich das Verhalten mit der Anzahl der Spiele möglicherweise verändert. Beantworte dann, ob der Agent nach einer Vielzahl von Spielen noch verlieren kann. Begründe deine Antwort.
             </p>
             <div class="form-check">
                 <input class="form-check-input myCheckbox" type="checkbox" value="" id="check2" (change)="fieldsChange($event)">
@@ -113,7 +113,7 @@
     <div class="row my-3 align-items-center" id="task3"  style="display: none;">
         <div class="col-md-10">
             <h4>Aufgabe 3:</h4>
-            <p>Versuche nun, ausgehend von deiner Beschreibung, einen Algorithmus in natürlicher Sprache zu formulieren, der den Spielablauf beschreibt.
+            <p>Versuche nun, ausgehend von deiner Beschreibung, einen Algorithmus in natürlicher Sprache zu formulieren, der das Verhalten des Agenten beschreibt.
             </p>
             <div class="form-check">
                 <input class="form-check-input myCheckbox" type="checkbox" value="" id="check3" (change)="fieldsChange($event)">
