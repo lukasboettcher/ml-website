@@ -130,13 +130,19 @@
     <div class="row flex-nowrap">
         <!--Kontrollelemente -->
         <div class="col-md" style="text-align: center;">
-            <button id="restart" type="button" class="btn btn-primary buttons" [disabled]="buttonsDisabled" (click)="resetGame()">Neues Spiel</button>
+            <button id="restart" type="button" class="btn btn-primary buttons" [disabled]="buttonsDisabled" (click)="resetGame()">Neues Spiel
+                <span class="tooltiptext">Startet ein neues Spiel</span>
+            </button>
         </div>
         <div class="col-md" style="text-align: center;">
-            <button id="perfectAgent" type="button" class="btn btn-primary buttons" [disabled]="buttonsDisabled" (click)="perfectAgentPlay()">Optimales Spiel</button>
+            <button id="perfectAgent" type="button" class="btn btn-primary buttons" [disabled]="buttonsDisabled" (click)="perfectAgentPlay()">Optimales Spiel
+                <span class="tooltiptext">Spielt automatisch mit der besten Stategie</span>
+            </button>
         </div>
         <div class="col-md" style="text-align: center;">
-            <button id="reset" type="button" class="btn btn-warning buttons" [disabled]="buttonsDisabled" (click)="resetAll()">Zurücksetzen</button>
+            <button id="reset" type="button" class="btn btn-warning buttons" [disabled]="buttonsDisabled" (click)="resetAll()">Zurücksetzen
+                <span class="tooltiptext">Setzt alle Spiele und den Agenten in den Anfangszustand zurück</span>
+            </button>
         </div>
     </div>
     <div class="row flex-nowrap" style="margin-top: 5%;">
