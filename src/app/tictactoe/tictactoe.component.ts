@@ -68,16 +68,19 @@ export class TictactoeComponent implements OnInit {
         $('#nav-1d_tab').removeClass("disabled").click()
         break
       case id.localeCompare("check1d") == 0 && checked:
-        $('#nav-1d_tab').removeClass("active")
-        $('#nav-1e_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1e") == 0 && checked:
-        $('#nav-1e_tab').removeClass("active")
-        $('#nav-1f_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1f") == 0 && checked:
         $('#task2').show()
         break
+      // case id.localeCompare("check1d") == 0 && checked:
+      //   $('#nav-1d_tab').removeClass("active")
+      //   $('#nav-1e_tab').removeClass("disabled").click()
+      //   break
+      // case id.localeCompare("check1e") == 0 && checked:
+      //   $('#nav-1e_tab').removeClass("active")
+      //   $('#nav-1f_tab').removeClass("disabled").click()
+      //   break
+      // case id.localeCompare("check1f") == 0 && checked:
+      //   $('#task2').show()
+      //   break
       case id.localeCompare("check2") == 0 && checked:
         $('#task3').show()
         break
@@ -264,7 +267,7 @@ export class TictactoeComponent implements OnInit {
       } else {
         offset.x = (height - dimension) / 2;
       }
-      dimension = parseInt($('#board_section').css('width'), 10)*0.8
+      dimension = parseInt($('#board_section').css('width'), 10)*0.6
       canvas = p.createCanvas(dimension, dimension);
 
       //const x = canvas.position().x + offset.x / 2;
@@ -323,7 +326,7 @@ export class TictactoeComponent implements OnInit {
 
     p.setup = () => {
       //const height = document.getElementById('tree').clientHeight;
-      const widthScale = 0.75
+      const widthScale = 0.6
       width = parseInt($('#tree_area').css('width'),10)*widthScale
       
       boardDimension = (3*width) / 29
