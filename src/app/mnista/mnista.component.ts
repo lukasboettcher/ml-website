@@ -3,6 +3,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Tensor } from '@tensorflow/tfjs';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-mnista',
@@ -56,6 +57,10 @@ export class MnistAComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  ngAfterViewInit():void {
+    // other stuffs
+    $('app-navbar').hide()
   }
 
   // handle model loading
