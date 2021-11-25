@@ -130,8 +130,14 @@ export class LandscapeComponent implements OnInit {
     fetch('https://btchr.de/gan/submit', {
       method: 'post',
       body: new URLSearchParams({
-        imageBase64: dataURL,
-        name: uuid
+        masked_segmap: dataURL,
+        style_name: style,
+        name: uuid,
+        enable_seg: 'true',
+        enable_edge: 'false',
+        enable_caption: 'false',
+        enable_image: 'false',
+        use_model2: 'true'
       })
     }).then((res) => {
       if (res.ok) {
@@ -139,8 +145,7 @@ export class LandscapeComponent implements OnInit {
         fetch('https://btchr.de/gan/receive', {
           method: 'post',
           body: new URLSearchParams({
-            name: uuid,
-            style_name: style
+            name: uuid
           })
         }).then(imageResponse => imageResponse.blob())
           .then(createImageBitmap)
