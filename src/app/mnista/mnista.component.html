@@ -1,0 +1,176 @@
+<div class="container" style="margin-top: 3%;">
+  <div class="row mb-3">
+    <div class="col-auto">
+      <h3>MNIST Zahlenerkennung</h3>
+      <p>
+        In diesem Teil der Webseite kannst du mit einem neuronalen Netz experimentieren, dass handschriftliche Ziffern
+        erkennt. Diese Technik kommt zum Beispiel bei der automatischen Sortierung von Briefen zum Einsatz.
+      </p>
+      <p>
+        Neuronale Netze müssen anhand von vielen Daten für Ihren späteren Einsatzzweck trainiert werden. Du wirst hier
+        zuerst ein schon fertig trainiertes Netz verwenden und kannst dann auch den Trainingsprozess selbst ein wenig
+        genauer unter die Lupe nehmen.
+      </p>
+      <div class="text-center">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+          (click)="loadPretrainedModel()">Okay, los geht's
+          <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="stages[0]" class="my-5">
+    <p>
+      Male hier mit deiner Maus (oder einem Finger oder Stift bei einem Touchscreen) eine Ziffer in das Feld und klicke
+      Auswerten um zu sehen, welche Ziffer das Netz erkennt.
+    </p>
+    <!-- draw area -->
+    <div class="row my-5 justify-content-around" *ngIf="modelLoaded">
+      <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
+      <div class="col-md ml-3">
+        <div style="max-width: 800px;">
+          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
+        </div>
+      </div>
+    </div>
+    <!-- /draw area -->
+
+    <div class="row justify-content-center my-3">
+      <div class="col-md-8">
+        <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 1</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Was bedeutet die grafische Anzeige der Auswertung und wie wird die darunter angezeigte Vorhersage daraus
+              ermittelt? Wie kannst du deine Vermutung überprüfen?
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 2</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Versuche eine Eingabe für das neuronale Netz (also eine gemalte Ziffer) zu erzeugen, bei der sich das Netz
+              nicht eindeutig entscheiden kann und eine andere Eingabe bei der die Entscheidung sehr eindeutig ist.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel>
+            <ng-template ngbPanelTitle>
+              <span>
+                <h4>Aufgabe 3</h4>
+              </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              Male verschiedene Ziffern auf ein Blatt Papier und merke dir, welche Ziffer du jeweils meintest. Lass dann
+              jemand anderen deine Ziffern erkennen. Wieviele Fehler hat die Person gemacht? Wieviele Fehler macht das
+              neuronale Netz, wenn du die Ziffern so genau wie möglich in der Zeichenfläche nachzeichnest?
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+
+    <div class="row justify-content-center my-3">
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': stages[1]}"
+          (click)="stages[1] = true">Das Netz selbst trainieren
+          <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-3" *ngIf="stages[1]">
+    <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
+  </div>
+
+  <div class="my-3" *ngIf="stages[1]">
+    <!-- draw area own model-->
+    <div class="row my-5 justify-content-around" *ngIf="stages[1] && customModel">
+      <app-draw-digit [modelLoaded]="customModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
+      <div class="col-md ml-3">
+        <div style="max-width: 800px;">
+          <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
+            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
+          </canvas>
+          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{predictionCustom}}</span></h4>
+        </div>
+      </div>
+    </div>
+    <!-- /draw area own model-->
+  </div>
+
+
+  <div class="row justify-content-center mt-5 mb-4" *ngIf="stages[1] && gotCustomModel">
+    <div class="col-md-8">
+      <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 4</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Wie gut funktioniert das selbst trainierte Netz im Vergleich zum Vortrainierten? Unterscheide dabei zwischen
+            der tatsächlichen Vorhersage und der Sicherheit dieser Vorhersage.
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 5</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Experimentiere mit verschiedenen Werten beim Training und prüfe, ob sich die Genauigkeit verbessert. Wie
+            könnte man möglichst systematisch prüfen, wie gut ein trainiertes Netz am Ende funktioniert um die optimalen
+            Parameter zu ermitteln?
+          </ng-template>
+        </ngb-panel>
+        <ngb-panel>
+          <ng-template ngbPanelTitle>
+            <span>
+              <h4>Aufgabe 6</h4>
+            </span>
+          </ng-template>
+          <ng-template ngbPanelContent>
+            Versuche anhand des bisher gesehenen zu beschreiben, was man alles tun muss, damit ein neuronales Netz
+            Gesichter auf Bildern erkennt.
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    </div>
+  </div>
+
+  <!-- <div class="row my-5"> old model chooser
+    <div class="col-md-8">
+      <h2>Modell auswählen</h2>
+      <p>
+        Hier kann ausgewählt werden, ob ein vortrainiertes Modell verwendet werden soll, oder ein Modell, welches durch
+        das Tutorial selbst erstellt wurde.
+      </p>
+      <p>
+        Wenn du die Erkennung nur ausprobieren möchtest, kannst du auch direkt das vortrainierte Modell verwenden.
+      </p>
+    </div>
+    <div class="col-md-4 align-self-center">
+      <div class="btn-group-vertical">
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'custom'}"
+          [disabled]="!gotCustomModel" (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein
+          Selbsterstelltes Modell'}}</button>
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+          (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
+      </div>
+    </div>
+  </div> -->
+
+</div>
