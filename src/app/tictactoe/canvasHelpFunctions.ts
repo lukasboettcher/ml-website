@@ -245,10 +245,10 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
  * @param boardArray the array with all board which should be drawn in this row.
  * @param index index of the place of the boardArray in the situations global var.
  * @param width the complete width of the canvas.
- * @param offsetWidth where the first board should be draw.
+ * @param offset where the first board should be draw.
  */
 async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, index, width,
-                            offsetWidth, situationsInCurrentGame): Promise<void> {
+                            offset, situationsInCurrentGame): Promise<void> {
     try {
 
         let posX = startX;
@@ -276,22 +276,22 @@ async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, 
                 }
 
                 const previousXStart = (width - situationsInCurrentGame[index - 1].length *
-                    boardDimension - (situationsInCurrentGame[index - 1].length - 1) * offsetWidth) / 2;
+                    boardDimension - (situationsInCurrentGame[index - 1].length - 1) * offset) / 2;
                 canvas.strokeWeight(1);
-                canvas.line(startX + (1 / 2) * boardDimension + i * (offsetWidth + boardDimension),
-                    startY, previousXStart + boardDimension / 2 + (yAxis) * (boardDimension + offsetWidth), startY - 2 * offsetWidth);
+                canvas.line(startX + (1 / 2) * boardDimension + i * (offset + boardDimension),
+                    startY, previousXStart + boardDimension / 2 + (yAxis) * (boardDimension + offset), startY - offset);
 
 
             } else {
                 if (boardArray[i][1] !== 0) {
                     canvas.strokeWeight(1);
                     canvas.line(startX + (1 / 2) * boardDimension + i *
-                        (offsetWidth + boardDimension), startY, (1 / 2) * width, startY - 2 * offsetWidth);
+                        (offset + boardDimension), startY, (1 / 2) * width, startY - offset);
                 }
             }
 
             await timeout(timer);
-            posX += boardDimension + offsetWidth;
+            posX += boardDimension + offset;
         }
     } catch (err) {
         // nothing todo because than just the visualization hasnt finished. New Game will fix it.

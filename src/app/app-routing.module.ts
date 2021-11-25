@@ -5,6 +5,8 @@ import { CartpoleComponent } from './cartpole/cartpole.component';
 import { ObjDetectionComponent } from './obj-detection/obj-detection.component';
 import { HomeComponent } from './home/home.component';
 import { MnistComponent } from './mnist/mnist.component';
+import { MnistAComponent } from './mnista/mnista.component';
+import { MnistBComponent } from './mnistb/mnistb.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { NotfoundComponent } from './help/notfound/notfound.component';
 import { LandscapeComponent } from './gans/landscape/landscape.component';
@@ -19,6 +21,8 @@ const routes: Routes = [
   { path: 'cartpole', component: CartpoleComponent },
   { path: 'object', component: ObjDetectionComponent },
   { path: 'mnist', component: MnistComponent },
+  { path: 'mnista', component: MnistAComponent },
+  { path: 'mnistb', component: MnistBComponent },
   { path: 'classify', component: ClassifyComponent },
   { path: 'gan-landscpe', component: LandscapeComponent },
   { path: 'gan-transfer', component: GanTransferComponent },
