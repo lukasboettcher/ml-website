@@ -19,7 +19,7 @@ export class LandscapeComponent implements OnInit {
   activeCategory: string;
   canvasColor = '#9ceedd';
   canvasBrushWidth = 24;
-  canvasWidth = 512;
+  canvasWidth = 1024;
 
   categories = {
     categories: [
@@ -111,7 +111,7 @@ export class LandscapeComponent implements OnInit {
 
   @HostListener('window:resize', [])
   onResize(): void {
-    const calculatedNewWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 512);
+    const calculatedNewWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 1024);
 
     // only reset the canvas, if width - this implies scaling - is changed
     if (this.canvasWidth !== calculatedNewWidth) {
