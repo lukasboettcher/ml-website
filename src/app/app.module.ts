@@ -15,8 +15,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HelpButtonComponent } from './help/help-button/help-button.component';
 import { HomeHelpComponent } from './home/home-help/home-help.component';
 import { MnistComponent } from './mnist/mnist.component';
-import { MnistAComponent } from './mnista/mnista.component';
-import { MnistBComponent } from './mnistb/mnistb.component';
 import { DrawDigitComponent } from './mnist/draw-digit/draw-digit.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { MazeComponent } from './classify/maze/maze.component';
@@ -49,8 +47,6 @@ import { TictactoeComponent } from './tictactoe/tictactoe.component';
     HelpButtonComponent,
     HomeHelpComponent,
     MnistComponent,
-    MnistAComponent,
-    MnistBComponent,
     DrawDigitComponent,
     ClassifyComponent,
     MazeComponent,

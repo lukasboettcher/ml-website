@@ -5,8 +5,6 @@ import { CartpoleComponent } from './cartpole/cartpole.component';
 import { ObjDetectionComponent } from './obj-detection/obj-detection.component';
 import { HomeComponent } from './home/home.component';
 import { MnistComponent } from './mnist/mnist.component';
-import { MnistAComponent } from './mnista/mnista.component';
-import { MnistBComponent } from './mnistb/mnistb.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { NotfoundComponent } from './help/notfound/notfound.component';
 import { LandscapeComponent } from './gans/landscape/landscape.component';
