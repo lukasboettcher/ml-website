@@ -1,5 +1,16 @@
 <div class="container">
-  <div class="row mb-3">
+  <!-- only display this prompt for the mooc in mnistb -->
+  <div class="row mb-3" *ngIf="inPath('mnistb')">
+    <div class="col text-center">
+      <h4>
+        Lies zunächst das Kapitel über neuronale Netze des <a href="https://course.elementsofai.com/de/5" target="_blank">Elements of AI
+          Kurses</a> durch.
+        </h4>
+      <button type="button" class="btn btn-primary" (click)="mnistbReadFirst = true" [ngClass]="{'btn-success': mnistbReadFirst}">Fertig?</button>
+    </div>
+  </div>
+
+  <div class="row mb-3" *ngIf="mnistbReadFirst">
     <div class="col-auto">
       <h3>MNIST Zahlenerkennung</h3>
       <p>
