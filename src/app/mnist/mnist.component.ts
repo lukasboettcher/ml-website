@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
 import { Tensor } from '@tensorflow/tfjs';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
@@ -51,7 +52,7 @@ export class MnistComponent implements OnInit {
     { data: [], label: 'Wahrscheinlichkeiten' }
   ];
 
-  constructor() {
+  constructor(private router: Router) {
     this.results = null;
   }
 
