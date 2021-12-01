@@ -11,8 +11,13 @@ export class AppComponent {
 
   constructor(private router: Router) { }
 
-  inPath(s: string): boolean {
-    return this.router.url.includes(s);
+  inPath(...args: any[]): boolean {
+    for (const arg of args) {
+      if (this.router.url.includes(arg)) {
+        return true;
+      }
+    }
+    return false;
   }
 
 }
