@@ -1,8 +1,8 @@
 <div class="container bg-light main-body">
   <!-- Navbar always visible, except in case of a survey url -->
   <app-navbar *ngIf="!inPath('mnista', 'mnistb')"></app-navbar>
-  <div class="row" [ngClass]="{'mt-4': inPath('mnista', 'mnistb')}">
-    <div class="col">
+  <div class="row">
+    <div class="col" [ngClass]="{'mt-4': inPath('mnista', 'mnistb')}">
       <!-- display components from router here -->
       <router-outlet></router-outlet>
     </div>
