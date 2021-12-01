@@ -11,7 +11,7 @@ export class AppComponent {
 
   constructor(private router: Router) { }
 
-  isSurvey(s: string): boolean {
+  inPath(s: string): boolean {
     return this.router.url.includes(s);
   }
 
