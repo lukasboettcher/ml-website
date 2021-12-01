@@ -59,6 +59,15 @@ export class MnistComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  inPath(...args: any[]): boolean {
+    for (const arg of args) {
+      if (this.router.url.includes(arg)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   // handle model loading
   async loadPretrainedModel(): Promise<void> {
     this.currentlyLoading = true;
