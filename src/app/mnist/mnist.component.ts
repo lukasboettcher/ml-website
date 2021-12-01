@@ -19,6 +19,7 @@ export class MnistComponent implements OnInit {
   doTutorial: boolean = null;
   modelLoaded = '';
   gotCustomModel = false;
+  mnistbReadFirst = false;
 
   // vars for models and results
   private model: any;
@@ -54,6 +55,11 @@ export class MnistComponent implements OnInit {
 
   constructor(private router: Router) {
     this.results = null;
+
+    // if not in mnistb, set the read flag to true
+    if (!this.inPath('mnistb')) {
+      this.mnistbReadFirst = true;
+    }
   }
 
   ngOnInit(): void {
