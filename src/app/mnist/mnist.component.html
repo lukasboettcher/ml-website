@@ -147,7 +147,7 @@
             Parameter zu ermitteln?
           </ng-template>
         </ngb-panel>
-        <ngb-panel *ngIf="!inPath('mnista', 'mnistb')">
+        <ngb-panel *ngIf="false">
           <ng-template ngbPanelTitle>
             <span>
               <h4>Aufgabe 6</h4>
@@ -172,10 +172,10 @@
 
       <!-- survey link -->
       <div class="mt-3 text-center" *ngIf="inPath('mnista', 'mnistb')">
-        <h4>
+        <h2>
           <a href="https://levumi.informatik.uni-kiel.de/limesurvey/index.php/954851" target="_blank">Fertig? Dann
             beantworte jetzt abschließend bitte kurz einige Fragen in der folgenden anonymen Befragung.</a>
-        </h4>
+        </h2>
       </div>
     </div>
   </div>
