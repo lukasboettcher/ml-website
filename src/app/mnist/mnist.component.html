@@ -147,7 +147,7 @@
             Parameter zu ermitteln?
           </ng-template>
         </ngb-panel>
-        <ngb-panel>
+        <ngb-panel *ngIf="!inPath('mnista', 'mnistb')">
           <ng-template ngbPanelTitle>
             <span>
               <h4>Aufgabe 6</h4>
