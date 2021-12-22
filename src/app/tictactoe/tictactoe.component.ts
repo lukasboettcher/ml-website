@@ -24,6 +24,19 @@ export class TictactoeComponent implements OnInit {
   situationsInCurrentGame = [];
   // colorMode = 'red-green';
   buttonsDisabled = false;
+  taskProgress = 1;
+  taskOneNav = 1;
+
+  tasks = [
+    { id: 1, title: 'a)', text: 'Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim Spielen auffällt.' },
+    { id: 2, title: 'b)', text: 'Versuche in mehreren Spielen dieselbe Spielsituation zu erzeugen. Wählt der Agent in jedem Spiel denselben Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.' },
+    { id: 3, title: 'c)', text: 'Was passiert mit dem Spielbaum und der Kurve am Ende eines Spiels - wenn man gewinnt, verliert oder unentschieden spielt?' },
+    { id: 4, title: 'd)', text: 'Was lässt sich aus diesen Veränderungen des Spielbaums und der Kurve schließen?' },
+    // {
+    //   id: 5, title: 'e)', text: `Wenn du ein Spiel gewonnen hast, beschreibe, was mit dem Spielbaum passiert.
+    //           Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?`
+    // },
+  ];
 
   constructor() {
     this.agent = new Agent(1, 2);
@@ -41,6 +54,11 @@ export class TictactoeComponent implements OnInit {
     }
   }
 
+  advanceTask(): void {
+    this.taskProgress++;
+    this.taskOneNav = Math.min(this.taskProgress, this.tasks.length);
+  }
+
   async initCanvases(): Promise<any> {
     this.situationsInCurrentGame = [];
     this.situationsInCurrentGame.push([[this.board.deepCopy(), 1]]);
@@ -54,15 +72,15 @@ export class TictactoeComponent implements OnInit {
   fieldsChange(values: any): void {
     const checked = values.currentTarget.checked;
     const id = values.currentTarget.id;
-    switch (true){
+    switch (true) {
       case id.localeCompare('check1a') === 0 && checked:
-          $('#nav-1a_tab').removeClass('active');
-          $('#nav-1b_tab').removeClass('disabled').click();
-          break;
+        $('#nav-1a_tab').removeClass('active');
+        $('#nav-1b_tab').removeClass('disabled').click();
+        break;
       case id.localeCompare('check1b') === 0 && checked:
-          $('#nav-1b_tab').removeClass('active');
-          $('#nav-1c_tab').removeClass('disabled').click();
-          break;
+        $('#nav-1b_tab').removeClass('active');
+        $('#nav-1c_tab').removeClass('disabled').click();
+        break;
       case id.localeCompare('check1c') === 0 && checked:
         $('#nav-1c_tab').removeClass('active');
         $('#nav-1d_tab').removeClass('disabled').click();
