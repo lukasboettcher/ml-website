@@ -210,6 +210,12 @@
                 Genauigkeit des Modells, also wie viel Prozent der Bilder korrekt zugeordnet wurden, gespeichert.
                 Außerdem wird abschließend das letzte Ergebnis des Trainings und des Tests angezeigt.
             </p> -->
+
+            <ngb-alert *ngIf="trainingRunning && !hideTrainWarn" [dismissible]="true" (closed)="hideTrainWarn = true">
+                <strong>Achtung!</strong> Während des Trainings kann es dazu kommen, dass der
+                Webbrowser einfriert. In dem Fall einfach kurz warten. Falls sich nach 10 Sekunden nichts verändert, schließe den Browsertab und lade die Seite erneut.
+            </ngb-alert>
+
             <div class="d-flex justify-content-center">
                 <button type="submit" class="btn btn-primary my-2"
                     [disabled]="!stages[1] || (trainingRunning && !trainingDone)" [ngClass]="{'btn-success': stages[2]}"
