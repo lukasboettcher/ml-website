@@ -55,19 +55,19 @@ export class TictactoeComponent implements OnInit {
     const checked = values.currentTarget.checked;
     const id = values.currentTarget.id;
     switch (true){
-      case id.localeCompare('check1a') == 0 && checked:
+      case id.localeCompare('check1a') === 0 && checked:
           $('#nav-1a_tab').removeClass('active');
           $('#nav-1b_tab').removeClass('disabled').click();
           break;
-      case id.localeCompare('check1b') == 0 && checked:
+      case id.localeCompare('check1b') === 0 && checked:
           $('#nav-1b_tab').removeClass('active');
           $('#nav-1c_tab').removeClass('disabled').click();
           break;
-      case id.localeCompare('check1c') == 0 && checked:
+      case id.localeCompare('check1c') === 0 && checked:
         $('#nav-1c_tab').removeClass('active');
         $('#nav-1d_tab').removeClass('disabled').click();
         break;
-      case id.localeCompare('check1d') == 0 && checked:
+      case id.localeCompare('check1d') === 0 && checked:
         $('#task2').show();
         break;
       // case id.localeCompare("check1d") == 0 && checked:
@@ -81,10 +81,10 @@ export class TictactoeComponent implements OnInit {
       // case id.localeCompare("check1f") == 0 && checked:
       //   $('#task2').show()
       //   break
-      case id.localeCompare('check2') == 0 && checked:
+      case id.localeCompare('check2') === 0 && checked:
         $('#task3').show();
         break;
-      case id.localeCompare('check3') == 0 && checked:
+      case id.localeCompare('check3') === 0 && checked:
         alert('Super! Du bist mit allen Aufgaben fertig!');
         break;
       default:
@@ -335,8 +335,8 @@ export class TictactoeComponent implements OnInit {
       // Damit es nicht so komisch aussieht height aus width berechnen?
       p.createCanvas(width, height);  // 1150);
 
-      offsetWidth = offset;// 20;
-      offsetHeight = offset;// 2 * offsetWidth;
+      offsetWidth = offset; // 20;
+      offsetHeight = offset; // 2 * offsetWidth;
       // boardDimension = //Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
       const agentColor = { r: 220, g: 220, b: 220 }; // { r: 255, g: 229, b: 204 };
       const playerColor = { r: 248, g: 249, b: 250 };
