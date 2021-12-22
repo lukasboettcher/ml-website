@@ -11,6 +11,8 @@
             </p>
         </div>
     </div>
+
+    <!-- task 1 -->
     <div class="row my-3 align-items-center">
         <div class="col-md-10">
             <h4>Aufgabe 1:</h4>
@@ -116,6 +118,29 @@
             </div>
         </div>
     </div>
+
+    <ul ngbNav #nav="ngbNav" [activeId]="taskOneNav" class="nav-tabs">
+        <li *ngFor="let task of tasks" [ngbNavItem]="task.id" [disabled]="task.id > taskProgress">
+            <a ngbNavLink><b>{{task.title}}</b></a>
+            <ng-template ngbNavContent>
+
+                <div class="tab-pane fade show active" id="nav-1a_task" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <p>
+                        {{task.text}}
+                    </p>
+                    <div class="form-check">
+                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1a"
+                            [ngModel]="task.id < taskProgress" (change)="advanceTask()">
+                        <label class="form-check-label myCheckboxLabel" for="check1a">
+                            Fertig?
+                        </label>
+                    </div>
+                </div>
+            </ng-template>
+        </li>
+    </ul>
+
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
     <!-- task 2 -->
     <div class="row my-3 align-items-center" id="task2" style="display: none;">
