@@ -24,8 +24,13 @@ export class TictactoeComponent implements OnInit {
   situationsInCurrentGame = [];
   // colorMode = 'red-green';
   buttonsDisabled = false;
+
+  // state for the task progression
+  // hardcode the total number of tasks for now
+  // might change in the future
   taskProgress = 1;
   taskOneNav = 1;
+  numberOfTasks = 6;
 
   tasks = [
     { id: 1, title: 'a)', text: 'Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim Spielen auffällt.' },
@@ -57,6 +62,11 @@ export class TictactoeComponent implements OnInit {
   advanceTask(): void {
     this.taskProgress++;
     this.taskOneNav = Math.min(this.taskProgress, this.tasks.length);
+
+    // if the user marked all tasks as done, display alert
+    if (this.taskProgress === this.numberOfTasks + 1) {
+      alert('Super! Du bist mit allen Aufgaben fertig!');
+    }
   }
 
   async initCanvases(): Promise<any> {
