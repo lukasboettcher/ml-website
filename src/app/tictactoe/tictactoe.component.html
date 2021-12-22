@@ -25,99 +25,6 @@
             </p>
         </div>
     </div>
-    <div class="row my-3 align-items-center">
-        <div class="col-md-10">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-link active" id="nav-1a_tab" data-toggle="tab" href="#nav-1a_task" role="tab"
-                        aria-controls="nav-1a" aria-selected="true"><b>a)</b></a>
-                    <a class="nav-link disabled" id="nav-1b_tab" data-toggle="tab" href="#nav-1b_task" role="tab"
-                        aria-controls="nav-1b" aria-selected="false"><b>b)</b></a>
-                    <a class="nav-link disabled" id="nav-1c_tab" data-toggle="tab" href="#nav-1c_task" role="tab"
-                        aria-controls="nav-1c" aria-selected="false"><b>c)</b></a>
-                    <a class="nav-link disabled" id="nav-1d_tab" data-toggle="tab" href="#nav-1d_task" role="tab"
-                        aria-controls="nav-1d" aria-selected="false"><b>d)</b></a>
-                    <!-- <a class="nav-link disabled" id="nav-1e_tab" data-toggle="tab" href="#nav-1e_task" role="tab" aria-controls="nav-1e" aria-selected="false"><b>e)</b></a>
-                  <a class="nav-link disabled" id="nav-1f_tab" data-toggle="tab" href="#nav-1f_task" role="tab" aria-controls="nav-1f_task" aria-selected="false"><b>f)</b></a> -->
-                </div>
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-1a_task" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <p>
-                        Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim
-                        Spielen auffällt.
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1a"
-                            (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1a">
-                            Fertig?
-                        </label>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-1b_task" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <p>
-                        Versuche in mehreren Spielen dieselbe Spielsituation zu erzeugen. Wählt der Agent in jedem Spiel
-                        denselben Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1b"
-                            (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1b">
-                            Fertig?
-                        </label>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-1c_task" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <p>
-                        Was passiert mit dem Spielbaum und der Kurve am Ende eines Spiels - wenn man gewinnt, verliert
-                        oder unentschieden spielt?
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1c"
-                            (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1c">
-                            Fertig?
-                        </label>
-                    </div>
-                </div>
-                <div class="tab-pane fade" id="nav-1d_task" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <p>
-                        Was lässt sich aus diesen Veränderungen des Spielbaums und der Kurve schließen?
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1d"
-                            (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1d">
-                            Fertig?
-                        </label>
-                    </div>
-                </div>
-                <!-- <div class="tab-pane fade" id="nav-1e_task" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <p>
-                        Wenn du ein Spiel gewonnen hast, beschreibe, was mit dem Spielbaum passiert. Betrachte außerdem den Graphen im Koordinatensystem unten links. Wie verändert sich die Kurve?
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1e" (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1e">
-                          Fertig?
-                        </label>
-                      </div>
-                </div>
-                <div class="tab-pane fade" id="nav-1f_task" role="tabpanel" aria-labelledby="nav-contact-tab">
-                    <p>
-                        Was lässt sich aus diesen Veränderungen des Spielbaums und der Kurve schließen?
-                    </p>
-                    <div class="form-check">
-                        <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1f" (change)="fieldsChange($event)">
-                        <label class="form-check-label myCheckboxLabel" for="check1f">
-                          Fertig?
-                        </label>
-                      </div>
-                </div> -->
-            </div>
-        </div>
-    </div>
 
     <ul ngbNav #nav="ngbNav" [activeId]="taskOneNav" class="nav-tabs">
         <li *ngFor="let task of tasks" [ngbNavItem]="task.id" [disabled]="task.id > taskProgress">
@@ -130,7 +37,8 @@
                     </p>
                     <div class="form-check">
                         <input class="form-check-input myCheckbox" type="checkbox" value="" id="check1a"
-                            [ngModel]="task.id < taskProgress" (change)="advanceTask()">
+                            [ngModel]="task.id < taskProgress" [disabled]="task.id < taskProgress"
+                            (change)="advanceTask()">
                         <label class="form-check-label myCheckboxLabel" for="check1a">
                             Fertig?
                         </label>
@@ -143,7 +51,7 @@
     <div [ngbNavOutlet]="nav" class="mt-2"></div>
 
     <!-- task 2 -->
-    <div class="row my-3 align-items-center" id="task2" style="display: none;">
+    <div class="row my-3 align-items-center" id="task2" *ngIf="taskProgress >= numberOfTasks - 1">
         <div class="col-md-10">
             <h4>Aufgabe 2:</h4>
             <p>Versuche nun ausgehend von deinen Beobachtungen zu beschreiben, wie der Agent spielt und lernt. Gehe
@@ -153,7 +61,7 @@
             </p>
             <div class="form-check">
                 <input class="form-check-input myCheckbox" type="checkbox" value="" id="check2"
-                    (change)="fieldsChange($event)">
+                    [disabled]="numberOfTasks - 1 < taskProgress" (change)="advanceTask()">
                 <label class="form-check-label myCheckboxLabel" for="check2">
                     Fertig?
                 </label>
@@ -162,7 +70,7 @@
     </div>
 
     <!-- task 3 -->
-    <div class="row my-3 align-items-center" id="task3" style="display: none;">
+    <div class="row my-3 align-items-center" id="task3" *ngIf="taskProgress >= numberOfTasks - 0">
         <div class="col-md-10">
             <h4>Aufgabe 3:</h4>
             <p>Versuche nun, ausgehend von deiner Beschreibung, einen Algorithmus in natürlicher Sprache zu formulieren,
@@ -170,7 +78,7 @@
             </p>
             <div class="form-check">
                 <input class="form-check-input myCheckbox" type="checkbox" value="" id="check3"
-                    (change)="fieldsChange($event)">
+                    [disabled]="numberOfTasks - 0 < taskProgress" (change)="advanceTask()">
                 <label class="form-check-label myCheckboxLabel" for="check3">
                     Fertig?
                 </label>
