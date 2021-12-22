@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as p5 from 'p5';
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 import { Board } from './boardModel';
 import { Agent, PerfectAgent } from './agent';
-import 'bootstrap';
+// import 'bootstrap';
 import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, treeVisualization } from './canvasHelpFunctions';
 @Component({
   selector: 'app-tictactoe',
@@ -84,48 +84,6 @@ export class TictactoeComponent implements OnInit {
     this.boardCanvas = new p5(this.boardSketch, 'board');
     this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
     this.agentTurn();
-  }
-
-  fieldsChange(values: any): void {
-    const checked = values.currentTarget.checked;
-    const id = values.currentTarget.id;
-    switch (true) {
-      case id.localeCompare('check1a') === 0 && checked:
-        $('#nav-1a_tab').removeClass('active');
-        $('#nav-1b_tab').removeClass('disabled').click();
-        break;
-      case id.localeCompare('check1b') === 0 && checked:
-        $('#nav-1b_tab').removeClass('active');
-        $('#nav-1c_tab').removeClass('disabled').click();
-        break;
-      case id.localeCompare('check1c') === 0 && checked:
-        $('#nav-1c_tab').removeClass('active');
-        $('#nav-1d_tab').removeClass('disabled').click();
-        break;
-      case id.localeCompare('check1d') === 0 && checked:
-        $('#task2').show();
-        break;
-      // case id.localeCompare("check1d") == 0 && checked:
-      //   $('#nav-1d_tab').removeClass("active")
-      //   $('#nav-1e_tab').removeClass("disabled").click()
-      //   break
-      // case id.localeCompare("check1e") == 0 && checked:
-      //   $('#nav-1e_tab').removeClass("active")
-      //   $('#nav-1f_tab').removeClass("disabled").click()
-      //   break
-      // case id.localeCompare("check1f") == 0 && checked:
-      //   $('#task2').show()
-      //   break
-      case id.localeCompare('check2') === 0 && checked:
-        $('#task3').show();
-        break;
-      case id.localeCompare('check3') === 0 && checked:
-        alert('Super! Du bist mit allen Aufgaben fertig!');
-        break;
-      default:
-        break;
-
-    }
   }
 
   /**
@@ -302,7 +260,8 @@ export class TictactoeComponent implements OnInit {
       } else {
         offset.x = (height - dimension) / 2;
       }
-      dimension = parseInt($('#board_section').css('width'), 10) * 0.55;
+      // use offsetWidth, easier and more precise
+      dimension = this.boardElement.nativeElement.offsetWidth * 0.55;
       canvas = p.createCanvas(dimension, dimension);
 
       // const x = canvas.position().x + offset.x / 2;
@@ -361,7 +320,8 @@ export class TictactoeComponent implements OnInit {
 
     p.setup = () => {
       const widthScale = 0.65;
-      width = parseInt($('#tree_area').css('width'), 10) * widthScale;
+      // use offsetWidth, easier and more precise
+      width = this.treeElement.nativeElement.offsetWidth * widthScale;
 
       boardDimension = (3 * width) / 29;
       const offset = boardDimension / 4;
@@ -428,7 +388,8 @@ export class TictactoeComponent implements OnInit {
     let xAxisEnd;
     let yAxisEnd;
     p.setup = () => {
-      dimension = parseInt($('#board_section').css('width'), 10) * 0.8;
+      // use offsetWidth, easier and more precise
+      dimension = this.boardElement.nativeElement.offsetWidth * 0.8;
       const canvas = p.createCanvas(dimension, dimension);
       p.textSize(Math.min(dimension * 0.05, dimension * 0.05));
       p.textAlign(p.CENTER);
