@@ -32,6 +32,13 @@ export class TictactoeComponent implements OnInit {
   taskOneNav = 1;
   numberOfTasks = 6;
 
+  // view children, to compute css width
+  @ViewChild('boardSection')
+  boardElement: ElementRef<HTMLDivElement>;
+
+  @ViewChild('treeArea')
+  treeElement: ElementRef<HTMLDivElement>;
+
   tasks = [
     { id: 1, title: 'a)', text: 'Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim Spielen auffällt.' },
     { id: 2, title: 'b)', text: 'Versuche in mehreren Spielen dieselbe Spielsituation zu erzeugen. Wählt der Agent in jedem Spiel denselben Zug? Wenn nicht, beschreibe, was sich verändert und woran es liegen könnte.' },
