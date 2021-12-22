@@ -195,7 +195,7 @@ export class TutorialComponent implements OnInit {
 
     this.stages[2] = true;
     this.stages[3] = false;
-    
+
     // automatically submit the model
     this.submitModel();
   }
