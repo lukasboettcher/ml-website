@@ -3,7 +3,7 @@ import * as p5 from 'p5';
 import * as $ from 'jquery';
 import { Board } from './boardModel';
 import { Agent, PerfectAgent } from './agent';
-import "bootstrap";
+import 'bootstrap';
 import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, treeVisualization } from './canvasHelpFunctions';
 @Component({
   selector: 'app-tictactoe',
@@ -51,25 +51,25 @@ export class TictactoeComponent implements OnInit {
     this.agentTurn();
   }
 
-  fieldsChange(values:any):void {
-    let checked = values.currentTarget.checked
-    let id = values.currentTarget.id
+  fieldsChange(values: any): void {
+    const checked = values.currentTarget.checked;
+    const id = values.currentTarget.id;
     switch (true){
-      case id.localeCompare("check1a") == 0 && checked:
-          $('#nav-1a_tab').removeClass("active")
-          $('#nav-1b_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1b") == 0 && checked:
-          $('#nav-1b_tab').removeClass("active")
-          $('#nav-1c_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1c") == 0 && checked:
-        $('#nav-1c_tab').removeClass("active")
-        $('#nav-1d_tab').removeClass("disabled").click()
-        break
-      case id.localeCompare("check1d") == 0 && checked:
-        $('#task2').show()
-        break
+      case id.localeCompare('check1a') == 0 && checked:
+          $('#nav-1a_tab').removeClass('active');
+          $('#nav-1b_tab').removeClass('disabled').click();
+          break;
+      case id.localeCompare('check1b') == 0 && checked:
+          $('#nav-1b_tab').removeClass('active');
+          $('#nav-1c_tab').removeClass('disabled').click();
+          break;
+      case id.localeCompare('check1c') == 0 && checked:
+        $('#nav-1c_tab').removeClass('active');
+        $('#nav-1d_tab').removeClass('disabled').click();
+        break;
+      case id.localeCompare('check1d') == 0 && checked:
+        $('#task2').show();
+        break;
       // case id.localeCompare("check1d") == 0 && checked:
       //   $('#nav-1d_tab').removeClass("active")
       //   $('#nav-1e_tab').removeClass("disabled").click()
@@ -81,18 +81,18 @@ export class TictactoeComponent implements OnInit {
       // case id.localeCompare("check1f") == 0 && checked:
       //   $('#task2').show()
       //   break
-      case id.localeCompare("check2") == 0 && checked:
-        $('#task3').show()
-        break
-      case id.localeCompare("check3") == 0 && checked:
-        alert("Super! Du bist mit allen Aufgaben fertig!")
-        break
+      case id.localeCompare('check2') == 0 && checked:
+        $('#task3').show();
+        break;
+      case id.localeCompare('check3') == 0 && checked:
+        alert('Super! Du bist mit allen Aufgaben fertig!');
+        break;
       default:
-        break
+        break;
 
     }
   }
- 
+
   /**
    * Function to reset the current game, so a new game can be played.
    */
@@ -267,12 +267,12 @@ export class TictactoeComponent implements OnInit {
       } else {
         offset.x = (height - dimension) / 2;
       }
-      dimension = parseInt($('#board_section').css('width'), 10)*0.55
+      dimension = parseInt($('#board_section').css('width'), 10) * 0.55;
       canvas = p.createCanvas(dimension, dimension);
 
-      //const x = canvas.position().x + offset.x / 2;
-      //const y = canvas.position().y + offset.y / 2;
-      //canvas.position(x, y);
+      // const x = canvas.position().x + offset.x / 2;
+      // const y = canvas.position().y + offset.y / 2;
+      // canvas.position(x, y);
     };
 
     p.draw = () => {
@@ -310,10 +310,10 @@ export class TictactoeComponent implements OnInit {
     };
 
     p.windowResized = () => {
-      p.remove()
+      p.remove();
       this.boardCanvas = new p5(this.boardSketch, 'board');
 
-    }
+    };
   }
 
   treeSketch = (p) => {
@@ -325,19 +325,19 @@ export class TictactoeComponent implements OnInit {
     let height;
 
     p.setup = () => {
-      const widthScale = 0.65
-      width = parseInt($('#tree_area').css('width'),10)*widthScale
-      
-      boardDimension = (3*width) / 29
-      let offset = boardDimension / 4
-      height = 10*boardDimension + 9*offset
-      //TODO Elemente passen sich auf unterschiedliche width an. 
-      //Damit es nicht so komisch aussieht height aus width berechnen? 
-      p.createCanvas(width, height)  //1150);
+      const widthScale = 0.65;
+      width = parseInt($('#tree_area').css('width'), 10) * widthScale;
 
-      offsetWidth = offset//20;
-      offsetHeight = offset//2 * offsetWidth;
-      //boardDimension = //Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
+      boardDimension = (3 * width) / 29;
+      const offset = boardDimension / 4;
+      height = 10 * boardDimension + 9 * offset;
+      // TODO Elemente passen sich auf unterschiedliche width an.
+      // Damit es nicht so komisch aussieht height aus width berechnen?
+      p.createCanvas(width, height);  // 1150);
+
+      offsetWidth = offset;// 20;
+      offsetHeight = offset;// 2 * offsetWidth;
+      // boardDimension = //Math.max(Math.min((width - 8 * offsetWidth) / 7, (height - 11 * offsetHeight) / 10), 70);
       const agentColor = { r: 220, g: 220, b: 220 }; // { r: 255, g: 229, b: 204 };
       const playerColor = { r: 248, g: 249, b: 250 };
       const maxNumberofBoardsInHeight = 10;
@@ -380,20 +380,20 @@ export class TictactoeComponent implements OnInit {
     };
 
     p.windowResized = () => {
-      p.remove()
-      this.treeCanvas = new p5(this.treeSketch, 'tree')
-    }
+      p.remove();
+      this.treeCanvas = new p5(this.treeSketch, 'tree');
+    };
   }
 
 
   diagrammSketch = (p) => {
-    let dimension
+    let dimension;
     let xAxisStart;
     let yAxisStart;
     let xAxisEnd;
     let yAxisEnd;
     p.setup = () => {
-      dimension = parseInt($('#board_section').css('width'), 10)*0.8
+      dimension = parseInt($('#board_section').css('width'), 10) * 0.8;
       const canvas = p.createCanvas(dimension, dimension);
       p.textSize(Math.min(dimension * 0.05, dimension * 0.05));
       p.textAlign(p.CENTER);
