@@ -37,6 +37,7 @@ export class TutorialComponent implements OnInit {
   // stage 3: train model
   // state
   trainingRunning = false;
+  hideTrainWarn = false;
   trainingDone = false;
   availBatchSizes: number[] = [80, 160, 240, 320, 640];
   availEpochs: number[] = [1, 2, 3, 5, 10];
