@@ -141,7 +141,7 @@
         <div>
           <div class="input-group mb-3">
             <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon3">latent slider: {{latentRange}}</span>
+              <span class="input-group-text" id="basic-addon3">Eingabewert: {{latentRange}}</span>
             </div>
             <div class="inline-range">
               <input class="form-control-range" [disabled]="!faceModelReady" [(ngModel)]="latentRange"
@@ -151,7 +151,7 @@
           </div>
         </div>
 
-        <div>
+        <div class="btn-group">
           <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">
             {{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}
           </button>
