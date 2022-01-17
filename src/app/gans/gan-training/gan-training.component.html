@@ -130,9 +130,9 @@
               </label>
             </div>
             <select class="custom-select" [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
-              [(ngModel)]="currFaceModelUrl">
+              [(ngModel)]="currFaceModelUrl" (change)="onFaceModelChange()">
               <option selected disabled value="">Modell Auswählen</option>
-              <option *ngFor="let x of listFaceModels" [value]="x.path" (click)="onFaceModelChange(x.factor)">{{x.desc}}
+              <option *ngFor="let x of listFaceModels" [value]="x.path" >{{x.desc}}
               </option>
             </select>
           </div>
