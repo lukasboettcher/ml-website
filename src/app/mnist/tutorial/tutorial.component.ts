@@ -160,7 +160,8 @@ export class TutorialComponent implements OnInit {
     //   }
     // };
     const tfvisOptions = {
-      yLabel: 'Genauigkeit in Prozent'
+      yLabel: 'Genauigkeit in Prozent',
+      title: 'Lernverlauf'
     };
     const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics, tfvisOptions);
     console.log(visCallbacks);
