@@ -32,7 +32,7 @@
     "@tensorflow-models/knn-classifier": "^1.2.2",
     "@tensorflow-models/mobilenet": "^2.1.0",
     "@tensorflow/tfjs": "^3.8.0",
-    "@tensorflow/tfjs-vis": "^1.5.1",
+    "@tensorflow/tfjs-vis": "github:lukasboettcher/tfjs-vis",
     "bootstrap": "^4.5.0",
     "chart.js": "^2.9.3",
     "ng2-charts": "^2.4.0",
