@@ -22,7 +22,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/.htaccess"
+              "src/.htaccess",
+              "src/perceptron"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
