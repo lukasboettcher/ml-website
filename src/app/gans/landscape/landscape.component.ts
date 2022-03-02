@@ -150,7 +150,6 @@ export class LandscapeComponent implements OnInit {
         }).then(imageResponse => imageResponse.blob())
           .then(createImageBitmap)
           .then(image => {
-            const output = document.getElementById('output');
             // console.log(image);
             this.outputCanvas.nativeElement.getContext('2d').drawImage(image, 0, 0, 512, 512);
 

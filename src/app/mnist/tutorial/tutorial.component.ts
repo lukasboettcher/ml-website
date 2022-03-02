@@ -71,7 +71,6 @@ export class TutorialComponent implements OnInit {
   lineChartLegend = true;
   lineChartPlugins = [];
   lineChartType = 'line';
-  prog = document.getElementById('progress');
 
   ngOnInit(): void {
   }
