@@ -23,7 +23,7 @@
               "src/favicon.ico",
               "src/assets",
               "src/.htaccess",
-              "src/perceptron"
+              "src/perceptron-root"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
