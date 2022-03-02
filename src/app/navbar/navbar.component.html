@@ -1,51 +1,59 @@
-<nav class="navbar navbar-expand-xl navbar-light mb-3">
-    <a class="navbar-brand" routerLink="/">KI-Labor</a>
-    <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-        <div class="navbar-nav">
-            <li class="nav-item" role="presentation" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/" (click)="isCollapsed = true">Start</a>
-            </li>
+<header>
+    <nav class="navbar navbar-expand-xl navbar-dark bg-dark mb-3">
+        <div class="container">
+            <a class="navbar-brand" routerLink="/">KI-Labor</a>
+            <button class="navbar-toggler" type="button" (click)="isCollapsed = !isCollapsed">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
+                <div class="navbar-nav">
+                    <li class="nav-item" role="presentation" routerLinkActive="active"
+                        [routerLinkActiveOptions]="{exact: true}">
+                        <a class="nav-link" routerLink="/" (click)="isCollapsed = true">Start</a>
+                    </li>
 
-            <li class="nav-item" role="presentation" routerLinkActive="active">
-                <a class="nav-link" routerLink="mnist" (click)="isCollapsed = true">MNIST Zahlenerkennung</a>
-            </li>
+                    <li class="nav-item" role="presentation" routerLinkActive="active">
+                        <a class="nav-link" routerLink="mnist" (click)="isCollapsed = true">MNIST Zahlenerkennung</a>
+                    </li>
 
-            <!-- <li class="nav-item" role="presentation" routerLinkActive="active">
+                    <!-- <li class="nav-item" role="presentation" routerLinkActive="active">
                 <a class="nav-link" routerLink="cartpole" (click)="isCollapsed = true">CartPole Simulation</a>
             </li> -->
 
-            <!-- <li class="nav-item" role="presentation" routerLinkActive="active">
+                    <!-- <li class="nav-item" role="presentation" routerLinkActive="active">
                 <a class="nav-link" routerLink="gan" (click)="isCollapsed = true">GANs</a>
             </li> -->
 
-            <div ngbDropdown style="cursor: pointer;">
-                <a class="nav-link" ngbDropdownToggle>GANs</a>
-                <div ngbDropdownMenu>
-                    <button ngbDropdownItem routerLink="gan-training" (click)="isCollapsed = true">Training mit MNIST</button>
-                    <button ngbDropdownItem routerLink="gan-transfer" (click)="isCollapsed = true">Style Transfer</button>
-                    <button ngbDropdownItem routerLink="gan-landscpe" (click)="isCollapsed = true">Landschafts Generation</button>
+                    <div ngbDropdown style="cursor: pointer;">
+                        <a class="nav-link" ngbDropdownToggle>GANs</a>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem routerLink="gan-training" (click)="isCollapsed = true">Training mit
+                                MNIST</button>
+                            <button ngbDropdownItem routerLink="gan-transfer" (click)="isCollapsed = true">Style
+                                Transfer</button>
+                            <button ngbDropdownItem routerLink="gan-landscpe" (click)="isCollapsed = true">Landschafts
+                                Generation</button>
+                        </div>
+                    </div>
+
+                    <li class="nav-item" role="presentation" routerLinkActive="active">
+                        <a class="nav-link" routerLink="classify" (click)="isCollapsed = true">Klassifizierung mit der
+                            Webcam</a>
+                    </li>
+
+                    <li class="nav-item" role="presentation" routerLinkActive="active">
+                        <a class="nav-link" routerLink="object" (click)="isCollapsed = true">Objekterkennung</a>
+                    </li>
+
+                    <li class="nav-item" role="presentation" routerLinkActive="active">
+                        <a class="nav-link" routerLink="tictactoe" (click)="isCollapsed = true">Tic Tac Toe</a>
+                    </li>
+
+                    <li class="nav-item" role="presentation" routerLinkActive="active">
+                        <a class="nav-link" routerLink="perceptron" (click)="isCollapsed = true">Perceptron</a>
+                    </li>
                 </div>
             </div>
-
-            <li class="nav-item" role="presentation" routerLinkActive="active">
-                <a class="nav-link" routerLink="classify" (click)="isCollapsed = true">Klassifizierung mit der Webcam</a>
-            </li>
-
-            <li class="nav-item" role="presentation" routerLinkActive="active">
-                <a class="nav-link" routerLink="object" (click)="isCollapsed = true">Objekterkennung</a>
-            </li>
-
-            <li class="nav-item" role="presentation" routerLinkActive="active">
-                <a class="nav-link" routerLink="tictactoe" (click)="isCollapsed = true">Tic Tac Toe</a>
-            </li>
-
-            <li class="nav-item" role="presentation" routerLinkActive="active">
-                <a class="nav-link" routerLink="perceptron" (click)="isCollapsed = true">Perceptron</a>
-            </li>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
