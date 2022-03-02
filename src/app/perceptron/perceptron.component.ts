@@ -20,6 +20,10 @@ export class PerceptronComponent implements OnInit {
     console.warn(location.href);
     this.calculateHeight(window.innerHeight);
   }
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.calculateHeight(event.target.innerHeight);
+  }
   calculateHeight(windowHeight: number): void {
     this.height = this.heightRatio * windowHeight - 100;
   }
