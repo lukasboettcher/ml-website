@@ -1,11 +1,13 @@
 .main-footer {
-    height: 5vh;
-    padding: 1vh 0;
+    min-height: 75px;
     color: #999;
     text-align: center;
     background-color: #f9f9f9;
     border-top: .05rem solid #e5e5e5;
 }
+.main-footer .container {
+    padding: 1vh 0;
+}
 .main-body {
-    min-height: 94vh;
+    min-height: calc(100vh - 75px);
 }
