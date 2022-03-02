@@ -11,7 +11,7 @@ export class PerceptronComponent implements OnInit {
   url = 'https://progly.informatik.uni-kiel.de/perceptron-root/';
   urlSafe: SafeResourceUrl;
   height = 512;
-  heightRatio = 0.95;
+  heightRatio = 0.90;
 
   constructor(private sanitizer: DomSanitizer) { }
 
@@ -25,7 +25,7 @@ export class PerceptronComponent implements OnInit {
     this.calculateHeight(event.target.innerHeight);
   }
   calculateHeight(windowHeight: number): void {
-    this.height = this.heightRatio * windowHeight - 100;
+    this.height = this.heightRatio * windowHeight - 75;
   }
 
 }
