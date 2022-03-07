@@ -87,9 +87,9 @@ export class TictactoeComponent implements OnInit {
     this.situationsInCurrentGame = [];
     this.situationsInCurrentGame.push([[this.board.deepCopy(), 1]]);
     await timeout(5);
-    this.treeCanvas = new p5(this.treeSketch, 'tree');
-    this.boardCanvas = new p5(this.boardSketch, 'board');
-    this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
+    this.treeCanvas = new p5(this.treeSketch, this.treeSketchElem.nativeElement);
+    this.boardCanvas = new p5(this.boardSketch, this.boardSketchElem.nativeElement);
+    this.diagrammCanvas = new p5(this.diagrammSketch, this.diagramSketchElem.nativeElement);
     this.agentTurn();
   }
 
@@ -105,7 +105,7 @@ export class TictactoeComponent implements OnInit {
     this.situationsInCurrentGame = [];
     this.situationsInCurrentGame.push([[this.board.deepCopy(), 1]]);
     this.treeCanvas.remove();
-    this.treeCanvas = new p5(this.treeSketch, 'tree');
+    this.treeCanvas = new p5(this.treeSketch, this.treeSketchElem.nativeElement);
     this.boardCanvas.loop();
     this.treeCanvas.loop();
     this.agentTurn();
@@ -312,7 +312,7 @@ export class TictactoeComponent implements OnInit {
 
     p.windowResized = () => {
       p.remove();
-      this.boardCanvas = new p5(this.boardSketch, 'board');
+      this.boardCanvas = new p5(this.boardSketch, this.boardSketchElem.nativeElement);
 
     };
   }
@@ -383,7 +383,7 @@ export class TictactoeComponent implements OnInit {
 
     p.windowResized = () => {
       p.remove();
-      this.treeCanvas = new p5(this.treeSketch, 'tree');
+      this.treeCanvas = new p5(this.treeSketch, this.treeSketchElem.nativeElement);
     };
   }
 
