@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import * as p5 from 'p5';
 // import * as $ from 'jquery';
 import { Board } from './boardModel';
@@ -10,7 +10,7 @@ import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, 
   templateUrl: './tictactoe.component.html',
   styleUrls: ['./tictactoe.component.css']
 })
-export class TictactoeComponent implements OnInit {
+export class TictactoeComponent implements OnInit, OnDestroy {
 
   agent: Agent;
   agent2: PerfectAgent;
@@ -61,6 +61,11 @@ export class TictactoeComponent implements OnInit {
     this.agent = new Agent(1, 2);
     this.agent2 = new PerfectAgent(2, 1);
     this.board = new Board(this.agent.playerSymbol, this.agent.opponent);
+  }
+  ngOnDestroy(): void {
+    this.treeCanvas.remove();
+    this.boardCanvas.remove();
+    this.diagrammCanvas.remove();
   }
 
   ngOnInit(): void {
