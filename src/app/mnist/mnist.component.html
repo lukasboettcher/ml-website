@@ -90,7 +90,14 @@
       </div>
     </div>
 
-    <div class="row justify-content-center my-3">
+    <div class="row justify-content-center mt-3">
+      <ngb-alert *ngIf="benchmarkTooSlow && !benchmarkWarningClosed" [dismissible]="true" (closed)="benchmarkWarningClosed = true">
+        <strong>Achtung!</strong> Die Leistung dieses Computers könnte für das Training eines neuronalen Netzes nicht ausreichend sein.
+        Für das Training sind eine schnelle CPU und mindestens 4GB Arbeitsspeicher eine Voraussetzung, da die Berechnungen sehr umfangreich sind.
+      </ngb-alert>
+    </div>
+
+    <div class="row justify-content-center mb-3">
       <div class="col-auto">
         <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': stages[1]}"
           (click)="stages[1] = true">Das Netz selbst trainieren
