@@ -20,6 +20,8 @@ export class MnistComponent implements OnInit {
   modelLoaded = '';
   gotCustomModel = false;
   mnistbReadFirst = false;
+  benchmarkTooSlow = false;
+  benchmarkWarningClosed = false;
 
   // vars for models and results
   private model: any;
@@ -143,7 +145,7 @@ export class MnistComponent implements OnInit {
       });
   }
 
-    // get canvas image and interpret it
+  // get canvas image and interpret it
   // save results afterwards
   onClassifyCustom(i: ImageData): void {
     // console.log(i);
