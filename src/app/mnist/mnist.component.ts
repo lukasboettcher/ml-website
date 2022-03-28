@@ -62,16 +62,6 @@ export class MnistComponent implements OnInit {
     if (!this.inPath('mnistb')) {
       this.mnistbReadFirst = true;
     }
-    this.benchmarkTensorflow().then(
-      timeMs => {
-        if (timeMs > 150) {
-          this.benchmarkTooSlow = true;
-        }
-      }
-    ).catch(e => {
-      console.warn(e);
-      this.benchmarkTooSlow = true;
-    });
   }
 
   ngOnInit(): void {
@@ -109,15 +99,17 @@ export class MnistComponent implements OnInit {
     console.log('loading pretrained model...');
     const path = 'assets/tfjs-models/mnist-recognition/model.json';
 
-    tf.loadLayersModel(path)
-      .then(loadedModel => {
-        this.model = loadedModel;
-        console.log('loaded pretrained model');
-        this.modelLoaded = 'pre';
-        this.currentlyLoading = false;
-        this.stages[0] = true;
-      })
-      .catch(e => console.log('failed to load model: ' + e));
+    Promise.all([tf.loadLayersModel(path), this.benchmarkTensorflow()]).then(([loadedModel, timeMs]) => {
+      if (timeMs > 150) {
+        this.benchmarkTooSlow = true;
+      }
+      this.model = loadedModel;
+      console.log('loaded pretrained model');
+      this.modelLoaded = 'pre';
+      this.currentlyLoading = false;
+      this.stages[0] = true;
+    }).catch(e => console.log('failed to load model: ' + e));
+
   }
   async loadCustomModel(): Promise<void> {
     this.currentlyLoading = true;
