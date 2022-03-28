@@ -74,6 +74,23 @@ export class MnistComponent implements OnInit {
     return false;
   }
 
+  async benchmarkTensorflow(): Promise<number> {
+    // const results: number[] = [];
+    const nTest = 10;
+    const results = new Array<number>(nTest);
+    for (let i = 0; i < nTest; i++) {
+      const time = await tf.time(() => {
+        tf.tidy(() => {
+          const x = tf.randomNormal([2000, 200]);
+          const y = tf.randomNormal([200, 2000]);
+          x.matMul(y);
+        });
+      });
+      results[i] = time.wallMs;
+    }
+    return results.reduce((a, b) => a + b) / results.length;
+  }
+
   // handle model loading
   async loadPretrainedModel(): Promise<void> {
     this.currentlyLoading = true;
