@@ -62,6 +62,16 @@ export class MnistComponent implements OnInit {
     if (!this.inPath('mnistb')) {
       this.mnistbReadFirst = true;
     }
+    this.benchmarkTensorflow().then(
+      timeMs => {
+        if (timeMs > 150) {
+          this.benchmarkTooSlow = true;
+        }
+      }
+    ).catch(e => {
+      console.warn(e);
+      this.benchmarkTooSlow = true;
+    });
   }
 
   ngOnInit(): void {
