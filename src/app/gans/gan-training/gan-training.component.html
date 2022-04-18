@@ -125,13 +125,14 @@
           <div class="input-group mb-3">
             <div class="input-group-prepend">
               <label class="input-group-text" for="inputGroupSelect01">
-                <span class="pr-2">Gesichts Modell</span>  <span *ngIf="faceModelLoading" class="spinner-border spinner-border-sm pl-2"></span>
+                <span class="pr-2">Gesichts Modell</span> <span *ngIf="faceModelLoading"
+                  class="spinner-border spinner-border-sm pl-2"></span>
               </label>
             </div>
-            <select class="custom-select" [disabled]="!faceModelReady && currFaceModel" id="inputGroupSelect01"
-              [(ngModel)]="currFaceModelUrl" (change)="onFaceModelChange()">
+            <select class="custom-select" [disabled]="!faceModelReady && currFaceModel !== undefined"
+              id="inputGroupSelect01" [(ngModel)]="currFaceModelUrl" (change)="onFaceModelChange()">
               <option selected disabled value="">Modell Auswählen</option>
-              <option *ngFor="let x of listFaceModels" [value]="x.path" >{{x.desc}}
+              <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}
               </option>
             </select>
           </div>
@@ -143,8 +144,8 @@
               <span class="input-group-text" id="basic-addon3">Eingabewert: {{latentRange}}</span>
             </div>
             <div class="inline-range">
-              <input class="form-control-range" [disabled]="!faceModelReady" [(ngModel)]="latentRange"
-                (input)="onFaceLatentChange($event.target.value, faceCanvas)" type="range" id="range" name="volume"
+              <input #latentSlider class="form-control-range" [disabled]="!faceModelReady" [(ngModel)]="latentRange"
+                (input)="onFaceLatentChange(latentSlider.value, faceCanvas)" type="range" id="range" name="volume"
                 min="0" max="400" value="0">
             </div>
           </div>
