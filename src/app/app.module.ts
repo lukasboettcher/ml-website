@@ -35,6 +35,7 @@ import { GanMnistTrainingComponent } from './gans/gan-training/gan-mnist-trainin
 import { ImprintComponent } from './help/imprint/imprint.component';
 import { TictactoeComponent } from './tictactoe/tictactoe.component';
 import { PerceptronComponent } from './perceptron/perceptron.component';
+import { HomeCardComponent } from './home/card/card.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { PerceptronComponent } from './perceptron/perceptron.component';
     GanMnistTrainingComponent,
     ImprintComponent,
     TictactoeComponent,
-    PerceptronComponent
+    PerceptronComponent,
+    HomeCardComponent
   ],
   imports: [
     BrowserModule,
