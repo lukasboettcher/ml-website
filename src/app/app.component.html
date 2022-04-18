@@ -1,13 +1,8 @@
 <main class="main-body">
   <!-- Navbar always visible, except in case of a survey url -->
   <app-navbar *ngIf="!inPath('mnista', 'mnistb')"></app-navbar>
-  <div class="container pb-3" [ngClass]="{'pt-4': inPath('mnista', 'mnistb')}">
-    <div class="row">
-      <div class="col">
-        <!-- display components from router here -->
-        <router-outlet></router-outlet>
-      </div>
-    </div>
+  <div class="pb-3" [ngClass]="{'pt-4': inPath('mnista', 'mnistb')}">
+    <router-outlet></router-outlet>
   </div>
 </main>
 <!-- constant footer -->
