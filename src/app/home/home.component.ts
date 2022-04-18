@@ -87,6 +87,20 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  filterCards(item: Card, activeTags, excludedTags): boolean {
+    for (const tag of excludedTags) {
+      if (item.tags?.includes(tag)) {
+        return false;
+      }
+    }
+    for (const tag of activeTags) {
+      if (item.tags?.includes(tag)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
 }
 
 interface Card {
