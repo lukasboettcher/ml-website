@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  allTags = ['supervised, unsupervised, reinforcement, basics, advanced, gan, webcam'];
+
   cardsData: Card[] = [
     {
       title: 'MNIST',
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit {
     }, {
       title: 'Das Perceptron',
       routerLink: '/perceptron',
-      text: `Hier kannst du in einer interaktiven Umgebung schrittweise die Grundlagen eines Perceptrons erfahren. 
+      text: `Hier kannst du in einer interaktiven Umgebung schrittweise die Grundlagen eines Perceptrons erfahren.
       Perceptrons sind die elementaren Bausteine aus denen ein neuronales Netz besteht und sind für alle Entscheidungen verantwortlich.`,
       srcPath: 'assets/home-images/perceptron.png',
       video: false
@@ -78,7 +80,8 @@ export class HomeComponent implements OnInit {
 interface Card {
   title: string;
   text: string;
-  routerLink: string;
+  routerLink?: string;
   srcPath?: string;
   video?: boolean;
+  tags?: string[];
 }
