@@ -41,6 +41,13 @@ export class HomeComponent implements OnInit {
       srcPath: 'assets/home-images/cartpole.gif',
       video: false
     }, {
+      title: 'Das Perceptron',
+      routerLink: '/perceptron',
+      text: `Hier kannst du in einer interaktiven Umgebung schrittweise die Grundlagen eines Perceptrons erfahren. 
+      Perceptrons sind die elementaren Bausteine aus denen ein neuronales Netz besteht und sind für alle Entscheidungen verantwortlich.`,
+      srcPath: 'assets/home-images/perceptron.png',
+      video: false
+    }, {
       title: 'GAN Training',
       routerLink: '/gan-training',
       text: `Was sind GANs? Und wofür können diese verwendet werden?`,
