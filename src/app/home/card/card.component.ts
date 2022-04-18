@@ -6,7 +6,8 @@ import { input } from '@tensorflow/tfjs';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class CardComponent implements OnInit {
+export class HomeCardComponent implements OnInit {
+
 
   constructor() { }
 
