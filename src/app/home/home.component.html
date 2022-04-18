@@ -1,159 +1,66 @@
-<div class="container">
-    <div class="row mb-4">
-        <div class="col">
-            <h3>Herzlich willkommen im <i>KI-Labor</i>!</h3>
-            <figure class="figure float-sm-left mx-3 my-0" style="width: 200px;">
-                <img src="{{basePath}}/elements-of-ai.png" class="figure-img img-fluid rounded mb-1">
-                <figcaption class="figure-caption">Reaktor Innovations Oy &#169;</figcaption>
-            </figure>
-            <p>
-                Diese Webseite ermöglicht eine praktische Einführung in das Gebiet des maschinellen Lernens,
-                eine Methode der Künstlichen Intelligenz (KI).
-                Im Inhalt knüpft diese Seite an den Massive Open Online Course
-                <a href="https://course.elementsofai.com/de/">Elements of AI</a> an,
-                aber alle Übungen können auch ohne Kenntnis des MOOC bearbeitet werden.
-            </p>
+<div id="intro-section">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="mb-4">
+                    <h1>Herzlich willkommen im KI-Labor!</h1>
+                    <p>
+                        Diese Webseite ermöglicht eine praktische Einführung in das Gebiet des maschinellen Lernens,
+                        eine Methode der Künstlichen Intelligenz (KI). Im Inhalt knüpft diese Seite an den Massive Open
+                        Online Course Elements of AI an, aber alle Übungen können auch ohne Kenntnis des MOOC bearbeitet
+                        werden.
+                    </p>
+                </div>
+                <div>
+                    <h3>Wer, was, warum?</h3>
+                    <p>
+                        Entwickelt wurde diese Seite ursprünglich an der Christian-Albrechts-Universität zu Kiel als
+                        Teil einer Bachelorarbeit. Nun wird diese Webseite von der Arbeitsgruppe für Didaktik
+                        weiterentwickelt.
+                    </p>
+                    <p>
+                        Insgesamt bietet diese Seite eine Vielzahl von Komponenten, die auch eine Vielzahl von Bereichen
+                        der künstlichen Intelligenz abdecken. Mehr dazu kannst du unten erfahren.
+                    </p>
+                    <p>
+                        Das Ziel ist es, eine begleitende Lernumgebung zu ermöglichen, womit Schüler den praktischen
+                        Umgang mit maschinellem Lernen erfahren können, während Sie den MOOC Elements of AI bearbeiten.
+                    </p>
+                </div>
 
-        </div>
-        <!-- <div class="col-md-4 align-self-center px-4">
-            <figure class="figure">
-                <img src="{{basePath}}/elements-of-ai.png" class="figure-img img-fluid rounded mb-1">
-                <figcaption class="figure-caption">Reaktor Innovations Oy &#169;</figcaption>
-            </figure>
-        </div> -->
-    </div>
-    <div class="row">
-        <div class="col-md-8">
-            <h3>Wer, was, warum?</h3>
-            <p>
-                Entwickelt wurde diese Seite ursprünglich an der Christian-Albrechts-Universität zu Kiel als Teil einer
-                Bachelorarbeit.
-                Nun wird diese Webseite von der Arbeitsgruppe für Didaktik weiterentwickelt.
-            </p>
-            <p>
-                Insgesamt bietet diese Seite eine Vielzahl von Komponenten, die auch eine Vielzahl von Bereichen der
-                künstlichen Intelligenz abdecken. Mehr dazu kannst du unten erfahren.
-            </p>
-            <p>
-                Das Ziel ist es, eine begleitende Lernumgebung zu ermöglichen, womit Schüler den praktischen Umgang mit
-                maschinellem Lernen erfahren können, während Sie den MOOC Elements of AI bearbeiten.
-            </p>
-        </div>
-        <div class="col-md-4 d-flex flex-column justify-content-center">
-            <figure class="figure">
-                <img src="assets/branding/tf-norm-de-blackgreyfaku-rgb-0720.png"
-                    class="figure-img img-fluid rounded mb-1">
-                <figcaption class="figure-caption">Christian-Albrechts-Universität zu Kiel</figcaption>
-            </figure>
-            <figure class="figure">
-                <img src="assets/branding/telekom_logo.png" class="figure-img img-fluid rounded mb-1">
-                <figcaption class="figure-caption">Finanziert durch die Deutsche Telekom Stiftung</figcaption>
-            </figure>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-8 my-3">
-            <h3>Welche Themen werden hier behandelt?</h3>
+            </div>
+            <div class="col-md-5 col-lg-4 d-flex flex-column justify-content-around justify-content-md-center">
+                <figure class="figure mx-5 my-5 my-lg-3 mx-md-1">
+                    <img src="assets/branding/tf-norm-de-blackgreyfaku-rgb-0720.png"
+                        class="figure-img img-fluid rounded" alt="CAU-Logo">
+                    <figcaption class="figure-caption figcaption-on-blue">Entwickelt von der
+                        Christian-Albrechts-Universität zu
+                        Kiel</figcaption>
+                </figure>
 
-            <p>Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in fünf Lerneinheiten aufgeteilt, die
-                die Teilgebiete „Überwachtes Lernen“ und „Bestärkendes Lernen“ thematisieren.</p>
-            <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="ngb-panel-0">
-                <ngb-panel>
-                    <ng-template ngbPanelTitle>
-                        <span> <b>Überwachtes Lernen</b> </span>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                        Beim überwachten Lernen bildet die KI Gesetzmäßigkeiten nach, deren Ergebnisse im Vorhinein
-                        bekannt sind, z.B. bei der Spracherkennung.
-                        Folgende Lerneinheiten beschäftigen sich mit Überwachtem Lernen:
-                        <ul>
-                            <li class="my-3">
-                                <h5><a routerLink="mnist">MNIST</a> </h5>
-                                MNIST ist eine Datenbank von handschriftlich geschriebenen Zahlen. Diese werden
-                                verwendet, um ein neuronales Netz zu trainieren, welches in der Lage ist,
-                                handgeschriebene Zahlen zu erkennen.
-                            </li>
-                            <li class="my-3">
-                                <h5><a routerLink="object">Objekterkennung</a> und <a
-                                        routerLink="classify">Klassifizierung</a>
-                                </h5>
-                                Diese beiden Komponenten demonstrieren, wie bereits trainierte Modelle für verschiedene
-                                Anwendungsfälle verwendet werden können. In der Komponente „Klassifizierung“ wird
-                                außerdem die Idee des Transfer-Lernens verwendet, um ein bestehendes Modell in seiner
-                                Funktionalität zu erweitern und anzupassen.
-                            </li>
-                        </ul>
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel>
-                    <ng-template ngbPanelTitle>
-                        <span> <b>Bestärkendes Lernen</b> </span>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                        Beim bestärkenden Lernen erarbeitet sich die KI eine eigene Strategie zur Lösung eines Problems.
-                        Der KI wird dabei kein Lösungsweg vorgeschlagen, stattdessen wird nur festgelegt, was ein Erfolg
-                        und was ein Fehlschlag ist. Beim maschinellen Lernen werden Erfolge belohnt und Fehlschläge
-                        „bestraft“.
-                        Mit Bestärkendem Lernen beschäftigt sich die Lerneinheit:
-                        <ul>
-                            <!-- <li class="my-3">
-                                <h5><a href="https://www.youtube.com/watch?v=5Q14EjnOJZc">CartPole</a> </h5>
-                                CartPole ist ein berühmtes Problem, bei dem ein beweglicher Wagen versucht, einen Stab
-                                so lange wie möglich zu balancieren. In dieser Komponente wird ein neuronales Netz
-                                trainiert, um dieses Spiel bestmöglich zu absolvieren.
-                            </li> -->
-                            <li class="my-3">
-                                <h5><a routerLink="tictactoe">Tic Tac Toe</a></h5>
-                                Hier kannst du gegen den Computer TicTacToe spielen und dabei zusehen, wie dieser
-                                dazulernt und seine Entscheidungen trifft.
-                            </li>
-                        </ul>
-                    </ng-template>
-                </ngb-panel>
-                <ngb-panel>
-                    <ng-template ngbPanelTitle>
-                        <span> <b>Unüberwachtes Lernen</b> </span>
-                    </ng-template>
-                    <ng-template ngbPanelContent>
-                        Beim unüberwachten Lernen versucht die KI Gesetzmäßigkeiten und Muster zu finden, die vor dem
-                        Training noch nicht bekannt sind. Hier gibt es viele Anwendungsmöglichkeiten.
-                        Besonders interessant sind Algorithmen, die selbstständig z.B. Kunst erzeugen können.
-                        Folgende Lerneinheiten beschäftigen sich mit unüberwachtem Lernen:
-                        <ul>
-                            <li class="my-3">
-                                <h5><a routerLink="gan-training">GAN Training</a> </h5>
-                                Was sind GANs? Und wofür können diese verwendet werden?
-                            </li>
-                            <li class="my-3">
-                                <h5><a routerLink="gan-transfer">Style Transfer</a></h5>
-                                Verwende eine GAN basierte KI, um den Stil eines Bildes auf ein neues Bild zu
-                                übertragen.
-                            </li>
-                            <li class="my-3">
-                                <h5><a routerLink="gan-landscpe">Landschaften erzeugen</a></h5>
-                                Male einen Sketch einer Landschaft und lass den Computer die Zeichnung interpretieren.
-                            </li>
-                        </ul>
-                    </ng-template>
-                </ngb-panel>
-            </ngb-accordion>
-        </div>
-
-        <div class="col-md-4 align-self-center">
-
-            <!-- <figure class="figure">
-                <img class="figure-img img-fluid rounded" src="{{basePath}}/mnist.png">
-                <figcaption class="figure-caption">Datensatz aus MNIST.</figcaption>
-            </figure> -->
-
-            <figure class="figure">
-                <img class="figure-img img-fluid rounded" src="{{basePath}}/objdetect.png">
-                <figcaption class="figure-caption">Ein Beispiel für die Objekterkennung.</figcaption>
-            </figure>
-
+                <figure class="figure mx-5 my-3 mx-md-1">
+                    <img src="assets/branding/telekom_logo.png" class="figure-img img-fluid rounded img-padding-on-blue"
+                        alt="Telekom-Logo">
+                    <figcaption class="figure-caption figcaption-on-blue">Finanziert durch die Deutsche Telekom Stiftung
+                    </figcaption>
+                </figure>
+            </div>
         </div>
     </div>
 </div>
-<!-- <app-help-button>
-    <app-home-help></app-home-help>
-</app-help-button> -->
+<div class="mt-5">
+    <div class="container">
+        <div>
+            <h2>Welche Themen werden hier behandelt?</h2>
+            <p>
+                Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in fünf Lerneinheiten aufgeteilt,
+                die die Teilgebiete „Überwachtes Lernen“ und „Bestärkendes Lernen“ thematisieren.
+            </p>
+        </div>
+        <!-- </div> col-md-6 col-lg-4 col-xl-3 -->
+        <div class="d-flex justify-content-evenly row">
+            <app-card *ngFor="let card of cardsData" [title]="card.title" [text]="card.text" [srcPath]="card.srcPath"
+                [video]="card.video" [routerLink]="card.routerLink"></app-card>
+        </div>
+    </div>
+</div>
