@@ -27,12 +27,12 @@
                             [disabled]="!modelLoaded || !weightsLoaded">Laden</button>
                     </div>
                     <div class="col-auto flex-row d-flex flex-wrap">
-                        <input type="file" id="upload-json" (change)="handleModelUpload($event.target.files)" hidden />
+                        <input #modelUpload type="file" id="upload-json" (change)="handleModelUpload(modelUpload.files[0])" hidden />
                         <label class="btn btn-link flex-grow-1 my-2" for="upload-json">
                             Modell Laden <span class="badge badge-light" *ngIf="modelLoaded">&#10003;</span>
                         </label>
 
-                        <input type="file" id="upload-weights" (change)="handleWeightsUpload($event.target.files)"
+                        <input #weightsUpload type="file" id="upload-weights" (change)="handleWeightsUpload(weightsUpload.files[0])"
                             hidden />
                         <label class="btn btn-link flex-grow-1 my-2" for="upload-weights">
                             Gewichte Laden <span class="badge badge-light" *ngIf="weightsLoaded">&#10003;</span>
