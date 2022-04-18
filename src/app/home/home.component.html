@@ -59,8 +59,9 @@
         </div>
         <!-- </div> col-md-6 col-lg-4 col-xl-3 -->
         <div class="d-flex justify-content-evenly row">
-            <app-card *ngFor="let card of cardsData" [title]="card.title" [text]="card.text" [srcPath]="card.srcPath"
-                [video]="card.video" [routerLink]="card.routerLink"></app-card>
+            <app-card *ngFor="let card of cardsData | callback:filterCards:activeTags:excludedTags" [title]="card.title"
+                [text]="card.text" [srcPath]="card.srcPath" [video]="card.video" [routerLink]="card.routerLink">
+            </app-card>
         </div>
     </div>
 </div>
