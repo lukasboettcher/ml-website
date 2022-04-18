@@ -51,8 +51,8 @@
             <hr>
             <div class="form-group">
                 <label for="brushWidth">Pinselgröße</label>
-                <input type="range" class="form-control-range" id="brushWidth" [value]="canvasBrushWidth"
-                    (change)="canvasBrushWidth = $event.target.value" step="2" min="2" max="200">
+                <input #brushWidthInput type="range" class="form-control-range" id="brushWidth" [value]="canvasBrushWidth"
+                    (change)="updateBrushWidth(brushWidthInput.value)" step="2" min="2" max="200">
             </div>
 
             <select #styleselect class="custom-select mb-3">
