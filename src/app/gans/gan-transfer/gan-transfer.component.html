@@ -118,7 +118,7 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Modell Qualität</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01" (change)="updateModels($event.target.value)">
+                <select #perfSelect class="custom-select" id="inputGroupSelect01" (change)="updateModels(perfSelect.value)">
                     <option selected value="low">Schnelle Performance</option>
                     <option value="high">Hohe Qualität</option>
                 </select>
