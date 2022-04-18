@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  allTags = ['supervised, unsupervised, reinforcement, basics, advanced, gan, webcam'];
+  allTags = ['basic', 'advanced', 'supervised', 'unsupervised', 'reinforcement', 'gan', 'webcam'];
+  // activeTags = this.allTags.slice(1);
+  activeTags = this.allTags.slice();
+  excludedTags = [];
 
   cardsData: Card[] = [
     {
