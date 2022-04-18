@@ -122,6 +122,10 @@ export class LandscapeComponent implements OnInit {
     }
   }
 
+  updateBrushWidth(px: string): void {
+    this.canvasBrushWidth = parseInt(px, 10);
+  }
+
   sendRequest(style: string): void {
     const dataURL = this.inputCanvas.canvas.nativeElement.toDataURL();
     const uuid = uuidv4();
