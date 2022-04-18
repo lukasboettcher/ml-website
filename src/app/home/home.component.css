@@ -22,3 +22,16 @@
 .justify-content-evenly {
     justify-content: space-evenly;
 }
+
+.filter-pill-badge {
+    cursor: pointer;
+    margin: 7px 5px;
+    padding: .45em .6em;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    user-select: none;
+    font-size: medium;
+}
+
+.filter-pill-badge:hover {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+}
