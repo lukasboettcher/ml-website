@@ -12,6 +12,7 @@ export class HomeCardComponent implements OnInit {
   @Input() text = 'Undefined Text';
   @Input() srcPath = 'assets/branding/tf-norm-de-blackgreyfaku-rgb-0720.png';
   @Input() video = false;
+  @Input() routerLink = '/';
 
   constructor() { }
 
