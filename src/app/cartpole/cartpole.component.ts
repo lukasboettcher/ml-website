@@ -5,7 +5,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Cart } from './cart';
 import { RlComponent } from './rl-component';
 import { RlEnvironment } from './rl-environment';
-import { ChartDataSets } from 'chart.js';
+import { ChartDataSets, ChartType } from 'chart.js';
 import { Label, Color } from 'ng2-charts';
 
 @Component({
@@ -59,7 +59,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
   ];
   lineChartLegend = true;
   lineChartPlugins = [];
-  lineChartType = 'line';
+  lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
     // this.ngZone.runOutsideAngular(() => this.renderSimulation());
