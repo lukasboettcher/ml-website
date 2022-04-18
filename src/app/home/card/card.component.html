@@ -1,1 +1,10 @@
-<p>card works!</p>
+<div class="col custom-col">
+    <div class="card custom-card my-3">
+        <img *ngIf="!video" [src]="srcPath" class="img-fluid" alt="thumbnail">
+        <video *ngIf="video" [src]="srcPath" class="img-fluid" alt="thumbnail" autoplay muted loop></video>
+        <div class="card-body">
+            <h5 class="card-title">{{title}}</h5>
+            <p class="card-text">{{text}}</p>
+        </div>
+    </div>
+</div>
