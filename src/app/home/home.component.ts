@@ -15,3 +15,11 @@ export class HomeComponent implements OnInit {
   }
 
 }
+
+interface Card {
+  title: string;
+  text: string;
+  routerLink: string;
+  srcPath?: string;
+  video?: boolean;
+}
