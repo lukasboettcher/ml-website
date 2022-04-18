@@ -101,6 +101,15 @@ export class HomeComponent implements OnInit {
     return false;
   }
 
+  addOrRemove(item: string): void {
+    if (this.activeTags.includes(item)) {
+      this.activeTags = this.activeTags.filter(e => e !== item);
+      this.excludedTags = [...this.excludedTags, item];
+    } else {
+      this.excludedTags = this.excludedTags.filter(e => e !== item);
+      this.activeTags = [...this.activeTags, item];
+    }
+  }
 }
 
 interface Card {
