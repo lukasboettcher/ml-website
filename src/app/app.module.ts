@@ -36,6 +36,7 @@ import { ImprintComponent } from './help/imprint/imprint.component';
 import { TictactoeComponent } from './tictactoe/tictactoe.component';
 import { PerceptronComponent } from './perceptron/perceptron.component';
 import { HomeCardComponent } from './home/card/card.component';
+import { CallbackPipe } from './callback.pipe';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { HomeCardComponent } from './home/card/card.component';
     ImprintComponent,
     TictactoeComponent,
     PerceptronComponent,
-    HomeCardComponent
+    HomeCardComponent,
+    CallbackPipe
   ],
   imports: [
     BrowserModule,
