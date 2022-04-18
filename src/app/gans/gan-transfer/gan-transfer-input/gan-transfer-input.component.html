@@ -5,10 +5,10 @@
     <img #image class="" [src]="imgSrc" height="256" crossorigin='anonymous' />
 </figure>
 
-<select id="content-select" class="centered custom-select" (change)="onSelectChange(image,$event.target, uploader)"
+<select #select id="content-select" class="centered custom-select" (change)="onSelectChange(image, select, uploader)"
     [disabled]="inputDisabled">
     <option selected value="" disabled>Bild Auswählen</option>
-    <option value="pic" (click)="openCameraModal($event.target, content)">Bild Aufnehmen</option>
+    <option value="pic" (click)="openCameraModal(select, content)">Bild Aufnehmen</option>
     <option value="file">Bild Hochladen</option>
     <option *ngFor="let x of listOfImages" [value]="x.path">{{x.name}}</option>
 </select>
