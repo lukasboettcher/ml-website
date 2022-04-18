@@ -53,11 +53,16 @@
         <div>
             <h2>Welche Themen werden hier behandelt?</h2>
             <p>
-                Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in fünf Lerneinheiten aufgeteilt,
+                Maschinelles Lernen umfasst diverse Teilgebiete. Diese Seite ist in neun Lerneinheiten aufgeteilt,
                 die die Teilgebiete „Überwachtes Lernen“ und „Bestärkendes Lernen“ thematisieren.
             </p>
         </div>
-        <!-- </div> col-md-6 col-lg-4 col-xl-3 -->
+
+        <div>
+            <span *ngFor="let tag of allTags; index as i" (click)="addOrRemove(tag)"
+                [ngClass]="{'badge-primary': activeTags.includes(tag), 'badge-danger': excludedTags.includes(tag)}"
+                class="badge filter-pill-badge">{{tag}}</span>
+        </div>
         <div class="d-flex justify-content-evenly row">
             <app-card *ngFor="let card of cardsData | callback:filterCards:activeTags:excludedTags" [title]="card.title"
                 [text]="card.text" [srcPath]="card.srcPath" [video]="card.video" [routerLink]="card.routerLink">
