@@ -17,7 +17,8 @@ export class MnistComponent implements OnInit {
   stages: boolean[] = new Array(4).fill(false);
   currentlyLoading = false;
   doTutorial: boolean = null;
-  modelLoaded = '';
+  modelLoaded = false;
+  modelType = '';
   gotCustomModel = false;
   mnistbReadFirst = false;
   benchmarkTooSlow = false;
@@ -105,7 +106,8 @@ export class MnistComponent implements OnInit {
       }
       this.model = loadedModel;
       console.log('loaded pretrained model');
-      this.modelLoaded = 'pre';
+      this.modelLoaded = true;
+      this.modelType = 'pre';
       this.currentlyLoading = false;
       this.stages[0] = true;
     }).catch(e => console.log('failed to load model: ' + e));
@@ -115,7 +117,8 @@ export class MnistComponent implements OnInit {
     this.currentlyLoading = true;
     console.log('loading custom model...');
     // this.model = this.customModel;
-    this.modelLoaded = 'custom';
+    this.modelLoaded = true;
+    this.modelType = 'custom';
     console.log('loaded custom model...');
     this.currentlyLoading = false;
   }
@@ -123,7 +126,7 @@ export class MnistComponent implements OnInit {
     this.customModel = model;
     // if custom model was previously loaded and new model is submitted,
     // load new model automatically
-    if (this.modelLoaded === 'custom') {
+    if (this.modelType === 'custom') {
       this.loadCustomModel();
     }
     this.gotCustomModel = true;

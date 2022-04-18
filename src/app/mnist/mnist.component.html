@@ -23,7 +23,7 @@
         genauer unter die Lupe nehmen.
       </p>
       <div class="text-center">
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelType == 'pre'}"
           (click)="loadPretrainedModel()">Okay, los geht's
           <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
         </button>
@@ -113,8 +113,8 @@
 
   <div class="my-3" *ngIf="stages[1]">
     <!-- draw area own model-->
-    <div class="row my-5 justify-content-around" *ngIf="stages[1] && customModel">
-      <app-draw-digit [modelLoaded]="customModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
+    <div class="row my-5 justify-content-around" *ngIf="stages[1] && modelType === 'custom'">
+      <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassifyCustom($event)"></app-draw-digit>
       <div class="col-md ml-3">
         <div style="max-width: 800px;">
           <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
