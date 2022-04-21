@@ -113,8 +113,8 @@
 
   <div class="my-3" *ngIf="stages[1]">
     <!-- draw area own model-->
-    <div class="row my-5 justify-content-around" *ngIf="stages[1] && modelType === 'custom'">
-      <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassifyCustom($event)"></app-draw-digit>
+    <div class="row my-5 justify-content-around" *ngIf="stages[1] && gotCustomModel">
+      <app-draw-digit [modelLoaded]="gotCustomModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
       <div class="col-md ml-3">
         <div style="max-width: 800px;">
           <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
