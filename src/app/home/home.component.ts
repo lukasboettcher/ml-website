@@ -7,8 +7,7 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   allTags = ['basic', 'advanced', 'supervised', 'unsupervised', 'reinforcement', 'gan', 'webcam'];
-  // activeTags = this.allTags.slice(1);
-  activeTags = this.allTags.slice();
+  activeTags = [];
   excludedTags = [];
 
   cardsData: Card[] = [
@@ -98,15 +97,18 @@ export class HomeComponent implements OnInit {
         return true;
       }
     }
-    return false;
+    if (activeTags.length === 0) {
+      return true;
+    }
   }
 
   addOrRemove(item: string): void {
     if (this.activeTags.includes(item)) {
       this.activeTags = this.activeTags.filter(e => e !== item);
       this.excludedTags = [...this.excludedTags, item];
-    } else {
+    } else if (this.excludedTags.includes(item)) {
       this.excludedTags = this.excludedTags.filter(e => e !== item);
+    } else {
       this.activeTags = [...this.activeTags, item];
     }
   }
