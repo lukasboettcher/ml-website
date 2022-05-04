@@ -61,7 +61,7 @@
         <div>
             <span *ngFor="let tag of allTags; index as i" (click)="addOrRemove(tag)"
                 [ngClass]="{'badge-success': activeTags.includes(tag), 'badge-danger': excludedTags.includes(tag)}"
-                class="badge filter-pill-badge badge-primary">{{tag}}</span>
+                class="badge filter-pill-badge badge-primary">{{tag | titlecase}}</span>
         </div>
         <div class="d-flex justify-content-evenly row">
             <app-card *ngFor="let card of cardsData | callback:filterCards:activeTags:excludedTags" [title]="card.title"
