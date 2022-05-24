@@ -33,7 +33,7 @@ export class ClassifyComponent implements OnInit {
   // camera settings
   constraints = {
     video: {
-      facingMode: 'environment',
+      facingMode: 'user',
       width: { ideal: 500 },
       height: { ideal: 300 }
     }
