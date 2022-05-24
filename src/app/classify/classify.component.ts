@@ -68,12 +68,7 @@ export class ClassifyComponent implements OnInit {
           // set srcObject property
           const vid = this.videoElement.nativeElement;
           this.renderer.setProperty(vid, 'srcObject', stream);
-          this.renderer.listen(vid, 'play', (event) => {
-            // save dimensions of webcam video
-            this.videoHeight = vid.videoHeight;
-            this.videoWidth = vid.videoWidth;
-          });
-          this.webcamStarted = true;
+          this.webcamRunning = true;
         })
         .catch((e) => {
           console.log(e);
