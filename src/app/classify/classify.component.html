@@ -147,8 +147,9 @@
             </ng-template>
             <ng-template ngbPanelContent>
                 <p>
-                    Vereinfacht ausgedrückt: man gibt dem neuronalen Netzwerk ein Bild und die Information, was darauf 
-                    zu sehen ist, und das Netzwerk identifiziert selbstständig die Merkmale, die die Objekte dieser Klasse
+                    Vereinfacht ausgedrückt: man gibt dem neuronalen Netzwerk ein Bild und die Information, was darauf
+                    zu sehen ist, und das Netzwerk identifiziert selbstständig die Merkmale, die die Objekte dieser
+                    Klasse
                     auszeichnen. Dies wiederholt man nun sehr oft und hofft, dass das Netzwerk die richtigen
                     Merkmale identifizieren wird.
                     In dieser Komponente kommt ein vortrainiertes neuronales Netzwerk namens MobileNet zum Einsatz, das
@@ -157,9 +158,11 @@
                     und gute Klassifizierungsqualität aus.
                 </p>
                 <p>
-                    Hierbei gibt MobileNet für jedes Bild, welches z.B. durch eine Webcam präsentiert wird, eine Liste von Zahlen zurück.
+                    Hierbei gibt MobileNet für jedes Bild, welches z.B. durch eine Webcam präsentiert wird, eine Liste
+                    von Zahlen zurück.
                     Deine Aufgabe ist es dann dieser Liste von Zahlen einen Namen zu geben.
-                    Wenn das MobileNet Modell dann später ein neues Bild sieht, werden die Zahlen verglichen und es wird der Name als Klasse gewählt, 
+                    Wenn das MobileNet Modell dann später ein neues Bild sieht, werden die Zahlen verglichen und es wird
+                    der Name als Klasse gewählt,
                     dessen Zahlen am ähnlichsten sind zu dem neuen Bild.
                     Wenn das Modell genug Beispiele bekommt, ist es dann in der Lage die Klassen korrekt zuzuordnen.
                 </p>
@@ -200,10 +203,10 @@
                 <div class="col d-flex flex-column align-items-center mb-3">
                     <span class="badge badge-secondary">Füge Klassen hinzu, um zu navigieren!</span>
                     <div class="btn-group my-3" id="set-dir" role="group">
-                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('links')">Links</button>
-                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('oben')">Oben</button>
-                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('unten')">Unten</button>
-                        <button type="button" class="btn btn-secondary" (click)="addClassLoop('rechts')">Rechts</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClass('links')">Links</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClass('oben')">Oben</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClass('unten')">Unten</button>
+                        <button type="button" class="btn btn-secondary" (click)="addClass('rechts')">Rechts</button>
                         <button type="button" class="btn btn-secondary ml-2"
                             (click)="showMazeControl = !showMazeControl">Manuelle Steuerung</button>
                     </div>
@@ -224,10 +227,10 @@
         <div class="col d-flex flex-column align-items-center mb-3">
             <span class="badge badge-secondary">Füge Klassen hinzu, um zu navigieren!</span>
             <div class="btn-group my-3" id="set-dir" role="group">
-                <button type="button" class="btn btn-secondary" (click)="addClassLoop('links')">Links</button>
-                <button type="button" class="btn btn-secondary" (click)="addClassLoop('oben')">Oben</button>
-                <button type="button" class="btn btn-secondary" (click)="addClassLoop('unten')">Unten</button>
-                <button type="button" class="btn btn-secondary" (click)="addClassLoop('rechts')">Rechts</button>
+                <button type="button" class="btn btn-secondary" (click)="addClass('links')">Links</button>
+                <button type="button" class="btn btn-secondary" (click)="addClass('oben')">Oben</button>
+                <button type="button" class="btn btn-secondary" (click)="addClass('unten')">Unten</button>
+                <button type="button" class="btn btn-secondary" (click)="addClass('rechts')">Rechts</button>
                 <button type="button" class="btn btn-secondary ml-2"
                     (click)="showMazeControl = !showMazeControl">Manuelle Steuerung</button>
             </div>
