@@ -71,8 +71,21 @@ export class ClassifyComponent implements OnInit {
     }
   }
 
-  stopClassify(): void {
-    this.classifyNotInterrupted = !this.classifyNotInterrupted;
+  startStopNN(): void {
+    if (this.loopID) {
+      cancelAnimationFrame(this.loopID);
+      clearInterval(this.mazeInterval);
+      this.loopID = null;
+    } else {
+      this.loopID = requestAnimationFrame(this.animate.bind(this));
+      // send detected direction every 500ms,
+      // makes it possible to move in the maze (not too fast)
+      this.mazeInterval = setInterval(async () => {
+        if (this.loopID && this.knn.getNumClasses() > 0) {
+          this.moveSubject.next(this.result);
+        }
+      }, 500);
+    }
   }
 
   async addClass(name: string): Promise<void> {
