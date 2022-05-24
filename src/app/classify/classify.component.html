@@ -5,9 +5,9 @@
                 <h3>Klassifizierung mit der Webcam</h3>
                 <p>
                     In der <a routerLink="/object">Objekterkennungs-Komponente</a> kannst du ein neuronales Netzwerk bei
-                    der Arbeit beobachten, das darauf trainiert ist, bestimmte Objekte in Bildern zu erkennen. Woher
+                    der Arbeit beobachten, dass darauf trainiert ist, bestimmte Objekte in Bildern zu erkennen. Woher
                     aber lernt ein neuronales Netz, welche Objekte auf einem Bild zu sehen sind? Diesen Vorgang nennt
-                    man Klassifikation, weil die sichtbaren Objekte jeweils einer so genannten Klasse zugeordnet werden.
+                    man Klassifikation, weil die sichtbaren Objekte jeweils einer Klasse zugeordnet werden.
                 </p>
 
                 <p>
@@ -79,8 +79,8 @@
     </div>
 
     <div class="flex-row d-flex flex-wrap">
-        <button type="submit" class="btn btn-primary flex-grow-1 m-1" [disabled]="modelsLoaded" [ngClass]="{'btn-success': modelsLoaded}"
-            (click)="initiateModels()">{{modelsLoaded ? 'Bereit':'Modell Laden'}}
+        <button type="submit" class="btn btn-primary flex-grow-1 m-1" [disabled]="modelsLoaded"
+            [ngClass]="{'btn-success': modelsLoaded}" (click)="initiateModels()">{{modelsLoaded ? 'Bereit':'Modell Laden'}}
             <span *ngIf="startedLoading&&!modelsLoaded" class="spinner-border spinner-border-sm"></span>
         </button>
         <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!modelsLoaded || webcamStarted"
@@ -139,13 +139,23 @@
                 <span> <b>Wie funktioniert die Bildklassifikation?</b> </span>
             </ng-template>
             <ng-template ngbPanelContent>
-                Vereinfacht ausgedrückt: man gibt dem neuronalen Netzwerk ein Bild und die Information, was darauf zu
-                sehen ist, und das Netzwerk identifiziert selbstständig die Merkmale, die die Objekte dieser Klasse
-                auszeichnen. Dies wiederholt man nun sehr oft und hofft, dass das Netzwerk schon die richtigen Merkmale
-                identifizieren wird.
-                In dieser Komponente kommt ein vortrainiertes neuronales Netzwerk namens MobileNet zum Einsatz, das
-                speziell für Bilderkennung auf mobilen Geräten trainiert wurde. Es zeichnet sich durch kompakte Größe
-                und gute Klassifizierungsqualität aus.
+                <p>
+                    Vereinfacht ausgedrückt: man gibt dem neuronalen Netzwerk ein Bild und die Information, was darauf 
+                    zu sehen ist, und das Netzwerk identifiziert selbstständig die Merkmale, die die Objekte dieser Klasse
+                    auszeichnen. Dies wiederholt man nun sehr oft und hofft, dass das Netzwerk die richtigen
+                    Merkmale identifizieren wird.
+                    In dieser Komponente kommt ein vortrainiertes neuronales Netzwerk namens MobileNet zum Einsatz, das
+                    speziell für Bilderkennung auf mobilen Geräten trainiert wurde. Es zeichnet sich durch kompakte
+                    Größe
+                    und gute Klassifizierungsqualität aus.
+                </p>
+                <p>
+                    Hierbei gibt MobileNet für jedes Bild, welches z.B. durch eine Webcam präsentiert wird, eine Liste von Zahlen zurück.
+                    Deine Aufgabe ist es dann dieser Liste von Zahlen einen Namen zu geben.
+                    Wenn das MobileNet Modell dann später ein neues Bild sieht, werden die Zahlen verglichen und es wird der Name als Klasse gewählt, 
+                    dessen Zahlen am ähnlichsten sind zu dem neuen Bild.
+                    Wenn das Modell genug Beispiele bekommt, ist es dann in der Lage die Klassen korrekt zuzuordnen.
+                </p>
             </ng-template>
         </ngb-panel>
         <ngb-panel [disabled]="false">
@@ -157,7 +167,7 @@
                     Die Bilder, mit denen das neuronale Netzwerk trainiert wird, müssen sorgsam ausgewählt werden, damit
                     nicht die falschen Merkmale als maßgeblich identifiziert werden. Ein neuronales Netzwerk von Google
                     sollte z.B. anhand vieler Bilder lernen, was eine Hantel ist. Dann sollte das Netzwerk selbst Bilder
-                    von Hanteln erzeugen – und produzierte das hier:
+                    von Hanteln erzeugen - und produzierte das hier:
                 </p>
                 <img src="assets/classify-images/dumbbells.png" class="img-fluid border rounded mx-auto my-3 d-block">
                 <p>
