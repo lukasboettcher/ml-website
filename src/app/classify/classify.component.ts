@@ -42,22 +42,12 @@ export class ClassifyComponent implements OnInit {
   // solve maze
   moveSubject: Subject<string> = new Subject<string>();
 
-  ngOnInit(): void {
-    this.webcam = this.videoElement.nativeElement;
-  }
+  ngOnInit(): void { }
 
   async initiateModels(): Promise<void> {
     this.startedLoading = true;
     this.model = await mnet.load();
     this.knn = await knn.create();
-    console.log('models loaded');
-    this.modelsLoaded = true;
-  }
-
-  onLoadedData(): void {
-    // only start detecting frames of video element ready
-    console.log('video loaded');
-    this.detectFrames();
   }
 
   startWebcam(): void {
