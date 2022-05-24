@@ -91,10 +91,48 @@ export class ClassifyComponent implements OnInit {
   }
 
   async addClass(name: string): Promise<void> {
-    // use knn to add custom class
-    const relu = this.model.infer(this.webcam, true);
-    this.knn.addExample(relu, name);
-    console.log('successfully added class ' + name);
+
+  async animate(): Promise<void> {
+    if (this.webcamRunning) {
+      // Get image data from video element
+      const image = tf.browser.fromPixels(this.videoElement.nativeElement);
+
+      let logits;
+      // 'conv_preds' is the logits activation of MobileNet.
+      const infer = () => this.model.infer(image, true);
+
+      // Train class if one of the buttons is held down
+      if (this.currentSampleClass) {
+        logits = infer();
+
+        // Add current image to classifier
+        this.knn.addExample(logits, this.currentSampleClass);
+      }
+
+      const numClasses = this.knn.getNumClasses();
+      if (numClasses > 0) {
+
+        // If classes have been added run predict
+        logits = infer();
+        const res = await this.knn.predictClass(logits, 10);
+        const exampleCount = this.knn.getClassExampleCount();
+        this.classes.forEach((v, k) => {
+          v.count = exampleCount[k];
+          v.pred = res.confidences[k];
+        });
+        this.result = res.label;
+      }
+
+      // Dispose image when done
+      image.dispose();
+      if (logits) {
+        logits.dispose();
+      }
+    }
+    if (this.loopID) {
+      this.loopID = requestAnimationFrame(this.animate.bind(this));
+    }
+
   }
 
   async removeClass(name: string): Promise<void> {
@@ -115,25 +153,6 @@ export class ClassifyComponent implements OnInit {
     this.knn.clearAllClasses();
   }
 
-  async detectFrames(): Promise<void> {
-    // evaluate the video feed every 32ms
-    setInterval(async () => {
-      if (this.knn.getNumClasses() > 0 && this.classifyNotInterrupted) {
-        const relu = this.model.infer(this.webcam, true);
-        const res = await this.knn.predictClass(relu);
-        this.result = res.label;
-        this.probabilities = res.confidences;
-      }
-      await tf.nextFrame();
-    }, 32);
-    // send detected direction every 500ms,
-    // makes it possible to move in the maze (not too fast)
-    setInterval(async () => {
-      if (this.knn.getNumClasses() > 0 && this.classifyNotInterrupted) {
-        this.moveSubject.next(this.result);
-      }
-    }, 500);
-  }
   emitEventToChild(dir: string): void {
     // console.log('button submitted for: '+dir);
     this.moveSubject.next(dir);
