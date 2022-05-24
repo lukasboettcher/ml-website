@@ -11,30 +11,24 @@ import { Subject } from 'rxjs';
 })
 export class ClassifyComponent implements OnInit {
 
+  @ViewChild('video', { static: true }) videoElement: ElementRef;
+
   images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png`);
 
-  constructor(private renderer: Renderer2) {
-    // this.initiateModels();
-  }
+  constructor(private renderer: Renderer2) { }
 
-  // variables for the models
-  private model: mnet.MobileNet;
+  // state
+  model: mnet.MobileNet;
   knn: knn.KNNClassifier;
   startedLoading = false;
-  modelsLoaded = false;
-
-  @ViewChild('video', { static: true }) videoElement: ElementRef;
-  private webcam;
-
-  // state of component
-  private videoWidth;
-  private videoHeight;
-  webcamStarted = false;
-  classifyNotInterrupted = true;
+  loopID: number;
+  mazeInterval: ReturnType<typeof setInterval>;
+  webcamRunning = false;
   solveMaze = false;
   showMazeControl = false;
   result = '';
-  probabilities: { [label: string]: number; } = {};
+  classes = new Map(); // <string, {pred: number, count: number} | undefined>
+  currentSampleClass: string;
 
   // camera settings
   constraints = {
