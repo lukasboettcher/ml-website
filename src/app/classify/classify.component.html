@@ -103,7 +103,7 @@
             Entfernen</button>
     </div>
 
-    <div class="row my-5 " *ngIf="webcamStarted && knn.getNumClasses() > 0">
+    <div class="row my-5 " *ngIf="classes.size > 0">
         <div class="col-md-8">
             <table class="table">
                 <thead>
@@ -111,17 +111,24 @@
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Wahrscheinlichkeit</th>
+                        <th scope="col"># Samples</th>
+                        <th scope="col">Beispiele Hinzufügen</th>
                         <th scope="col">Klasse Entfernen</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let p of probabilities | keyvalue;let i=index;">
+                    <tr *ngFor="let c of classes | keyvalue;let i=index;">
                         <th>{{ i+1 }}</th>
-                        <td #key>{{ p.key }}</td>
-                        <td>{{ p.value | percent }}</td>
+                        <td>{{ c.key }}</td>
+                        <td>{{ c.value.pred | percent }}</td>
+                        <td>{{ c.value.count }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-sm" [disabled]="!video || !loopID" (mousedown)="currentSampleClass = c.key"
+                                (mouseup)="currentSampleClass = null" (mouseleave)="currentSampleClass = null">Sample</button>
+                        </td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm"
-                                (click)="removeClass(p.key)">Entfernen</button>
+                                (click)="removeClass(c.key)">Entfernen</button>
                         </td>
                     </tr>
                 </tbody>
