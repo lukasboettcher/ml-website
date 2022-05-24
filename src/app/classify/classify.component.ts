@@ -86,6 +86,11 @@ export class ClassifyComponent implements OnInit {
   }
 
   async addClass(name: string): Promise<void> {
+    if (!name || this.classes.has(name)) {
+      return;
+    }
+    this.classes.set(name, {});
+  }
 
   async animate(): Promise<void> {
     if (this.webcamRunning) {
@@ -131,9 +136,12 @@ export class ClassifyComponent implements OnInit {
   }
 
   async removeClass(name: string): Promise<void> {
-    console.log(name);
-    this.knn.clearClass(name);
-    console.log('successfully removed class ' + name);
+    this.classes.delete(name);
+    // this.knn.clearClass(name);
+    const exampleCount = this.knn.getClassExampleCount();
+    if (exampleCount[name]) {
+      this.knn.clearClass(name);
+    }
   }
 
   // wrapper to add multiple images for a class
@@ -145,7 +153,10 @@ export class ClassifyComponent implements OnInit {
   }
 
   resetClasses(): void {
-    this.knn.clearAllClasses();
+    this.classes.clear();
+    if (this.knn.getNumClasses() > 0) {
+      this.knn.clearAllClasses();
+    }
   }
 
   emitEventToChild(dir: string): void {
