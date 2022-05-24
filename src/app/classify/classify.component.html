@@ -74,31 +74,31 @@
         </div>
 
         <div class="col-md-6 col-lg-5 col-xl-6 d-flex flex-column align-items-center justify-content-center my-4">
-            <video autoplay playsinline muted #video (loadeddata)="onLoadedData()" class="border border-dark"></video>
+            <video autoplay playsinline muted #video (loadeddata)="startStopNN()" class="border border-dark"></video>
         </div>
     </div>
 
     <div class="flex-row d-flex flex-wrap">
-        <button type="submit" class="btn btn-primary flex-grow-1 m-1" [disabled]="modelsLoaded"
-            [ngClass]="{'btn-success': modelsLoaded}" (click)="initiateModels()">{{modelsLoaded ? 'Bereit':'Modell Laden'}}
-            <span *ngIf="startedLoading&&!modelsLoaded" class="spinner-border spinner-border-sm"></span>
+        <button type="submit" class="btn btn-primary flex-grow-1 m-1" [disabled]="model"
+            [ngClass]="{'btn-success': model}" (click)="initiateModels()">{{model ? 'Bereit':'Modell Laden'}}
+            <span *ngIf="startedLoading&&!model" class="spinner-border spinner-border-sm"></span>
         </button>
-        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!modelsLoaded || webcamStarted"
-            (click)="startWebcam()">{{modelsLoaded ? 'Starte Webcam':'Bitte Modell Laden'}}
+        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!model || webcamRunning"
+            (click)="startWebcam()">{{model ? 'Starte Webcam':'Bitte Modell Laden'}}
         </button>
         <div class="flex-grow-1 m-1">
             <div class="input-group ">
-                <input #input type="text" [disabled]="!webcamStarted" class="form-control"
+                <input #input type="text" class="form-control"
                     placeholder="Klasse Hinzufügen">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" [disabled]="!webcamStarted"
-                        (click)="addClassLoop(input.value)">+</button>
+                    <button class="btn btn-outline-secondary" type="button"
+                        (click)="addClass(input.value)">+</button>
                 </div>
             </div>
         </div>
-        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!webcamStarted" (click)="stopClassify()">{{
-            (classifyNotInterrupted ? 'Stoppe':'Starte')+ ' Klassifikation'}}</button>
-        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!webcamStarted" (click)="resetClasses()">Alle
+        <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!webcamRunning" (click)="startStopNN()">{{
+            (loopID ? 'Stoppe':'Starte')+ ' Klassifikation'}}</button>
+        <button class="btn btn-primary flex-grow-1 m-1" (click)="resetClasses()">Alle
             Klassen
             Entfernen</button>
     </div>
