@@ -37,6 +37,7 @@ import { TictactoeComponent } from './tictactoe/tictactoe.component';
 import { PerceptronComponent } from './perceptron/perceptron.component';
 import { HomeCardComponent } from './home/card/card.component';
 import { CallbackPipe } from './callback.pipe';
+import { NotebooksComponent } from './notebooks/notebooks.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { CallbackPipe } from './callback.pipe';
     TictactoeComponent,
     PerceptronComponent,
     HomeCardComponent,
-    CallbackPipe
+    CallbackPipe,
+    NotebooksComponent
   ],
   imports: [
     BrowserModule,
