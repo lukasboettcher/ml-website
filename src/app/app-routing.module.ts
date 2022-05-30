@@ -13,6 +13,7 @@ import { GanTrainingComponent } from './gans/gan-training/gan-training.component
 import { ImprintComponent } from './help/imprint/imprint.component';
 import { TictactoeComponent } from './tictactoe/tictactoe.component';
 import { PerceptronComponent } from './perceptron/perceptron.component';
+import { NotebooksComponent } from './notebooks/notebooks.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   { path: 'imprint', component: ImprintComponent },
   { path: 'tictactoe', component: TictactoeComponent },
   { path: 'perceptron', component: PerceptronComponent },
+  { path: 'notebooks', component: NotebooksComponent },
   { path: '404', component: NotfoundComponent },
   // wildcard URL
   { path: '**', redirectTo: '/404' }
