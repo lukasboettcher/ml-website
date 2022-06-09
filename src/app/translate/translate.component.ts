@@ -61,4 +61,9 @@ export class TranslateComponent implements OnInit {
     const transitivelySupported = (`${from}en` in registry) && (`en${to}` in registry);
     return directlySupported || transitivelySupported;
   }
+
+  loadModel(): void {
+    this.loadingModel = true;
+    this.worker.postMessage(['load_model', this.langFrom, this.langTo]);
+  }
 }
