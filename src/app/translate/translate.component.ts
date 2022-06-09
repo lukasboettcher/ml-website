@@ -1,3 +1,7 @@
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
+
 @Component({
   selector: 'app-translate',
   templateUrl: './translate.component.html',
@@ -33,6 +37,9 @@ export class TranslateComponent implements OnInit {
     es: 'Spanisch',
     uk: 'Ukrainisch'
   };
+
+  supportedTranslations = {};
+
   constructor() { }
 
   ngOnInit(): void {
@@ -40,11 +47,34 @@ export class TranslateComponent implements OnInit {
       .pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { this.translateCall(); });
     if (typeof Worker !== 'undefined') {
       this.worker = new Worker('assets/translate/worker.js');
+      this.worker.addEventListener('message', ({ data }) => {
+        if (data[0] === 'translate_reply' && data[1]) {
+          this.outputText = data[1].join('\n\n');
+          this.translating = false;
+        } else if (data[0] === 'load_model_reply' && data[1]) {
+          this.loadingModel = false;
+          this.translateCall();
+        } else if (data[0] === 'import_reply' && data[1]) {
+          const registry = data[1];
+          Object.keys(registry).map(k => k.substring(0, 2)).forEach(a => {
+            this.supportedTranslations[a] = [];
+            Object.keys(this.langs).forEach(b => {
+              if (this.isSupported(a, b, registry)) {
+                this.supportedTranslations[a] = [...this.supportedTranslations[a], b];
+              }
+            });
+          });
+          // this.version = data[2];
+          this.loadModel();
+        }
+      });
       this.worker.postMessage(['import']);
     } else {
       // Web Workers are not supported in this environment.
       // You should add a fallback so that your program still executes correctly.
     }
+  }
+
   translateCall(): void {
     const text = this.inputText;
     if (!text.trim().length) { return; }
@@ -53,6 +83,8 @@ export class TranslateComponent implements OnInit {
 
     this.worker.postMessage(['translate', this.langFrom, this.langTo, paragraphs]);
   }
+
+
   isSupported(from: string, to: string, registry: any): boolean {
     if (from === to) {
       return false;
