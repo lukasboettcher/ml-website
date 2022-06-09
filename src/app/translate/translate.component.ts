@@ -5,6 +5,7 @@
 })
 export class TranslateComponent implements OnInit {
 
+  @ViewChild('input', { static: true }) inputElement: ElementRef;
   worker: Worker;
   langFrom = 'de';
   langTo = 'en';
