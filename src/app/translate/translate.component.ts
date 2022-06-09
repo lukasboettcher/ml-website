@@ -5,6 +5,13 @@
 })
 export class TranslateComponent implements OnInit {
 
+  worker: Worker;
+  langFrom = 'de';
+  langTo = 'en';
+  inputText = '';
+  outputText = '';
+  translating = false;
+  loadingModel = false;
   constructor() { }
 
   ngOnInit(): void {
