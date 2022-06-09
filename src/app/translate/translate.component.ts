@@ -53,4 +53,12 @@ export class TranslateComponent implements OnInit {
 
     this.worker.postMessage(['translate', this.langFrom, this.langTo, paragraphs]);
   }
+  isSupported(from: string, to: string, registry: any): boolean {
+    if (from === to) {
+      return false;
+    }
+    const directlySupported = `${from}${to}` in registry;
+    const transitivelySupported = (`${from}en` in registry) && (`en${to}` in registry);
+    return directlySupported || transitivelySupported;
+  }
 }
