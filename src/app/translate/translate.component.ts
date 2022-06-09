@@ -36,4 +36,6 @@ export class TranslateComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    fromEvent(this.inputElement.nativeElement, 'keyup')
+      .pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { this.translateCall(); });
 }
