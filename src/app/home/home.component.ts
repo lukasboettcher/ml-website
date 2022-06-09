@@ -78,6 +78,13 @@ export class HomeComponent implements OnInit {
       srcPath: 'assets/home-images/landscape.gif',
       video: false,
       tags: ['advanced', 'gan', 'unsupervised']
+    }, {
+      title: 'Python Notebooks',
+      routerLink: '/notebooks',
+      text: `Wenn du dich schon etwas mit Python auskennst, bieten wir dir Python Notebooks an, worin du einige Themen noch einmal bearbeiten kannst.`,
+      srcPath: 'assets/home-images/jupyter.webp',
+      video: false,
+      tags: ['advanced']
     },
   ];
 
