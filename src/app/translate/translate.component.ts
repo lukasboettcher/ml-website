@@ -45,4 +45,12 @@ export class TranslateComponent implements OnInit {
       // Web Workers are not supported in this environment.
       // You should add a fallback so that your program still executes correctly.
     }
+  translateCall(): void {
+    const text = this.inputText;
+    if (!text.trim().length) { return; }
+    const paragraphs = text.split('\n');
+    this.translating = true;
+
+    this.worker.postMessage(['translate', this.langFrom, this.langTo, paragraphs]);
+  }
 }
