@@ -38,4 +38,11 @@ export class TranslateComponent implements OnInit {
   ngOnInit(): void {
     fromEvent(this.inputElement.nativeElement, 'keyup')
       .pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { this.translateCall(); });
+    if (typeof Worker !== 'undefined') {
+      this.worker = new Worker('assets/translate/worker.js');
+      this.worker.postMessage(['import']);
+    } else {
+      // Web Workers are not supported in this environment.
+      // You should add a fallback so that your program still executes correctly.
+    }
 }
