@@ -66,6 +66,11 @@ export class TranslateComponent implements OnInit {
     this.loadingModel = true;
     this.worker.postMessage(['load_model', this.langFrom, this.langTo]);
   }
+
+  findFirstSupportedTo(): string {
+    return this.supportedTranslations[this.langFrom].find(l => l !== this.langFrom)[0];
+  }
+
   swap(): void {
     const prevLangFrom = this.langFrom;
 
