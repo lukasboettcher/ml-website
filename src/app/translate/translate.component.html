@@ -1,0 +1,24 @@
+<div class="app">
+   <div class="panel panel--from">
+      <label>
+         From <span *ngIf="loadingModel" class="spinner-border spinner-border-sm m-2"></span>
+         <select id="lang-from" name="from" class="lang-select" [(ngModel)]="langFrom" [disabled]="translating || loadingModel" (change)="updateFromLang()">
+            <!-- <option *ngFor="let lang of langs | keyvalue" [value]="lang.key" > {{lang.value}} </option> -->
+            <option *ngFor="let t of supportedTranslations | keyvalue" [value]="t.key" > {{langs[t.key]}} </option>
+         </select>
+      </label>
+      <textarea #input id="input" name="input" [(ngModel)]="inputText"></textarea>
+   </div>
+   <button class="swap" title="swap" (click)="swap()">↔️</button>
+   <div class="panel panel--to">
+      <label>
+         To  <span *ngIf="loadingModel" class="spinner-border spinner-border-sm m-2"></span>
+         <select id="lang-from" name="from" class="lang-select" [(ngModel)]="langTo" [disabled]="translating || loadingModel" (change)="updateFromTo()">
+            <!-- <option *ngFor="let lang of langs | keyvalue" [value]="lang.key"> {{lang.value}} </option> -->
+            <option *ngFor="let t of supportedTranslations[langFrom]" [value]="t"> {{langs[t]}} </option>
+         </select>
+      </label>
+      <textarea id="output" name="output" [(ngModel)]="outputText" [disabled]="translating" readonly></textarea>
+   </div>
+   <div class="footer" id="status"></div>
+</div>
