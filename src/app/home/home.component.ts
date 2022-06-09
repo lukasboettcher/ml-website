@@ -79,6 +79,13 @@ export class HomeComponent implements OnInit {
       video: false,
       tags: ['advanced', 'gan', 'unsupervised']
     }, {
+      title: 'Übersetzen',
+      routerLink: '/translate',
+      text: `Übersetze Text mit Hilfe eines neuronalen Netzes. Der Text verlässt dabei niemals deinen Computer und bleibt privat.`,
+      srcPath: 'assets/home-images/translate.webp',
+      video: false,
+      tags: ['advanced', 'supervised']
+    }, {
       title: 'Python Notebooks',
       routerLink: '/notebooks',
       text: `Wenn du dich schon etwas mit Python auskennst, bieten wir dir Python Notebooks an, worin du einige Themen noch einmal bearbeiten kannst.`,
