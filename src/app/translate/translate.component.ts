@@ -66,4 +66,13 @@ export class TranslateComponent implements OnInit {
     this.loadingModel = true;
     this.worker.postMessage(['load_model', this.langFrom, this.langTo]);
   }
+  swap(): void {
+    const prevLangFrom = this.langFrom;
+
+    this.langFrom = this.langTo;
+    this.langTo = prevLangFrom;
+
+    this.inputText = this.outputText;
+    this.loadModel();
+  }
 }
