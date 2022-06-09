@@ -38,6 +38,7 @@ import { PerceptronComponent } from './perceptron/perceptron.component';
 import { HomeCardComponent } from './home/card/card.component';
 import { CallbackPipe } from './callback.pipe';
 import { NotebooksComponent } from './notebooks/notebooks.component';
+import { TranslateComponent } from './translate/translate.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NotebooksComponent } from './notebooks/notebooks.component';
     PerceptronComponent,
     HomeCardComponent,
     CallbackPipe,
-    NotebooksComponent
+    NotebooksComponent,
+    TranslateComponent
   ],
   imports: [
     BrowserModule,
