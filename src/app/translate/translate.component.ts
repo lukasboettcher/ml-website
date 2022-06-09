@@ -75,4 +75,15 @@ export class TranslateComponent implements OnInit {
     this.inputText = this.outputText;
     this.loadModel();
   }
+
+  updateFromLang(): void {
+    this.langTo = (this.langTo !== this.langFrom)
+      ? this.langTo
+      : this.findFirstSupportedTo();
+    this.loadModel();
+  }
+
+  updateFromTo(): void {
+    this.loadModel();
+  }
 }
