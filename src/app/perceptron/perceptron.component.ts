@@ -15,15 +15,17 @@ export class PerceptronComponent implements OnInit {
 
   constructor(private sanitizer: DomSanitizer) { }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event): void {
+    this.calculateHeight(event.target.innerHeight);
+  }
+
   ngOnInit(): void {
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
     console.warn(location.href);
     this.calculateHeight(window.innerHeight);
   }
-  @HostListener('window:resize', ['$event'])
-  onResize(event): void {
-    this.calculateHeight(event.target.innerHeight);
-  }
+
   calculateHeight(windowHeight: number): void {
     this.height = this.heightRatio * windowHeight - 75;
   }

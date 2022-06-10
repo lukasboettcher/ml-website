@@ -15,8 +15,6 @@ export class ClassifyComponent {
 
   images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png`);
 
-  constructor(private renderer: Renderer2) { }
-
   // state
   model: mnet.MobileNet;
   knn: knn.KNNClassifier;
@@ -41,6 +39,8 @@ export class ClassifyComponent {
 
   // solve maze
   moveSubject: Subject<string> = new Subject<string>();
+
+  constructor(private renderer: Renderer2) { }
 
   async initiateModels(): Promise<void> {
     this.startedLoading = true;

@@ -8,8 +8,6 @@ import { Subscription, Observable, Observer, PartialObserver } from 'rxjs';
 })
 export class MazeComponent implements OnInit, OnDestroy {
 
-
-  private movementSubscription: Subscription;
   @Input() movementObservable: Observable<string>;
   @ViewChild('maze_canvas', { static: true }) canvasRef: ElementRef;
   canvas: HTMLCanvasElement;
@@ -57,6 +55,7 @@ export class MazeComponent implements OnInit, OnDestroy {
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   ];
   boards = [this.board1, this.board2, this.board3];
+  private movementSubscription: Subscription;
 
   constructor() { }
 

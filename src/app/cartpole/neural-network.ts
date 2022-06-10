@@ -29,8 +29,7 @@ export class NeuralNetwork {
     }
 
     createNewModel(inputModel: number | number[]): tf.LayersModel {
-        let modelSizes: number[];
-        modelSizes = Array.isArray(inputModel) ? inputModel : [inputModel];
+        const modelSizes = Array.isArray(inputModel) ? inputModel : [inputModel];
         const model = tf.sequential();
         modelSizes.forEach((size, index) => {
             // use the list of nums as dimensions for each layer, except the first,

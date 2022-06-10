@@ -15,18 +15,13 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class CartpoleComponent implements OnInit, RlComponent {
 
-  constructor(private ngZone: NgZone) {
-    this.isTraining = false;
-    this.isTesting = false;
-  }
-
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   @ViewChild('canvas', { static: true })
-  private canvas: ElementRef<HTMLCanvasElement>;
-  private context: CanvasRenderingContext2D;
+  canvas: ElementRef<HTMLCanvasElement>;
+  context: CanvasRenderingContext2D;
 
   // variables for helper classes
-  private net: NeuralNetwork;
+  net: NeuralNetwork;
   sim: RlEnvironment = null;
 
   // status parameters
@@ -34,14 +29,14 @@ export class CartpoleComponent implements OnInit, RlComponent {
   status = 'Warte auf Input...';
   isTraining: boolean;
   isTesting: boolean;
-  private simInterrupt = false;
-  private renderDuringTrain = false;
+  simInterrupt = false;
+  renderDuringTrain = false;
 
   // progress counters
   progressIter = 0;
   progressGames = 0;
 
-  public lineChartData: ChartConfiguration['data'] = {
+  lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
         data: [],
@@ -51,7 +46,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
     labels: []
   };
 
-  public lineChartOptions: ChartConfiguration['options'] = {
+  lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     animation: false,
     elements: {
@@ -61,7 +56,12 @@ export class CartpoleComponent implements OnInit, RlComponent {
     },
   };
 
-  public lineChartType: ChartType = 'line';
+  lineChartType: ChartType = 'line';
+
+  constructor(private ngZone: NgZone) {
+    this.isTraining = false;
+    this.isTesting = false;
+  }
 
   ngOnInit(): void {
     // this.ngZone.runOutsideAngular(() => this.renderSimulation());

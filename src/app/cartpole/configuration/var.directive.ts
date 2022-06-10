@@ -7,10 +7,7 @@ export class VarDirective {
 
   ctx: any = {};
 
-  refresh(): void {
-    this.viewContainerRef.clear();
-    this.viewContainerRef.createEmbeddedView(this.templateRef, this.ctx);
-  }
+  constructor(private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<any>) { }
 
   // save a var inside ctx
   @Input()
@@ -19,5 +16,9 @@ export class VarDirective {
     this.refresh();
   }
 
-  constructor(private viewContainerRef: ViewContainerRef, private templateRef: TemplateRef<any>) { }
+  refresh(): void {
+    this.viewContainerRef.clear();
+    this.viewContainerRef.createEmbeddedView(this.templateRef, this.ctx);
+  }
+
 }

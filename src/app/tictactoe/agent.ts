@@ -133,6 +133,7 @@ class Agent {
     /**
      * Method to choose a move given a board situation.
      * Is chosen at random, when there are multiple move to choose from. Else the only possible move.
+     *
      * @returns the move, the agent makes.
      */
     chooseAction(board): number {
@@ -188,6 +189,7 @@ class Agent {
 
     /**
      * Method to delete the value of the given board, found in key, in the strategy of the agent.
+     *
      * @returns true, if the key still have values left, else false.
      */
     deleteValueInKey(key, board): boolean {
@@ -311,6 +313,7 @@ class PerfectAgent {
     }
     /**
      * Method to evaluate the next best move via alpha-beta tree-pruning.
+     *
      * @returns the best possible move on the current board situation.
      */
     chooseAction(board): number {
@@ -321,6 +324,7 @@ class PerfectAgent {
     }
     /**
      * Alpha-Beta tree-pruning algorithm to evaluate the best possible move on a given board, for a player.
+     *
      * @param board the current board situation.
      * @param player the player whose best move should be evaluated.
      * @param alpha the lower bound.

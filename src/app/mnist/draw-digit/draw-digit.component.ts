@@ -13,19 +13,12 @@ export class DrawDigitComponent implements OnInit {
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;
   context: CanvasRenderingContext2D;
-  private canvasStore: CanvasStore;
-  private isPenDown: boolean;
+  canvasStore: CanvasStore;
+  isPenDown: boolean;
 
   constructor() {
     this.canvasStore = new CanvasStore();
     this.isPenDown = false;
-  }
-
-  ngOnInit(): void {
-    this.context = this.canvas.nativeElement.getContext('2d');
-    this.canvas.nativeElement.style.backgroundColor = 'black';
-    this.canvas.nativeElement.width = 300;
-    this.canvas.nativeElement.height = 300;
   }
 
   // listen for touch/mouse events that add to the canvas,
@@ -87,6 +80,21 @@ export class DrawDigitComponent implements OnInit {
     this.isPenDown = false;
   }
 
+  ngOnInit(): void {
+    this.context = this.canvas.nativeElement.getContext('2d');
+    this.canvas.nativeElement.style.backgroundColor = 'black';
+    this.canvas.nativeElement.width = 300;
+    this.canvas.nativeElement.height = 300;
+  }
+
+  onClear(): void {
+    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    this.canvasStore.clear();
+  }
+  onSubmit(): void {
+    this.classify.emit(this.context.getImageData(0, 0, this.context.canvas.width, this.context.canvas.height));
+  }
+
   private draw(): void {
     this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     // this draws 20px wide white line on black bg
@@ -109,13 +117,4 @@ export class DrawDigitComponent implements OnInit {
       this.context.stroke();
     }
   }
-
-  onClear(): void {
-    this.context.clearRect(0, 0, this.context.canvas.width, this.context.canvas.height);
-    this.canvasStore.clear();
-  }
-  onSubmit(): void {
-    this.classify.emit(this.context.getImageData(0, 0, this.context.canvas.width, this.context.canvas.height));
-  }
-
 }

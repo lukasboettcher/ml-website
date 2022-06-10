@@ -1,11 +1,12 @@
 /**
  * Function to add all possible moves of the agent to the situations in current game global variable.
+ *
  * @param agent the current agent
  * @param board the current board
  * @param move the actual move the agent has made.
  * @param situationsInCurrentGame the global var situations in current game
  */
-function addSituationsToGameTree(agent, board, move, situationsInCurrentGame): void {
+const addSituationsToGameTree = (agent, board, move, situationsInCurrentGame): void => {
     const copy = board.deepCopy();
     copy.getMinimalSymmetry();
     const allNextTurns = copy.getAllSymmetricalNextBoards();
@@ -110,19 +111,19 @@ function addSituationsToGameTree(agent, board, move, situationsInCurrentGame): v
     }
 
 
-}
+};
 
 /**
  * Own timeout function to await the execution of the next line of code.
+ *
  * @param ms milliseconds to wait before the next line of code will be executed
  * @returns a promise
  */
-function timeout(ms): Promise<() => void> {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+const timeout = (ms): Promise<() => void> => new Promise(resolve => setTimeout(resolve, ms));
 
 /**
  * Draws the game tree for learning visualization.
+ *
  * @param p the canvas to draw on.
  * @param width the canvas width
  * @param offsetWidth the offset width for the boardrows
@@ -131,8 +132,8 @@ function timeout(ms): Promise<() => void> {
  * @param boardDimension the dimension of the board.
  * @param agent the agent of the game.
  */
-async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
-                                 boardDimension, agent, situationsInCurrentGame): Promise<void> {
+const treeVisualization = async (p, width, offsetWidth, offsetHeight, board,
+    boardDimension, agent, situationsInCurrentGame): Promise<void> => {
 
     try {
         for (let i = 0; i < situationsInCurrentGame.length; i++) {
@@ -167,34 +168,34 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
                             const shift = 17;
                             let blue = 255;
                             const xCoordinate = (width - situationsInCurrentGame[i].length * boardDimension -
-                                    (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
+                                (situationsInCurrentGame[i].length - 1) * offsetWidth) / 2 + j * (boardDimension + offsetWidth);
                             const yCoordinate = (i) * (boardDimension + offsetHeight);
                             while (green < 255 || red < 255) {
-                                    drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
-                                        { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
-                                    await timeout(timer);
-                                    red += shift;
-                                    green += shift;
-                                    if (red > 255){
-                                        red = 255;
-                                    }
-                                    if (green > 255){
-                                        green = 255;
-                                    }
+                                drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
+                                    { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
+                                await timeout(timer);
+                                red += shift;
+                                green += shift;
+                                if (red > 255) {
+                                    red = 255;
                                 }
+                                if (green > 255) {
+                                    green = 255;
+                                }
+                            }
                             while (green !== 138 || red !== 138 || blue !== 138) {
-                                    red -= shift;
-                                    green -= shift;
-                                    blue -= shift;
-                                    if (red < 138){
-                                        red = 138;
-                                        blue = 138;
-                                        green = 138;
-                                    }
-                                    drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
-                                        { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
-                                    await timeout(timer);
+                                red -= shift;
+                                green -= shift;
+                                blue -= shift;
+                                if (red < 138) {
+                                    red = 138;
+                                    blue = 138;
+                                    green = 138;
                                 }
+                                drawBoardC(p, xCoordinate, yCoordinate, boardDimension,
+                                    { r: red, g: green, b: blue }, situationsInCurrentGame[i][j][0].deepCopy());
+                                await timeout(timer);
+                            }
 
                             // } else {
                             //     let red = 0;
@@ -234,10 +235,11 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
         treeVisualization(p, width, offsetWidth, offsetHeight, board, boardDimension, agent, situationsInCurrentGame);
         // catched the case that the tree visualization wasn't completely finished when restart the game. Has no impact on game or agent.
     }
-}
+};
 
 /**
  * Draws the rows of the board in the game tree visualization.
+ *
  * @param canvas the canvas where the board should be drawn on.
  * @param startX the start x koordinate of the first board.
  * @param startY the start y koordinate of the first board.
@@ -247,8 +249,8 @@ async function treeVisualization(p, width, offsetWidth, offsetHeight, board,
  * @param width the complete width of the canvas.
  * @param offset where the first board should be draw.
  */
-async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, index, width,
-                            offset, situationsInCurrentGame): Promise<void> {
+const drawBoardRow = async (canvas, startX, startY, boardDimension, boardArray, index, width,
+    offset, situationsInCurrentGame): Promise<void> => {
     try {
 
         let posX = startX;
@@ -257,7 +259,7 @@ async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, 
         const timer = 80;
         for (let i = 0; i < boardArray.length; i++) {
             if (boardArray[i][1] === 0) {
-                color = {r: 138, g: 138, b: 138}; // { r: 255, g: 0, b: 0 };
+                color = { r: 138, g: 138, b: 138 }; // { r: 255, g: 0, b: 0 };
             } else {
                 if (boardArray[i][1] === 2) {
                     color = { r: 0, g: 145, b: 255 }; // { r: 0, g: 255, b: 0 };
@@ -296,22 +298,24 @@ async function drawBoardRow(canvas, startX, startY, boardDimension, boardArray, 
     } catch (err) {
         // nothing todo because than just the visualization hasnt finished. New Game will fix it.
     }
-}
+};
 
 /**
  * Function to draw a single board with white background.
+ *
  * @param canvas the canvas the board should be drawn onto.
  * @param posX starting x coordinate of the board.
  * @param posY starting y coordinate of the board.
  * @param dimension the dimension or size of the board.
  * @param board the board which should be drawn.
  */
-function drawBoard(canvas, posX, posY, dimension, board): void {
+const drawBoard = (canvas, posX, posY, dimension, board): void => {
     drawBoardC(canvas, posX, posY, dimension, { r: 255, g: 255, b: 255 }, board);
-}
+};
 
 /**
  * Function to draw a single board.
+ *
  * @param canvas the canvas the board should be drawn onto.
  * @param posX starting x coordinate of the board.
  * @param posY starting y coordinate of the board.
@@ -319,7 +323,7 @@ function drawBoard(canvas, posX, posY, dimension, board): void {
  * @param color the color of the board.
  * @param board the board which should be drawn.
  */
-function drawBoardC(canvas, posX, posY, dimension, color, board): void {
+const drawBoardC = (canvas, posX, posY, dimension, color, board): void => {
     canvas.strokeWeight(2);
     canvas.fill(color.r, color.g, color.b);
     canvas.rect(posX, posY, dimension, dimension);
@@ -350,6 +354,6 @@ function drawBoardC(canvas, posX, posY, dimension, color, board): void {
             }
         }
     }
-}
+};
 
-export {addSituationsToGameTree, timeout, treeVisualization, drawBoardC, drawBoard, drawBoardRow};
+export { addSituationsToGameTree, timeout, treeVisualization, drawBoardC, drawBoard, drawBoardRow };

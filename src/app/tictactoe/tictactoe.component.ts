@@ -12,6 +12,20 @@ import { addSituationsToGameTree, drawBoard, drawBoardC, drawBoardRow, timeout, 
 })
 export class TictactoeComponent implements OnInit, OnDestroy {
 
+  // view children, to compute css width
+  @ViewChild('boardSection')
+  boardElement: ElementRef<HTMLDivElement>;
+
+  @ViewChild('treeArea')
+  treeElement: ElementRef<HTMLDivElement>;
+
+  @ViewChild('boardSketch')
+  boardSketchElem: ElementRef<HTMLDivElement>;
+  @ViewChild('treeSketch')
+  treeSketchElem: ElementRef<HTMLDivElement>;
+  @ViewChild('diagramSketch')
+  diagramSketchElem: ElementRef<HTMLDivElement>;
+
   agent: Agent;
   agent2: PerfectAgent;
   board: Board;
@@ -31,20 +45,6 @@ export class TictactoeComponent implements OnInit, OnDestroy {
   taskProgress = 1;
   taskOneNav = 1;
   numberOfTasks = 6;
-
-  // view children, to compute css width
-  @ViewChild('boardSection')
-  boardElement: ElementRef<HTMLDivElement>;
-
-  @ViewChild('treeArea')
-  treeElement: ElementRef<HTMLDivElement>;
-
-  @ViewChild('boardSketch')
-  boardSketchElem: ElementRef<HTMLDivElement>;
-  @ViewChild('treeSketch')
-  treeSketchElem: ElementRef<HTMLDivElement>;
-  @ViewChild('diagramSketch')
-  diagramSketchElem: ElementRef<HTMLDivElement>;
 
   tasks = [
     { id: 1, title: 'a)', text: 'Mache dich während der ersten 10 Spiele mit der Oberfläche vertraut und notiere was dir beim Spielen auffällt.' },
@@ -320,7 +320,7 @@ export class TictactoeComponent implements OnInit, OnDestroy {
       this.boardCanvas = new p5(this.boardSketch, this.boardSketchElem.nativeElement);
 
     };
-  }
+  };
 
   treeSketch = (p) => {
 
@@ -390,7 +390,7 @@ export class TictactoeComponent implements OnInit, OnDestroy {
       p.remove();
       this.treeCanvas = new p5(this.treeSketch, this.treeSketchElem.nativeElement);
     };
-  }
+  };
 
 
   diagrammSketch = (p) => {
@@ -459,5 +459,5 @@ export class TictactoeComponent implements OnInit, OnDestroy {
     //   p.remove()
     //   this.diagrammCanvas = new p5(this.diagrammSketch, 'diagram');
     // }
-  }
+  };
 }

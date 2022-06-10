@@ -2,13 +2,13 @@
 // it is needed to repeatedly draw the canvas on new inputs
 
 export class CanvasStore {
-    private steps: Array<{ x: number, y: number, drag: boolean }>;
+    private steps: Array<{ x: number; y: number; drag: boolean }>;
 
     constructor() {
         this.steps = new Array();
     }
 
-    public values(): Array<{ x: number, y: number, drag: boolean }> {
+    public values(): Array<{ x: number; y: number; drag: boolean }> {
         return this.steps;
     }
 
