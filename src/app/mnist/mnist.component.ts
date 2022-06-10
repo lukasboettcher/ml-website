@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
 import { Tensor } from '@tensorflow/tfjs';
@@ -10,7 +10,7 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './mnist.component.html',
   styleUrls: ['./mnist.component.css']
 })
-export class MnistComponent implements OnInit {
+export class MnistComponent {
 
   // vars for state of component
   // also use stages for mnist parent component
@@ -74,9 +74,6 @@ export class MnistComponent implements OnInit {
     if (!this.inPath('mnistb')) {
       this.mnistbReadFirst = true;
     }
-  }
-
-  ngOnInit(): void {
   }
 
   inPath(...args: any[]): boolean {

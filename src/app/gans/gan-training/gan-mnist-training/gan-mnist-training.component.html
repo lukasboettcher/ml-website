@@ -69,9 +69,9 @@
     <div class="col-lg-4 text-center">
         <div class="flex-row d-flex flex-wrap">
             <button class="btn btn-primary flex-grow-1 m-1"
-                [disabled]="!mnistReady || !weightsReady || trainStep == trainTotal" (click)="start(canvas)"
-                [ngClass]="{'btn-success': trainStep == trainTotal}">
-                {{trainStep == 0 ? 'Training Starten' : stopTraining ? 'Training Fortsetzen' : 'Training Pausieren' }}
+                [disabled]="!mnistReady || !weightsReady || trainStep === trainTotal" (click)="start(canvas)"
+                [ngClass]="{'btn-success': trainStep === trainTotal}">
+                {{trainStep === 0 ? 'Training Starten' : stopTraining ? 'Training Fortsetzen' : 'Training Pausieren' }}
                 {{trainStep}} / {{trainTotal}}
             </button>
             <button class="btn btn-primary flex-grow-1 m-1" [disabled]="!mnistReady || !weightsReady"

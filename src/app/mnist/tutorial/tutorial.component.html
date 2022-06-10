@@ -123,10 +123,10 @@
             </ngb-accordion>
             <div class="btn-group-vertical d-flex my-2">
                 <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
-                    [ngClass]="{'btn-success': stages[1] && modelType == 'conv'}"
+                    [ngClass]="{'btn-success': stages[1] && modelType === 'conv'}"
                     (click)="createModel('conv')">Konvolutionales Modell</button>
                 <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
-                    [ngClass]="{'btn-success': stages[1] && modelType == 'dense'}"
+                    [ngClass]="{'btn-success': stages[1] && modelType === 'dense'}"
                     (click)="createModel('dense')">Vollverknüpftes Modell</button>
             </div>
         </div>

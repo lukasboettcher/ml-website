@@ -1,12 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { input } from '@tensorflow/tfjs';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.css']
 })
-export class HomeCardComponent implements OnInit {
+export class HomeCardComponent {
 
   @Input() title = 'Undefined Title';
   @Input() text = 'Undefined Text';
@@ -15,8 +14,5 @@ export class HomeCardComponent implements OnInit {
   @Input() routerLink: string;
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
