@@ -5,8 +5,8 @@ import * as tf from '@tensorflow/tfjs';
 import { Cart } from './cart';
 import { RlComponent } from './rl-component';
 import { RlEnvironment } from './rl-environment';
-import { ChartDataSets, ChartType } from 'chart.js';
-import { Label, Color } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-cartpole',
@@ -20,6 +20,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
     this.isTesting = false;
   }
 
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
   @ViewChild('canvas', { static: true })
   private canvas: ElementRef<HTMLCanvasElement>;
   private context: CanvasRenderingContext2D;
@@ -40,26 +41,27 @@ export class CartpoleComponent implements OnInit, RlComponent {
   progressIter = 0;
   progressGames = 0;
 
-  // meanSteps = [];
-
-  // chart options
-  lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Durchschnittliche Schritte pro Iteration' },
-  ];
-  lineChartLabels: Label[] = [];
-
-  lineChartOptions = {
-    responsive: true,
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Durchschnittliche Schritte pro Iteration',
+      }
+    ],
+    labels: []
   };
-  lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-      backgroundColor: 'rgba(255,255,0,0.28)',
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    animation: false,
+    elements: {
+      line: {
+        tension: 0.5
+      }
     },
-  ];
-  lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType: ChartType = 'line';
+  };
+
+  public lineChartType: ChartType = 'line';
 
   ngOnInit(): void {
     // this.ngZone.runOutsideAngular(() => this.renderSimulation());
@@ -71,8 +73,8 @@ export class CartpoleComponent implements OnInit, RlComponent {
     this.modelCreated = false;
     this.net = null;
     this.simInterrupt = true;
-    this.lineChartData[0].data = [];
-    this.lineChartLabels = [];
+    this.lineChartData.datasets[0].data = [];
+    this.lineChartData.labels = [];
     console.log('model deleted');
   }
   onModelSubmitted(layers: number[]): void {
@@ -96,8 +98,9 @@ export class CartpoleComponent implements OnInit, RlComponent {
   }
   // display new point in graph for needed steps
   showGraph(x: number, y: number): void {
-    this.lineChartData[0].data.push(y);
-    this.lineChartLabels.push(x.toString());
+    this.lineChartData.datasets[0].data.push(y);
+    this.lineChartData.labels.push(x.toString());
+    this.chart?.update();
   }
 
   // handle new training instruction
