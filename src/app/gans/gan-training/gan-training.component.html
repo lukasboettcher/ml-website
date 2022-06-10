@@ -73,7 +73,8 @@
       </figure> -->
       <!-- <button class="btn btn-primary" [disabled]="loopId || !modelsLoaded" (click)="sampleFromBoth(fake, real)">sample
         pretrained</button> -->
-      <button class="btn btn-primary" [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">{{loopId ? 'Generieren abbrechen':'MNIST Zahlen erstellen'}}</button>
+      <button class="btn btn-primary" [disabled]="!modelsLoaded" (click)="sampleLoop(fake, real)">
+        {{loopId ? 'Generieren abbrechen':'MNIST Zahlen erstellen'}}</button>
       <div class="mt-1">
         <div>
           <div>
@@ -121,44 +122,36 @@
     </div>
     <div class="col-lg-5">
       <div class="d-flex flex-column justify-content-center align-items-center">
-        <div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">
-                <span class="pr-2">Gesichts Modell</span> <span *ngIf="faceModelLoading"
-                  class="spinner-border spinner-border-sm pl-2"></span>
-              </label>
-            </div>
-            <select class="custom-select" [disabled]="!faceModelReady && currFaceModel !== undefined"
-              id="inputGroupSelect01" [(ngModel)]="currFaceModelUrl" (change)="onFaceModelChange()">
-              <option selected disabled value="">Modell Auswählen</option>
-              <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}
-              </option>
-            </select>
-          </div>
-        </div>
 
-        <div>
-          <div class="input-group mb-3">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="basic-addon3">Eingabewert: {{latentRange}}</span>
-            </div>
-            <div class="inline-range">
-              <input #latentSlider class="form-control-range" [disabled]="!faceModelReady" [(ngModel)]="latentRange"
-                (input)="onFaceLatentChange(latentSlider.value, faceCanvas)" type="range" id="range" name="volume"
-                min="0" max="400" value="0">
+        <form>
+          <div class="mb-3">
+            <div class="form-floating">
+              <select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+                [disabled]="!faceModelReady && currFaceModel !== undefined" id="inputGroupSelect01"
+                [(ngModel)]="currFaceModelUrl" [ngModelOptions]="{standalone: true}" (change)="onFaceModelChange()">
+                <option selected disabled value="">Modell Auswählen</option>
+                <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}
+                </option>
+              </select>
+              <label for="floatingSelect">Gesichts Modell</label>
             </div>
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="customRange1" class="form-label">Eingabewert: {{latentRange}}</label>
+            <input #latentSlider type="range" class="form-range" id="customRange1" [disabled]="!faceModelReady"
+              [(ngModel)]="latentRange" (input)="onFaceLatentChange(latentSlider.value, faceCanvas)" type="range"
+              id="range" name="volume" min="0" max="400" value="0">
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">
+              {{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}
+            </button>
+            <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">
+              Gesicht Generieren
+            </button>
+          </div>
+        </form>
 
-        <div class="btn-group">
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="animate(faceCanvas)">
-            {{stop ? 'Gesichter Animieren' : 'Animation abbrechen'}}
-          </button>
-          <button class="btn btn-primary" [disabled]="!faceModelReady" (click)="generate(faceCanvas)">
-            Gesicht Generieren
-          </button>
-        </div>
         <div class="mt-3">
           <canvas class="face-canvas border" #faceCanvas id="canvas" width="256" height="256">
             Your browser does not support the canvas element.
