@@ -230,6 +230,7 @@ class Board {
                 }
             }
         }
+        return [];
     }
 
     /**
