@@ -1,8 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
-import { ChartConfiguration, ChartType } from 'chart.js';
-import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-mnist',
@@ -10,9 +8,6 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./mnist.component.css']
 })
 export class MnistComponent {
-
-  @ViewChildren(BaseChartDirective)
-  charts?: QueryList<BaseChartDirective>;
 
   // vars for state of component
   // also use stages for mnist parent component
@@ -30,42 +25,6 @@ export class MnistComponent {
   model: any;
   customModel: any;
   results: number[];
-  prediction: number;
-
-  resultsCustom: number[];
-  predictionCustom: number;
-
-  barChartData: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Wahrscheinlichkeiten',
-      }
-    ],
-    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  };
-
-  barChartDataCustom: ChartConfiguration['data'] = {
-    datasets: [
-      {
-        data: [],
-        label: 'Wahrscheinlichkeiten',
-      }
-    ],
-    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  };
-
-  barChartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    animation: false,
-    elements: {
-      line: {
-        tension: 0.5
-      }
-    },
-  };
-
-  barChartType: ChartType = 'bar';
 
   constructor(private router: Router) {
     this.results = null;
@@ -119,8 +78,8 @@ export class MnistComponent {
       this.currentlyLoading = false;
       this.stages[0] = true;
     }).catch(e => console.log('failed to load model: ' + e));
-
   }
+
   async loadCustomModel(): Promise<void> {
     this.currentlyLoading = true;
     console.log('loading custom model...');
@@ -130,6 +89,7 @@ export class MnistComponent {
     console.log('loaded custom model...');
     this.currentlyLoading = false;
   }
+
   importCustomModel(model: any): void {
     this.customModel = model;
     // if custom model was previously loaded and new model is submitted,
