@@ -16,9 +16,12 @@
       },
       "extends": [
         "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/ng-cli-compat",
+        "plugin:@angular-eslint/ng-cli-compat--formatting-add-on",
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "max-len": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
