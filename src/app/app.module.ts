@@ -18,7 +18,7 @@ import { MnistComponent } from './mnist/mnist.component';
 import { DrawDigitComponent } from './mnist/draw-digit/draw-digit.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { MazeComponent } from './classify/maze/maze.component';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { TutorialComponent } from './mnist/tutorial/tutorial.component';
 import { VarDirective } from './cartpole/configuration/var.directive';
 import { ClassifyHelpComponent } from './classify/classify-help/classify-help.component';
@@ -82,7 +82,7 @@ import { TranslateComponent } from './translate/translate.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ChartsModule,
+    NgChartsModule,
     HttpClientModule
   ],
   providers: [],
