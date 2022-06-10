@@ -114,6 +114,7 @@ export class HomeComponent implements OnInit {
     if (activeTags.length === 0) {
       return true;
     }
+    return false;
   }
 
   addOrRemove(item: string): void {
