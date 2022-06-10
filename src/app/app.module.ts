@@ -39,6 +39,7 @@ import { HomeCardComponent } from './home/card/card.component';
 import { CallbackPipe } from './callback.pipe';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { TranslateComponent } from './translate/translate.component';
+import { MnistEvalModelComponent } from './mnist/mnist-eval-model/mnist-eval-model.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { TranslateComponent } from './translate/translate.component';
     HomeCardComponent,
     CallbackPipe,
     NotebooksComponent,
-    TranslateComponent
+    TranslateComponent,
+    MnistEvalModelComponent
   ],
   imports: [
     BrowserModule,
