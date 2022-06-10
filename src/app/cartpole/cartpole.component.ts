@@ -108,7 +108,7 @@ export class CartpoleComponent implements OnInit, RlComponent {
     this.simInterrupt = false;
     this.isTraining = true;
     // singleton instantiation
-    if (this.sim == null) {
+    if (this.sim === null) {
       this.sim = new Cart();
     }
     this.renderDuringTrain = config.value.render;

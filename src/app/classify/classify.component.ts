@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import * as mnet from '@tensorflow-models/mobilenet';
 import * as knn from '@tensorflow-models/knn-classifier';
 import * as tf from '@tensorflow/tfjs';
@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
   templateUrl: './classify.component.html',
   styleUrls: ['./classify.component.css']
 })
-export class ClassifyComponent implements OnInit {
+export class ClassifyComponent {
 
   @ViewChild('video', { static: true }) videoElement: ElementRef;
 
@@ -41,8 +41,6 @@ export class ClassifyComponent implements OnInit {
 
   // solve maze
   moveSubject: Subject<string> = new Subject<string>();
-
-  ngOnInit(): void { }
 
   async initiateModels(): Promise<void> {
     this.startedLoading = true;

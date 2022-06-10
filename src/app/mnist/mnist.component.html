@@ -23,7 +23,7 @@
         genauer unter die Lupe nehmen.
       </p>
       <div class="text-center">
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelType == 'pre'}"
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelType === 'pre'}"
           (click)="loadPretrainedModel()">Okay, los geht's
           <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
         </button>
@@ -198,10 +198,10 @@
     </div>
     <div class="col-md-4 align-self-center">
       <div class="btn-group-vertical">
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'custom'}"
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded === 'custom'}"
           [disabled]="!gotCustomModel" (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein
           Selbsterstelltes Modell'}}</button>
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded === 'pre'}"
           (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
       </div>
     </div>

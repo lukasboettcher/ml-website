@@ -1,7 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, TrackByFunction, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
 import { IMAGE_H, IMAGE_W, Data } from './data';
-import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
@@ -9,7 +9,7 @@ import { BaseChartDirective } from 'ng2-charts';
   templateUrl: './tutorial.component.html',
   styleUrls: ['./tutorial.component.css']
 })
-export class TutorialComponent implements OnInit {
+export class TutorialComponent {
 
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
@@ -75,9 +75,6 @@ export class TutorialComponent implements OnInit {
   // accuracies calc at end for <p>
   trainValidationAcc: number;
   testValidationAcc: number;
-
-  ngOnInit(): void {
-  }
 
   // use the Data class from google to get mnist database
   async loadData(): Promise<void> {
