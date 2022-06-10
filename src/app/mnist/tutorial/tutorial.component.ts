@@ -1,9 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, TrackByFunction, ViewChild, ElementRef } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
-import * as tfvis from '@tensorflow/tfjs-vis';
 import { IMAGE_H, IMAGE_W, Data } from './data';
-import { ChartDataSets } from 'chart.js';
-import { Label, Color } from 'ng2-charts';
+import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-tutorial',
@@ -12,11 +11,34 @@ import { Label, Color } from 'ng2-charts';
 })
 export class TutorialComponent implements OnInit {
 
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
+
+  public lineChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Genauigkeit',
+      }
+    ],
+    labels: [ ]
+  };
+
+  public lineChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    animation: false,
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+  };
+
+  public lineChartType: ChartType = 'line';
+
   constructor() { }
 
   basePath = 'assets/mnist-images';
 
-  @ViewChild('trainGraph') trainGraph: ElementRef;
   @ViewChild('trainProgress') trainProgressEl: ElementRef;
   // vars for output and state of this component
   @Output() modelCreated = new EventEmitter<tf.LayersModel>();
@@ -53,24 +75,6 @@ export class TutorialComponent implements OnInit {
   // accuracies calc at end for <p>
   trainValidationAcc: number;
   testValidationAcc: number;
-
-  // parameters for ng2-charts
-  lineChartData: ChartDataSets[] = [
-    { data: [], label: 'Genauigkeit des Modells' },
-  ];
-  lineChartLabels: Label[] = [];
-
-  lineChartOptions = {
-    responsive: true,
-  };
-  lineChartColors: Color[] = [
-    {
-      borderColor: 'black',
-    },
-  ];
-  lineChartLegend = true;
-  lineChartPlugins = [];
-  lineChartType = 'line';
 
   ngOnInit(): void {
   }
@@ -134,8 +138,8 @@ export class TutorialComponent implements OnInit {
   async trainModel(): Promise<void> {
     // reset parameters
     this.trainingDone = false;
-    this.lineChartLabels = [];
-    this.lineChartData[0].data = [];
+    this.lineChartData.labels = [];
+    this.lineChartData.datasets[0].data = [];
 
     const config: tf.ModelCompileArgs = {
       optimizer: 'rmsprop',
@@ -149,22 +153,6 @@ export class TutorialComponent implements OnInit {
                              * this.trainEpochs;
     this.trainingRunning = true;
 
-    // const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
-    const metrics = ['acc'];
-    // const container = {
-    //   name: 'show.fitCallbacks',
-    //   tab: 'Training',
-    //   styles: {
-    //     height: '1000px'
-    //   }
-    // };
-    const tfvisOptions = {
-      yLabel: 'Genauigkeit in Prozent',
-      title: 'Lernverlauf'
-    };
-    const visCallbacks = tfvis.show.fitCallbacks(this.trainGraph.nativeElement, metrics, tfvisOptions);
-    console.log(visCallbacks);
-
     await this.model.fit(this.trainData.xs, this.trainData.labels, {
       batchSize: this.trainBatchSize,
       validationSplit: this.trainValidationSplit,
@@ -173,16 +161,14 @@ export class TutorialComponent implements OnInit {
       callbacks: {
         onBatchEnd: async (ep, status) => {
           this.trainBatchCount++;
-          // this.lineChartLabels.push(this.trainBatchCount.toString());
-          // this.lineChartData[0].data.push(status.acc);
-          // //this.lineChartData[1].data.push(logs.loss);
-          // await tf.nextFrame();
+          this.lineChartData.labels.push(this.trainBatchCount.toString());
+          this.lineChartData.datasets[0].data.push(status['acc']);
           this.trainProgressEl.nativeElement.value = this.trainBatchCount;
-          visCallbacks.onBatchEnd(ep, status);
+          this.chart?.update();
           await tf.nextFrame();
         },
         onEpochEnd: async (_, status) => {
-          this.trainValidationAcc = status.val_acc;
+          this.trainValidationAcc = status['val_acc'];
           // await tf.nextFrame();
         }
       }

@@ -213,7 +213,8 @@
 
             <ngb-alert *ngIf="trainingRunning && !hideTrainWarn" [dismissible]="true" (closed)="hideTrainWarn = true">
                 <strong>Achtung!</strong> Während des Trainings kann es dazu kommen, dass der
-                Webbrowser einfriert. In dem Fall einfach kurz warten. Falls sich nach 10 Sekunden nichts verändert, schließe den Browsertab und lade die Seite erneut.
+                Webbrowser einfriert. In dem Fall einfach kurz warten. Falls sich nach 10 Sekunden nichts verändert,
+                schließe den Browsertab und lade die Seite erneut.
             </ngb-alert>
 
             <div class="d-flex justify-content-center">
@@ -225,7 +226,9 @@
             </div>
 
             <div class="col text-center">
-                <div #trainGraph></div>
+
+                <canvas baseChart width="400" height="100" [data]="lineChartData"
+                    [options]="lineChartOptions" [type]="lineChartType"></canvas>
                 <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
                     <div class="col-auto text-center">
                         <label for="progress" class="pt-1 mr-2">
