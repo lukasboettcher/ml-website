@@ -49,20 +49,23 @@
                 </div>
             </div>
             <hr>
-            <div class="form-group">
-                <label for="brushWidth">Pinselgröße</label>
-                <input #brushWidthInput type="range" class="form-control-range" id="brushWidth" [value]="canvasBrushWidth"
-                    (change)="updateBrushWidth(brushWidthInput.value)" step="2" min="2" max="200">
+            <div class="mb-3">
+                <label for="customRange1" class="form-label">Pinselgröße</label>
+                <input #brushWidthInput type="range" class="form-range" id="customRange1"  [value]="canvasBrushWidth"
+                (change)="updateBrushWidth(brushWidthInput.value)" step="2" min="2" max="200">
             </div>
-
-            <select #styleselect class="custom-select mb-3">
-                <option value="random">Zufälliger Style</option>
-                <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" value="{{n}}">
-                    Style {{n}}
-                </option>
-            </select>
-
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="mb-3">
+                <div class="form-floating">
+                    <select #styleselect class="form-select" id="floatingSelect">
+                        <option value="random">Zufälliger Style</option>
+                        <option *ngFor="let n of [0,1,2,3,4,5,6,7,8,9,10]" value="{{n}}">
+                            Style {{n}}
+                        </option>
+                    </select>
+                    <label for="floatingSelect">Modell Qualität</label>
+                </div>
+            </div>
+            <div class="btn-group" role="group">
                 <button class="btn btn-primary" (click)="sendRequest(styleselect.value)">Generieren</button>
                 <button class="btn btn-danger" (click)="inputCanvas.resetCanvas()">Zurücksetzen</button>
             </div>
