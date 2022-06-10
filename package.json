@@ -13,7 +13,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:apache": "ng build --base-href /ki-labor --deploy-url /ki-labor/"
+    "build:apache": "ng build --base-href /ki-labor --deploy-url /ki-labor/",
+    "lint": "ng lint"
   },
   "private": true,
   "dependencies": {
@@ -42,11 +43,19 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.7",
+    "@angular-eslint/builder": "13.2.1",
+    "@angular-eslint/eslint-plugin": "13.2.1",
+    "@angular-eslint/eslint-plugin-template": "13.2.1",
+    "@angular-eslint/schematics": "13.2.1",
+    "@angular-eslint/template-parser": "13.2.1",
     "@angular/cli": "~13.3.7",
     "@angular/compiler-cli": "~13.3.0",
     "@types/jasmine": "~3.10.0",
     "@types/long": "^4.0.2",
     "@types/node": "^12.11.1",
+    "@typescript-eslint/eslint-plugin": "5.17.0",
+    "@typescript-eslint/parser": "5.17.0",
+    "eslint": "^8.12.0",
     "jasmine-core": "~4.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
