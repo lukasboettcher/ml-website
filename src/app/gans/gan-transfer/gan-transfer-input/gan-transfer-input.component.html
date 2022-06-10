@@ -5,13 +5,16 @@
     <img #image class="" [src]="imgSrc" height="256" crossorigin='anonymous' />
 </figure>
 
-<select #select id="content-select" class="centered custom-select" (change)="onSelectChange(image, select, uploader)"
-    [disabled]="inputDisabled">
-    <option selected value="" disabled>Bild Auswählen</option>
-    <option value="pic" (click)="openCameraModal(select, content)">Bild Aufnehmen</option>
-    <option value="file">Bild Hochladen</option>
-    <option *ngFor="let x of listOfImages" [value]="x.path">{{x.name}}</option>
-</select>
+<div class="form-floating">
+    <select #select class="form-select" id="floatingSelect" aria-label="Floating label select example"
+        (change)="onSelectChange(image, select, uploader)" [disabled]="inputDisabled">
+        <option selected value="" disabled>Bild Auswählen</option>
+        <option value="pic" (click)="openCameraModal(select, content)">Bild Aufnehmen</option>
+        <option value="file">Bild Hochladen</option>
+        <option *ngFor="let x of listOfImages" [value]="x.path">{{x.name}}</option>
+    </select>
+    <label for="floatingSelect">Works with selects</label>
+</div>
 
 <ng-template #content let-modal>
     <div class="modal-header">
