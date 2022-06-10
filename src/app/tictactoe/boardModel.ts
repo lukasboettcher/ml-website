@@ -4,14 +4,14 @@
  */
 class Board {
     public board: number[][];
-    private p1: number;
-    private p2: number;
     public dimension: number;
     public currentPlayer: number;
     public winner;
     public isEmpty: boolean;
     public symmetries: number[][];
     public inverseIndex: number;
+    private p1: number;
+    private p2: number;
 
     constructor(p1, p2) {
         /**
@@ -71,6 +71,7 @@ class Board {
 
     /**
      * Function to get all available positions of the board.
+     *
      * @returns all available positions of the board.
      */
     getAvailablePositions(): number[] {
@@ -87,6 +88,7 @@ class Board {
 
     /**
      * Method to check of there is a current winner.
+     *
      * @returns the current winner.
      */
     getWinner(): number {
@@ -96,6 +98,7 @@ class Board {
 
     /**
      * Checks if the game has ended yet and if there is a winner.
+     *
      * @returns this.p1 if player1 has won, this.p2 if player2 has won, 0 if its a draw and undefined if the game hasn´t ended yet.
      */
     checkWinner(): number {
@@ -206,6 +209,7 @@ class Board {
 
     /**
      * Copies this board object.
+     *
      * @returns a new board object which is a copy of this board object.
      */
     deepCopy(): Board {
@@ -219,6 +223,7 @@ class Board {
 
     /**
      * Calculates the position of the made move between this board and the other board.
+     *
      * @returns The position which was done to get from this board to the other board or vice versa.
      */
 
@@ -230,6 +235,7 @@ class Board {
                 }
             }
         }
+        return [];
     }
 
     /**
@@ -291,6 +297,7 @@ class Board {
 
     /**
      * Method to calculate all following boards.
+     *
      * @returns an array with all possible nextBoards.
      */
     getAllSymmetricalNextBoards(): Board[] {
@@ -340,9 +347,10 @@ class Board {
 ////////////////////// Help functions
 /**
  * Converts decimal number to trinary number.
+ *
  * @returns the converted decimal number.
  */
-function getDecimal(trinary): number {
+const getDecimal = (trinary): number => {
     let decimal = 0;
     let exponent = trinary.length - 1;
     // for (let i = 0; i < trinary.length; i++) {
@@ -354,13 +362,14 @@ function getDecimal(trinary): number {
         exponent -= 1;
     }
     return decimal;
-}
+};
 
 /**
  * Calculates a given decimal number to its trinary representation (with at least two bit).
+ *
  * @returns an array as the decimals trinary representation where the first index is the MSB
  */
-function getTrinary(decimal): number[] {
+const getTrinary = (decimal): number[] => {
     const trinary = [];
     let rest = 0;
     while (decimal > 0) {
@@ -377,13 +386,14 @@ function getTrinary(decimal): number[] {
         }
     }
     return trinary.reverse();
-}
+};
 
 /**
  * Searches an array for a boardobject.
+ *
  * @returns true if the arr contains the boardobject else false.
  */
-function contains(arr, boardObject): boolean {
+const contains = (arr, boardObject): boolean => {
     // for (let i = 0; i < arr.length; i++) {
     //     if (JSON.stringify(arr[i].board) === JSON.stringify(boardObject.board)) {
     //         return true;
@@ -395,6 +405,6 @@ function contains(arr, boardObject): boolean {
         }
     }
     return false;
-}
+};
 
-export {Board, getDecimal, getTrinary, contains};
+export { Board, getDecimal, getTrinary, contains };

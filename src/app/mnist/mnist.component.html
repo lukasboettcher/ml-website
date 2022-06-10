@@ -23,7 +23,7 @@
         genauer unter die Lupe nehmen.
       </p>
       <div class="text-center">
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelType == 'pre'}"
+        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelType === 'pre'}"
           (click)="loadPretrainedModel()">Okay, los geht's
           <span *ngIf="currentlyLoading" class="spinner-border spinner-border-sm"></span>
         </button>
@@ -35,20 +35,7 @@
       Male hier mit deiner Maus (oder einem Finger oder Stift bei einem Touchscreen) eine Ziffer in das Feld und klicke
       Auswerten um zu sehen, welche Ziffer das Netz erkennt.
     </p>
-    <!-- draw area -->
-    <div class="row my-5 justify-content-around" *ngIf="modelLoaded">
-      <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
-      <div class="col-md ml-3">
-        <div style="max-width: 800px;">
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-          </canvas>
-          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
-        </div>
-      </div>
-    </div>
-    <!-- /draw area -->
-
+    <app-mnist-eval-model [model]="model"></app-mnist-eval-model>
     <div class="row justify-content-center my-3">
       <div class="col-md-8">
         <ngb-accordion [closeOthers]="false" #acc="ngbAccordion" activeIds="">
@@ -111,20 +98,8 @@
     <app-tutorial (modelCreated)="importCustomModel($event)"></app-tutorial>
   </div>
 
-  <div class="my-3" *ngIf="stages[1]">
-    <!-- draw area own model-->
-    <div class="row my-5 justify-content-around" *ngIf="stages[1] && gotCustomModel">
-      <app-draw-digit [modelLoaded]="gotCustomModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
-      <div class="col-md ml-3">
-        <div style="max-width: 800px;">
-          <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
-            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-          </canvas>
-          <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{predictionCustom}}</span></h4>
-        </div>
-      </div>
-    </div>
-    <!-- /draw area own model-->
+  <div class="my-3" *ngIf="stages[1] && gotCustomModel">
+    <app-mnist-eval-model [model]="customModel"></app-mnist-eval-model>
   </div>
 
 
@@ -186,27 +161,4 @@
       </div>
     </div>
   </div>
-
-  <!-- <div class="row my-5"> old model chooser
-    <div class="col-md-8">
-      <h2>Modell auswählen</h2>
-      <p>
-        Hier kann ausgewählt werden, ob ein vortrainiertes Modell verwendet werden soll, oder ein Modell, welches durch
-        das Tutorial selbst erstellt wurde.
-      </p>
-      <p>
-        Wenn du die Erkennung nur ausprobieren möchtest, kannst du auch direkt das vortrainierte Modell verwenden.
-      </p>
-    </div>
-    <div class="col-md-4 align-self-center">
-      <div class="btn-group-vertical">
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'custom'}"
-          [disabled]="!gotCustomModel" (click)="loadCustomModel()">{{gotCustomModel ? 'Selbsterstelltes Modell' : 'Kein
-          Selbsterstelltes Modell'}}</button>
-        <button type="button" class="btn btn-primary" [ngClass]="{'btn-success': modelLoaded == 'pre'}"
-          (click)="loadPretrainedModel()">Vortrainiertes Modell</button>
-      </div>
-    </div>
-  </div> -->
-
 </div>

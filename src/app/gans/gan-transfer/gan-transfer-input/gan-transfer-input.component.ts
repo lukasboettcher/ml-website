@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import links from '../image-links';
 
@@ -7,7 +7,7 @@ import links from '../image-links';
   templateUrl: './gan-transfer-input.component.html',
   styleUrls: ['./gan-transfer-input.component.css']
 })
-export class GanTransferInputComponent implements OnInit {
+export class GanTransferInputComponent {
 
   @Input() imgSrc = '';
   @Input() inputDisabled = true;
@@ -17,9 +17,6 @@ export class GanTransferInputComponent implements OnInit {
   @ViewChild('image') image: ElementRef<HTMLImageElement>;
 
   constructor(private modalService: NgbModal) {
-  }
-
-  ngOnInit(): void {
   }
 
   async onSelectChange(element: HTMLImageElement, select: HTMLSelectElement, uploadElem: HTMLInputElement): Promise<void> {

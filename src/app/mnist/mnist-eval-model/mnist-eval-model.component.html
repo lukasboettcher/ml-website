@@ -1,0 +1,15 @@
+<div class="row my-4">
+    <div class="col-md-auto d-flex justify-content-center">
+        <app-draw-digit [modelLoaded]="model" (classify)="onClassify($event)"></app-draw-digit>
+    </div>
+    <div class="col-md-6 col-xl-8 col-xxl-9 p-1">
+        <div style="height: 340px;">
+            <canvas baseChart [data]="barChartData" [options]="barChartOptions" [legend]="false" type="bar"></canvas>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="text-center my-2">
+        <h4>Vorhersage: {{prediction}}</h4>
+    </div>
+</div>

@@ -10,8 +10,8 @@ import { loadMnistData, sampleFromMnistData } from '../../mnist/tutorial/data';
 })
 export class GanTrainingComponent implements OnInit {
 
-  MODEL_PATH = 'assets/gan-models/mnist-acgan/model.json';
-  LATENT_DIM = 100;
+  modelPath = 'assets/gan-models/mnist-acgan/model.json';
+  latentDim = 100;
 
   pretrainedModel: tf.LayersModel;
   modelsLoaded = false;
@@ -25,7 +25,7 @@ export class GanTrainingComponent implements OnInit {
   stop = true;
   faceImageFactor = 0;
 
-  sliderParams: { shape: number[], shift: tf.Tensor, freq: tf.Tensor };
+  sliderParams: { shape: number[]; shift: tf.Tensor; freq: tf.Tensor };
 
   listFaceModels = [
     {
@@ -55,7 +55,7 @@ export class GanTrainingComponent implements OnInit {
   }
 
   async loadPretrained(): Promise<void> {
-    this.pretrainedModel = await tf.loadLayersModel(this.MODEL_PATH);
+    this.pretrainedModel = await tf.loadLayersModel(this.modelPath);
   }
 
   sampleLoop(genCanvas: HTMLCanvasElement, realCanvas: HTMLCanvasElement): void {
@@ -85,7 +85,7 @@ export class GanTrainingComponent implements OnInit {
     if (this.pretrainedModel) {
       const generatedImages = tf.tidy(() => {
         const classLabels = tf.tensor2d([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], [10, 1]);
-        const latentVector = tf.randomUniform([10, this.LATENT_DIM]);
+        const latentVector = tf.randomUniform([10, this.latentDim]);
 
         const modelOutput = (this.pretrainedModel.predict([latentVector, classLabels]) as tf.Tensor).add(1).div(2);
         return tf.concat(tf.unstack(modelOutput), 1) as tf.Tensor2D;

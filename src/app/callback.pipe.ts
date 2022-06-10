@@ -8,7 +8,7 @@ export class CallbackPipe implements PipeTransform {
   // this pipe takes a callback
   // the callback decides for each item whether T/F
   // also, all parameters are passed to the callback if possible
-  transform(items: any[], callback: (item: any, ...args) => boolean, ...args): any {
+  transform(items: any[], callback: (item: any, ...arg: any[]) => boolean, ...args): any {
     if (!items || !callback) {
       return items;
     }

@@ -123,10 +123,10 @@
             </ngb-accordion>
             <div class="btn-group-vertical d-flex my-2">
                 <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
-                    [ngClass]="{'btn-success': stages[1] && modelType == 'conv'}"
+                    [ngClass]="{'btn-success': stages[1] && modelType === 'conv'}"
                     (click)="createModel('conv')">Konvolutionales Modell</button>
                 <button type="submit" class="btn btn-primary" [disabled]="!stages[0]"
-                    [ngClass]="{'btn-success': stages[1] && modelType == 'dense'}"
+                    [ngClass]="{'btn-success': stages[1] && modelType === 'dense'}"
                     (click)="createModel('dense')">Vollverknüpftes Modell</button>
             </div>
         </div>
@@ -213,7 +213,8 @@
 
             <ngb-alert *ngIf="trainingRunning && !hideTrainWarn" [dismissible]="true" (closed)="hideTrainWarn = true">
                 <strong>Achtung!</strong> Während des Trainings kann es dazu kommen, dass der
-                Webbrowser einfriert. In dem Fall einfach kurz warten. Falls sich nach 10 Sekunden nichts verändert, schließe den Browsertab und lade die Seite erneut.
+                Webbrowser einfriert. In dem Fall einfach kurz warten. Falls sich nach 10 Sekunden nichts verändert,
+                schließe den Browsertab und lade die Seite erneut.
             </ngb-alert>
 
             <div class="d-flex justify-content-center">
@@ -225,17 +226,14 @@
             </div>
 
             <div class="col text-center">
-                <div #trainGraph></div>
+
+                <canvas baseChart width="400" height="100" [data]="lineChartData" [options]="lineChartOptions"
+                    [type]="lineChartType"></canvas>
                 <div class="row justify-content-center my-2" *ngIf="trainingRunning || trainingDone">
-                    <div class="col-auto text-center">
-                        <label for="progress" class="pt-1 mr-2">
-                            <span class="badge badge-pill badge-light py-1">Fortschritt:</span>
-                        </label>
-                    </div>
-                    <div class="col-auto text-center">
-                        <progress id="progress" class="my-2" value="0" #trainProgress
-                            max="{{trainTotalBatches}}"></progress>
-                    </div>
+                    <p>
+                        <ngb-progressbar [showValue]="true" type="success" [value]="trainBatchCount"
+                            [max]="trainTotalBatches"></ngb-progressbar>
+                    </p>
                 </div>
             </div>
 

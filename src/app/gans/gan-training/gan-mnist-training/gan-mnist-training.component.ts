@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
 import { MnistData } from './data';
 @Component({
@@ -6,26 +6,25 @@ import { MnistData } from './data';
   templateUrl: './gan-mnist-training.component.html',
   styleUrls: ['./gan-mnist-training.component.css']
 })
-export class GanMnistTrainingComponent implements OnInit {
+export class GanMnistTrainingComponent {
 
 
-  BATCH_SIZE = 200;
-  LATENT_SIZE = 40;
-  SIZE = 28;
-  INPUT_SIZE = 28 * 28;
+  batchSize = 200;
+  latentSize = 40;
+  inputSize = 28 * 28;
 
-  ALL_TRUE = tf.ones([this.BATCH_SIZE, 1]);
-  ALL_TRUE_PRIME = tf.ones([this.BATCH_SIZE, 1]).mul(tf.scalar(0.98));
-  ALL_FALSE = tf.zeros([this.BATCH_SIZE, 1]);
+  allTrue = tf.ones([this.batchSize, 1]);
+  allTruePrime = tf.ones([this.batchSize, 1]).mul(tf.scalar(0.98));
+  allFalse = tf.zeros([this.batchSize, 1]);
 
   mnstdata: MnistData;
   trainStep = 0;
   trainTotal = 4000;
 
-  GEN_WEIGHTS: tf.Variable[];
-  GEN_BIASES: tf.Variable[];
-  DIS_WEIGHTS: tf.Variable[];
-  DIS_BIASES: tf.Variable[];
+  genWeights: tf.Variable[];
+  genBiases: tf.Variable[];
+  disWeights: tf.Variable[];
+  disBiases: tf.Variable[];
 
   mnistReady = false;
   weightsReady = false;
@@ -33,8 +32,7 @@ export class GanMnistTrainingComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+
 
   async loadMnist(): Promise<void> {
     this.mnstdata = new MnistData();
@@ -45,23 +43,23 @@ export class GanMnistTrainingComponent implements OnInit {
   }
 
   createWeights(): void {
-    this.GEN_WEIGHTS = [
-      this.createTfVariable([this.LATENT_SIZE, 140]),
+    this.genWeights = [
+      this.createTfVariable([this.latentSize, 140]),
       this.createTfVariable([140, 80]),
-      this.createTfVariable([80, this.INPUT_SIZE])
+      this.createTfVariable([80, this.inputSize])
     ];
-    this.GEN_BIASES = [
+    this.genBiases = [
       this.createTfVariable([140]),
       this.createTfVariable([80]),
-      this.createTfVariable([this.INPUT_SIZE])
+      this.createTfVariable([this.inputSize])
     ];
 
-    this.DIS_WEIGHTS = [
-      this.createTfVariable([this.INPUT_SIZE, 200]),
+    this.disWeights = [
+      this.createTfVariable([this.inputSize, 200]),
       this.createTfVariable([200, 90]),
       this.createTfVariable([90, 1])
     ];
-    this.DIS_BIASES = [
+    this.disBiases = [
       this.createTfVariable([200]),
       this.createTfVariable([90]),
       this.createTfVariable([1])
@@ -76,8 +74,8 @@ export class GanMnistTrainingComponent implements OnInit {
     return tfVar;
   }
 
-  createLatentVector(count: number = this.BATCH_SIZE): tf.Tensor2D {
-    return tf.randomNormal([count, this.LATENT_SIZE], 0, 3.5);
+  createLatentVector(count: number = this.batchSize): tf.Tensor2D {
+    return tf.randomNormal([count, this.latentSize], 0, 3.5);
   }
 
   async start(canvas: HTMLCanvasElement): Promise<void> {
@@ -92,7 +90,7 @@ export class GanMnistTrainingComponent implements OnInit {
 
     for (let i = 0; this.trainStep < this.trainTotal; i++) {
       this.trainStep++;
-      const real = this.mnstdata.nextTrainBatch(this.BATCH_SIZE);
+      const real = this.mnstdata.nextTrainBatch(this.batchSize);
       const fake = this.createLatentVector();
       if (this.trainStep % 4 === 0) {
         this.sample(canvas);
@@ -112,18 +110,18 @@ export class GanMnistTrainingComponent implements OnInit {
 
   generator(xs): tf.Tensor {
     return tf.tidy(() => {
-      const l1 = tf.leakyRelu(xs.matMul(this.GEN_WEIGHTS[0]).add(this.GEN_BIASES[0]));
-      const l2 = tf.leakyRelu(l1.matMul(this.GEN_WEIGHTS[1]).add(this.GEN_BIASES[1]));
-      const l3 = tf.tanh(l2.matMul(this.GEN_WEIGHTS[2]).add(this.GEN_BIASES[2]));
+      const l1 = tf.leakyRelu(xs.matMul(this.genWeights[0]).add(this.genBiases[0]));
+      const l2 = tf.leakyRelu(l1.matMul(this.genWeights[1]).add(this.genBiases[1]));
+      const l3 = tf.tanh(l2.matMul(this.genWeights[2]).add(this.genBiases[2]));
       return l3;
     });
   }
 
   discriminatorReal(xs): tf.Tensor {
     return tf.tidy(() => {
-      const l1 = tf.leakyRelu(xs.matMul(this.DIS_WEIGHTS[0]).add(this.DIS_BIASES[0]));
-      const l2 = tf.leakyRelu(l1.matMul(this.DIS_WEIGHTS[1]).add(this.DIS_BIASES[1]));
-      const l3 = l2.matMul(this.DIS_WEIGHTS[2]).add(this.DIS_BIASES[2]);
+      const l1 = tf.leakyRelu(xs.matMul(this.disWeights[0]).add(this.disBiases[0]));
+      const l2 = tf.leakyRelu(l1.matMul(this.disWeights[1]).add(this.disBiases[1]));
+      const l3 = l2.matMul(this.disWeights[2]).add(this.disBiases[2]);
       return l3;
     });
   }
@@ -142,25 +140,21 @@ export class GanMnistTrainingComponent implements OnInit {
   }
 
   async trainBatch(realBatch: tf.Tensor2D, fakeBatch: tf.Tensor2D, disOpt: tf.Optimizer, genOpt: tf.Optimizer): Promise<tf.Scalar[]> {
-    const disLoss = tf.tidy(() => {
-      return disOpt.minimize(() => {
+    const disLoss = tf.tidy(() => disOpt.minimize(() => {
         const logitsReal = this.discriminatorReal(realBatch);
         const logitsFake = this.discriminatorFake(fakeBatch);
 
-        const lossReal = this.crossEntropyFromLogits(this.ALL_TRUE_PRIME, logitsReal);
-        const lossFake = this.crossEntropyFromLogits(this.ALL_FALSE, logitsFake);
+        const lossReal = this.crossEntropyFromLogits(this.allTruePrime, logitsReal);
+        const lossFake = this.crossEntropyFromLogits(this.allFalse, logitsFake);
         return lossReal.add(lossFake).mean();
-      }, true, this.DIS_WEIGHTS.concat(this.DIS_BIASES));
-    });
+      }, true, this.disWeights.concat(this.disBiases)));
     await tf.nextFrame();
-    const genLoss = tf.tidy(() => {
-      return genOpt.minimize(() => {
+    const genLoss = tf.tidy(() => genOpt.minimize(() => {
         const logitsFake = this.discriminatorFake(fakeBatch);
 
-        const lossFake = this.crossEntropyFromLogits(this.ALL_TRUE, logitsFake);
+        const lossFake = this.crossEntropyFromLogits(this.allTrue, logitsFake);
         return lossFake.mean();
-      }, true, this.GEN_WEIGHTS.concat(this.GEN_BIASES));
-    });
+      }, true, this.genWeights.concat(this.genBiases)));
     await tf.nextFrame();
     tf.dispose([realBatch, fakeBatch]);
     return [disLoss, genLoss];

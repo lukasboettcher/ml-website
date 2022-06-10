@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   allTags = ['basic', 'advanced', 'supervised', 'unsupervised', 'reinforcement', 'gan', 'webcam'];
   activeTags = [];
@@ -97,9 +97,6 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
   filterCards(item: Card, activeTags, excludedTags): boolean {
     for (const tag of excludedTags) {
       if (item.tags?.includes(tag)) {
@@ -114,6 +111,7 @@ export class HomeComponent implements OnInit {
     if (activeTags.length === 0) {
       return true;
     }
+    return false;
   }
 
   addOrRemove(item: string): void {

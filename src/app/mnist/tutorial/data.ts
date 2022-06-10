@@ -120,7 +120,7 @@ export class Data {
      *   labels: The one-hot encoded labels tensor, of shape
      *     `[numTrainExamples, 10]`.
      */
-    getTrainData(): { xs: tf.Tensor4D, labels: tf.Tensor2D } {
+    getTrainData(): { xs: tf.Tensor4D; labels: tf.Tensor2D } {
         const xs = tf.tensor4d(
             this.trainImages,
             [this.trainImages.length / IMAGE_SIZE, IMAGE_H, IMAGE_W, 1]);
@@ -140,7 +140,7 @@ export class Data {
      *   labels: The one-hot encoded labels tensor, of shape
      *     `[numTestExamples, 10]`.
      */
-    getTestData(numExamples?: number): { xs: tf.Tensor4D, labels: tf.Tensor2D } {
+    getTestData(numExamples?: number): { xs: tf.Tensor4D; labels: tf.Tensor2D } {
         let xs = tf.tensor4d(
             this.testImages,
             [this.testImages.length / IMAGE_SIZE, IMAGE_H, IMAGE_W, 1]);
@@ -161,7 +161,7 @@ let mnistNumExamples;
 let mnistIndices;
 
 /** Load MNIST data. */
-export async function loadMnistData(): Promise<void> {
+export const loadMnistData = async (): Promise<void> => {
     const mnistData = new Data();
     await mnistData.load();
     const mnistSamples = mnistData.getTrainData();
@@ -173,9 +173,9 @@ export async function loadMnistData(): Promise<void> {
     for (let i = 0; i < mnistNumExamples; ++i) {
         mnistIndices.push(i);
     }
-}
+};
 
-export function sampleFromMnistData(numExamplesPerClass: number): tf.Tensor2D {
+export const sampleFromMnistData = (numExamplesPerClass: number): tf.Tensor2D => {
     tf.util.assert(
         numExamplesPerClass <= mnistNumExamples / 10, () => 'requested too many samples'
     );
@@ -213,4 +213,4 @@ export function sampleFromMnistData(numExamplesPerClass: number): tf.Tensor2D {
         });
         return tf.concat(rowsToCombine, 1);
     });
-}
+};

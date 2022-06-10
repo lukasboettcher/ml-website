@@ -33,7 +33,9 @@ jobs:
             ${{ runner.os }}-node-
             
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4.1
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Build Angular Project
         run: |
           npm ci

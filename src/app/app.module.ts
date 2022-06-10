@@ -18,7 +18,7 @@ import { MnistComponent } from './mnist/mnist.component';
 import { DrawDigitComponent } from './mnist/draw-digit/draw-digit.component';
 import { ClassifyComponent } from './classify/classify.component';
 import { MazeComponent } from './classify/maze/maze.component';
-import { ChartsModule } from 'ng2-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { TutorialComponent } from './mnist/tutorial/tutorial.component';
 import { VarDirective } from './cartpole/configuration/var.directive';
 import { ClassifyHelpComponent } from './classify/classify-help/classify-help.component';
@@ -39,6 +39,7 @@ import { HomeCardComponent } from './home/card/card.component';
 import { CallbackPipe } from './callback.pipe';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { TranslateComponent } from './translate/translate.component';
+import { MnistEvalModelComponent } from './mnist/mnist-eval-model/mnist-eval-model.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +74,8 @@ import { TranslateComponent } from './translate/translate.component';
     HomeCardComponent,
     CallbackPipe,
     NotebooksComponent,
-    TranslateComponent
+    TranslateComponent,
+    MnistEvalModelComponent
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,7 @@ import { TranslateComponent } from './translate/translate.component';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    ChartsModule,
+    NgChartsModule,
     HttpClientModule
   ],
   providers: [],
