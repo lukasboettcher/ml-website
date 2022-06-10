@@ -78,8 +78,9 @@
                 führen - probiere es einfach aus!
             </p>
             <p>
-                Falls der Algorithmus zügig arbeitet und nicht zu lange braucht, kannst du auch die Modell Qualität erhöhen, 
-                wodurch die Ergebnisse mehr Details enthalten sollten. Außerdem kannst du einen zweiten Stil verwenden und so zwei Styles kombinieren.
+                Falls der Algorithmus zügig arbeitet und nicht zu lange braucht, kannst du auch die Modell Qualität
+                erhöhen, wodurch die Ergebnisse mehr Details enthalten sollten. Außerdem kannst du einen zweiten Stil
+                verwenden und so zwei Styles kombinieren.
             </p>
             <div [ngClass]="{'d-none': !outputGenerated}">
                 <figure class="figure">
@@ -90,40 +91,35 @@
 
 
         </div>
+
         <div class="col-md-6 col-lg-4">
-            <div class="form-check mb-3">
-                <input class="form-check-input" type="checkbox" [(ngModel)]="combineStyles" id="defaultCheck1">
-                <label class="form-check-label" for="defaultCheck1">Zwei Styles Kombinieren?</label>
-            </div>
+            <form>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="combineStyles"
+                        [ngModelOptions]="{standalone: true}">
+                    <label class="form-check-label" for="exampleCheck1">Zwei Styles Kombinieren?</label>
+                </div>
+                <div class="mb-3">
+                    <div class="form-floating">
+                        <select #perfSelect class="form-select" id="floatingSelect"
+                            aria-label="Floating label select example" (change)="updateModels(perfSelect.value)">
+                            <option selected value="low">Schnelle Performance</option>
+                            <option value="high">Hohe Qualität</option>
+                        </select>
+                        <label for="floatingSelect">Modell Qualität</label>
+                    </div>
+                </div>
 
-            <div class="input-group mb-3 btn-group-vertical">
-                <button class="btn btn-primary" type="button" id="button-addon1" (click)="onStyleSubmit(outputCanvas)"
+                <div class="mb-3">
+                    <label for="customRange1" class="form-label">{{combineStyles ? 'Style Verhältnis' :
+                        'Style Stärke'}}</label>
+                    <input #latentSlider type="range" class="form-range" id="customRange1" [(ngModel)]="styleRatio"
+                        [ngModelOptions]="{standalone: true}" step="0.01" min="0" max="1">
+                </div>
+
+                <button class="btn btn-primary" type="button" (click)="onStyleSubmit(outputCanvas)"
                     [disabled]="!buttonsEnabled">{{styleText}}</button>
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">{{combineStyles ? 'Style Verhältnis' :
-                        'Style Stärke'}}</span>
-
-                </div>
-                <div class="inline-range">
-                    <input type="range" class="form-control-range" id="brushWidth" [(ngModel)]="styleRatio" step="0.01"
-                        min="0" max="1">
-                </div>
-            </div>
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01">Modell Qualität</label>
-                </div>
-                <select #perfSelect class="custom-select" id="inputGroupSelect01" (change)="updateModels(perfSelect.value)">
-                    <option selected value="low">Schnelle Performance</option>
-                    <option value="high">Hohe Qualität</option>
-                </select>
-            </div>
+            </form>
         </div>
     </div>
-
 </div>
