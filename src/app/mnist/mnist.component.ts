@@ -1,7 +1,6 @@
 import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
-import { Tensor } from '@tensorflow/tfjs';
 import { ChartConfiguration, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
@@ -143,60 +142,5 @@ export class MnistComponent {
 
   chooseTutorial(b: boolean): void {
     this.doTutorial = b;
-  }
-
-  // get canvas image and interpret it
-  // save results afterwards
-  onClassify(i: ImageData): void {
-    this.convertCanvasTensor(i).then(
-      t => {
-        const prediction = this.model.predict(t);
-        this.results = Array.from(prediction.dataSync());
-        this.barChartData.datasets[0].data = this.results;
-        this.prediction = this.labelData(this.results);
-        this.charts?.first.update();
-      });
-  }
-
-  // get canvas image and interpret it
-  // save results afterwards
-  onClassifyCustom(i: ImageData): void {
-    this.convertCanvasTensor(i).then(
-      t => {
-        const prediction = this.customModel.predict(t);
-        this.resultsCustom = Array.from(prediction.dataSync());
-        this.barChartDataCustom.datasets[0].data = this.resultsCustom;
-        this.predictionCustom = this.labelData(this.resultsCustom);
-        this.charts?.last.update();
-      });
-  }
-
-  // convert image data into a canvas that can be interpreted by tensorflow
-  async convertCanvasTensor(i: ImageData): Promise<Tensor> {
-    const unit = tf.browser.fromPixels(i)
-      // convert 3d tensor to 2d tensor
-      .resizeNearestNeighbor([28, 28])
-      // normalize data
-      .mean(2).expandDims(2).expandDims()
-      // flatten for nnet input
-      .toFloat()
-      // scale [0,255] -> [0,1]
-      .div(255.);
-    return unit;
-  }
-
-  // find the number for the highest probability
-  labelData(d: Array<number>): number {
-    // find label for most likely number
-    let prob = d[0];
-    let label = 0;
-
-    for (let i = 1; i < d.length; i++) {
-      if (d[i] > prob) {
-        label = i;
-        prob = d[i];
-      }
-    }
-    return label;
   }
 }
