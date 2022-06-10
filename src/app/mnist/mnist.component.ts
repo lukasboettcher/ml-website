@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, QueryList, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
 import { Tensor } from '@tensorflow/tfjs';
@@ -11,6 +11,9 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./mnist.component.css']
 })
 export class MnistComponent {
+
+  @ViewChildren(BaseChartDirective)
+  charts?: QueryList<BaseChartDirective>;
 
   // vars for state of component
   // also use stages for mnist parent component
@@ -25,17 +28,15 @@ export class MnistComponent {
   benchmarkWarningClosed = false;
 
   // vars for models and results
-  private model: any;
-  private customModel: any;
+  model: any;
+  customModel: any;
   results: number[];
   prediction: number;
 
   resultsCustom: number[];
   predictionCustom: number;
 
-  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
-
-  public barChartData: ChartConfiguration['data'] = {
+  barChartData: ChartConfiguration['data'] = {
     datasets: [
       {
         data: [],
@@ -45,7 +46,7 @@ export class MnistComponent {
     labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   };
 
-  public barChartDataCustom: ChartConfiguration['data'] = {
+  barChartDataCustom: ChartConfiguration['data'] = {
     datasets: [
       {
         data: [],
@@ -55,7 +56,7 @@ export class MnistComponent {
     labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
   };
 
-  public barChartOptions: ChartConfiguration['options'] = {
+  barChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     animation: false,
     elements: {
@@ -65,7 +66,7 @@ export class MnistComponent {
     },
   };
 
-  public barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'bar';
 
   constructor(private router: Router) {
     this.results = null;
@@ -153,7 +154,7 @@ export class MnistComponent {
         this.results = Array.from(prediction.dataSync());
         this.barChartData.datasets[0].data = this.results;
         this.prediction = this.labelData(this.results);
-        this.chart?.update();
+        this.charts?.first.update();
       });
   }
 
@@ -166,7 +167,7 @@ export class MnistComponent {
         this.resultsCustom = Array.from(prediction.dataSync());
         this.barChartDataCustom.datasets[0].data = this.resultsCustom;
         this.predictionCustom = this.labelData(this.resultsCustom);
-        this.chart?.update();
+        this.charts?.last.update();
       });
   }
 

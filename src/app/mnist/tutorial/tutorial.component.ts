@@ -11,9 +11,14 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class TutorialComponent {
 
+  @ViewChild('trainProgress')
+  trainProgressEl: ElementRef;
+  // vars for output and state of this component
+  @Output()
+  modelCreated = new EventEmitter<tf.LayersModel>();
   @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  public lineChartData: ChartConfiguration['data'] = {
+  lineChartData: ChartConfiguration['data'] = {
     datasets: [
       {
         data: [],
@@ -23,7 +28,7 @@ export class TutorialComponent {
     labels: [ ]
   };
 
-  public lineChartOptions: ChartConfiguration['options'] = {
+  lineChartOptions: ChartConfiguration['options'] = {
     responsive: true,
     animation: false,
     elements: {
@@ -33,25 +38,17 @@ export class TutorialComponent {
     },
   };
 
-  public lineChartType: ChartType = 'line';
-
-  constructor() { }
-
+  lineChartType: ChartType = 'line';
   basePath = 'assets/mnist-images';
-
-  @ViewChild('trainProgress') trainProgressEl: ElementRef;
-  // vars for output and state of this component
-  @Output() modelCreated = new EventEmitter<tf.LayersModel>();
-  private model: tf.LayersModel = null;
-
+  model: tf.LayersModel = null;
   // stages for creation: getdata, create model, train,
   stages: boolean[] = new Array(4).fill(false);
 
   // stage 1: load data
   dataClass: Data;
-  private trainData;
+  trainData;
   trainDataLength: number;
-  private testData;
+  testData;
 
   // stage 2: create model
   modelType: string;
@@ -75,6 +72,8 @@ export class TutorialComponent {
   // accuracies calc at end for <p>
   trainValidationAcc: number;
   testValidationAcc: number;
+
+  constructor() { }
 
   // use the Data class from google to get mnist database
   async loadData(): Promise<void> {

@@ -9,8 +9,6 @@ import { v4 as uuidv4 } from 'uuid';
 })
 export class LandscapeComponent implements OnInit {
 
-  constructor() { }
-
   @ViewChild('inputCanvas', { static: false })
   inputCanvas: LandscapeCanvasComponent;
   @ViewChild('outputCanvas', { static: false })
@@ -70,12 +68,27 @@ export class LandscapeComponent implements OnInit {
     ]
   };
 
+  constructor() { }
+
+  @HostListener('window:resize', [])
+  onResize(): void {
+    const calculatedNewWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 1024);
+
+    // only reset the canvas, if width - this implies scaling - is changed
+    if (this.canvasWidth !== calculatedNewWidth) {
+      this.canvasWidth = calculatedNewWidth;
+      setTimeout(() => {
+        this.inputCanvas.resetCanvas();
+      }, 0);
+    }
+  }
+
   ngOnInit(): void {
     setTimeout(() => { this.onResize(); }, 100);
   }
 
   // helper function to calculate rgb values from hex strings
-  hexToRgb(hex): { r: number, g: number, b: number } | null {
+  hexToRgb(hex): { r: number; g: number; b: number } | null {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result ? {
       r: parseInt(result[1], 16),
@@ -108,24 +121,10 @@ export class LandscapeComponent implements OnInit {
     link.click();
   }
 
-
-  @HostListener('window:resize', [])
-  onResize(): void {
-    const calculatedNewWidth = Math.min(this.inputCanvas.canvas.nativeElement.offsetWidth, 1024);
-
-    // only reset the canvas, if width - this implies scaling - is changed
-    if (this.canvasWidth !== calculatedNewWidth) {
-      this.canvasWidth = calculatedNewWidth;
-      setTimeout(() => {
-        this.inputCanvas.resetCanvas();
-      }, 0);
-    }
-  }
-
   updateBrushWidth(px: string): void {
     this.canvasBrushWidth = parseInt(px, 10);
   }
-
+  /* eslint-disable @typescript-eslint/naming-convention */
   sendRequest(style: string): void {
     const dataURL = this.inputCanvas.canvas.nativeElement.toDataURL();
     const uuid = uuidv4();

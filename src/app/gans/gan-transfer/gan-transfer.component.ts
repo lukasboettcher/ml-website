@@ -13,6 +13,8 @@ export class GanTransferComponent implements OnInit {
   @ViewChild('inputImg') inputImg: GanTransferInputComponent;
   @ViewChild('style1') style1: GanTransferInputComponent;
   @ViewChild('style2') style2: GanTransferInputComponent;
+  @ViewChild('outputCanvas')
+  outputCanvas: ElementRef<HTMLCanvasElement>;
 
   styleNet: tf.GraphModel;
   transformNet: tf.GraphModel;
@@ -27,9 +29,6 @@ export class GanTransferComponent implements OnInit {
 
   styleText = 'Modelle werden geladen. Bitte warten..';
   styleRatio = 0.5;
-
-  @ViewChild('outputCanvas')
-  outputCanvas: ElementRef<HTMLCanvasElement>;
 
   combineStyles = false;
   buttonsEnabled = false;
@@ -151,17 +150,13 @@ export class GanTransferComponent implements OnInit {
     this.styleText = 'Generiere latente Representation';
     await tf.nextFrame();
 
-    let bottleneck: tf.Tensor = await tf.tidy(() => {
-      return (this.styleNet.predict(tf.browser.fromPixels(imageStyle).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
-    });
+    let bottleneck: tf.Tensor = await tf.tidy(() => (this.styleNet.predict(tf.browser.fromPixels(imageStyle).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor));
 
     // if the ratio is < 1, the original style must be taken into account
     if (this.styleRatio !== 1.0) {
       this.styleText = 'Generiere 100D identity style Representation';
       await tf.nextFrame();
-      const identityBottleneck: tf.Tensor = await tf.tidy(() => {
-        return (this.styleNet.predict(tf.browser.fromPixels(imageInput).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
-      });
+      const identityBottleneck: tf.Tensor = await tf.tidy(() => (this.styleNet.predict(tf.browser.fromPixels(imageInput).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor));
       const styleBottleneck: tf.Tensor = bottleneck;
       bottleneck = await tf.tidy(() => {
         const styleBottleneckScaled = styleBottleneck.mul(tf.scalar(this.styleRatio));
@@ -188,19 +183,15 @@ export class GanTransferComponent implements OnInit {
   }
 
   async startCombinedStyleTransfer(imageInput: HTMLImageElement, imageStyleLeft: HTMLImageElement,
-                                   imageStyleRight: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
+    imageStyleRight: HTMLImageElement, outputCanvas: HTMLCanvasElement): Promise<void> {
     // await tf.nextFrame();
     this.styleText = 'Generiere latente Representation von Bild 1';
     await tf.nextFrame();
-    const bottleneck1: tf.Tensor = await tf.tidy(() => {
-      return (this.styleNet.predict(tf.browser.fromPixels(imageStyleLeft).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
-    });
+    const bottleneck1: tf.Tensor = await tf.tidy(() => (this.styleNet.predict(tf.browser.fromPixels(imageStyleLeft).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor));
 
     this.styleText = 'Generiere latente Representation von Bild 2';
     await tf.nextFrame();
-    const bottleneck2: tf.Tensor = await tf.tidy(() => {
-      return (this.styleNet.predict(tf.browser.fromPixels(imageStyleRight).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor);
-    });
+    const bottleneck2: tf.Tensor = await tf.tidy(() => (this.styleNet.predict(tf.browser.fromPixels(imageStyleRight).toFloat().div(tf.scalar(255)).expandDims()) as tf.Tensor));
 
     this.styleText = 'Style wird angewandt';
     await tf.nextFrame();
