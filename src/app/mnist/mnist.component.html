@@ -40,9 +40,8 @@
       <app-draw-digit [modelLoaded]="modelLoaded" (classify)="onClassify($event)"></app-draw-digit>
       <div class="col-md ml-3">
         <div style="max-width: 800px;">
-          <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions"
-            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-          </canvas>
+          <canvas baseChart [data]="barChartData" [options]="barChartOptions" [legend]="true"
+                            [type]="barChartType"></canvas>
           <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{prediction}}</span></h4>
         </div>
       </div>
@@ -117,9 +116,8 @@
       <app-draw-digit [modelLoaded]="gotCustomModel" (classify)="onClassifyCustom($event)"></app-draw-digit>
       <div class="col-md ml-3">
         <div style="max-width: 800px;">
-          <canvas baseChart [datasets]="barChartDataCustom" [labels]="barChartLabels" [options]="barChartOptions"
-            [plugins]="barChartPlugins" [legend]="barChartLegend" [chartType]="barChartType">
-          </canvas>
+          <canvas baseChart [data]="barChartDataCustom" [options]="barChartOptions" [legend]="true"
+                            [type]="barChartType"></canvas>
           <h4 class="my-2 text-center">Vorhersage: <span class="font-weight-bolder">{{predictionCustom}}</span></h4>
         </div>
       </div>

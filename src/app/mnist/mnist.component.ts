@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import * as tf from '@tensorflow/tfjs';
 import { Tensor } from '@tensorflow/tfjs';
-import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
+import { ChartConfiguration, ChartType } from 'chart.js';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-mnist',
@@ -33,28 +33,39 @@ export class MnistComponent implements OnInit {
   resultsCustom: number[];
   predictionCustom: number;
 
-  // parameters for ng2-charts
-  public barChartOptions: ChartOptions = {
-    responsive: true,
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
-  };
-  public barChartLabels: Label[] = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-  public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
-  public barChartPlugins = [];
-  public barChartData: ChartDataSets[] = [
-    { data: [], label: 'Wahrscheinlichkeiten' }
-  ];
+  @ViewChild(BaseChartDirective) chart?: BaseChartDirective;
 
-  public barChartDataCustom: ChartDataSets[] = [
-    { data: [], label: 'Wahrscheinlichkeiten' }
-  ];
+  public barChartData: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Wahrscheinlichkeiten',
+      }
+    ],
+    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  };
+
+  public barChartDataCustom: ChartConfiguration['data'] = {
+    datasets: [
+      {
+        data: [],
+        label: 'Wahrscheinlichkeiten',
+      }
+    ],
+    labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  };
+
+  public barChartOptions: ChartConfiguration['options'] = {
+    responsive: true,
+    animation: false,
+    elements: {
+      line: {
+        tension: 0.5
+      }
+    },
+  };
+
+  public barChartType: ChartType = 'bar';
 
   constructor(private router: Router) {
     this.results = null;
@@ -139,28 +150,26 @@ export class MnistComponent implements OnInit {
   // get canvas image and interpret it
   // save results afterwards
   onClassify(i: ImageData): void {
-    // console.log(i);
     this.convertCanvasTensor(i).then(
       t => {
         const prediction = this.model.predict(t);
         this.results = Array.from(prediction.dataSync());
-        this.barChartData[0].data = this.results;
+        this.barChartData.datasets[0].data = this.results;
         this.prediction = this.labelData(this.results);
-        // console.log(this.results);
+        this.chart?.update();
       });
   }
 
   // get canvas image and interpret it
   // save results afterwards
   onClassifyCustom(i: ImageData): void {
-    // console.log(i);
     this.convertCanvasTensor(i).then(
       t => {
         const prediction = this.customModel.predict(t);
         this.resultsCustom = Array.from(prediction.dataSync());
-        this.barChartDataCustom[0].data = this.resultsCustom;
+        this.barChartDataCustom.datasets[0].data = this.resultsCustom;
         this.predictionCustom = this.labelData(this.resultsCustom);
-        // console.log(this.results);
+        this.chart?.update();
       });
   }
 
