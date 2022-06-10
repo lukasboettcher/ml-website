@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild } from '@angular/core';
 import * as tf from '@tensorflow/tfjs';
 import { IMAGE_H, IMAGE_W, Data } from './data';
 import { ChartConfiguration, ChartType } from 'chart.js';
@@ -11,8 +11,6 @@ import { BaseChartDirective } from 'ng2-charts';
 })
 export class TutorialComponent {
 
-  @ViewChild('trainProgress')
-  trainProgressEl: ElementRef;
   // vars for output and state of this component
   @Output()
   modelCreated = new EventEmitter<tf.LayersModel>();
@@ -159,7 +157,6 @@ export class TutorialComponent {
           this.trainBatchCount++;
           this.lineChartData.labels.push(this.trainBatchCount.toString());
           this.lineChartData.datasets[0].data.push(status['acc']);
-          this.trainProgressEl.nativeElement.value = this.trainBatchCount;
           this.chart?.update();
           await tf.nextFrame();
         },
