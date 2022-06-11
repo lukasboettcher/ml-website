@@ -162,12 +162,12 @@
             </p>
             <p>
                 Nun müssen zwei wichtige Parameter gesetzt werden: die Batchsize
-                <select type="number" class="mx-2" [(ngModel)]="trainBatchSize">
+                <select class="form-select form-select-sm mx-2 inline-select" type="number" [(ngModel)]="trainBatchSize">
                     <option disabled>Batchsize</option>
                     <option *ngFor="let x of availBatchSizes" [ngValue]="x">{{x}}</option>
                 </select>
                 und die Anzahl der Epochen
-                <select type="number" class="mx-2" [(ngModel)]="trainEpochs">
+                <select class="form-select form-select-sm mx-2 inline-select" type="number" [(ngModel)]="trainEpochs">
                     <option disabled>Epochs</option>
                     <option *ngFor="let x of availEpochs" [ngValue]="x">{{x}}</option>
                 </select>.
