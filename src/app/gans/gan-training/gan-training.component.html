@@ -133,7 +133,7 @@
                 <option *ngFor="let x of listFaceModels" [value]="x.path">{{x.desc}}
                 </option>
               </select>
-              <label for="floatingSelect">Gesichts Modell</label>
+              <label for="floatingSelect">Gesichts Modell <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" *ngIf="faceModelLoading"></span></label>
             </div>
           </div>
           <div class="mb-3">
