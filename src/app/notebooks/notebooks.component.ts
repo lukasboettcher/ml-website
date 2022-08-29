@@ -7,6 +7,15 @@ import { Component } from '@angular/core';
 })
 export class NotebooksComponent {
 
-  constructor() { }
+  repoLink = 'lukasboettcher/ml-website-notebooks';
 
+  notebookDesc: NotebookDescription[] = [];
+
+  webRequest = false;
+}
+
+interface NotebookDescription {
+  fileName: string;
+  title: string;
+  description?: string;
 }
