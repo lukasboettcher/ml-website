@@ -12,6 +12,23 @@ export class NotebooksComponent {
   notebookDesc: NotebookDescription[] = [];
 
   webRequest = false;
+
+  constructor() {
+    if (this.webRequest) {
+      fetch(`https://api.github.com/repos/${this.repoLink}/contents`)
+        .then(response => response.json())
+        .then(json => {
+          const re = /(?:\.([^.]+))?$/;
+
+          const notebooks = json.map(obj => obj.name).filter(fileName => re.exec(fileName)[1] === 'ipynb');
+
+          for (const nbName of notebooks) {
+          }
+        });
+    }
+  }
+
+
 }
 
 interface NotebookDescription {
