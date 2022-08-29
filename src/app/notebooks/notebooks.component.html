@@ -45,4 +45,17 @@
             </p>
         </div>
     </div>
+
+    <div class="row" *ngIf="webRequest">
+        <div *ngFor="let description of notebookDesc; index as i" class="py-3">
+
+            <div [innerHtml]="markdown(description.title)"></div>
+            <div [innerHtml]="markdown(description.description)"></div>
+            <p>Notebook Starten:
+                <a target="_blank" rel="noreferrer noopener" class="px-2"
+                    href="https://mybinder.org/v2/gh/{{repoLink}}/HEAD?labpath={{description.fileName}}">
+                    <img src="assets/notebooks/badge_logo.svg" alt="" srcset=""></a>
+            </p>
+        </div>
+    </div>
 </div>
