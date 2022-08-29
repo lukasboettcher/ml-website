@@ -23,6 +23,19 @@ export class NotebooksComponent {
           const notebooks = json.map(obj => obj.name).filter(fileName => re.exec(fileName)[1] === 'ipynb');
 
           for (const nbName of notebooks) {
+            fetch(`https://raw.githubusercontent.com/${this.repoLink}/main/${nbName}`)
+              .then(responseNB => responseNB.json())
+              .then(jsonNB => {
+                const description = jsonNB.cells.filter(cell => cell.cell_type === 'markdown')[0].source; // [0].source
+
+                const ndsc: NotebookDescription = {
+                  fileName: nbName,
+                  title: description[0],
+                  description: description[2]
+                };
+
+                this.notebookDesc.push(ndsc);
+              });
           }
         });
     }
