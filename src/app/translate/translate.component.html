@@ -54,4 +54,46 @@
       </div>
       <div class="footer" id="status"></div>
    </div>
+   <div class="row justify-content-center my-3">
+      <div class="col-md-8">
+         <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="">
+            <ngb-panel>
+               <ng-template ngbPanelTitle>
+                  <span>
+                     <h4>Aufgabe 1</h4>
+                  </span>
+               </ng-template>
+               <ng-template ngbPanelContent>
+                  Überlege dir einen komplexen deutschen Satz und versuche diesen mit dieser Seite ins Englische zu
+                  übersetzen.
+                  Vergleiche nun das Ergebnis mit einem online Dienst, wie <a href="https://translate.google.com">Google
+                     Translate</a>.
+                  Unterscheiden sich die Ergebnisse? Welches Ergebnis würdest du bevorzugen?
+               </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+               <ng-template ngbPanelTitle>
+                  <span>
+                     <h4>Aufgabe 2</h4>
+                  </span>
+               </ng-template>
+               <ng-template ngbPanelContent>
+                  Welche Vorteile entstehen für den Nutzer und den Besitzer der Webseite dadurch, dass ein Modell für
+                  die Übersetzung verwendet wird, anstelle eines Servers.
+               </ng-template>
+            </ngb-panel>
+            <ngb-panel>
+               <ng-template ngbPanelTitle>
+                  <span>
+                     <h4>Aufgabe 3</h4>
+                  </span>
+               </ng-template>
+               <ng-template ngbPanelContent>
+                  Neben Vorteilen gibt es natürlich auch Nachteile dieser Methode. Welche Nachteile fallen dir ein, die
+                  einen Nutzer eventuell einschränken?
+               </ng-template>
+            </ngb-panel>
+         </ngb-accordion>
+      </div>
+   </div>
 </div>
