@@ -40,6 +40,8 @@ import { CallbackPipe } from './callback.pipe';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { TranslateComponent } from './translate/translate.component';
 import { MnistEvalModelComponent } from './mnist/mnist-eval-model/mnist-eval-model.component';
+import { QnaComponent } from './text/qna/qna.component';
+import { ToxicComponent } from './text/toxic/toxic.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +77,9 @@ import { MnistEvalModelComponent } from './mnist/mnist-eval-model/mnist-eval-mod
     CallbackPipe,
     NotebooksComponent,
     TranslateComponent,
-    MnistEvalModelComponent
+    MnistEvalModelComponent,
+    QnaComponent,
+    ToxicComponent
   ],
   imports: [
     BrowserModule,

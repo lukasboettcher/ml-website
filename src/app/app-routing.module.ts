@@ -16,6 +16,7 @@ import { PerceptronComponent } from './perceptron/perceptron.component';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { TranslateComponent } from './translate/translate.component';
 import { ToxicComponent } from './text/toxic/toxic.component';
+import { QnaComponent } from './text/qna/qna.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'notebooks', component: NotebooksComponent },
   { path: 'translate', component: TranslateComponent },
   { path: 'text-toxic', component: ToxicComponent },
+  { path: 'text-qna', component: QnaComponent },
   { path: '404', component: NotfoundComponent },
   // wildcard URL
   { path: '**', redirectTo: '/404' }
