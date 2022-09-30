@@ -15,6 +15,7 @@ import { TictactoeComponent } from './tictactoe/tictactoe.component';
 import { PerceptronComponent } from './perceptron/perceptron.component';
 import { NotebooksComponent } from './notebooks/notebooks.component';
 import { TranslateComponent } from './translate/translate.component';
+import { ToxicComponent } from './text/toxic/toxic.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'perceptron', component: PerceptronComponent },
   { path: 'notebooks', component: NotebooksComponent },
   { path: 'translate', component: TranslateComponent },
+  { path: 'text-toxic', component: ToxicComponent },
   { path: '404', component: NotfoundComponent },
   // wildcard URL
   { path: '**', redirectTo: '/404' }
