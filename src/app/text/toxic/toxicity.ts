@@ -54,6 +54,10 @@ export class ToxicityClassifier {
     this.toxicityLabels = toxicityLabels;
   }
 
+  public get tfmodel(): tfconv.GraphModel {
+    return this.model;
+  }
+
   async loadModel() {
     return tfconv.loadGraphModel('assets/text/toxicity/model.json');
     // return tfconv.loadGraphModel(
