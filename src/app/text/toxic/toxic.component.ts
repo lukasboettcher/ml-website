@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import * as toxicity from './toxicity';
 
 @Component({
   selector: 'app-toxic',
@@ -11,6 +12,12 @@ export class ToxicComponent implements OnInit {
 
   ngOnInit(): void {
 
+    toxicity.load(0.85, []).then(model => {
+      const sentences = ['you suck'];
+      model.classify(sentences).then(predictions => {
+        console.log(predictions);
+      });
+    });
 
   }
 
