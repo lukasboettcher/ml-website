@@ -72,6 +72,12 @@ export class ToxicComponent implements OnInit {
       this.worker.postMessage(['translate', 'de', 'en', paragraphs]);
     });
   }
+
+  async onTextChange(target: HTMLInputElement, table: HTMLTableElement) {
+    this.evaluateText(target.value)
+      .then(_ => { target.value = ''; });
+  }
+
   async evaluateText(elText: string): Promise<void> {
     if (elText === '') {
       return;
