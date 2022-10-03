@@ -36,6 +36,14 @@
                         </div>
                     </div>
 
+                    <div ngbDropdown style="cursor: pointer;">
+                        <a class="nav-link" ngbDropdownToggle>Text</a>
+                        <div ngbDropdownMenu>
+                            <button ngbDropdownItem routerLink="text-toxic" (click)="isCollapsed = true">Beleidigungserkennung</button>
+                            <button ngbDropdownItem routerLink="text-qna" (click)="isCollapsed = true">Text-Interpretation</button>
+                        </div>
+                    </div>
+
                     <li class="nav-item" role="presentation" routerLinkActive="active">
                         <a class="nav-link" routerLink="classify" (click)="isCollapsed = true">Klassifizierung mit der
                             Webcam</a>
