@@ -1,0 +1,11 @@
+.toxic {
+    color: red;
+}
+
+.ntoxic {
+    color: green;
+}
+
+.unsuretoxic {
+    color: #ff6600;
+}
