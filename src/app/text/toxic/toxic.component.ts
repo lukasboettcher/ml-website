@@ -16,13 +16,27 @@ export class ToxicComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
-    toxicity.load(0.85, []).then(model => {
-      const sentences = ['you suck'];
-      model.classify(sentences).then(predictions => {
-        console.log(predictions);
-      });
+    toxicity.load(0.60, []).then(model => {
+      this.model = model;
+      this.labels = model.tfmodel.outputNodes.map(d => d.split('/')[0]);
+      this.modelLoaded = true;
     });
+  }
+
+  async evaluateText(elText: string): Promise<void> {
+    if (elText === '') {
+      return;
+    }
+
+    this.model.classify(inputText)
+      .then(predictions => {
+        console.log(predictions);
+        inputText.map((text, i) => {
+          const res: TableRowData = predictions.reduce((obj, item) => ({ ...obj, [item.label]: item.results[i].match }), { text });
+          this.tableData.push(res);
+        });
+      });
+  }
 
   }
 
