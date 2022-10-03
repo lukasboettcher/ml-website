@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import * as toxicity from './toxicity';
 
+interface TableRowData {
+  [index: string]: boolean | string | null;
+  text: string;
+}
+
 @Component({
   selector: 'app-toxic',
   templateUrl: './toxic.component.html',
