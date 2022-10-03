@@ -13,7 +13,40 @@ interface TableRowData {
 })
 export class ToxicComponent implements OnInit {
 
-  constructor() { }
+  model: toxicity.ToxicityClassifier;
+  labels: string[];
+  modelLoaded = false;
+
+  tableData: TableRowData[] = [];
+
+  useTranslation = false;
+  worker: Worker;
+  loadingModel = false;
+  translateResolve: (value: string | PromiseLike<string>) => void = null;
+
+  constructor() {
+    if (typeof Worker !== 'undefined' && this.useTranslation) {
+      this.worker = new Worker('assets/translate/worker.js');
+      this.worker.addEventListener('message', ({ data }) => {
+        if (data[0] === 'translate_reply' && data[1]) {
+          const outputText = data[1].join('\n\n');
+          this.translateResolve(outputText);
+          this.translateResolve = null;
+        } else if (data[0] === 'load_model_reply' && data[1]) {
+          this.loadingModel = false;
+          console.log('model loaded');
+        } else if (data[0] === 'import_reply' && data[1]) {
+          this.loadingModel = true;
+          this.worker.postMessage(['load_model', 'de', 'en']);
+        }
+      });
+      this.worker.postMessage(['import']);
+    } else {
+      // Web Workers are not supported in this environment.
+      // You should add a fallback so that your program still executes correctly.
+      console.warn('Web Workers not supported or Translation disabled.');
+    }
+  }
 
   ngOnInit(): void {
     toxicity.load(0.60, []).then(model => {
@@ -23,10 +56,28 @@ export class ToxicComponent implements OnInit {
     });
   }
 
+  translate(text: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (!this.useTranslation) {
+        resolve(text);
+        return;
+      }
+      if (this.translateResolve !== null) {
+        reject('Concurrent Translations not allowed!');
+        return;
+      }
+      this.translateResolve = resolve;
+      if (!text.trim().length) { return; }
+      const paragraphs = text.split('\n');
+      this.worker.postMessage(['translate', 'de', 'en', paragraphs]);
+    });
+  }
   async evaluateText(elText: string): Promise<void> {
     if (elText === '') {
       return;
     }
+    const translatedText = await this.translate(elText);
+    const inputText = [translatedText];
 
     this.model.classify(inputText)
       .then(predictions => {
