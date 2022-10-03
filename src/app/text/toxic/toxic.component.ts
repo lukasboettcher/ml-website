@@ -95,6 +95,13 @@ export class ToxicComponent implements OnInit {
       });
   }
 
+  getTextFromResult(result: string | boolean | null): string {
+    if (result === true) {
+      return 'Positiv';
+    } else if (result === false) {
+      return 'Negativ';
+    } else {
+      return 'Unsicher';
+    }
   }
-
 }
