@@ -17,6 +17,19 @@ export class ToxicComponent implements OnInit {
   labels: string[];
   modelLoaded = false;
 
+  labelTranslation: { [index: string]: string } = {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    identity_attack: 'Identitätsangriff',
+    insult: 'Beleidigung',
+    obscene: 'Obszönität',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    severe_toxicity: 'Schwere Beleidigung',
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    sexual_explicit: 'Sexuell Explizit',
+    threat: 'Bedrohung',
+    toxicity: 'Toxisch',
+  };
+
   tableData: TableRowData[] = [];
 
   useTranslation = false;
