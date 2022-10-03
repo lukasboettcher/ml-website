@@ -4,6 +4,16 @@
             <h3>
                 Beleidigungserkennung
             </h3>
+    <div class="row my-3">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text">Texteingabe</span>
+                <input type="text" class="form-control" placeholder="" #textInput
+                    (change)="onTextChange(textInput, table)"> 
+                <button class="btn btn-primary" [disabled]="!modelLoaded" type="button" (click)="evaluateText(textInput.value);textInput.value = '';">Analysieren</button>
+                <button class="btn btn-warning" [disabled]="!modelLoaded" type="button" (click)="tableData = []">Zurücksetzen</button>
+            </div>
+        </div>
     </div>
 
 </div>
