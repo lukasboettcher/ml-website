@@ -16,4 +16,28 @@
         </div>
     </div>
 
+    <div class="row my-3">
+        <div class="col">
+            <table #table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Text</th>
+                        <th scope="col" *ngFor="let l of labels">{{labelTranslation[l]}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let row of tableData">
+                        <th scope="row">{{row.text}}</th>
+                        <td *ngFor="let l of labels" [ngClass]="{'toxic': row[l], 'ntoxic': !row[l], 'unsuretoxic': row[l] === null}">
+                            
+                        <div>
+                            {{getTextFromResult(row[l])}}
+                        </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h3 *ngIf="tableData.length === 0" class="text-center">Gib einen Text ein, um ihn auf Beleidigungen zu berechnen.</h3>
+        </div>
+    </div>
 </div>
