@@ -30,4 +30,4 @@ deploy:
     - ssh-keyscan progly.informatik.uni-kiel.de >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
   script:
-    - rsync -rltgoDzvO --delete --progress ./dist/ml-website/ mlwebsite@progly.informatik.uni-kiel.de:/var/www/mlwebsite/ki
+    - rsync -rltgoDzvO --delete --progress dist/ml-website/ mlwebsite@progly.informatik.uni-kiel.de:/var/www/mlwebsite/ki
