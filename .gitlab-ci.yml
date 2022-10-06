@@ -8,16 +8,10 @@ cache:
   paths:
     - node_modules/
 
-build:       # This job runs in the build stage, which runs first.
+build_deploy:
+  before_script:
+    - chmod 600 ${SSH_KEY}
   script: |
     npm ci
     npm run build:apache
-  artifacts:
-    paths:
-      - dist
-
-deploy:
-  before_script:
-    - chmod 600 ${SSH_KEY}
-  script:
-    - tar cfC - dist/ml-website . | ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${SSH_USER}@${DEPLOY_HOST} tar xfC - /var/www/mlwebsite/ki
+    tar cfC - dist/ml-website . | ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${SSH_USER}@${DEPLOY_HOST} tar xfC - /var/www/mlwebsite/ki
