@@ -4,10 +4,17 @@
             <h3>
                 Beleidigungserkennung
             </h3>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut perspiciatis magnam, sit sapiente provident
+                nisi dicta accusamus mollitia, deserunt quae suscipit ipsam doloribus distinctio, pariatur totam et
+                ullam optio iste.
+            </p>
+        </div>
         <div class="col-md-5 align-self-center">
             <div class="d-flex flex-column align-items-center">
                 <figure class="figure">
-                    <img src="https://images.unsplash.com/photo-1544717301-9cdcb1f5940f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80" class="figure-img img-fluid rounded">
+                    <img src="https://images.unsplash.com/photo-1544717301-9cdcb1f5940f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80"
+                        class="figure-img img-fluid rounded">
                     <figcaption class="figure-caption">Placeholder</figcaption>
                 </figure>
             </div>
@@ -19,9 +26,11 @@
             <div class="input-group">
                 <span class="input-group-text">Texteingabe</span>
                 <input type="text" class="form-control" placeholder="" #textInput
-                    (change)="onTextChange(textInput, table)"> 
-                <button class="btn btn-primary" [disabled]="!modelLoaded" type="button" (click)="evaluateText(textInput.value);textInput.value = '';">Analysieren</button>
-                <button class="btn btn-warning" [disabled]="!modelLoaded" type="button" (click)="tableData = []">Zurücksetzen</button>
+                    (change)="onTextChange(textInput, table)">
+                <button class="btn btn-primary" [disabled]="!modelLoaded" type="button"
+                    (click)="evaluateText(textInput.value);textInput.value = '';">Analysieren</button>
+                <button class="btn btn-warning" [disabled]="!modelLoaded" type="button"
+                    (click)="tableData = []">Zurücksetzen</button>
             </div>
         </div>
     </div>
@@ -38,16 +47,18 @@
                 <tbody>
                     <tr *ngFor="let row of tableData">
                         <th scope="row">{{row.text}}</th>
-                        <td *ngFor="let l of labels" [ngClass]="{'toxic': row[l], 'ntoxic': !row[l], 'unsuretoxic': row[l] === null}">
-                            
-                        <div>
-                            {{getTextFromResult(row[l])}}
-                        </div>
+                        <td *ngFor="let l of labels"
+                            [ngClass]="{'toxic': row[l], 'ntoxic': !row[l], 'unsuretoxic': row[l] === null}">
+
+                            <div>
+                                {{getTextFromResult(row[l])}}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <h3 *ngIf="tableData.length === 0" class="text-center">Gib einen Text ein, um ihn auf Beleidigungen zu berechnen.</h3>
+            <h3 *ngIf="tableData.length === 0" class="text-center">Gib einen Text ein, um ihn auf Beleidigungen zu
+                berechnen.</h3>
         </div>
     </div>
 </div>
