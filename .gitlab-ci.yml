@@ -1,6 +1,6 @@
 # Official framework image. Look for the different tagged releases at:
 # https://hub.docker.com/r/library/node/tags/
-image: node:latest
+image: node:lts
 
 stages:          # List of stages for jobs, and their order of execution
   - build
@@ -20,14 +20,8 @@ build:       # This job runs in the build stage, which runs first.
 
 deploy:
   stage: deploy
-  image: alpine:latest
   before_script:
-    - 'which ssh-agent || ( apk update && apk add openssh-client rsync )'
-    - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan progly.informatik.uni-kiel.de >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
+    - 'which rsync || ( apt-get update -y && apt-get install -y rsync )'
+    - chmod 600 ${SSH_KEY}
   script:
-    - rsync -rltgoDzvO --delete --progress dist/ml-website/ mlwebsite@progly.informatik.uni-kiel.de:/var/www/mlwebsite/ki
+    - rsync -rltgoDzvO --delete --progress -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" dist/ml-website/ ${SSH_USER}@${DEPLOY_HOST}:${TARGET_DIR}
