@@ -1,0 +1,29 @@
+# Official framework image. Look for the different tagged releases at:
+# https://hub.docker.com/r/library/node/tags/
+image: node:latest
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+
+# This folder is cached between builds
+# https://docs.gitlab.com/ee/ci/yaml/index.html#cache
+cache:
+  paths:
+    - node_modules/
+
+build:       # This job runs in the build stage, which runs first.
+  stage: build
+  script: |
+    npm ci
+    npm run build:apache
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk update && apk add openssh-client rsync
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+  script:
+    - rsync -rltgoDzvO --delete --progress ./dist/ml-website/ mlwebsite@progly.informatik.uni-kiel.de:/var/www/mlwebsite/ki
