@@ -8,6 +8,10 @@ cache:
   paths:
     - node_modules/
 
+lint:
+  script: |
+    npm run lint
+
 build_deploy:
   before_script:
     - apt-get update -y && apt-get install -y rsync
