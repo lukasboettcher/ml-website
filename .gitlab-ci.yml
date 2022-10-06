@@ -15,4 +15,4 @@ build_deploy:
   script: |
     npm ci
     npm run build:apache
-    rsync -av --del dist/ml-website -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ${SSH_USER}@${DEPLOY_HOST}:/var/www/mlwebsite/ki
+    rsync -av --del dist/ml-website/ -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ${SSH_USER}@${DEPLOY_HOST}:/var/www/mlwebsite/ki
