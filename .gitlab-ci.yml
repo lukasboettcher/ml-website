@@ -2,10 +2,6 @@
 # https://hub.docker.com/r/library/node/tags/
 image: node:lts
 
-stages:          # List of stages for jobs, and their order of execution
-  - build
-  - deploy
-
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
 cache:
@@ -13,18 +9,15 @@ cache:
     - node_modules/
 
 build:       # This job runs in the build stage, which runs first.
-  stage: build
   script: |
     npm ci
     npm run build:apache
+  artifacts:
+    paths:
+      - dist
 
 deploy:
-  stage: deploy
   before_script:
-    - 'which rsync || ( apt-get update -y && apt-get install -y rsync )'
     - chmod 600 ${SSH_KEY}
-    - ls
-    - ls /builds/stu210239/ml-website/dist/ml-website
-    - ls dist/ml-website/
   script:
-    - rsync -rltgoDzvO --delete --progress -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" dist/ml-website/ ${SSH_USER}@${DEPLOY_HOST}:${TARGET_DIR}
+    - tar cfC - dist/ml-website . | ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${SSH_USER}@${DEPLOY_HOST} tar xfC - /var/www/mlwebsite/ki
