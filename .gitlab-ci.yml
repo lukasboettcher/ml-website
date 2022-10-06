@@ -10,8 +10,9 @@ cache:
 
 build_deploy:
   before_script:
+    - apt-get update -y && apt-get install -y rsync
     - chmod 600 ${SSH_KEY}
   script: |
     npm ci
     npm run build:apache
-    tar cfC - dist/ml-website . | ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${SSH_USER}@${DEPLOY_HOST} tar xfC - /var/www/mlwebsite/ki
+    rsync -av --del dist/ml-website -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ${SSH_USER}@${DEPLOY_HOST}:/var/www/mlwebsite/ki
