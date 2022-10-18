@@ -8,6 +8,7 @@ import * as qna from '@tensorflow-models/qna';
 })
 export class QnaComponent implements OnInit {
 
+  wikipediaURL = 'https://en.wikipedia.org/w/api.php?action=query&origin=*&format=json&prop=extracts&redirects=1&formatversion=latest&explaintext=1&exsectionformat=plain&titles=';
   constructor() { }
 
   ngOnInit(): void {
