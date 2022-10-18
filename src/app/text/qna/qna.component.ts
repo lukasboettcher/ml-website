@@ -27,6 +27,7 @@ export class QnaComponent implements OnInit {
     });
   }
 
+}
 
 interface WikiResponse {
   batchcomplete: boolean;
