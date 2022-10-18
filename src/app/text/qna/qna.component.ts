@@ -17,4 +17,21 @@ export class QnaComponent implements OnInit {
     });
   }
 
+
+interface WikiResponse {
+  batchcomplete: boolean;
+  query: {
+    normalized?: Array<{
+      fromencoded: boolean;
+      from: string;
+      to: string;
+    }>;
+    redirects?: Array<{ from: string; to: string }>;
+    pages: Array<{
+      pageid: number;
+      ns: number;
+      title: string;
+      extract: string;
+    }>;
+  };
 }
