@@ -36,6 +36,18 @@
                 <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="question"
                     (change)="interpret()">
             </div>
+
+            <button type="submit" class="btn btn-primary mb-3" (click)="interpret()"
+                [disabled]="!modelLoaded || loadingWiki">Interpretieren
+                <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"
+                    *ngIf="answerLoading"></span>
+            </button>
+
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Antwort</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    [(ngModel)]="answer"></textarea>
+            </div>
         </div>
     </div>
 </div>
