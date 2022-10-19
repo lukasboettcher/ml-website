@@ -25,6 +25,17 @@
         <div class="col-md-6">
 
 
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Context</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    [(ngModel)]="context"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Frage</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="question"
+                    (change)="interpret()">
+            </div>
         </div>
     </div>
 </div>
