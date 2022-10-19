@@ -48,6 +48,12 @@ export class QnaComponent implements OnInit {
     });
   }
 
+  getWikiUrl(title: string, onlyIntro: boolean = true) {
+    const encodedTitle = encodeURI(title);
+    const introString = onlyIntro ? '&exintro=1' : '';
+    return `${this.wikipediaURL}${encodedTitle}${introString}`;
+  }
+
 }
 
 interface WikiResponse {
