@@ -27,6 +27,27 @@ export class QnaComponent implements OnInit {
     });
   }
 
+  async interpret(): Promise<void> {
+    if (!this.modelLoaded) {
+      console.warn('ignoring query, since model not loaded yet!');
+      return;
+    } else if (this.context.length < 1) {
+      console.warn('ignoring query, since given context does not contain any information!');
+      return;
+    }
+    this.answerLoading = true;
+    this.model.findAnswers(this.question, this.context).then(answers => {
+      console.log(answers);
+      if (answers.length < 1) {
+        console.warn('no answers generated from model, possibly not enough context for the query.');
+        this.answer = 'ERROR: keine Antwort gefunden!';
+      } else {
+        this.answer = answers[0].text;
+      }
+      this.answerLoading = false;
+    });
+  }
+
 }
 
 interface WikiResponse {
