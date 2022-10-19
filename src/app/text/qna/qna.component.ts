@@ -54,6 +54,12 @@ export class QnaComponent implements OnInit {
     return `${this.wikipediaURL}${encodedTitle}${introString}`;
   }
 
+  async fetchWikiPage(title: string): Promise<string> {
+    const url = this.getWikiUrl(title, this.onlyIntro);
+    const response = await fetch(url);
+    const parsedResponse: WikiResponse = await response.json();
+    return parsedResponse.query.pages[0].extract;
+  }
 }
 
 interface WikiResponse {
