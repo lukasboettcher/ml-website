@@ -60,6 +60,16 @@ export class QnaComponent implements OnInit {
     const parsedResponse: WikiResponse = await response.json();
     return parsedResponse.query.pages[0].extract;
   }
+
+  async onWikiChange(title: string): Promise<void> {
+    if (this.loadingWiki || this.answerLoading || title.length < 1) {
+      return;
+    }
+    this.loadingWiki = true;
+    const text = await this.fetchWikiPage(title);
+    this.context = text;
+    this.loadingWiki = false;
+  }
 }
 
 interface WikiResponse {
