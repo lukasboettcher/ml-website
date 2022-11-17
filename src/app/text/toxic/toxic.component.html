@@ -88,4 +88,49 @@
                 berechnen.</h3>
         </div>
     </div>
+    <div class="row justify-content-center mt-5 mb-3">
+        <div class="col-md-8">
+            <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="">
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span>
+                            <h4>Aufgabe 1</h4>
+                        </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Überlege dir welche Probleme auftreten können wenn wir die Moderation vollständig unserer KI
+                        überlassen.
+                        Is es eine gute Idee einem Computer volle Kontrolle darüber zu geben, welche Inhalte erlaubt
+                        sind und welche nicht?
+                        Was für eine Rolle könnte <a href="https://de.wikipedia.org/wiki/Adversarial_Attack">Adversarial
+                            machine learning</a> hier spielen?
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span>
+                            <h4>Aufgabe 2</h4>
+                        </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        In welchen Fällen brauchen wir eventuell einen Menschen, der die Ergebnisse der KI noch einmal
+                        überprüft?
+                        Kannst du dir ein Scenario vorstellen, wo ein Beitrag in Sozialen Medien fälschlicherweise als
+                        Beleidigung erkannt und entfernt wird?
+                    </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span>
+                            <h4>Aufgabe 3</h4>
+                        </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Finde heraus, wie "content moderation" in den gängigen großen Sozialen Netzwerken gehandhabt
+                        wird.
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
+    </div>
 </div>
