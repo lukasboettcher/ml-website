@@ -60,6 +60,29 @@
     </div>
 
     <div class="row my-3">
+        <div class="col">
+            <h4>Ein Modell für Beleidigungen</h4>
+            <p>
+                Um Inhalte zu moderieren ist es notwendig, dass wir ein neuronales Netz so trainieren, sodass es in der
+                Lage
+                ist Profanitäten zu erkennen.
+                Ein beliebter Typ von neuronalen Netzen für Textverarbeitung sind Transformer. Diese zeichnen sich
+                dadurch aus,
+                dass sie nicht nur einzelne Eingaben verarbeiten, wie es bei Bild-Klassifizierungen üblich ist, sonder
+                auch die vorherigen Eingaben.
+                Hierdurch ist es möglich ein Modell zu trainieren, dass in der Lage ist den Kontext von Wörtern in einem
+                Satz zu erkennen.
+                Das Resultat ist ein Modell, welches Sätze als Eingaben empfängt und als Ausgabe eine Bewertung abgibt,
+                ob
+                es sich um einen beleidigenden Text handelt.
+                Das hier verwendete Modell besteht aus einer Embedding Komponente, dem <a
+                    href="https://arxiv.org/pdf/1803.11175.pdf">Universal Sentence Encoder</a> und einer Bewertungs
+                Komponente, die mit 2 millionen Kommentaren aus sozialen Netzen trainiert wurde, um Beleidugungen zu
+                erkennen.
+            </p>
+        </div>
+    </div>
+    <div class="row my-4">
         <div class="col-md-6">
             <div class="input-group">
                 <span class="input-group-text">Texteingabe in Englisch</span>
