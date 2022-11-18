@@ -1,4 +1,4 @@
-@media (max-width: 1700px) {
+@media (max-width: 1700px) and (min-width: 1200px) {
     .nav-link {
         max-width: 130px;
         white-space: nowrap;
