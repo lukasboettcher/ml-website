@@ -92,6 +92,13 @@ export class HomeComponent {
       srcPath: 'assets/home-images/jupyter.webp',
       video: false,
       tags: ['advanced']
+    }, {
+      title: 'Beleidigungserkennung',
+      routerLink: '/text-toxic',
+      text: `Jeder der schonmal das Internet benutzt hat, weiß, dass nicht immer alles höflich vor sich geht. Beleidigungen und Hassrede sind ein unangenehmes Beiprodukt von anonymen sozialen Netzwerken. Wie können wir KI verwenden, um Beleidigungen zu erkennen?`,
+      srcPath: 'assets/text/toxicity/argument.gif',
+      video: false,
+      tags: ['basic', 'supervised']
     },
   ];
 
