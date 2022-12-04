@@ -13,7 +13,8 @@
                 <p>
                     In dieser Komponente kannst du deine Webcam zur Bildklassifikation einsetzen. Sobald die Webcam
                     gestartet wurde, kannst du verschiedene Gegenstände in die Kamera halten (oder mit verschiedenen
-                    Gesichtsausdrücken hineinschauen) und dem neuronalen Netz mitteilen, was es gerade sieht. Danach
+                    Gesichtsausdrücken hineinschauen) und dem neuronalen Netz in dem Textfeld mitteilen, was es gerade
+                    sieht. Danach
                     kannst du testen, wie gut das neuronale Netz arbeitet, indem du ihm andere Gegenstände aus derselben
                     Klasse zeigst.
                 </p>
@@ -88,11 +89,9 @@
         </button>
         <div class="flex-grow-1 m-1">
             <div class="input-group ">
-                <input #input type="text" class="form-control"
-                    placeholder="Klasse Hinzufügen">
+                <input #input type="text" class="form-control" placeholder="Klasse Hinzufügen">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button"
-                        (click)="addClass(input.value)">+</button>
+                    <button class="btn btn-outline-secondary" type="button" (click)="addClass(input.value)">+</button>
                 </div>
             </div>
         </div>
@@ -123,8 +122,9 @@
                         <td>{{ c.value.pred | percent }}</td>
                         <td>{{ c.value.count }}</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-sm" [disabled]="!video || !loopID" (mousedown)="currentSampleClass = c.key"
-                                (mouseup)="currentSampleClass = null" (mouseleave)="currentSampleClass = null">Sample</button>
+                            <button type="button" class="btn btn-info btn-sm" [disabled]="!video || !loopID"
+                                (mousedown)="currentSampleClass = c.key" (mouseup)="currentSampleClass = null"
+                                (mouseleave)="currentSampleClass = null">Sample</button>
                         </td>
                         <td>
                             <button type="button" class="btn btn-danger btn-sm"
@@ -182,10 +182,50 @@
                 <img src="assets/classify-images/dumbbells.png" class="img-fluid border rounded mx-auto my-3 d-block">
                 <p>
                     Offensichtlich waren der KI nur Bilder von Hanteln gezeigt worden, die von Menschen gehalten wurden
-                    – und das neuronale Netzwerk identifizierte den Unterarm als wichtiges Merkmal der Hantel.
+                    - und das neuronale Netzwerk identifizierte den Unterarm als wichtiges Merkmal der Hantel.
                     Klingt harmlos? 2015 geriet Google in die Kritik, nachdem Fotos dunkelhäutiger Menschen von Googles
-                    Objekterkennungs-KI als „Gorilla“ identifiziert wurden – anscheinend war die KI nur mit weißen
+                    Objekterkennungs-KI als „Gorilla“ identifiziert wurden - anscheinend war die KI nur mit weißen
                     Gesichtern zur Identifizierung von Menschen trainiert worden.
+                </p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="false">
+            <ng-template ngbPanelTitle>
+                <span> <b>Transfer Lernen</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p>
+                    Transfer Lernen ist eine Technik im Bereich des Machine Learning, bei der vorhandene Kenntnisse und
+                    Erfahrungen aus der Lösung einer Aufgabe genutzt werden, um die Leistung bei der Lösung einer
+                    ähnlichen, aber nicht identischen Aufgabe zu verbessern. Im Bereich der Bildklassifizierung kann
+                    Transfer Lernen verwendet werden, um Algorithmen mit vorhandenen Kenntnissen über visuelle Konzepte
+                    und Objekte auszustatten, um die Genauigkeit und Leistung bei der Klassifizierung neuer Bilder zu
+                    erhöhen. Transfer Lernen kann eine nützliche Technik sein, um die Leistung von Machine
+                    Learning-Algorithmen für die Bildklassifizierung zu verbessern, ohne dass große Mengen an
+                    Trainingsdaten benötigt werden. </p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="false">
+            <ng-template ngbPanelTitle>
+                <span> <b>Aufgabe 1</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p>
+                    Wie kann sichergestellt werden, dass das Transfer Lernen für die Bildklassifizierung fair und
+                    unvoreingenommen ist und keine Diskriminierung aufgrund von Merkmalen wie Geschlecht, Alter oder
+                    Rasse verursacht?
+                </p>
+            </ng-template>
+        </ngb-panel>
+        <ngb-panel [disabled]="false">
+            <ng-template ngbPanelTitle>
+                <span> <b>Aufgabe 2</b> </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p>
+                    Wie vergleicht sich die Verwendung des Transfer Lernens für die Bildklassifizierung mit anderen
+                    Methoden der Bildklassifizierung, wie beispielsweise des Trainings von Neuronalen Netzen von Grund
+                    auf?
                 </p>
             </ng-template>
         </ngb-panel>
