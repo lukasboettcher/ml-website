@@ -18,6 +18,9 @@ Dev Server und Builds ausführen:
 ```
 # Dev Server starten, ki-labor ist unter http://localhost:4200/ erreichbar.
 npm start
+
+# Angular Projekt kompilieren -> dist/
+npm run build
 ```
 
 Für die Installation externer NPM Pakete:
