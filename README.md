@@ -78,7 +78,11 @@ Zum Beispiel [Visual Studio Code](https://code.visualstudio.com/) zusammen mit d
 └── tsconfig.json       Typescript Config
 ```
 
-# MlWebsite
+### Best Practice
+Angular als Frontend Framework stellt eine Vielzahl von Hilfsmitteln bereit, um die Entwicklung zu erleichtern.
+Es ist oft keine gute Idee weitere externe Tools, wie JQuery, herbeizuziehen, um Angular interne Funktionen zu ersetzen.
+Gleiches gilt auch für externe Frameworks.
+So gibt es zum Beispiel für das Bootstrap toolkit ein ```ng-bootstrap``` Paket, welches speziell dafür gedacht ist Bootstrap in Angular mit Komponenten zu integrieren.
 
 ## Weitere Hilfe
 
