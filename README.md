@@ -1,5 +1,5 @@
 # Ki-Labor Projekt
-Das Ki-Labor ist eine interaktive Lernplatform für alles rund ums künstliche Intelligenz und Machine Learning.
+Das Ki-Labor ist eine interaktive Lernplatform für alles rund um künstliche Intelligenz und Machine Learning.
 Das Projekt verwendet Angular als Frontend Framework. Für den Großteil der Machine Learning Komponenten wird Tensorflow.js verwendet.
 
 ### Voraussetzungen
