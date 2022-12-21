@@ -34,8 +34,9 @@
             From <span *ngIf="loadingModel" class="spinner-border spinner-border-sm m-2"></span>
             <select id="lang-from" name="from" class="lang-select" [(ngModel)]="langFrom"
                [disabled]="translating || loadingModel" (change)="updateFromLang()">
-               <!-- <option *ngFor="let lang of langs | keyvalue" [value]="lang.key" > {{lang.value}} </option> -->
-               <option *ngFor="let t of supportedTranslations | keyvalue" [value]="t.key"> {{langs[t.key]}} </option>
+               <ng-container *ngFor="let t of supportedTranslations | keyvalue">
+                  <option *ngIf="langTo !== t.key" [value]="t.key">{{langs[t.key]}}</option>
+               </ng-container>
             </select>
          </label>
          <textarea #input id="input" name="input" [(ngModel)]="inputText"></textarea>
