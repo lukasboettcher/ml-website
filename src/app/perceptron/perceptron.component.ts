@@ -8,7 +8,7 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 })
 export class PerceptronComponent implements OnInit {
 
-  url = 'https://progly.informatik.uni-kiel.de/perceptron-root/';
+  url = 'https://progly.informatik.uni-kiel.de/ki-labor/perceptron-root/';
   urlSafe: SafeResourceUrl;
   height = 512;
   heightRatio = 0.90;
