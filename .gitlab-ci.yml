@@ -22,8 +22,7 @@ build_deploy:
     npm run build:apache
     rsync -av --del dist/ml-website/ -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ${SSH_USER}@${DEPLOY_HOST}:{TARGET_DIR}
 
-test:
+build_deploy_experimental:
   image: docker:20.10.22
   script: |
-    docker ps
-    docker version
+    docker-compose -f docker-compose.progly.yml up --force-recreate --build -d
