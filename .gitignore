@@ -48,3 +48,4 @@ Thumbs.db
 
 # jupyterlite artifact
 *.doit.db
+jupyterlite-root
