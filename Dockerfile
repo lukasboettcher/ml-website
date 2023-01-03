@@ -12,9 +12,16 @@ WORKDIR /dist/src/app
 
 RUN npm cache clean --force
 
-COPY . .
+ADD package.json ./
+ADD package-lock.json ./
+
 COPY --from=jupyter-build /usr/src/jupyterlite-root src/jupyterlite-root
+
 RUN npm ci
+RUN npx ngcc
+
+COPY . .
+
 RUN npm run build -- --base-href /ki-labor/
 
 FROM nginx:1.22-alpine AS webserver
