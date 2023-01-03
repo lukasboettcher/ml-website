@@ -14,7 +14,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build:apache": "ng build --base-href /ki-labor --deploy-url /ki-labor/",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "build:jupyter": "sh src/jupyterlite/build.sh"
   },
   "private": true,
   "dependencies": {
