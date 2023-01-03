@@ -1,7 +1,7 @@
 #!/bin/sh
 SCRIPT_DIR=$(dirname $0)
-echo "removing previous jupyterlite root"
-rm -r $SCRIPT_DIR/../jupyterlite-root
+# echo "removing previous jupyterlite root"
+# rm -r $SCRIPT_DIR/../jupyterlite-root
 echo $SCRIPT_DIR
 if [ ! -d "$SCRIPT_DIR/venv" ]; then
     echo "$SCRIPT_DIR/venv does not exist"
