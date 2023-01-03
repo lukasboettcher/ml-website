@@ -1,0 +1,73 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.116583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "guide-grid-box.ipynb",
+      "path": "widget-notebooks/reference_guides/guide-grid-box.ipynb",
+      "size": 17910,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.116583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "guide-flex-box.ipynb",
+      "path": "widget-notebooks/reference_guides/guide-flex-box.ipynb",
+      "size": 14974,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.120583Z",
+      "format": null,
+      "last_modified": "2023-01-03T01:03:03.120583Z",
+      "mimetype": null,
+      "name": "images",
+      "path": "widget-notebooks/reference_guides/images",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.116583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "complete-ipywidgets-widget-list.ipynb",
+      "path": "widget-notebooks/reference_guides/complete-ipywidgets-widget-list.ipynb",
+      "size": 124981,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.116583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "guide-other.ipynb",
+      "path": "widget-notebooks/reference_guides/guide-other.ipynb",
+      "size": 13919,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2023-01-03T01:03:03.116583Z",
+  "format": "json",
+  "last_modified": "2023-01-03T01:03:03.116583Z",
+  "mimetype": null,
+  "name": "reference_guides",
+  "path": "widget-notebooks/reference_guides",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

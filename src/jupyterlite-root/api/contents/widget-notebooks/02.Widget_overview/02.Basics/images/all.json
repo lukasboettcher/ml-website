@@ -1,0 +1,37 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": "image/png",
+      "name": "WidgetModelView.png",
+      "path": "widget-notebooks/02.Widget_overview/02.Basics/images/WidgetModelView.png",
+      "size": 38681,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "WidgetModelView.graffle",
+      "path": "widget-notebooks/02.Widget_overview/02.Basics/images/WidgetModelView.graffle",
+      "size": 12224,
+      "type": "file",
+      "writable": true
+    }
+  ],
+  "created": "2023-01-03T01:03:03.092583Z",
+  "format": "json",
+  "last_modified": "2023-01-03T01:03:03.092583Z",
+  "mimetype": null,
+  "name": "images",
+  "path": "widget-notebooks/02.Widget_overview/02.Basics/images",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

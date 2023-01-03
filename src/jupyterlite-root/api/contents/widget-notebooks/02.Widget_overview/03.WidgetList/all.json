@@ -1,0 +1,61 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": "text/x-python",
+      "name": "widget_org.py",
+      "path": "widget-notebooks/02.Widget_overview/03.WidgetList/widget_org.py",
+      "size": 9601,
+      "type": "file",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "03.00-widget-list.ipynb",
+      "path": "widget-notebooks/02.Widget_overview/03.WidgetList/03.00-widget-list.ipynb",
+      "size": 5036,
+      "type": "notebook",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2023-01-03T01:03:03.092583Z",
+      "mimetype": null,
+      "name": "solutions",
+      "path": "widget-notebooks/02.Widget_overview/03.WidgetList/solutions",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    },
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.092583Z",
+      "format": null,
+      "last_modified": "2022-07-12T15:21:35Z",
+      "mimetype": null,
+      "name": "03.01-more-on-output-widget.ipynb",
+      "path": "widget-notebooks/02.Widget_overview/03.WidgetList/03.01-more-on-output-widget.ipynb",
+      "size": 26067,
+      "type": "notebook",
+      "writable": true
+    }
+  ],
+  "created": "2023-01-03T01:03:03.092583Z",
+  "format": "json",
+  "last_modified": "2023-01-03T01:03:03.092583Z",
+  "mimetype": null,
+  "name": "03.WidgetList",
+  "path": "widget-notebooks/02.Widget_overview/03.WidgetList",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}

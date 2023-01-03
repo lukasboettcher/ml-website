@@ -1,0 +1,25 @@
+{
+  "content": [
+    {
+      "content": null,
+      "created": "2023-01-03T01:03:03.120583Z",
+      "format": null,
+      "last_modified": "2023-01-03T01:03:03.120583Z",
+      "mimetype": null,
+      "name": "intro",
+      "path": "widget-notebooks/solutions/intro",
+      "size": null,
+      "type": "directory",
+      "writable": true
+    }
+  ],
+  "created": "2023-01-03T01:03:03.120583Z",
+  "format": "json",
+  "last_modified": "2023-01-03T01:03:03.120583Z",
+  "mimetype": null,
+  "name": "solutions",
+  "path": "widget-notebooks/solutions",
+  "size": null,
+  "type": "directory",
+  "writable": true
+}
