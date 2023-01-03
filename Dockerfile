@@ -1,10 +1,19 @@
-FROM node:lts-alpine AS build
+FROM python:3.10 AS jupyter-build
+
+WORKDIR /usr/src/app
+
+COPY src/jupyterlite .
+
+RUN sh build.sh
+
+FROM node:16-alpine AS build
 
 WORKDIR /dist/src/app
 
 RUN npm cache clean --force
 
 COPY . .
+COPY --from=jupyter-build /usr/src/jupyterlite-root src/jupyterlite-root
 RUN npm ci
 RUN npm run build -- --base-href /ki-labor/
 
