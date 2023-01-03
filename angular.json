@@ -26,7 +26,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/.htaccess",
-              "src/perceptron-root"
+              "src/perceptron-root",
+              "src/jupyterlite-root"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
