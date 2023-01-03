@@ -1,6 +1,11 @@
 .git/
 .angular/
+.vscode/
+.github/
 dist/
 node_modules/
 src/jupyterlite/venv
 src/jupyterlite-root
+.gitlab-ci.yml
+*.doit.db
+docker-compose.progly.yml
