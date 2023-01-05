@@ -27,4 +27,4 @@ build_deploy_experimental:
   only:
     - master
   script: |
-    docker-compose -f docker-compose.progly.yml up --force-recreate --build -d
+    docker-compose -f docker-compose.ki-labor.yml up --force-recreate --build -d
