@@ -7,6 +7,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ki-labor.rule=Host(`progly.informatik.uni-kiel.de`) &&  PathPrefix(`/ki-labor`)"
-      - "traefik.http.routers.ki-labor.entrypoints=http"
+      - "traefik.http.routers.ki-labor.entrypoints=websecure"
       - "traefik.http.routers.ki-labor.middlewares=stripprefix-ki-labor@docker"
       - "traefik.http.middlewares.stripprefix-ki-labor.stripprefix.prefixes=/ki-labor"
+      - "traefik.http.routers.ki-labor.tls.certresolver=letsencrypt"
