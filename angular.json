@@ -24,6 +24,8 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
+              "src/favicon.png",
+              "src/favicon.svg",
               "src/assets",
               "src/.htaccess",
               "src/perceptron-root",
@@ -101,6 +103,8 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/favicon.ico",
+              "src/favicon.png",
+              "src/favicon.svg",
               "src/assets"
             ],
             "styles": [
