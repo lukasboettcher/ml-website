@@ -1,5 +1,6 @@
 services:
   ki-labor:
+    restart: unless-stopped
     network_mode: bridge
     image: ki-labor
     container_name: "ki-labor"
