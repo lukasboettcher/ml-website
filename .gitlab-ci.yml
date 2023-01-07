@@ -8,12 +8,13 @@ cache:
   paths:
     - node_modules/
 
-lint:
+# disable the old jobs, reokaced by new docker deployment
+.lint:
   script: |
     npm ci
     npm run lint
 
-build_deploy:
+.build_deploy:
   before_script:
     - apt-get update -y && apt-get install -y rsync
     - chmod 600 ${SSH_KEY}
@@ -22,7 +23,7 @@ build_deploy:
     npm run build:apache
     rsync -av --del dist/ml-website/ -e "ssh -i ${SSH_KEY} -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" ${SSH_USER}@${DEPLOY_HOST}:{TARGET_DIR}
 
-build_deploy_experimental:
+build_deploy:
   image: docker:20.10.22
   only:
     - master
