@@ -5,7 +5,7 @@ var translationModels = new Map();
 
 const BERGAMOT_TRANSLATOR_MODULE = "bergamot-translator-worker.js";
 const MODEL_REGISTRY = "registry.json";
-const rootURL = "https://btchr.de/bergamot";
+const rootURL = "https://progly.informatik.uni-kiel.de/ki-labor/bergamot";
 let version = null;
 let modelRegistry = null;
 
