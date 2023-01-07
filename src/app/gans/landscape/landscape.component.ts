@@ -130,7 +130,7 @@ export class LandscapeComponent implements OnInit {
     const uuid = uuidv4();
     // const remoteURL: string = environment.production ? 'http://54.191.253.241:443' : '';
     // fetch(remoteURL + '/nvidia_gaugan_submit_map', {
-    fetch('https://btchr.de/gan/submit', {
+    fetch('https://progly.informatik.uni-kiel.de/ki-labor/gan/submit', {
       method: 'post',
       body: new URLSearchParams({
         masked_segmap: dataURL,
@@ -145,7 +145,7 @@ export class LandscapeComponent implements OnInit {
     }).then((res) => {
       if (res.ok) {
         // fetch(remoteURL + '/nvidia_gaugan_receive_image', {
-        fetch('https://btchr.de/gan/receive', {
+        fetch('https://progly.informatik.uni-kiel.de/ki-labor/gan/receive', {
           method: 'post',
           body: new URLSearchParams({
             name: uuid
