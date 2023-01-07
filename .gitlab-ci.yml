@@ -4,9 +4,9 @@ image: node:lts
 
 # This folder is cached between builds
 # https://docs.gitlab.com/ee/ci/yaml/index.html#cache
-cache:
-  paths:
-    - node_modules/
+# cache:
+#   paths:
+#     - node_modules/
 
 # disable the old jobs, reokaced by new docker deployment
 .lint:
