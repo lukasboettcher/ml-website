@@ -9,3 +9,4 @@ src/jupyterlite-root
 .gitlab-ci.yml
 *.doit.db
 docker-compose.progly.yml
+docker-compose.traefik.yml
