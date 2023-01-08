@@ -1,5 +1,3 @@
-version: "3.3"
-
 services:
   traefik:
     restart: unless-stopped
@@ -9,6 +7,7 @@ services:
     command:
       # - "--log.level=DEBUG"
       # - "--api.insecure=true"
+      - "--accesslog=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
@@ -24,8 +23,12 @@ services:
       - "443:443"
       # - "8080:8080"
     volumes:
-      - "traefik_le_data:/letsencrypt"
+      - "traefik_cert:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
 
 volumes:
-  traefik_le_data:
+  traefik_cert:
+    external: true
+
+# run this to redeploy / initial deploy the traefik instance
+# DOCKER_HOST=ssh://<user@host> docker-compose -f docker-compose.traefik.yml up -d
