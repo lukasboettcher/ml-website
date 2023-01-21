@@ -4,9 +4,9 @@
   "description": "Interactive learning platform for various Machine Learning concepts.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/lukasboettcher/ml-website.git"
+    "url": "https://git.informatik.uni-kiel.de/stu210239/ml-website"
   },
-  "author": "Lukas Böttcher <lukas@btchr.de>",
+  "author": "Lukas Boettcher <stu210239@mail.uni-kiel.de>",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
