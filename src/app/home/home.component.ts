@@ -99,6 +99,13 @@ export class HomeComponent {
       srcPath: 'assets/text/toxicity/argument.gif',
       video: false,
       tags: ['basic', 'supervised']
+    }, {
+      title: 'Text-Interpretation',
+      routerLink: '/text-qna',
+      text: `Verwende ein Modell, um Fragen zu einem Wikipedia Artikel zu beantworten.`,
+      srcPath: 'assets/text/qna/nnet.jpg',
+      video: false,
+      tags: ['basic', 'supervised']
     },
   ];
 
