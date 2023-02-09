@@ -15,6 +15,21 @@
                 zeichnen sich dadurch aus, dass sie sich effizient parallel trainieren lassen, und ideal für
                 sequenzielle Daten geeignet sind.
             </p>
+            <p>
+                Transformer sind in der Lage Eingabedaten zu verarbeiten, wobei der lokale und zeitliche Kontext der
+                Eingabedaten in dem Modell mit einbezogen wird.
+                Der entscheidende Unterschied zu anderen Modellen, die wir uns bislang angeschaut haben, und auch der
+                Grund, weshalb die Verarbeitung von natürlicher Sprache sich traditionell als sehr schwierig erwiesen
+                hat, ist, dass ein Modell Kontext benötigt, um z.B. die Bedeutung eines Wortes in einem Satz zu
+                verstehen. Angenommen ein Modell bekommt nacheinander die ersten fünf Wörter des folgenden Satzes als
+                Eingabe: <code class="mx-3">Der rote Apfel fiel vom Baum.</code>
+                Nun fragen wir das Modell, welches Wort als nächstes folgt.
+                Ohne den Kontext der vorherigen Wörter ist es unmöglich für das Modell eine akkurate Vorhersage für das
+                nächste Wort zu erzeugen.
+            </p>
+            <p>
+                Wenn wir dies mit unserem MNIST Modell vergleichen, erkennen wir, dass hier keinerlei Kontext existiert.
+                Um eine handgeschriebene Zahl zu erkennen, sind keine Informationen über die letzte Zahl von nöten.
             </p>
         </div>
         <div class="col-md-5 align-self-center">
