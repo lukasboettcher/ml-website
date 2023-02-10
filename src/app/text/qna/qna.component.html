@@ -54,6 +54,24 @@
                 als Ausgabe. Das Problem liegt dabei darin, dass die Ausgaben von ChatGPT teilweise mit denen eines
                 Schülers mithalten können, wodurch sich ethische Bedenken ergeben.
             </p>
+            <p>
+                Das ChatGPT Modell wurde auf einem großen Teil des Internets über mehrere Monate auf Tausenden
+                Grafikkarten trainiert und besteht aus 175 Milliarden Parametern. Wenn wir ChatGPU und unser MNIST
+                Modell mit 35 Tausend Parametern vergleichen, wird schnell klar, dass wir ein solches Modell nicht
+                ausschließlich im Browser ausführen oder trainieren können.
+                Aktuell kostet ChatGPT $100,000 pro Tag, um die Anfragen der Nutzer auf speziellen Servern zu
+                verarbeiten.
+            </p>
+            <h5>
+                Anleitung
+            </h5>
+            <p>
+                Als Alternative kannst du hier einen Englischen Wikipedia Artikel laden - optional nur die Einführung -
+                und eine Frage stellen, die unser Modell dann anhand des Textes versucht zu beantworten.
+                <br>
+                Dies ist konzeptionell der gleiche Ansatz, den andere Lösungen, wie ChatGPT verwenden, ohne dass wir
+                Millionen für das Training ausgeben müssen.
+            </p>
         </div>
         <div class="col-md-6">
 
@@ -91,12 +109,13 @@
             </div>
 
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Frage</label>
+                <label for="exampleFormControlInput1" class="form-label">Frage (in Englisch)</label>
                 <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="question"
                     (change)="interpret()">
             </div>
 
-            <button type="submit" class="btn btn-primary mb-3" (click)="interpret()"
+            <button type="submit" class="btn btn-primary mb-3" placement="top"
+                ngbTooltip="Context und Frage müssen in Englisch gestellt werden." (click)="interpret()"
                 [disabled]="!modelLoaded || loadingWiki">Interpretieren
                 <span class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"
                     *ngIf="answerLoading"></span>
