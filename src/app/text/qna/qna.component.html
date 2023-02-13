@@ -131,6 +131,18 @@
     <div class="row justify-content-center mt-5 mb-3">
         <div class="col-md-8">
             <ngb-accordion [closeOthers]="true" #acc="ngbAccordion" activeIds="">
+                <ngb-panel>
+                    <ng-template ngbPanelTitle>
+                        <span>
+                            <h4>Aufgabe 1</h4>
+                        </span>
+                    </ng-template>
+                    <ng-template ngbPanelContent>
+                        Lade den Wikipedia Artikel von Google und frage das Modell: "when was google founded?".
+                        Anschließend lade den Wikipedia Artikel "World War 2" und frage das Modell: "who was part of the axis?".
+                        Sind die Antworten korrekt?
+                    </ng-template>
+                </ngb-panel>
             </ngb-accordion>
         </div>
     </div>
