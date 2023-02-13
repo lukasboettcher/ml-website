@@ -42,6 +42,7 @@ import { TranslateComponent } from './translate/translate.component';
 import { MnistEvalModelComponent } from './mnist/mnist-eval-model/mnist-eval-model.component';
 import { QnaComponent } from './text/qna/qna.component';
 import { ToxicComponent } from './text/toxic/toxic.component';
+import { NotebookEntryComponent } from './notebooks/notebook-entry/notebook-entry.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { ToxicComponent } from './text/toxic/toxic.component';
     TranslateComponent,
     MnistEvalModelComponent,
     QnaComponent,
-    ToxicComponent
+    ToxicComponent,
+    NotebookEntryComponent
   ],
   imports: [
     BrowserModule,
