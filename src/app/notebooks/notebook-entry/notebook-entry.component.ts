@@ -7,6 +7,11 @@ import { Component, Input } from '@angular/core';
 })
 export class NotebookEntryComponent {
 
+  @Input()
+  notebookTitle;
+
+  @Input()
+  notebookLink;
 
   constructor() { }
 
