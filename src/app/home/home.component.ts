@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-  allTags = ['basic', 'advanced', 'supervised', 'unsupervised', 'reinforcement', 'gan', 'webcam'];
+  allTags = ['basic', 'advanced', 'supervised', 'unsupervised', 'reinforcement', 'gan', 'webcam', 'text'];
   activeTags = [];
   excludedTags = [];
 
@@ -84,7 +84,7 @@ export class HomeComponent {
       text: `Übersetze Text mit Hilfe eines neuronalen Netzes. Der Text verlässt dabei niemals deinen Computer und bleibt privat.`,
       srcPath: 'assets/home-images/translate.webp',
       video: false,
-      tags: ['advanced', 'supervised']
+      tags: ['advanced', 'supervised', 'text']
     }, {
       title: 'Python Notebooks',
       routerLink: '/notebooks',
@@ -98,14 +98,14 @@ export class HomeComponent {
       text: `Jeder der schonmal das Internet benutzt hat, weiß, dass nicht immer alles höflich vor sich geht. Beleidigungen und Hassrede sind ein unangenehmes Beiprodukt von anonymen sozialen Netzwerken. Wie können wir KI verwenden, um Beleidigungen zu erkennen?`,
       srcPath: 'assets/text/toxicity/argument.gif',
       video: false,
-      tags: ['basic', 'supervised']
+      tags: ['basic', 'supervised', 'text']
     }, {
       title: 'Text-Interpretation',
       routerLink: '/text-qna',
       text: `Verwende ein Modell, um Fragen zu einem Wikipedia Artikel zu beantworten.`,
       srcPath: 'assets/text/qna/nnet.jpg',
       video: false,
-      tags: ['basic', 'supervised']
+      tags: ['basic', 'supervised', 'text']
     },
   ];
 
