@@ -13,56 +13,47 @@
                 dir helfen, dich mit den verschiedenen Aspekten des maschinellen Lernens vertraut zu machen, und wir
                 ermutigen dich, deine eigenen Ideen auszuprobieren und zu experimentieren. Viel Spaß beim Lernen!
             </p>
-            <p>
-                Hierfür ist es empfohlen, dass du dich im Voraus mit der Sprache Python vertraut machst, um die
-                Grundlagen zu verstehen.
-            </p>
-            <p>
-                Die Notebooks können verwendet werden, ohne etwas herunterzuladen. Hierfür verwenden wir den Service <a
-                    href="https://mybinder.org/">mybinder.org</a>. Wenn viele Nutzer zur gleichen Zeit versuchen diesen
-                Service zu verwenden, kann es vorkommen, dass nicht genug Ressourcen für alle Nutzer verfügbar sind.
-                In diesem Fall kannst du trotzdem die Notebooks auf <a
-                    href="https://nbviewer.org/github/lukasboettcher/ml-website-notebooks/tree/main/">nbviewer.org</a>
-                anschauen, ohne sie auszuführen.
-                Alternativ kannst du die Notebooks von unserem <a
-                    href="https://github.com/lukasboettcher/ml-website-notebooks">GitHub Repository</a> herunterladen
-                und auf deinem Computer
-                selber ausführen wenn du mit Jupyter Notebooks schon vertraut bist.
-            </p>
-            <h4>Lineare Regression</h4>
-            <p>
-                Bei linearer Regression handelt es sich um ein statistisches Verfahren, womit ein einfaches Modell
-                erstellt wird, welches einen Datensatz optimal abbildet.
-                Oft wird dieses Verfahren verwendet, um einen Trend in Daten zu erkennen, womit eventuell eine
-                Vorhersage für zukünftige Werte gemacht werden kann.
-                Notebook starten: <a target="_blank" rel="noreferrer noopener"
-                    href="https://mybinder.org/v2/gh/lukasboettcher/ml-website-notebooks/HEAD?labpath=linear-regression.ipynb"><img
-                        src="assets/notebooks/badge_logo.svg" alt="" srcset=""></a>
-            </p>
-            <h4>Test Interactive Notebook mit Widgets</h4>
-            <p>
-                Bei linearer Regression handelt es sich um ein statistisches Verfahren, womit ein einfaches Modell
-                erstellt wird, welches einen Datensatz optimal abbildet.
-                Oft wird dieses Verfahren verwendet, um einen Trend in Daten zu erkennen, womit eventuell eine
-                Vorhersage für zukünftige Werte gemacht werden kann.
-                Notebook starten: <a target="_blank" rel="noreferrer noopener"
-                    href="https://mybinder.org/v2/gh/lukasboettcher/ml-website-notebooks/HEAD?labpath=ipywidgets-tutorial.ipynb"><img
-                        src="assets/notebooks/badge_logo.svg" alt="" srcset=""></a>
-            </p>
-            <h4>Test jupyterlite umgebung</h4>
-            <p>
-                Bei linearer Regression handelt es sich um ein statistisches Verfahren, womit ein einfaches Modell
-                erstellt wird, welches einen Datensatz optimal abbildet.
-                Oft wird dieses Verfahren verwendet, um einen Trend in Daten zu erkennen, womit eventuell eine
-                Vorhersage für zukünftige Werte gemacht werden kann.
-                Notebook starten: <a target="_blank" rel="noreferrer noopener"
-                    href="https://progly.informatik.uni-kiel.de/ki-labor/jupyterlite-root/lab/index.html?path=linear-regression.ipynb"><img
-                        src="assets/notebooks/badge_logo.svg" alt="" srcset=""></a>
-            </p>
+            <ol>
+                <li>Finde das Notebook, mit dem du arbeiten möchtest, und klicke auf das Start-Symbol, um
+                    es zu
+                    öffnen.</li>
+                <li>
+                    Sobald das Notebook geöffnet ist, solltest du eine Reihe von Zellen sehen, die Code, Text oder
+                    andere
+                    Inhalte enthalten. Um die Code-Zellen auszuführen und ihre Ausgabe zu sehen, kannst du entweder auf
+                    die
+                    Schaltfläche "Run" in der Symbolleiste klicken oder die Tastenkombination "Shift+Enter" verwenden.
+                </li>
+                <li>
+                    Wenn du ein von uns erstelltes Notebook verwenden mächtest, solltest du zuvor einmal alle Zellen
+                    ausführen.
+                    Dies kannst du unter <i>Ausführen</i> -> <i>Alle ausführen</i> mit einem Tastendruck.
+                    Die Sprache kannst du ebenfalls umstellen.
+                </li>
+            </ol>
+            <div class="row">
+                <div class="col-md-6">
+                    <img src="assets/notebooks/run.png" alt="" class="instruction-imgs">
+                </div>
+                <div class="col-md-6">
+                    <img src="assets/notebooks/lang.png" alt="" class="instruction-imgs">
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-3 align-self-center">
+            <div class="d-flex flex-column justify-content-center align-items-center">
+                <a href="https://progly.informatik.uni-kiel.de/ki-labor/jupyterlite-root/lab/index.html" target="_blank"
+                    class="btn btn-primary btn-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="100" fill="currentColor" class="bi bi-play-fill"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                    </svg>
+                </a>
+            </div>
         </div>
     </div>
-
     <div class="row" *ngIf="webRequest">
         <div *ngFor="let description of notebookDesc; index as i" class="py-3">
 
