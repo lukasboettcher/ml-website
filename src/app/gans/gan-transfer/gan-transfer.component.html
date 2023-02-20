@@ -17,7 +17,7 @@
             <p>
                 Hierbei bleibt die Struktur des Inputbildes erhalten und lediglich Farben und Muster des Stilbildes
                 werden auf das Inputbild abgebildet.
-                So kann zum Beispiel der Stil eines van Gogh auf ein Foto aus deiner Webcam projeziert werden.
+                So kann zum Beispiel der Stil eines van Gogh Porträts auf ein Foto aus deiner Webcam projeziert werden.
             </p>
         </div>
         <div class="col-md-6 col-lg-4">
@@ -68,9 +68,9 @@
     <div class="row">
         <div class="col-md-6 col-lg-8">
             <p>
-                Wenn du beide benötigten Bilder hinzugefügt hast, kannst du nun die Style Stärke angeben.
-                Die Style Stärke beschreibt, wie groß der einfluss des Stils auf das Inputbild sein soll.
-                Bei einer geringen Style Stärke wird das Inputbild nur minimal verändert, während eine 100% Style Stärke
+                Wenn du beide benötigten Bilder hinzugefügt hast, kannst du nun die Stylestärke angeben.
+                Die Stylestärke beschreibt, wie groß der Einfluss des Stils auf das Inputbild sein soll.
+                Bei einer geringen Stylestärke wird das Inputbild nur minimal verändert, während eine 100% Stylestärke
                 bedeutet, dass das Modell auch zu 100% die Ausgabe beeinflusst.
             </p>
             <p>
@@ -112,7 +112,7 @@
 
                 <div class="mb-3">
                     <label for="customRange1" class="form-label">{{combineStyles ? 'Style Verhältnis' :
-                        'Style Stärke'}}</label>
+                        'Stylestärke'}}</label>
                     <input #latentSlider type="range" class="form-range" id="customRange1" [(ngModel)]="styleRatio"
                         [ngModelOptions]="{standalone: true}" step="0.01" min="0" max="1">
                 </div>
