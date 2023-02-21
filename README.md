@@ -48,7 +48,7 @@ src/app/home/home.component.ts # Neue Card für die Komponente anlegen in 'cards
 Für das Projekt wird ein Standard Codestyle verwendet, der in .eslintrc.json definiert ist.
 Dies hilft sicherzustellen, dass der Code einem konsistenten Stil entspricht, was das Lesen und Warten des Codes erleichtert.
 Außerdem kann ESlint viele Probleme mit dem Stil und der Formatierung automatisch beheben, wodurch Zeit und Aufwand gespart werden.
-Es ist also empfohlen eine Code Editor oder eine IDE zu verwenden, die ESlint unterstützt.
+Es ist also empfohlen einen Code Editor oder eine IDE zu verwenden, die ESlint unterstützt.
 Zum Beispiel [Visual Studio Code](https://code.visualstudio.com/) zusammen mit der [Angular Language Service Extension](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template).
 
 ### Projekt Struktur
