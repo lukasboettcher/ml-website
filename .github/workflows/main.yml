@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI University Deployment
 
 # Controls when the workflow will run
@@ -11,9 +9,9 @@ on:
   #   branches: [ master ]
 
   # Allows you to run this workflow manually from the Actions tab
+  # only dispatch for now, since primary development is now happenning on university gitlab instance, not github
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
