@@ -8,7 +8,7 @@ image: node:lts
 #   paths:
 #     - node_modules/
 
-# disable the old jobs, reokaced by new docker deployment
+# disable the old jobs/cache config, replaced by new docker deployment
 .lint:
   script: |
     npm ci
