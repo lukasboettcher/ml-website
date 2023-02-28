@@ -15,7 +15,7 @@ export class HomeComponent {
       title: 'MNIST',
       routerLink: '/mnist',
       text: `MNIST ist eine Datenbank von handschriftlich geschriebenen Zahlen. Diese werden verwendet, um ein neuronales Netz zu trainieren, welches in der Lage ist, handgeschriebene Zahlen zu erkennen.`,
-      srcPath: 'assets/home-images/MnistExamples.png',
+      srcPath: 'assets/home-images/MnistExamples.png.webp',
       video: false,
       tags: ['basic', 'supervised']
     }, {
@@ -30,7 +30,7 @@ export class HomeComponent {
       title: 'Klassifizierung',
       routerLink: '/classify',
       text: `In der Komponente „Klassifizierung“ wird außerdem die Idee des Transfer-Lernens verwendet, um ein bestehendes Modell in seiner Funktionalität zu erweitern und anzupassen. `,
-      srcPath: 'assets/home-images/classify.png',
+      srcPath: 'assets/home-images/classify.png.webp',
       video: false,
       tags: ['advanced', 'supervised', 'webcam']
     }, {
@@ -54,7 +54,7 @@ export class HomeComponent {
       routerLink: '/perceptron',
       text: `Hier kannst du in einer interaktiven Umgebung schrittweise die Grundlagen eines Perceptrons erfahren.
       Perceptrons sind die elementaren Bausteine aus denen ein neuronales Netz besteht und sind für alle Entscheidungen verantwortlich.`,
-      srcPath: 'assets/home-images/perceptron.png',
+      srcPath: 'assets/home-images/perceptron.png.webp',
       video: false,
       tags: ['basic', 'supervised']
     }, {
