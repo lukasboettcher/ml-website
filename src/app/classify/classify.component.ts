@@ -13,7 +13,7 @@ export class ClassifyComponent {
 
   @ViewChild('video', { static: true }) videoElement: ElementRef;
 
-  images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png`);
+  images = [1, 2, 3, 4].map((n) => `assets/classify-images/coco${n}.png.webp`);
 
   // state
   model: mnet.MobileNet;
