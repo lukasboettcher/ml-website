@@ -46,8 +46,8 @@ export class HomeComponent {
       text: `CartPole ist ein berühmtes Problem, bei dem ein beweglicher Wagen versucht, einen Stab
       so lange wie möglich zu balancieren. In dieser Komponente wird ein neuronales Netz
       trainiert, um dieses Spiel bestmöglich zu absolvieren.`,
-      srcPath: 'assets/home-images/cartpole.gif',
-      video: false,
+      srcPath: 'assets/home-images/cartpole.webm',
+      video: true,
       tags: ['advanced', 'reinforcement']
     }, {
       title: 'Das Perceptron',
@@ -75,8 +75,8 @@ export class HomeComponent {
       title: 'Landschaften erzeugen',
       routerLink: '/gan-landscpe',
       text: `Zeichne einen Sketch einer Landschaft und lass den Computer die Zeichnung interpretieren.`,
-      srcPath: 'assets/home-images/landscape.gif',
-      video: false,
+      srcPath: 'assets/home-images/landscape.webm',
+      video: true,
       tags: ['advanced', 'gan', 'unsupervised']
     }, {
       title: 'Übersetzen',
@@ -96,8 +96,8 @@ export class HomeComponent {
       title: 'Beleidigungserkennung',
       routerLink: '/text-toxic',
       text: `Jeder der schonmal das Internet benutzt hat, weiß, dass nicht immer alles höflich vor sich geht. Beleidigungen und Hassrede sind ein unangenehmes Beiprodukt von anonymen sozialen Netzwerken. Wie können wir KI verwenden, um Beleidigungen zu erkennen?`,
-      srcPath: 'assets/text/toxicity/argument.gif',
-      video: false,
+      srcPath: 'assets/text/toxicity/argument.webm',
+      video: true,
       tags: ['basic', 'supervised', 'text']
     }, {
       title: 'Text-Interpretation',
