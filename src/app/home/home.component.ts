@@ -103,7 +103,7 @@ export class HomeComponent {
       title: 'Text-Interpretation',
       routerLink: '/text-qna',
       text: `Verwende ein Modell, um Fragen zu einem Wikipedia Artikel zu beantworten.`,
-      srcPath: 'assets/text/qna/nnet.jpg',
+      srcPath: 'assets/text/qna/nnet.jpg.webp',
       video: false,
       tags: ['basic', 'supervised', 'text']
     },
