@@ -23,9 +23,9 @@ export class GanTransferComponent implements OnInit {
   originalTransformNet: tf.GraphModel;
   separableTransformNet: tf.GraphModel;
 
-  imageInputSrc = 'assets/gan-images/chicago.jpg';
-  imageStyleLeftSrc = 'assets/gan-images/seaport.jpg';
-  imageStyleRightSrc = 'assets/gan-images/udnie.jpg';
+  imageInputSrc = 'assets/gan-images/chicago.jpg.webp';
+  imageStyleLeftSrc = 'assets/gan-images/seaport.jpg.webp';
+  imageStyleRightSrc = 'assets/gan-images/udnie.jpg.webp';
 
   styleText = 'Modelle werden geladen. Bitte warten..';
   styleRatio = 0.5;

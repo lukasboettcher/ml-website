@@ -38,7 +38,7 @@ export class GanTransferInputComponent {
       const randomNumber = Math.floor(Math.random() * links.length);
       element.src = links[randomNumber];
     } else if (value !== '') {
-      element.src = 'assets/gan-images/' + value + '.jpg';
+      element.src = 'assets/gan-images/' + value + '.jpg.webp';
     }
     // reset the select at the end
     select.value = '';
